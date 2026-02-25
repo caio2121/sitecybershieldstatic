@@ -35,10 +35,9 @@ window.CyberShieldConfig = {
 
     // Links de redes sociais
     social: {
-        linkedin: 'https://linkedin.com/company/cybershield-brasil',
-        twitter: 'https://twitter.com/cybershieldbr',
-        github: 'https://github.com/cybershield-brasil',
-        youtube: 'https://youtube.com/@cybershieldbrasil',
+        linkedin: 'https://www.linkedin.com/company/cybershieldgroup/',
+        instagram: 'https://www.instagram.com/cybershieldltda/',
+        facebook: 'https://www.facebook.com/people/Cyber-Shield-Group/61578838183639/',
         whatsapp: {
             number: '5521920137715',
             message: 'Olá! Gostaria de saber mais sobre os serviços de cibersegurança da CyberShield.'
@@ -62,7 +61,7 @@ window.CyberShieldConfig = {
         formValidation: true,
         analytics: true,
         cookieConsent: false,
-        formsSubmissionEnabled: false
+        formsSubmissionEnabled: true
     }
 };
 

@@ -55,10 +55,100 @@ document.addEventListener('DOMContentLoaded', () => {
     animateElements.forEach(el => {
         observer.observe(el);
     });
+    applyRealSocialLinks();
 });
 
-// Formulários temporariamente desativados para publicação estática no GitHub Pages.
-const FORMS_TEMP_DISABLED_MESSAGE = 'Canal de envio temporariamente indisponível. Fale conosco por WhatsApp ou e-mail.';
+function applyRealSocialLinks() {
+    const socialMap = {
+        linkedin: 'https://www.linkedin.com/company/cybershieldgroup/',
+        instagram: 'https://www.instagram.com/cybershieldltda/',
+        facebook: 'https://www.facebook.com/people/Cyber-Shield-Group/61578838183639/'
+    };
+
+    document.querySelectorAll('.social-links a[data-social]').forEach(link => {
+        const platform = link.getAttribute('data-social');
+        if (socialMap[platform]) {
+            link.href = socialMap[platform];
+            link.target = '_blank';
+            link.rel = 'noopener';
+        }
+    });
+
+    // Fallback para páginas legadas sem data-social.
+    document.querySelectorAll('.social-links a').forEach(link => {
+        const icon = link.querySelector('i');
+        if (!icon) return;
+
+        if (icon.classList.contains('fa-linkedin')) {
+            link.href = socialMap.linkedin;
+        } else if (
+            icon.classList.contains('fa-instagram') ||
+            icon.classList.contains('fa-twitter')
+        ) {
+            link.href = socialMap.instagram;
+            if (icon.classList.contains('fa-twitter')) {
+                icon.classList.remove('fa-twitter');
+                icon.classList.add('fa-instagram');
+            }
+        } else if (
+            icon.classList.contains('fa-facebook') ||
+            icon.classList.contains('fa-github') ||
+            icon.classList.contains('fa-youtube')
+        ) {
+            link.href = socialMap.facebook;
+            if (icon.classList.contains('fa-github') || icon.classList.contains('fa-youtube')) {
+                icon.classList.remove('fa-github', 'fa-youtube');
+                icon.classList.add('fa-facebook');
+            }
+        }
+
+        link.target = '_blank';
+        link.rel = 'noopener';
+    });
+}
+
+function getCompanyWhatsAppNumber() {
+    const config = window.CyberShieldConfig || {};
+    const number = config?.contact?.phone?.whatsapp || config?.social?.whatsapp?.number || '5521920137715';
+    return String(number).replace(/\D/g, '');
+}
+
+function buildWhatsAppMessage(formType, data) {
+    if (formType === 'lead') {
+        return [
+            'Novo lead via site CyberShield',
+            '',
+            `Nome: ${data.nome}`,
+            `E-mail: ${data.email}`,
+            `Empresa: ${data.empresa}`,
+            `Cargo: ${data.cargo}`,
+            'Interesse: Checklist de Ciberseguranca Gratuito'
+        ].join('\n');
+    }
+
+    return [
+        'Novo contato via site CyberShield',
+        '',
+        `Nome: ${data.nome}`,
+        `E-mail: ${data.email}`,
+        `Empresa: ${data.empresa || 'Nao informado'}`,
+        `Servico de interesse: ${data.servico}`,
+        '',
+        'Mensagem:',
+        data.mensagem
+    ].join('\n');
+}
+
+function openWhatsAppWithFormData(formType, data) {
+    const number = getCompanyWhatsAppNumber();
+    const message = buildWhatsAppMessage(formType, data);
+    const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+    const opened = window.open(url, '_blank', 'noopener');
+
+    if (!opened) {
+        window.location.href = url;
+    }
+}
 
 // Lead capture form
 document.addEventListener('DOMContentLoaded', function() {
@@ -72,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    console.log('Lead form found, modo estático (envio desativado).');
+    console.log('Lead form found, envio via WhatsApp.');
 
     function showLeadMessage(text, type = 'success') {
         const messageDiv = document.getElementById('lead-message');
@@ -213,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setupLeadRealTimeValidation();
 
-    leadForm.addEventListener('submit', async function(e) {
+    leadForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         const formData = new FormData(leadForm);
@@ -229,52 +319,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        showLeadMessage(FORMS_TEMP_DISABLED_MESSAGE, 'info');
-        return;
-
-        try {
-            // Preparar dados para API
-            const apiData = {
-                nome: data.nome,
-                email: data.email,
-                empresa: data.empresa,
-                cargo: data.cargo,
-                tipo: 'lead-capture',
-                servico: 'checklist-gratuito'
-            };
-
-            const result = await mailSender.sendEmail(apiData);
-            
-            if (result.success) {
-                showLeadMessage('Checklist enviado para seu e-mail! Em breve entraremos em contato.', 'success');
-                leadForm.reset();
-                clearLeadFormErrors();
-                
-                // Download simulado do arquivo (será implementado com arquivo real posteriormente)
-                // TODO: Implementar download real do checklist
-                console.log('Download do checklist seria executado aqui');
-                
-                // Analytics tracking (opcional)
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'download', {
-                        'event_category': 'resource',
-                        'event_label': 'checklist_ciberseguranca'
-                    });
-                }
-                
-                // Focar no primeiro campo após sucesso
-                const firstField = leadForm.querySelector('input, select');
-                if (firstField) {
-                    firstField.focus();
-                }
-            } else {
-                showLeadMessage(result.message, 'error');
-            }
-        } catch (error) {
-            showLeadMessage('Erro inesperado. Tente novamente mais tarde.', 'error');
-        } finally {
-            setLeadLoading(false);
-        }
+        setLeadLoading(true);
+        openWhatsAppWithFormData('lead', data);
+        showLeadMessage('Abrindo WhatsApp com seus dados preenchidos...', 'success');
+        setLeadLoading(false);
     });
 
     // Navegação por teclado melhorada
@@ -435,164 +483,9 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// MailSender API Integration via Email Proxy
-class MailSenderAPI {
-    constructor() {
-        // Determinar a URL da API baseada no ambiente
-        const hostname = window.location.hostname;
-        const branch = this.getBranchFromHostname(hostname);
-        
-        if (branch === 'www' || branch === 'main') {
-            // Produção - usar subdomínio api
-            this.apiUrl = 'https://api.www.cybershieldgroup.com.br/send-email';
-        } else {
-            // Branch específica - usar subdomínio da branch
-            this.apiUrl = `https://api.${branch}.www.cybershieldgroup.com.br/send-email`;
-        }
-        
-        this.clientKey = window.MAILSENDER_CLIENT_KEY || 'CYBERSHIELD_WEBSITE';
-        this.retryAttempts = 3;
-        this.retryDelay = 1000;
-        
-        console.log('MailSenderAPI initialized with URL:', this.apiUrl);
-    }
-
-    getBranchFromHostname(hostname) {
-        // Extrair branch do hostname (ex: dev.cybershieldgroup.com.br -> dev)
-        const parts = hostname.split('.');
-        if (parts.length >= 3 && parts[0] !== 'www' && parts[0] !== 'api') {
-            return parts[0];
-        }
-        return 'main';
-    }
-
-    async sendEmail(formData) {
-        console.log('MailSenderAPI.sendEmail called with:', formData);
-        console.log('API URL:', this.apiUrl);
-        
-        let lastError;
-        
-        for (let attempt = 1; attempt <= this.retryAttempts; attempt++) {
-            try {
-                // Preparar dados para API baseado no tipo de formulário
-                let requestBody;
-                
-                if (formData.tipo === 'lead-capture') {
-                    // Formulário de lead capture
-                    requestBody = {
-                        name: formData.nome,
-                        email: formData.email,
-                        company: formData.empresa || '',
-                        role: formData.cargo || '',
-                        service: formData.servico || 'checklist-gratuito',
-                        message: `Lead capture: ${formData.nome} da empresa ${formData.empresa} solicitou o checklist gratuito.`,
-                        clientKey: this.clientKey
-                    };
-                } else {
-                    // Formulário de contato
-                    requestBody = {
-                        name: formData.nome,
-                        email: formData.email,
-                        company: formData.empresa || '',
-                        service: this.getServiceName(formData.servico),
-                        message: formData.mensagem,
-                        clientKey: this.clientKey
-                    };
-                }
-                
-                console.log(`Tentativa ${attempt}: Enviando para ${this.apiUrl}`);
-                console.log('Request body:', requestBody);
-                
-                const response = await fetch(this.apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(requestBody)
-                });
-
-                console.log('Response status:', response.status);
-                const result = await response.json();
-                console.log('Response body:', result);
-                
-                if (response.ok && result.success) {
-                    return { success: true, message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.' };
-                } else {
-                    throw new Error(result.message || 'Erro ao enviar mensagem');
-                }
-                
-            } catch (error) {
-                lastError = error;
-                console.error(`Tentativa ${attempt} falhou:`, error);
-                
-                if (attempt < this.retryAttempts) {
-                    console.warn(`Tentativa ${attempt} falhou, tentando novamente em ${this.retryDelay * attempt}ms...`);
-                    await this.delay(this.retryDelay * attempt);
-                }
-            }
-        }
-        
-        console.error('Todas as tentativas falharam:', lastError);
-        return { success: false, message: 'Erro de conexão. Verifique sua internet e tente novamente.' };
-    }
-
-    delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    formatMessage(formData) {
-        let message = '';
-        
-        if (formData.tipo === 'lead-capture') {
-            message = `Novo lead capturado através do site CyberShield:
-
-Nome: ${formData.nome}
-E-mail: ${formData.email}
-Empresa: ${formData.empresa}
-Cargo: ${formData.cargo}
-Tipo: ${formData.servico}
-
----
-Enviado através do formulário de lead capture do site CyberShield
-Data: ${new Date().toLocaleString('pt-BR')}`;
-        } else {
-            message = `Novo contato através do site CyberShield:
-
-Nome: ${formData.nome}
-E-mail: ${formData.email}`;
-
-            if (formData.empresa) {
-                message += `\nEmpresa: ${formData.empresa}`;
-            }
-
-            message += `\nServiço de interesse: ${this.getServiceName(formData.servico)}
-
-Mensagem:
-${formData.mensagem}
-
----
-Enviado através do formulário de contato do site CyberShield
-Data: ${new Date().toLocaleString('pt-BR')}`;
-        }
-
-        return message;
-    }
-
-    getServiceName(serviceKey) {
-        const services = {
-            'diagnostico': 'Diagnóstico de Segurança',
-            'pentest': 'Pentest',
-            'hardening': 'Hardening Técnico',
-            'consultoria': 'Consultoria Contínua',
-            'checklist-gratuito': 'Checklist de Cibersegurança Gratuito'
-        };
-        return services[serviceKey] || serviceKey;
-    }
-}
-
 // Contact Form Handler
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM Content Loaded - MailSender Integration via Email Proxy');
+    console.log('DOM Content Loaded - Contact form via WhatsApp');
     
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -607,7 +500,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    console.log('Contact form found, modo estático (envio desativado).');
+    console.log('Contact form found, envio via WhatsApp.');
 
     // Contador de caracteres para a mensagem
     if (messageTextarea && messageCounter) {
@@ -765,7 +658,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setupRealTimeValidation();
 
-    contactForm.addEventListener('submit', async function(e) {
+    contactForm.addEventListener('submit', function(e) {
         console.log('Form submit event triggered');
         e.preventDefault();
         console.log('Default form submission prevented');
@@ -786,36 +679,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        showMessage(FORMS_TEMP_DISABLED_MESSAGE, 'info');
-        return;
-
-        try {
-            const result = await mailSender.sendEmail(data);
-            
-            if (result.success) {
-                showMessage(result.message, 'success');
-                contactForm.reset();
-                clearFormErrors();
-                
-                // Resetar contador
-                if (messageCounter) {
-                    messageCounter.textContent = '0 / 2000 caracteres';
-                    messageCounter.className = 'form-counter';
-                }
-                
-                // Focar no primeiro campo após sucesso
-                const firstField = contactForm.querySelector('input, select, textarea');
-                if (firstField) {
-                    firstField.focus();
-                }
-            } else {
-                showMessage(result.message, 'error');
-            }
-        } catch (error) {
-            showMessage('Erro inesperado. Tente novamente mais tarde.', 'error');
-        } finally {
-            setLoading(false);
-        }
+        setLoading(true);
+        openWhatsAppWithFormData('contact', data);
+        showMessage('Abrindo WhatsApp com sua mensagem preenchida...', 'success');
+        setLoading(false);
     });
 
     // Navegação por teclado melhorada

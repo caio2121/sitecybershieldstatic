@@ -35,6 +35,45 @@ if (mobileMenu && nav) {
     });
 }
 
+function applyRealSocialLinks() {
+    const socialMap = {
+        linkedin: 'https://www.linkedin.com/company/cybershieldgroup/',
+        instagram: 'https://www.instagram.com/cybershieldltda/',
+        facebook: 'https://www.facebook.com/people/Cyber-Shield-Group/61578838183639/'
+    };
+
+    document.querySelectorAll('.social-links a').forEach(link => {
+        const icon = link.querySelector('i');
+        if (!icon) return;
+
+        if (icon.classList.contains('fa-linkedin')) {
+            link.href = socialMap.linkedin;
+        } else if (
+            icon.classList.contains('fa-instagram') ||
+            icon.classList.contains('fa-twitter')
+        ) {
+            link.href = socialMap.instagram;
+            if (icon.classList.contains('fa-twitter')) {
+                icon.classList.remove('fa-twitter');
+                icon.classList.add('fa-instagram');
+            }
+        } else if (
+            icon.classList.contains('fa-facebook') ||
+            icon.classList.contains('fa-github') ||
+            icon.classList.contains('fa-youtube')
+        ) {
+            link.href = socialMap.facebook;
+            if (icon.classList.contains('fa-github') || icon.classList.contains('fa-youtube')) {
+                icon.classList.remove('fa-github', 'fa-youtube');
+                icon.classList.add('fa-facebook');
+            }
+        }
+
+        link.target = '_blank';
+        link.rel = 'noopener';
+    });
+}
+
 // Intersection Observer para animações de entrada
 const observerOptions = {
     threshold: 0.1,
@@ -55,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animateElements.forEach(el => {
         observer.observe(el);
     });
+    applyRealSocialLinks();
 });
 
 // Form validation e feedback
