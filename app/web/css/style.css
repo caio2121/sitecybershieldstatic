@@ -339,6 +339,12 @@ body {
     font-size: 1.25rem;
 }
 
+.differentiator-icon i,
+.differentiator-icon .fas {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+}
+
 .differentiator-title {
     font-size: var(--heading-4-size);
     font-weight: var(--heading-4-weight);
