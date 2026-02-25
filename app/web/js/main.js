@@ -1,12 +1,4 @@
-// Evitar submissao padrao dos formularios (lead e contato) — captura antecipada
-document.addEventListener('submit', function(e) {
-    const form = e.target;
-    if (form && (form.id === 'leadForm' || form.id === 'contactForm')) {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-    }
-}, true);
+// Formulários usam type="button" para evitar qualquer redirecionamento; o envio é via clique.
 
 // Smooth scrolling para âncoras
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -338,11 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setupLeadRealTimeValidation();
 
-    leadForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        
+    leadSubmitBtn.addEventListener('click', function() {
         const formData = new FormData(leadForm);
         const data = {
             nome: formData.get('nome').trim(),
@@ -368,17 +356,17 @@ document.addEventListener('DOMContentLoaded', function() {
             showLeadMessage('Ocorreu um erro no download. Tente novamente ou entre em contato pelo WhatsApp.', 'error');
         }
         setLeadLoading(false);
-        return false;
     });
 
-    // Navegação por teclado melhorada
+    // Navegação por teclado: Enter vai para o próximo campo ou dispara o envio
     leadForm.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && e.target.type !== 'textarea') {
-            e.preventDefault();
-            const nextField = e.target.parentElement.nextElementSibling?.querySelector('input, select');
-            if (nextField) {
-                nextField.focus();
-            }
+        if (e.key !== 'Enter') return;
+        e.preventDefault();
+        const nextField = e.target.parentElement.nextElementSibling?.querySelector('input, select');
+        if (nextField) {
+            nextField.focus();
+        } else {
+            leadSubmitBtn.click();
         }
     });
 });
@@ -541,8 +529,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const messageTextarea = document.getElementById('contact-message-text');
     const messageCounter = document.getElementById('message-counter');
 
-    if (!contactForm) {
-        console.error('Contact form not found!');
+    if (!contactForm || !submitBtn) {
+        console.error('Contact form or submit button not found!');
         return;
     }
 
@@ -704,11 +692,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setupRealTimeValidation();
 
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        
+    submitBtn.addEventListener('click', function() {
         const formData = new FormData(contactForm);
         const data = {
             nome: formData.get('nome').trim(),
@@ -733,17 +717,18 @@ document.addEventListener('DOMContentLoaded', function() {
             showMessage('Nao foi possivel abrir nova aba. Permita pop-ups para este site e tente novamente.', 'error');
         }
         setLoading(false);
-        return false;
     });
 
-    // Navegação por teclado melhorada
+    // Navegação por teclado: Enter vai para o próximo campo ou dispara o envio (exceto em textarea)
     contactForm.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && e.target.type !== 'textarea') {
-            e.preventDefault();
-            const nextField = e.target.parentElement.nextElementSibling?.querySelector('input, select, textarea');
-            if (nextField) {
-                nextField.focus();
-            }
+        if (e.key !== 'Enter') return;
+        if (e.target.tagName === 'TEXTAREA') return; // Enter em textarea quebra linha
+        e.preventDefault();
+        const nextField = e.target.parentElement.nextElementSibling?.querySelector('input, select, textarea');
+        if (nextField) {
+            nextField.focus();
+        } else {
+            submitBtn.click();
         }
     });
 });
