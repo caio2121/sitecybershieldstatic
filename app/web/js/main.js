@@ -346,12 +346,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         setLeadLoading(true);
         const downloadOk = triggerChecklistDownload();
-        const whatsAppOpened = openWhatsAppWithFormData('lead', data);
+        openWhatsAppWithFormData('lead', data);
 
-        if (downloadOk && whatsAppOpened) {
+        if (downloadOk) {
             showLeadMessage('Checklist enviado para download e WhatsApp aberto em nova aba. Confira e envie a mensagem para registrar seu lead.', 'success');
-        } else if (downloadOk && !whatsAppOpened) {
-            showLeadMessage('Checklist enviado para download. Permita pop-ups para abrir o WhatsApp e enviar seus dados.', 'error');
         } else {
             showLeadMessage('Ocorreu um erro no download. Tente novamente ou entre em contato pelo WhatsApp.', 'error');
         }
@@ -710,12 +708,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         setLoading(true);
-        const opened = openWhatsAppWithFormData('contact', data);
-        if (opened) {
-            showMessage('Abrindo WhatsApp com sua mensagem preenchida em nova aba...', 'success');
-        } else {
-            showMessage('Nao foi possivel abrir nova aba. Permita pop-ups para este site e tente novamente.', 'error');
-        }
+        openWhatsAppWithFormData('contact', data);
+        showMessage('Abrindo WhatsApp com sua mensagem preenchida em nova aba...', 'success');
         setLoading(false);
     });
 
