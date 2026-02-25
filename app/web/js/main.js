@@ -1,3 +1,13 @@
+// Evitar submissao padrao dos formularios (lead e contato) — captura antecipada
+document.addEventListener('submit', function(e) {
+    const form = e.target;
+    if (form && (form.id === 'leadForm' || form.id === 'contactForm')) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+    }
+}, true);
+
 // Smooth scrolling para âncoras
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -143,11 +153,36 @@ function openWhatsAppWithFormData(formType, data) {
     const number = getCompanyWhatsAppNumber();
     const message = buildWhatsAppMessage(formType, data);
     const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-    const opened = window.open(url, '_blank', 'noopener');
+    const w = window.open(url, '_blank', 'noopener,noreferrer');
+    return !!w;
+}
 
-    if (!opened) {
-        window.location.href = url;
-    }
+function triggerChecklistDownload() {
+    const config = window.CyberShieldConfig || {};
+    const pdfUrl = config?.downloads?.checklistPdf || 'assets/checklists/checklist-ciberseguranca.pdf';
+    const filename = config?.downloads?.checklistPdfFilename || 'Checklist-Ciberseguranca-Empresas-CyberShield.pdf';
+    const fullUrl = new URL(pdfUrl, window.location.href).href;
+    const a = document.createElement('a');
+    a.download = filename;
+    a.style.display = 'none';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    fetch(fullUrl, { credentials: 'same-origin' })
+        .then(r => r.blob())
+        .then(blob => {
+            const url = URL.createObjectURL(blob);
+            a.href = url;
+            a.click();
+            URL.revokeObjectURL(url);
+        })
+        .catch(() => {
+            a.href = fullUrl;
+            a.download = filename;
+            a.target = '_blank';
+            a.click();
+        })
+        .finally(() => { if (a.parentNode) a.parentNode.removeChild(a); });
+    return true;
 }
 
 // Lead capture form
@@ -305,6 +340,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     leadForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
         
         const formData = new FormData(leadForm);
         const data = {
@@ -320,9 +357,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         setLeadLoading(true);
-        openWhatsAppWithFormData('lead', data);
-        showLeadMessage('Abrindo WhatsApp com seus dados preenchidos...', 'success');
+        const downloadOk = triggerChecklistDownload();
+        const whatsAppOpened = openWhatsAppWithFormData('lead', data);
+
+        if (downloadOk && whatsAppOpened) {
+            showLeadMessage('Checklist enviado para download e WhatsApp aberto em nova aba. Confira e envie a mensagem para registrar seu lead.', 'success');
+        } else if (downloadOk && !whatsAppOpened) {
+            showLeadMessage('Checklist enviado para download. Permita pop-ups para abrir o WhatsApp e enviar seus dados.', 'error');
+        } else {
+            showLeadMessage('Ocorreu um erro no download. Tente novamente ou entre em contato pelo WhatsApp.', 'error');
+        }
         setLeadLoading(false);
+        return false;
     });
 
     // Navegação por teclado melhorada
@@ -659,9 +705,9 @@ document.addEventListener('DOMContentLoaded', function() {
     setupRealTimeValidation();
 
     contactForm.addEventListener('submit', function(e) {
-        console.log('Form submit event triggered');
         e.preventDefault();
-        console.log('Default form submission prevented');
+        e.stopPropagation();
+        e.stopImmediatePropagation();
         
         const formData = new FormData(contactForm);
         const data = {
@@ -680,9 +726,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         setLoading(true);
-        openWhatsAppWithFormData('contact', data);
-        showMessage('Abrindo WhatsApp com sua mensagem preenchida...', 'success');
+        const opened = openWhatsAppWithFormData('contact', data);
+        if (opened) {
+            showMessage('Abrindo WhatsApp com sua mensagem preenchida em nova aba...', 'success');
+        } else {
+            showMessage('Nao foi possivel abrir nova aba. Permita pop-ups para este site e tente novamente.', 'error');
+        }
         setLoading(false);
+        return false;
     });
 
     // Navegação por teclado melhorada

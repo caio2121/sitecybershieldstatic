@@ -54,6 +54,12 @@ window.CyberShieldConfig = {
         yearsExperience: 15
     },
 
+    // Download de materiais (URLs relativas ao site)
+    downloads: {
+        checklistPdf: 'assets/checklists/checklist-ciberseguranca.pdf',
+        checklistPdfFilename: 'Checklist-Ciberseguranca-Empresas-CyberShield.pdf'
+    },
+
     // Configurações de recursos
     features: {
         liveChat: true,

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checklist de Cibersegurança para Empresas | CyberShield</title>
+
+  <meta name="document-number" content="Checklist CS 001">
+  <meta name="document-client" content="Material gratuito">
+  <meta name="document-date" content="2026">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    :root{
+      --ink: #0f172a;
+      --muted: #475569;
+      --muted2: #64748b;
+      --bg: #ffffff;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --soft: #f8fafc;
+      --accent: #10b981;
+      --dark1: #0f172a;
+      --dark2: #1e293b;
+      --dark3: #334155;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--ink); }
+
+    .watermark { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .watermark .wm-center { position: fixed; top: 52%; left: 50%; transform: translate(-50%, -50%) rotate(-30deg); opacity: 0.08; filter: grayscale(100%); }
+    .watermark img { width: 320px; height: auto; display: block; }
+
+    .page{
+      position: relative;
+      z-index: 1;
+      width: 210mm;
+      height: 297mm;
+      padding: 16mm 15mm 22mm 15mm;
+      overflow: hidden;
+    }
+
+    .page-header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand img { height: 28px; width: auto; object-fit: contain; }
+
+    .doc-meta{ text-align: right; color: var(--muted2); font-size: 11px; line-height: 1.25; }
+    .doc-meta strong{ color: var(--ink); font-weight: 700; }
+
+    .page-title{ margin-top: 14px; font-size: 22px; font-weight: 900; letter-spacing: -0.03em; }
+    .page-subtitle{ margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.55; max-width: 160mm; }
+    .section-title{ margin-top: 16px; font-size: 16px; font-weight: 900; letter-spacing: -0.02em; }
+
+    .grid-2{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+    .grid-3{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+
+    .card{ background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 12px; }
+    .card h3{ display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 900; margin-bottom: 8px; }
+    .card h3 i{ color: var(--accent); }
+    .card p{ color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+    .list{ margin-top: 8px; list-style: none; padding-left: 0; }
+    .list li{ position: relative; padding-left: 18px; margin-bottom: 6px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .list li::before{ content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 900; }
+
+    .checklist-item{ margin-bottom: 10px; padding-left: 20px; position: relative; font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .checklist-item::before{ content: '☐'; position: absolute; left: 0; color: var(--accent); font-size: 14px; }
+    .checklist-group{ margin-top: 12px; }
+
+    .highlight{
+      background: linear-gradient(135deg, rgba(16,185,129,0.10), rgba(5,150,105,0.05));
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .page-footer{
+      position: absolute;
+      left: 15mm;
+      right: 15mm;
+      bottom: 10mm;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 10px;
+      color: var(--muted2);
+      border-top: 1px solid var(--border);
+      padding-top: 6px;
+    }
+    .page-footer strong{ color: var(--ink); font-weight: 700; }
+
+    .cover{ color: #ffffff; background: linear-gradient(135deg, var(--dark1) 0%, var(--dark2) 50%, var(--dark3) 100%); }
+    .cover .page-header{ border-bottom-color: rgba(255,255,255,0.12); }
+    .cover .doc-meta{ color: rgba(226,232,240,0.8); }
+    .cover .doc-meta strong{ color: #ffffff; }
+    .cover .page-title{ color: #ffffff; font-size: 28px; }
+    .cover .page-subtitle{ color: rgba(203,213,225,0.92); font-size: 13px; }
+
+    .cover-badges{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .badge{
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 10px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      font-weight: 800; font-size: 11px; color: #ffffff;
+    }
+    .badge strong{ color: #34d399; }
+
+    .cover-pillars{ display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 16px; }
+    .cover-pillars .card{ background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.10); }
+    .cover-pillars .card p, .cover-pillars .list li{ color: rgba(226,232,240,0.9); }
+
+    @page{ size: A4; margin: 0; }
+    @media print{ * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
+  </style>
+</head>
+<body>
+  <div class="watermark" aria-hidden="true">
+    <div class="wm-center">
+      <img src="../../images/logo-favicon.png" alt="Logo CyberShield">
+    </div>
+  </div>
+
+  <section class="page cover">
+    <div class="page-header">
+      <div class="brand">
+        <img src="../../images/logo-favicon.png" alt="Logo CyberShield" style="filter: brightness(0) invert(1);">
+      </div>
+      <div class="doc-meta">
+        <div><strong>Material gratuito</strong></div>
+        <div><strong>CyberShield</strong></div>
+      </div>
+    </div>
+
+    <div class="page-title">Checklist de <span style="color:#34d399;">Cibersegurança</span> para Empresas</div>
+    <div class="page-subtitle">Use este guia para verificar se sua empresa está protegida contra as principais ameaças cibernéticas. Inclui verificação de conformidade LGPD, avaliação de vulnerabilidades críticas e base para plano de ação.</div>
+
+    <div class="cover-badges">
+      <span class="badge"><strong>50+</strong> itens de verificação</span>
+      <span class="badge"><strong>LGPD</strong> Conformidade</span>
+      <span class="badge"><strong>ISO 27001</strong> Boas práticas</span>
+      <span class="badge"><strong>Pentest</strong> Vulnerabilidades</span>
+    </div>
+
+    <div class="cover-pillars">
+      <div class="card">
+        <h3 style="color:#ffffff;"><i class="fas fa-shield-alt"></i>O que você encontra</h3>
+        <ul class="list">
+          <li style="color: rgba(226,232,240,0.92);">50+ itens práticos de verificação de segurança</li>
+          <li style="color: rgba(226,232,240,0.92);">Checklist de conformidade LGPD</li>
+          <li style="color: rgba(226,232,240,0.92);">Avaliação de vulnerabilidades críticas</li>
+          <li style="color: rgba(226,232,240,0.92);">Base para plano de ação personalizado</li>
+          <li style="color: rgba(226,232,240,0.92);">Referências ISO 27001 e NIST</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span><strong>CyberShield</strong></span>
+      <span>Página <span class="pageNumber"></span> de <span class="totalPages"></span></span>
+      <span><span class="docNo"></span></span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="page-header">
+      <div class="brand">
+        <img src="../../images/logo-favicon.png" alt="Logo CyberShield">
+      </div>
+      <div class="doc-meta">
+        <div><strong>Checklist CS 001</strong></div>
+      </div>
+    </div>
+
+    <div class="page-title">1. Governança e LGPD</div>
+    <div class="page-subtitle">Controles de privacidade e conformidade com a Lei Geral de Proteção de Dados.</div>
+
+    <div class="section-title">Documentação e processos</div>
+    <div class="checklist-group">
+      <div class="checklist-item">Política de privacidade publicada e atualizada</div>
+      <div class="checklist-item">Registro de atividades de tratamento de dados pessoais (RATDP)</div>
+      <div class="checklist-item">Base legal mapeada para cada finalidade de tratamento</div>
+      <div class="checklist-item">Consentimento obtido quando necessário (ou base legal adequada)</div>
+      <div class="checklist-item">Procedimento de resposta a incidentes de segurança documentado</div>
+      <div class="checklist-item">Procedimento de atendimento a titulares (acesso, correção, exclusão)</div>
+      <div class="checklist-item">DPO indicado e contato divulgado (quando obrigatório)</div>
+      <div class="checklist-item">Contratos com operadores e suboperadores com cláusulas LGPD</div>
+      <div class="checklist-item">Avaliação de impacto à proteção de dados (RIPD) para tratamentos de alto risco</div>
+      <div class="checklist-item">Treinamento de conscientização em privacidade para colaboradores</div>
+    </div>
+
+    <div class="section-title">Segurança da informação (ISO 27001 / NIST)</div>
+    <div class="checklist-group">
+      <div class="checklist-item">Política de segurança da informação definida e comunicada</div>
+      <div class="checklist-item">Inventário de ativos de informação</div>
+      <div class="checklist-item">Análise de riscos realizada e documentada</div>
+      <div class="checklist-item">Controles de acesso (IAM) com princípio do menor privilégio</div>
+      <div class="checklist-item">Política de senhas forte (comprimento, complexidade, rotação)</div>
+      <div class="checklist-item">Autenticação multifator (MFA) em sistemas críticos</div>
+      <div class="checklist-item">Backup regular testado e plano de recuperação documentado</div>
+      <div class="checklist-item">Criptografia de dados em repouso e em trânsito</div>
+      <div class="checklist-item">Gestão de patches e atualizações de segurança</div>
+      <div class="checklist-item">Monitoramento e logs de segurança</div>
+    </div>
+
+    <div class="page-footer">
+      <span><strong>CyberShield</strong></span>
+      <span>Página <span class="pageNumber"></span> de <span class="totalPages"></span></span>
+      <span><span class="docNo"></span></span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="page-header">
+      <div class="brand">
+        <img src="../../images/logo-favicon.png" alt="Logo CyberShield">
+      </div>
+      <div class="doc-meta">
+        <div><strong>Checklist CS 001</strong></div>
+      </div>
+    </div>
+
+    <div class="page-title">2. Infraestrutura e aplicações</div>
+    <div class="page-subtitle">Proteção de sistemas, redes e aplicações web.</div>
+
+    <div class="section-title">Infraestrutura</div>
+    <div class="checklist-group">
+      <div class="checklist-item">Firewall configurado e regras revisadas periodicamente</div>
+      <div class="checklist-item">Segmentação de rede (isolamento de áreas sensíveis)</div>
+      <div class="checklist-item">VPN para acesso remoto seguro</div>
+      <div class="checklist-item">Proteção antivírus/EDR em endpoints e servidores</div>
+      <div class="checklist-item">Controle de dispositivos móveis e BYOD</div>
+      <div class="checklist-item">Proteção de e-mail (antispam, antiphishing)</div>
+      <div class="checklist-item">Gestão segura de credenciais e segredos</div>
+      <div class="checklist-item">Desativação imediata de acessos ao desligar colaborador</div>
+    </div>
+
+    <div class="section-title">Aplicações e desenvolvimento</div>
+    <div class="checklist-group">
+      <div class="checklist-item">Aplicações web com HTTPS obrigatório</div>
+      <div class="checklist-item">Validação de entrada e proteção contra injecao (OWASP)</div>
+      <div class="checklist-item">Gestão de dependências e vulnerabilidades conhecidas (SCA)</div>
+      <div class="checklist-item">Pentest ou avaliação de vulnerabilidades periódica</div>
+      <div class="checklist-item">Ambientes de desenvolvimento e homologação isolados</div>
+      <div class="checklist-item">Pipeline CI/CD com etapas de segurança</div>
+    </div>
+
+    <div class="section-title">Terceiros e supply chain</div>
+    <div class="checklist-group">
+      <div class="checklist-item">Avaliação de segurança de fornecedores críticos</div>
+      <div class="checklist-item">Cláusulas de segurança em contratos com terceiros</div>
+      <div class="checklist-item">Monitoramento de acesso de prestadores de serviço</div>
+    </div>
+
+    <div class="highlight" style="margin-top: 14px;">
+      <strong style="color: var(--ink);">Próximos passos:</strong> Marque os itens já implementados e priorize os pendentes por risco. Para diagnóstico personalizado, plano de ação ou pentest, entre em contato: contato@cybershieldgroup.com.br
+    </div>
+
+    <div class="page-footer">
+      <span><strong>CyberShield</strong></span>
+      <span>Página <span class="pageNumber"></span> de <span class="totalPages"></span></span>
+      <span><span class="docNo"></span></span>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const docNo = (document.querySelector('meta[name="document-number"]')?.getAttribute('content') || '').trim();
+      const pages = Array.from(document.querySelectorAll('section.page'));
+      const total = pages.length;
+      pages.forEach((p, idx) => {
+        p.querySelectorAll('.pageNumber').forEach(el => el.textContent = String(idx + 1));
+        p.querySelectorAll('.totalPages').forEach(el => el.textContent = String(total));
+        p.querySelectorAll('.docNo').forEach(el => el.textContent = docNo);
+      });
+    })();
+  </script>
+</body>
+</html>
