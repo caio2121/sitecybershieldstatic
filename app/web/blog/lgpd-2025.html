@@ -40,208 +40,11 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/tokens.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <style>
-        /* Estilos específicos do post */
-        .post-hero {
-            background: #10172a;
-            color: white;
-            padding: 60px 0;
-        }
-        
-        .post-hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .post-hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .post-meta {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 1rem 0;
-            opacity: 0.9;
-            font-size: 0.9rem;
-        }
-        
-        .post-content {
-            max-width: 800px;
-            margin: 3rem auto;
-            line-height: 1.8;
-            color: #333;
-        }
-        
-        .post-content h2 {
-            color: #667eea;
-            font-size: 1.8rem;
-            margin: 2rem 0 1rem 0;
-            font-weight: 600;
-        }
-        
-        .post-content h3 {
-            color: #333;
-            font-size: 1.4rem;
-            margin: 1.5rem 0 0.8rem 0;
-            font-weight: 600;
-        }
-        
-        .post-content p {
-            margin-bottom: 1.2rem;
-        }
-        
-        .post-content ul, .post-content ol {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-        
-        .post-content li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .highlight-box {
-            background: #f0f4ff;
-            border-left: 4px solid #667eea;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .checklist {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .checklist h4 {
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-        
-        .checklist-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-        
-        .checklist-item input[type="checkbox"] {
-            margin-right: 0.5rem;
-        }
-        
-        .cost-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .cost-table th {
-            background: #667eea;
-            color: white;
-            padding: 1rem;
-            text-align: left;
-        }
-        
-        .cost-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .cost-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .cta-box {
-            background: #10172a;
-            color: white;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            margin: 3rem 0;
-        }
-        
-        .cta-box h3 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .cta-box .btn {
-            margin-top: 1rem;
-        }
-        
-        .related-posts {
-            background: #f8f9fa;
-            padding: 3rem 0;
-            margin-top: 3rem;
-        }
-        
-        .related-posts h3 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-        
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .related-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .related-card:hover {
-            transform: translateY(-3px);
-        }
-        
-        .related-card h4 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-        
-        .related-card p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 768px) {
-            .post-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .post-meta {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .cost-table {
-                font-size: 0.9rem;
-            }
-            
-            .cost-table th,
-            .cost-table td {
-                padding: 0.5rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Header -->
@@ -249,8 +52,7 @@
         <div class="container">
             <div class="logo">
                 <a href="../index.html" style="color: inherit; text-decoration: none;">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>CyberShield</span>
+                    <img src="../images/logo-header.png" alt="CyberShield" class="logo-img">
                 </a>
             </div>
             <nav class="nav">
@@ -284,10 +86,10 @@
     <section class="container">
         <article class="post-content">
             <h2>Introdução</h2>
-            <p>Em 2025, a Lei Geral de Proteção de Dados (LGPD) já é uma realidade consolidada no Brasil. A fiscalização está mais rigorosa, as multas estão sendo aplicadas com frequência e as empresas precisam estar atentas às novas tendências e exigências para evitar riscos financeiros, operacionais e de reputação.</p>
+            <p>A Lei Geral de Proteção de Dados (Lei 13.709/2018) já é uma realidade consolidada no Brasil. A fiscalização está mais rigorosa, a ANPD aplica sanções com frequência e as empresas precisam estar atentas às exigências para evitar riscos financeiros, operacionais e de reputação.</p>
 
             <div class="highlight-box">
-                <strong>⚠️ Atualização:</strong> A ANPD intensificou a fiscalização em 2025, com foco especial em pequenas e médias empresas. Multas e sanções estão mais frequentes, e a transparência no uso de dados é prioridade.
+                <strong>⚠️ Atualização:</strong> A ANPD (Autoridade Nacional de Proteção de Dados) intensificou a fiscalização, com foco em pequenas e médias empresas. As sanções do <strong>Art. 52 da LGPD</strong> incluem multa simples de até 2% do faturamento (limitada a R$ 50 milhões <strong>por infração</strong>), multa diária, advertência, publicização da infração, bloqueio ou eliminação dos dados e <strong>proibição parcial ou total de atividades de tratamento de dados</strong> — o que pode inviabilizar a operação de quem depende desses dados.
             </div>
 
             <h2>O que mudou na LGPD em 2025?</h2>
@@ -312,9 +114,9 @@
 
             <h2>Principais riscos para PMEs em 2025</h2>
             <ul>
-                <li><strong>Multas e sanções:</strong> Até R$ 50 milhões ou 2% do faturamento anual.</li>
-                <li><strong>Bloqueio de operações:</strong> Suspensão de atividades por descumprimento.</li>
-                <li><strong>Perda de contratos:</strong> Grandes empresas exigem compliance de fornecedores.</li>
+                <li><strong>Multas e sanções (Art. 52, Lei 13.709/2018):</strong> Multa simples até 2% do faturamento, limitada a R$ 50 milhões <strong>por infração</strong> (múltiplas infrações podem somar múltiplos limites). Além disso: multa diária, advertência, publicização da infração, bloqueio ou eliminação dos dados.</li>
+                <li><strong>Proibição de uso da base:</strong> A ANPD pode aplicar a sanção de <strong>proibição parcial ou total de atividades de tratamento</strong>; para negócios que dependem de dados de clientes e parceiros, o impacto pode ser existencial.</li>
+                <li><strong>Perda de contratos:</strong> Grandes empresas exigem conformidade de fornecedores.</li>
                 <li><strong>Exposição pública:</strong> Casos de vazamento ganham repercussão na mídia.</li>
             </ul>
 
@@ -374,8 +176,7 @@
                 <div class="footer-brand">
                     <div class="logo">
                         <a href="../index.html" style="color: inherit; text-decoration: none;">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>CyberShield</span>
+                            <img src="../images/logo-footer.png" alt="CyberShield" class="logo-img">
                         </a>
                     </div>
                     <p>Segurança digital que inspira confiança</p>
@@ -405,7 +206,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 CyberShield. Todos os direitos reservados.</p>
+                <p>&copy; 2026 CyberShield. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>

@@ -15,7 +15,7 @@ blog/
 ├── generate_posts.py            # Script para gerar posts
 ├── README.md                    # Esta documentação
 └── Posts do Blog:
-    ├── lgpd-2024.html           # LGPD: O que sua empresa precisa saber em 2024
+    ├── lgpd-2025.html           # LGPD: O que sua empresa precisa saber em 2025
     ├── pentest-necessidade.html # Pentest: Por que sua empresa precisa de testes de penetração
     ├── vulnerabilidades-web.html # Vulnerabilidades mais comuns em aplicações web
     ├── proteger-dados-lgpd.html # Como proteger dados de clientes em conformidade com LGPD
@@ -48,7 +48,7 @@ blog/
 ## 📊 Estatísticas dos Posts
 
 ### **Posts Completos (3)**
-- ✅ **LGPD 2024** (30 Jun 2025) - Conteúdo completo sobre Lei Geral de Proteção de Dados
+- ✅ **LGPD 2025** (30 Jun 2025) - Conteúdo completo sobre Lei Geral de Proteção de Dados
 - ✅ **Pentest** (23 Jun 2025) - Guia completo sobre testes de penetração
 - ✅ **Vulnerabilidades Web** (16 Jun 2025) - Top 10 OWASP e proteções
 
