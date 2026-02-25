@@ -1,0 +1,85 @@
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Arquivos temporários
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Cache
+.cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Ambientes virtuais
+venv/
+env/
+ENV/
+.venv/
+test_env/
+
+# Variaveis de ambiente
+.env
+.env/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de configuração local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos gerados
+generated_documents/output/
+*.pdf
+*.docx
+*.xlsx
+
+# Arquivos de backup
+*.bak
+*.backup
+
+# Arquivos de lock
+package-lock.json
+yarn.lock
+Pipfile.lock
+
+# Arquivos de build
+dist/
+build/
+*.egg-info/
+
+# Arquivos de teste
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Arquivos específicos do projeto
+config/config_local.py
+config/secrets.json 
+
+# Componentes fora do escopo do site estático
+api/
+config/
+email_proxy/
+scripts/
+compose.yaml
+cybershield.side
+env.example

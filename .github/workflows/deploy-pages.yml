@@ -1,0 +1,51 @@
+name: Deploy seguro no GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Preparar arquivos estáticos (somente app/web)
+        run: |
+          mkdir -p _site
+          cp -R app/web/. _site/
+
+      - name: Ajustar domínio público em SEO
+        run: |
+          find _site -type f \( -name "*.html" -o -name "*.xml" -o -name "*.txt" \) -print0 \
+            | xargs -0 sed -i 's#https://www\.cybershield\.technsolutions\.com\.br#https://www.cybershieldgroup.com.br#g'
+
+      - name: Garantir domínio customizado
+        run: |
+          echo "www.cybershieldgroup.com.br" > _site/CNAME
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artefato
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

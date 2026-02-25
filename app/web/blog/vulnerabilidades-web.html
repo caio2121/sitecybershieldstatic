@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Vulnerabilidades mais comuns em aplicações web | Blog CyberShield</title>
+    <meta name="description" content="75% dos ataques começam por vulnerabilidades web. Conheça o Top 10 OWASP e aprenda como proteger suas aplicações com custos acessíveis.">
+    <meta name="keywords" content="vulnerabilidades web, OWASP, segurança web, injeção SQL, XSS, aplicações web, cibersegurança">
+    <meta name="author" content="CyberShield">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cybershield.technsolutions.com.br/blog/vulnerabilidades-web.html">
+    <meta property="og:title" content="Vulnerabilidades mais comuns em aplicações web">
+    <meta property="og:description" content="75% dos ataques começam por vulnerabilidades web. Conheça o Top 10 OWASP e aprenda como proteger suas aplicações com custos acessíveis.">
+    <meta property="og:image" content="https://www.cybershield.technsolutions.com.br/images/vulnerabilidades-web-og.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.cybershield.technsolutions.com.br/blog/vulnerabilidades-web.html">
+    <meta property="twitter:title" content="Vulnerabilidades mais comuns em aplicações web">
+    <meta property="twitter:description" content="75% dos ataques começam por vulnerabilidades web. Conheça o Top 10 OWASP e aprenda como proteger suas aplicações com custos acessíveis.">
+    <meta property="twitter:image" content="https://www.cybershield.technsolutions.com.br/images/vulnerabilidades-web-og.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.cybershield.technsolutions.com.br/blog/vulnerabilidades-web.html">
+    
+    <!-- Preconnect para performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos específicos do post */
+        .post-hero {
+            background: #10172a;
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .post-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .post-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        .post-content {
+            max-width: 800px;
+            margin: 3rem auto;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .post-content h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+        }
+        
+        .post-content h3 {
+            color: #333;
+            font-size: 1.4rem;
+            margin: 1.5rem 0 0.8rem 0;
+            font-weight: 600;
+        }
+        
+        .post-content p {
+            margin-bottom: 1.2rem;
+        }
+        
+        .post-content ul, .post-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vulnerability-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .vulnerability-card h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .vulnerability-card .severity {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .severity.critical {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .severity.high {
+            background: #fd7e14;
+            color: white;
+        }
+        
+        .severity.medium {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .severity.low {
+            background: #28a745;
+            color: white;
+        }
+        
+        .code-example {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        
+        .cost-badge {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .cta-box {
+            background: #10172a;
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-box .btn {
+            margin-top: 1rem;
+        }
+        
+        .related-posts {
+            background: #f8f9fa;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        
+        .related-posts h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .related-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .related-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .related-card h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .related-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .post-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .post-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .vulnerability-card {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="color: inherit; text-decoration: none;">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>CyberShield</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#servicos">Serviços</a>
+                <a href="../index.html#sobre">Sobre</a>
+                <a href="../index.html#contato">Contato</a>
+                <a href="index.html">Blog</a>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Hero -->
+    <section class="post-hero">
+        <div class="container">
+            <div class="post-hero-content">
+                <h1>Vulnerabilidades mais comuns em aplicações web</h1>
+                <div class="post-meta">
+                    <span><i class="fas fa-calendar"></i> 16 de Junho de 2025</span>
+                    <span><i class="fas fa-clock"></i> 12 min leitura</span>
+                    <span><i class="fas fa-user"></i> CyberShield</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Content -->
+    <section class="container">
+        <article class="post-content">
+            <h2>Introdução</h2>
+            <p>Você sabia que 75% dos ataques cibernéticos começam através de vulnerabilidades em aplicações web? E que 60% dessas vulnerabilidades são conhecidas há mais de 2 anos? Neste artigo, vamos explorar as principais falhas de segurança em aplicações web e como sua empresa pode se proteger.</p>
+
+            <div class="highlight-box">
+                <strong>⚠️ Estatísticas Alarmantes:</strong><br>
+                • 75% dos ataques começam por vulnerabilidades web<br>
+                • 60% das vulnerabilidades são conhecidas há mais de 2 anos<br>
+                • Custo médio de um incidente: R$ 200.000,00<br>
+                • Tempo médio de detecção: 197 dias
+            </div>
+
+            <h2>O que são vulnerabilidades web?</h2>
+
+            <h3>Definição</h3>
+            <p>Vulnerabilidades web são falhas de segurança em aplicações, sites e sistemas web que permitem que atacantes comprometam a segurança, roubem dados ou causem danos.</p>
+
+            <h3>Impacto para PMEs</h3>
+            <ul>
+                <li><strong>Perda de dados:</strong> Informações de clientes comprometidas</li>
+                <li><strong>Interrupção de serviços:</strong> Site fora do ar</li>
+                <li><strong>Multas regulatórias:</strong> LGPD, PCI-DSS</li>
+                <li><strong>Perda de reputação:</strong> Clientes desconfiados</li>
+            </ul>
+
+            <h2>Top 10 vulnerabilidades mais comuns</h2>
+
+            <div class="vulnerability-card">
+                <h4>1. Injeção SQL (SQL Injection)</h4>
+                <span class="severity critical">Crítica</span>
+                <p><strong>O que é:</strong> Técnica que permite inserir código SQL malicioso em campos de entrada, acessando ou modificando dados do banco.</p>
+                
+                <div class="code-example">
+                    Campo de login: admin' OR '1'='1<br>
+                    Resultado: Acesso não autorizado ao sistema
+                </div>
+                
+                <h5>Como prevenir:</h5>
+                <ul>
+                    <li><strong>Prepared Statements:</strong> Usar consultas parametrizadas</li>
+                    <li><strong>Validação de entrada:</strong> Filtrar caracteres especiais</li>
+                    <li><strong>Princípio do menor privilégio:</strong> Limitar permissões do banco</li>
+                    <li><strong>WAF:</strong> Web Application Firewall</li>
+                </ul>
+                <div class="cost-badge">Custo de correção: R$ 2.000,00 - R$ 8.000,00</div>
+            </div>
+
+            <div class="vulnerability-card">
+                <h4>2. Cross-Site Scripting (XSS)</h4>
+                <span class="severity high">Alta</span>
+                <p><strong>O que é:</strong> Inserção de scripts maliciosos em páginas web, executados no navegador dos usuários.</p>
+                
+                <h5>Tipos de XSS:</h5>
+                <ul>
+                    <li><strong>Reflected XSS:</strong> Script refletido imediatamente</li>
+                    <li><strong>Stored XSS:</strong> Script armazenado no servidor</li>
+                    <li><strong>DOM-based XSS:</strong> Manipulação do DOM</li>
+                </ul>
+                
+                <h5>Como prevenir:</h5>
+                <ul>
+                    <li><strong>Escape de saída:</strong> Codificar dados antes de exibir</li>
+                    <li><strong>Validação de entrada:</strong> Filtrar scripts</li>
+                    <li><strong>Content Security Policy:</strong> Restringir execução de scripts</li>
+                    <li><strong>HttpOnly cookies:</strong> Proteger cookies de sessão</li>
+                </ul>
+                <div class="cost-badge">Custo de correção: R$ 1.500,00 - R$ 6.000,00</div>
+            </div>
+
+            <div class="vulnerability-card">
+                <h4>3. Quebra de Autenticação</h4>
+                <span class="severity high">Alta</span>
+                <p><strong>O que é:</strong> Falhas no sistema de login que permitem acesso não autorizado.</p>
+                
+                <h5>Problemas comuns:</h5>
+                <ul>
+                    <li><strong>Senhas fracas:</strong> Sem política de complexidade</li>
+                    <li><strong>Sessões indefinidas:</strong> Sem timeout</li>
+                    <li><strong>Força bruta:</strong> Sem proteção contra tentativas</li>
+                    <li><strong>Credenciais padrão:</strong> Senhas de fábrica</li>
+                </ul>
+                
+                <h5>Como prevenir:</h5>
+                <ul>
+                    <li><strong>MFA:</strong> Autenticação de múltiplos fatores</li>
+                    <li><strong>Política de senhas:</strong> Complexidade mínima</li>
+                    <li><strong>Rate limiting:</strong> Limitar tentativas de login</li>
+                    <li><strong>Sessões seguras:</strong> Timeout e renovação</li>
+                </ul>
+                <div class="cost-badge">Custo de correção: R$ 3.000,00 - R$ 10.000,00</div>
+            </div>
+
+            <div class="vulnerability-card">
+                <h4>4. Exposição de Dados Sensíveis</h4>
+                <span class="severity critical">Crítica</span>
+                <p><strong>O que é:</strong> Transmissão ou armazenamento inadequado de informações confidenciais.</p>
+                
+                <h5>Dados em risco:</h5>
+                <ul>
+                    <li><strong>Credenciais:</strong> Senhas, tokens, chaves</li>
+                    <li><strong>Dados pessoais:</strong> CPF, RG, endereços</li>
+                    <li><strong>Dados financeiros:</strong> Cartões, contas bancárias</li>
+                    <li><strong>Informações empresariais:</strong> Estratégias, clientes</li>
+                </ul>
+                
+                <h5>Como prevenir:</h5>
+                <ul>
+                    <li><strong>Criptografia:</strong> Dados em trânsito e repouso</li>
+                    <li><strong>HTTPS:</strong> Certificados SSL/TLS</li>
+                    <li><strong>Mascaramento:</strong> Ocultar dados sensíveis</li>
+                    <li><strong>Auditoria:</strong> Monitoramento de acesso</li>
+                </ul>
+                <div class="cost-badge">Custo de correção: R$ 5.000,00 - R$ 15.000,00</div>
+            </div>
+
+            <div class="vulnerability-card">
+                <h4>5. Configuração de Segurança Incorreta</h4>
+                <span class="severity medium">Média</span>
+                <p><strong>O que é:</strong> Configurações padrão ou inadequadas que expõem vulnerabilidades.</p>
+                
+                <h5>Problemas comuns:</h5>
+                <ul>
+                    <li><strong>Servidores desatualizados:</strong> Falta de patches</li>
+                    <li><strong>Configurações padrão:</strong> Senhas e portas padrão</li>
+                    <li><strong>Logs expostos:</strong> Informações de debug visíveis</li>
+                    <li><strong>Headers de segurança:</strong> Falta de proteções</li>
+                </ul>
+                
+                <h5>Como prevenir:</h5>
+                <ul>
+                    <li><strong>Hardening:</strong> Configuração segura de servidores</li>
+                    <li><strong>Atualizações:</strong> Patches regulares</li>
+                    <li><strong>Auditoria:</strong> Verificação de configurações</li>
+                    <li><strong>Monitoramento:</strong> Detecção de mudanças</li>
+                </ul>
+                <div class="cost-badge">Custo de correção: R$ 2.500,00 - R$ 8.000,00</div>
+            </div>
+
+            <h2>Como proteger suas aplicações web</h2>
+
+            <h3>1. Implementar controles básicos</h3>
+            <ul>
+                <li><strong>WAF (Web Application Firewall):</strong> Proteção em tempo real</li>
+                <li><strong>HTTPS obrigatório:</strong> Criptografia de dados</li>
+                <li><strong>Headers de segurança:</strong> CSP, HSTS, X-Frame-Options</li>
+                <li><strong>Validação de entrada:</strong> Filtrar dados suspeitos</li>
+            </ul>
+
+            <h3>2. Desenvolver com segurança</h3>
+            <ul>
+                <li><strong>OWASP Top 10:</strong> Seguir as melhores práticas</li>
+                <li><strong>Code review:</strong> Revisão de código por segurança</li>
+                <li><strong>Testes de segurança:</strong> Pentest regular</li>
+                <li><strong>Treinamento da equipe:</strong> Conscientização</li>
+            </ul>
+
+            <h3>3. Monitoramento contínuo</h3>
+            <ul>
+                <li><strong>Logs de segurança:</strong> Monitoramento de eventos</li>
+                <li><strong>Alertas automáticos:</strong> Notificações de incidentes</li>
+                <li><strong>Análise de comportamento:</strong> Detecção de anomalias</li>
+                <li><strong>Backup regular:</strong> Proteção de dados</li>
+            </ul>
+
+            <div class="cta-box">
+                <h3>Quer proteger suas aplicações web?</h3>
+                <p>A CyberShield oferece auditoria completa de vulnerabilidades web, incluindo análise do Top 10 OWASP e recomendações práticas para PMEs.</p>
+                <a href="../index.html#contato" class="btn btn-secondary">
+                    <i class="fas fa-shield-alt"></i>
+                    Solicitar Auditoria Web
+                </a>
+            </div>
+
+            <h2>Ferramentas recomendadas para PMEs</h2>
+
+            <h3>Ferramentas gratuitas</h3>
+            <ul>
+                <li><strong>OWASP ZAP:</strong> Scanner de vulnerabilidades</li>
+                <li><strong>Nmap:</strong> Análise de portas e serviços</li>
+                <li><strong>Burp Suite Community:</strong> Proxy para testes</li>
+                <li><strong>Nikto:</strong> Scanner de vulnerabilidades web</li>
+            </ul>
+
+            <h3>Ferramentas pagas (acessíveis)</h3>
+            <ul>
+                <li><strong>Acunetix:</strong> Scanner automatizado (R$ 500/mês)</li>
+                <li><strong>Netsparker:</strong> Scanner de vulnerabilidades (R$ 800/mês)</li>
+                <li><strong>Imperva WAF:</strong> Proteção em tempo real (R$ 1.200/mês)</li>
+                <li><strong>Cloudflare:</strong> Proteção DDoS e WAF (R$ 200/mês)</li>
+            </ul>
+
+            <h2>Conclusão</h2>
+            <p>Vulnerabilidades web são a porta de entrada para a maioria dos ataques cibernéticos. Para PMEs, a proteção não precisa ser cara ou complexa. Implementando controles básicos, seguindo as melhores práticas OWASP e realizando testes regulares, sua empresa pode se proteger contra as principais ameaças.</p>
+
+            <p><strong>Próximo passo:</strong> Faça uma auditoria de vulnerabilidades em suas aplicações web. Identifique os principais riscos e implemente as correções necessárias antes que seja tarde.</p>
+
+            <div class="highlight-box">
+                <strong>Sobre a CyberShield:</strong><br>
+                Especializada em segurança de aplicações web para PMEs, oferecemos auditorias completas, testes de penetração e implementação de controles de segurança acessíveis.
+            </div>
+        </article>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="related-posts">
+        <div class="container">
+            <h3>Artigos Relacionados</h3>
+            <div class="related-grid">
+                <div class="related-card">
+                    <h4><a href="pentest-necessidade.html">Pentest: Por que sua empresa precisa de testes de penetração</a></h4>
+                    <p>60% das empresas que sofrem ataques fecham em 6 meses. Descubra como os testes de penetração podem proteger sua PME.</p>
+                </div>
+                <div class="related-card">
+                    <h4><a href="seguranca-ecommerce.html">Segurança em E-commerce: PCI-DSS na Prática</a></h4>
+                    <p>Proteja dados de cartão de crédito em seu e-commerce. Implementação prática do PCI-DSS com custos para PMEs.</p>
+                </div>
+                <div class="related-card">
+                    <h4><a href="incidentes-response.html">Resposta a Incidentes: Plano para PMEs</a></h4>
+                    <p>Tempo médio de detecção é 197 dias. Plano estruturado de resposta a incidentes para reduzir custos em até 60%.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <a href="../index.html" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>CyberShield</span>
+                        </a>
+                    </div>
+                    <p>Segurança digital que inspira confiança</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html#servicos">Serviços</a>
+                    <a href="../index.html#sobre">Sobre</a>
+                    <a href="../index.html#contato">Contato</a>
+                    <a href="index.html">Blog</a>
+                </div>
+                <div class="footer-services">
+                    <h4>Serviços</h4>
+                    <a href="../index.html#servicos">Diagnóstico de Segurança</a>
+                    <a href="../index.html#servicos">Pentest</a>
+                    <a href="../index.html#servicos">Hardening Técnico</a>
+                    <a href="../index.html#servicos">Consultoria LGPD</a>
+                </div>
+                <div class="footer-social">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberShield. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

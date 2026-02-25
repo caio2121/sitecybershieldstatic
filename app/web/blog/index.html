@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Blog CyberShield - Cibersegurança para PMEs | Dicas e Insights</title>
+    <meta name="description" content="Blog especializado em cibersegurança para PMEs. Dicas práticas sobre LGPD, pentest, vulnerabilidades web, ISO 27001 e muito mais. Conteúdo gratuito e atualizado.">
+    <meta name="keywords" content="blog cibersegurança, LGPD, pentest, vulnerabilidades web, ISO 27001, segurança digital, PMEs, consultoria segurança">
+    <meta name="author" content="CyberShield">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.cybershieldgroup.com.br/blog/">
+    <meta property="og:title" content="Blog CyberShield - Cibersegurança para PMEs">
+    <meta property="og:description" content="Blog especializado em cibersegurança para PMEs. Dicas práticas sobre LGPD, pentest, vulnerabilidades web, ISO 27001 e muito mais.">
+    <meta property="og:image" content="https://www.cybershieldgroup.com.br/images/blog-og.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.cybershieldgroup.com.br/blog/">
+    <meta property="twitter:title" content="Blog CyberShield - Cibersegurança para PMEs">
+    <meta property="twitter:description" content="Blog especializado em cibersegurança para PMEs. Dicas práticas sobre LGPD, pentest, vulnerabilidades web, ISO 27001 e muito mais.">
+    <meta property="twitter:image" content="https://www.cybershieldgroup.com.br/images/blog-og.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.cybershieldgroup.com.br/blog/">
+    
+    <!-- Preconnect para performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos específicos do blog */
+        .blog-hero {
+            background: #10172a;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .blog-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .blog-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            min-height: 400px;
+            align-items: start;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+            opacity: 1;
+            display: block;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .blog-card-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .blog-card p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .blog-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-card-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .blog-tag {
+            background: #f0f4ff;
+            color: #667eea;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .blog-card .btn {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .blog-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background: white;
+            border: 2px solid #10b981;
+            color: #10b981;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .category-btn:hover,
+        .category-btn.active {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .blog-newsletter {
+            background: #10172a;
+            color: white;
+            padding: 3rem 0;
+            margin: 3rem 0;
+        }
+        
+        .newsletter-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form .btn {
+            padding: 0.8rem 2rem;
+            white-space: nowrap;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="color: inherit; text-decoration: none;">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>CyberShield</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#servicos">Serviços</a>
+                <a href="../index.html#sobre">Sobre</a>
+                <a href="../index.html#contato">Contato</a>
+                <a href="index.html" class="active">Blog</a>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1>Blog CyberShield</h1>
+            <p>Insights e dicas práticas sobre cibersegurança para PMEs. Conteúdo especializado em LGPD, pentest, vulnerabilidades web e muito mais.</p>
+        </div>
+    </section>
+
+    <!-- Blog Categories -->
+    <section class="container">
+        <div class="blog-categories">
+            <a href="#" class="category-btn active">Todos</a>
+            <a href="#" class="category-btn">LGPD & Privacidade</a>
+            <a href="#" class="category-btn">Pentest & Vulnerabilidades</a>
+            <a href="#" class="category-btn">Segurança & Proteção</a>
+            <a href="#" class="category-btn">Ransomware & Incidentes</a>
+            <a href="#" class="category-btn">Cloud & Backup</a>
+            <a href="#" class="category-btn">Gestão & Certificação</a>
+            <a href="#" class="category-btn">Engenharia Social & Treinamento</a>
+            <a href="#" class="category-btn">Pagamentos & E-commerce</a>
+            <a href="#" class="category-btn">Inovação & Tendências</a>
+        </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="container">
+        <div class="blog-grid">
+            <!-- Post 1: LGPD 2025 -->
+            <article class="blog-card">
+                <a href="lgpd-2025.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> 30 de Junho de 2025</span>
+                            <span><i class="fas fa-clock"></i> 8 min leitura</span>
+                        </div>
+                        <h3>LGPD: O que sua empresa precisa saber em 2025</h3>
+                        <p>Em 2025, a LGPD está mais rigorosa: fiscalizações, multas e novas exigências para PMEs. Veja o que mudou, os principais riscos e como manter sua empresa em conformidade.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">LGPD & Privacidade</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 2: Pentest -->
+            <article class="blog-card">
+                <a href="pentest-necessidade.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Junho 2025</span>
+                            <span><i class="fas fa-clock"></i> 10 min leitura</span>
+                        </div>
+                        <h3>Pentest: Por que sua empresa precisa de testes de penetração</h3>
+                        <p>60% das empresas que sofrem ataques fecham em 6 meses. Descubra como os testes de penetração podem proteger sua PME e quais tipos escolher.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Pentest & Vulnerabilidades</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 3: Vulnerabilidades Web -->
+            <article class="blog-card">
+                <a href="vulnerabilidades-web.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Junho 2025</span>
+                            <span><i class="fas fa-clock"></i> 12 min leitura</span>
+                        </div>
+                        <h3>Vulnerabilidades mais comuns em aplicações web</h3>
+                        <p>75% dos ataques começam por vulnerabilidades web. Conheça o Top 10 OWASP e aprenda como proteger suas aplicações com custos acessíveis.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Pentest & Vulnerabilidades</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 4: Proteger Dados LGPD -->
+            <article class="blog-card">
+                <a href="proteger-dados-lgpd.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Junho 2025</span>
+                            <span><i class="fas fa-clock"></i> 9 min leitura</span>
+                        </div>
+                        <h3>Como proteger dados de clientes em conformidade com LGPD</h3>
+                        <p>Implemente controles práticos para proteger dados pessoais. Checklist completo com ferramentas e tecnologias acessíveis para PMEs.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Segurança & Proteção</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 5: E-commerce -->
+            <article class="blog-card">
+                <a href="seguranca-ecommerce.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Junho 2025</span>
+                            <span><i class="fas fa-clock"></i> 11 min leitura</span>
+                        </div>
+                        <h3>Segurança em E-commerce: PCI-DSS na Prática</h3>
+                        <p>Proteja dados de cartão de crédito em seu e-commerce. Implementação prática do PCI-DSS com custos e ferramentas para PMEs.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Pagamentos & E-commerce</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 6: Ransomware -->
+            <article class="blog-card">
+                <a href="ransomware-prevencao.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Junho 2025</span>
+                            <span><i class="fas fa-clock"></i> 10 min leitura</span>
+                        </div>
+                        <h3>Ransomware: Como prevenir e responder a ataques</h3>
+                        <p>Ransomware é a ameaça mais lucrativa para criminosos. Aprenda estratégias de prevenção e tenha um plano de resposta eficaz.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Ransomware & Incidentes</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 7: ISO 27001 -->
+            <article class="blog-card">
+                <a href="iso27001-pmes.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Maio 2025</span>
+                            <span><i class="fas fa-clock"></i> 15 min leitura</span>
+                        </div>
+                        <h3>ISO 27001 para PMEs: Implementação Prática</h3>
+                        <p>ISO 27001 não é só para grandes empresas. Implementação gradual e acessível para PMEs com benefícios significativos.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Gestão & Certificação</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 8: Phishing -->
+            <article class="blog-card">
+                <a href="phishing-prevencao.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Maio 2025</span>
+                            <span><i class="fas fa-clock"></i> 9 min leitura</span>
+                        </div>
+                        <h3>Phishing: Como identificar e prevenir ataques</h3>
+                        <p>Phishing é responsável por 90% dos ataques. Aprenda a identificar sinais de alerta e treinar sua equipe para prevenir.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Engenharia Social & Treinamento</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 9: Backup -->
+            <article class="blog-card">
+                <a href="backup-recuperacao.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Maio 2025</span>
+                            <span><i class="fas fa-clock"></i> 8 min leitura</span>
+                        </div>
+                        <h3>Backup e Recuperação: Estratégias para PMEs</h3>
+                        <p>Backup não é só copiar arquivos. Estratégias completas de backup e recuperação com ferramentas acessíveis para PMEs.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Cloud & Backup</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 10: Cloud -->
+            <article class="blog-card">
+                <a href="seguranca-cloud.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Maio 2025</span>
+                            <span><i class="fas fa-clock"></i> 10 min leitura</span>
+                        </div>
+                        <h3>Segurança na Nuvem: Protegendo dados em cloud</h3>
+                        <p>Cloud computing traz novos riscos. Controles de segurança, melhores práticas e ferramentas para proteger dados na nuvem.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Cloud & Backup</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 11: Treinamento -->
+            <article class="blog-card">
+                <a href="treinamento-conscientizacao.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Abril 2025</span>
+                            <span><i class="fas fa-clock"></i> 11 min leitura</span>
+                        </div>
+                        <h3>Treinamento e Conscientização em Segurança</h3>
+                        <p>O elo mais fraco é sempre o humano. Programas de treinamento e conscientização com métricas de sucesso para PMEs.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Engenharia Social & Treinamento</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 12: Incidentes -->
+            <article class="blog-card">
+                <a href="incidentes-response.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Abril 2025</span>
+                            <span><i class="fas fa-clock"></i> 12 min leitura</span>
+                        </div>
+                        <h3>Resposta a Incidentes: Plano para PMEs</h3>
+                        <p>Tempo médio de detecção é 197 dias. Plano estruturado de resposta a incidentes para reduzir custos em até 60%.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Ransomware & Incidentes</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 13: Engenharia Social -->
+            <article class="blog-card">
+                <a href="engenharia-social.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Julho 2025</span>
+                            <span><i class="fas fa-clock"></i> 9 min leitura</span>
+                        </div>
+                        <h3>Ataques de Engenharia Social: Como Proteger sua PME em 2025</h3>
+                        <p>Técnicas de engenharia social estão cada vez mais sofisticadas. Saiba como treinar sua equipe para identificar e bloquear ataques.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Engenharia Social & Treinamento</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 14: Zero Trust -->
+            <article class="blog-card">
+                <a href="zero-trust.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Julho 2025</span>
+                            <span><i class="fas fa-clock"></i> 10 min leitura</span>
+                        </div>
+                        <h3>Zero Trust: O Futuro da Segurança para Pequenas Empresas</h3>
+                        <p>O modelo Zero Trust está ganhando destaque em 2025. Para PMEs, adotar Zero Trust significa não confiar em nenhum acesso por padrão.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Segurança & Proteção</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 15: Deepfake -->
+            <article class="blog-card">
+                <a href="deepfake-fraudes.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-user-edit"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Julho 2025</span>
+                            <span><i class="fas fa-clock"></i> 8 min leitura</span>
+                        </div>
+                        <h3>Deepfake e Fraudes Digitais: Novos Riscos para Empresas</h3>
+                        <p>O uso de deepfakes em fraudes digitais cresceu exponencialmente em 2025. Empresas estão sendo alvo de golpes sofisticados.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Engenharia Social & Treinamento</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 16: Mobile Security -->
+            <article class="blog-card">
+                <a href="mobile-security.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Julho 2025</span>
+                            <span><i class="fas fa-clock"></i> 9 min leitura</span>
+                        </div>
+                        <h3>Segurança em Dispositivos Móveis: Proteja Dados Fora do Escritório</h3>
+                        <p>O uso de smartphones e tablets corporativos aumentou com o trabalho remoto. Em 2025, proteger dispositivos móveis é essencial.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Segurança & Proteção</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 17: Supply Chain -->
+            <article class="blog-card">
+                <a href="supply-chain.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Julho 2025</span>
+                            <span><i class="fas fa-clock"></i> 10 min leitura</span>
+                        </div>
+                        <h3>Ataques de Supply Chain: Como Blindar sua Cadeia de Fornecimento</h3>
+                        <p>Ataques à cadeia de fornecimento cresceram 40% em 2024. PMEs são especialmente vulneráveis, pois dependem de fornecedores.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Pentest & Vulnerabilidades</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 18: IA Cibersegurança -->
+            <article class="blog-card">
+                <a href="ia-ciberseguranca.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Agosto 2025</span>
+                            <span><i class="fas fa-clock"></i> 11 min leitura</span>
+                        </div>
+                        <h3>Inteligência Artificial na Cibersegurança: Oportunidades e Desafios</h3>
+                        <p>A IA está transformando a cibersegurança em 2025. Ferramentas baseadas em IA ajudam a detectar ameaças e automatizar respostas.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Segurança & Proteção</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 19: API Security -->
+            <article class="blog-card">
+                <a href="api-security.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Agosto 2025</span>
+                            <span><i class="fas fa-clock"></i> 9 min leitura</span>
+                        </div>
+                        <h3>Segurança em APIs: Como Evitar Vazamentos de Dados</h3>
+                        <p>APIs são essenciais para integrações, mas também representam um dos principais vetores de ataque em 2025.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Pentest & Vulnerabilidades</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 20: Marketing LGPD -->
+            <article class="blog-card">
+                <a href="marketing-lgpd.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Agosto 2025</span>
+                            <span><i class="fas fa-clock"></i> 8 min leitura</span>
+                        </div>
+                        <h3>Privacidade de Dados em Marketing Digital: LGPD e Boas Práticas</h3>
+                        <p>A LGPD impactou profundamente o marketing digital. Em 2025, empresas que não respeitam a privacidade enfrentam multas.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">LGPD & Privacidade</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 21: Ransomware 2025 -->
+            <article class="blog-card">
+                <a href="ransomware-2025.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Agosto 2025</span>
+                            <span><i class="fas fa-clock"></i> 10 min leitura</span>
+                        </div>
+                        <h3>Ataques de Ransomware em 2025: Novas Táticas e Como se Proteger</h3>
+                        <p>O ransomware evoluiu e se tornou ainda mais agressivo em 2025. Novas táticas de extorsão exigem atenção redobrada.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Ransomware & Incidentes</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 22: Videoconferência -->
+            <article class="blog-card">
+                <a href="videoconferencia.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Setembro 2025</span>
+                            <span><i class="fas fa-clock"></i> 7 min leitura</span>
+                        </div>
+                        <h3>Segurança em Videoconferências: Proteja Reuniões Online</h3>
+                        <p>O uso de videoconferências explodiu com o trabalho remoto. Em 2025, proteger reuniões online é fundamental.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Segurança & Proteção</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 23: IAM PMEs -->
+            <article class="blog-card">
+                <a href="iam-pmes.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Setembro 2025</span>
+                            <span><i class="fas fa-clock"></i> 9 min leitura</span>
+                        </div>
+                        <h3>Gestão de Identidades: O Papel do IAM nas PMEs</h3>
+                        <p>A gestão de identidades e acessos (IAM) é fundamental para controlar quem pode acessar quais recursos na empresa.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Segurança & Proteção</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 24: Pagamentos Online -->
+            <article class="blog-card">
+                <a href="pagamentos-online.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Setembro 2025</span>
+                            <span><i class="fas fa-clock"></i> 8 min leitura</span>
+                        </div>
+                        <h3>Ataques a Sistemas de Pagamento: Como Proteger Transações Online</h3>
+                        <p>Fraudes em pagamentos digitais estão em alta em 2025. E-commerces são alvos frequentes de ataques.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Pagamentos & E-commerce</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 25: Startups Security -->
+            <article class="blog-card">
+                <a href="startups-security.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Outubro 2025</span>
+                            <span><i class="fas fa-clock"></i> 9 min leitura</span>
+                        </div>
+                        <h3>Cibersegurança para Startups: Como Crescer com Segurança</h3>
+                        <p>Startups são alvos fáceis para ataques cibernéticos. Em 2025, proteger dados é essencial para o sucesso.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Segurança & Proteção</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 26: Backup Cloud -->
+            <article class="blog-card">
+                <a href="backup-cloud.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Outubro 2025</span>
+                            <span><i class="fas fa-clock"></i> 8 min leitura</span>
+                        </div>
+                        <h3>Backup em Cloud: Tendências e Melhores Práticas para 2025</h3>
+                        <p>O backup em nuvem se consolidou como tendência para PMEs em 2025. Oferece escalabilidade e recuperação rápida.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Cloud & Backup</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Post 27: ESG Cibersegurança -->
+            <article class="blog-card">
+                <a href="esg-ciberseguranca.html" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar"></i> Outubro 2025</span>
+                            <span><i class="fas fa-clock"></i> 10 min leitura</span>
+                        </div>
+                        <h3>Cibersegurança e ESG: Como a Segurança Digital Impacta a Sustentabilidade</h3>
+                        <p>A pauta ESG ganhou força no mundo dos negócios. Em 2025, a cibersegurança é parte fundamental da governança.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Segurança & Proteção</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="blog-newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Fique por dentro das novidades</h2>
+                <p>Receba dicas exclusivas de cibersegurança, atualizações sobre LGPD e insights do mercado. Sem spam, apenas conteúdo de valor.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Seu melhor e-mail" required>
+                    <button type="submit" class="btn btn-secondary">
+                        <i class="fas fa-paper-plane"></i>
+                        Inscrever-se
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>CyberShield</span>
+                    </div>
+                    <p>Segurança digital que inspira confiança</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html#servicos">Serviços</a>
+                    <a href="../index.html#sobre">Sobre</a>
+                    <a href="../index.html#contato">Contato</a>
+                    <a href="index.html">Blog</a>
+                </div>
+                <div class="footer-services">
+                    <h4>Serviços</h4>
+                    <a href="../index.html#servicos">Diagnóstico de Segurança</a>
+                    <a href="../index.html#servicos">Pentest</a>
+                    <a href="../index.html#servicos">Hardening Técnico</a>
+                    <a href="../index.html#servicos">Consultoria LGPD</a>
+                </div>
+                <div class="footer-social">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberShield. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        // Novo mapeamento: cada card tem só uma macro-categoria
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                categoryButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const categoria = this.textContent.trim();
+                blogCards.forEach(card => {
+                    if (categoria === 'Todos') {
+                        card.style.display = '';
+                        card.style.opacity = '1';
+                    } else {
+                        const cardTag = card.querySelector('.blog-tag').textContent.trim();
+                        if (cardTag === categoria) {
+                            card.style.display = '';
+                            card.style.opacity = '1';
+                        } else {
+                            card.style.display = 'none';
+                            card.style.opacity = '0';
+                        }
+                    }
+                });
+            });
+        });
+        blogCards.forEach(card => {
+            card.style.display = '';
+            card.style.opacity = '1';
+        });
+    });
+    </script>
+</body>
+</html> 

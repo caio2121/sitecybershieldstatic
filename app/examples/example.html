@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Segurança da Informação - CyberShield | CyberShield</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            font-size: 14px;
+        }
+
+        .document-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+        }
+
+        /* Header do Documento */
+        .document-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #10b981;
+        }
+
+        .company-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .company-logo i {
+            color: #10b981;
+            font-size: 2rem;
+        }
+
+        .company-logo span {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .document-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        .document-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        /* Conteúdo do Documento */
+        .document-content {
+            color: #374151;
+            line-height: 1.7;
+        }
+
+        .document-heading {
+            font-weight: 600;
+            color: #0f172a;
+            margin: 25px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #10b981;
+        }
+
+        .document-heading:first-of-type {
+            margin-top: 0;
+        }
+
+        h1.document-heading {
+            font-size: 1.6rem;
+        }
+
+        h2.document-heading {
+            font-size: 1.4rem;
+        }
+
+        h3.document-heading {
+            font-size: 1.2rem;
+        }
+
+        h4.document-heading {
+            font-size: 1.1rem;
+        }
+
+        .document-paragraph {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        .document-list {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .document-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Tabelas */
+        .document-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+        }
+
+        .document-table th,
+        .document-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .document-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .document-table td {
+            color: #374151;
+        }
+
+        /* Destaques */
+        .highlight {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight strong {
+            color: #0f172a;
+        }
+
+        /* Código */
+        pre {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .document-footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #e2e8f0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .company-info p {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .document-meta {
+            text-align: right;
+        }
+
+        .document-meta p {
+            margin-bottom: 5px;
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        /* Impressão */
+        @media print {
+            body {
+                font-size: 12px;
+            }
+            
+            .document-container {
+                padding: 20px;
+                max-width: none;
+            }
+            
+            .document-header {
+                margin-bottom: 30px;
+            }
+            
+            .document-footer {
+                margin-top: 40px;
+                page-break-inside: avoid;
+            }
+            
+            .highlight {
+                background: #f0fdf4 !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            
+            .document-table th {
+                background: #f8fafc !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .document-container {
+                padding: 20px 15px;
+            }
+            
+            .document-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .document-footer {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .document-meta {
+                text-align: left;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="document-container">
+        <!-- Header do Documento -->
+        <div class="document-header">
+            <div class="company-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>CyberShield</span>
+            </div>
+            <h1 class="document-title">Política de Segurança da Informação - CyberShield</h1>
+            <div class="document-info">
+                <div class="info-item">
+                    <div class="info-label">Data</div>
+                    <div class="info-value">24 de July de 2025</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Versão</div>
+                    <div class="info-value">1.0</div>
+                </div>
+                <div class="info-item"><div class="info-label">Categoria</div><div class="info-value">Documentos de Exemplo</div></div>
+            </div>
+        </div>
+
+        <!-- Conteúdo do Documento -->
+        <div class="document-content">
+            <!-- metadata: category: Documentos de Exemplo -->
+<!-- metadata: version: 1.0 -->
+<!-- metadata: document_number: EX-001 -->
+<h1 class="document-heading" id="politica-de-seguranca-da-informacao-cybershield">Política de Segurança da Informação - CyberShield</h1>
+<h2 class="document-heading" id="1-introducao">1. INTRODUÇÃO</h2>
+<p class="document-paragraph">Esta política estabelece as diretrizes e procedimentos para garantir a segurança da informação na CyberShield Ltda., alinhada com as melhores práticas internacionais e requisitos regulamentares.</p>
+<h3 class="document-heading" id="11-objetivo">1.1 Objetivo</h3>
+<p class="document-paragraph">O objetivo desta política é proteger os ativos de informação da empresa, garantindo confidencialidade, integridade e disponibilidade dos dados.</p>
+<h3 class="document-heading" id="12-escopo">1.2 Escopo</h3>
+<p class="document-paragraph">Esta política se aplica a todos os colaboradores, terceiros e sistemas da CyberShield Ltda.</p>
+<h2 class="document-heading" id="2-principios-fundamentais">2. PRINCÍPIOS FUNDAMENTAIS</h2>
+<h3 class="document-heading" id="21-confidencialidade">2.1 Confidencialidade</h3>
+<ul class="document-list">
+<li>Proteção contra acesso não autorizado</li>
+<li>Controle de acesso baseado em necessidade</li>
+<li>Criptografia de dados sensíveis</li>
+</ul>
+<h3 class="document-heading" id="22-integridade">2.2 Integridade</h3>
+<ul class="document-list">
+<li>Precisão e completude dos dados</li>
+<li>Proteção contra modificação não autorizada</li>
+<li>Controle de versão de documentos</li>
+</ul>
+<h3 class="document-heading" id="23-disponibilidade">2.3 Disponibilidade</h3>
+<ul class="document-list">
+<li>Acesso aos dados quando necessário</li>
+<li>Backup e recuperação de dados</li>
+<li>Continuidade dos serviços</li>
+</ul>
+<h2 class="document-heading" id="3-controles-de-seguranca">3. CONTROLES DE SEGURANÇA</h2>
+<h3 class="document-heading" id="31-controle-de-acesso">3.1 Controle de Acesso</h3>
+<table class="document-table">
+<thead>
+<tr>
+<th>Controle</th>
+<th>Descrição</th>
+<th>Responsável</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Autenticação</td>
+<td>Login único (SSO)</td>
+<td>TI</td>
+</tr>
+<tr>
+<td>Autorização</td>
+<td>Controle baseado em roles</td>
+<td>RH</td>
+</tr>
+<tr>
+<td>Auditoria</td>
+<td>Logs de acesso</td>
+<td>TI</td>
+</tr>
+</tbody>
+</table>
+<h3 class="document-heading" id="32-protecao-de-dados">3.2 Proteção de Dados</h3>
+<ul class="document-list">
+<li><strong>Criptografia em repouso</strong>: AES-256</li>
+<li><strong>Criptografia em trânsito</strong>: TLS 1.3</li>
+<li><strong>Backup</strong>: Diário com retenção de 30 dias</li>
+<li><strong>Recuperação</strong>: RTO &lt; 4 horas, RPO &lt; 1 hora</li>
+</ul>
+<h3 class="document-heading" id="33-gestao-de-incidentes">3.3 Gestão de Incidentes</h3>
+<ol class="document-list">
+<li><strong>Detecção</strong>: Monitoramento 24/7</li>
+<li><strong>Análise</strong>: Equipe de resposta a incidentes</li>
+<li><strong>Contenção</strong>: Isolamento de sistemas afetados</li>
+<li><strong>Eradicação</strong>: Remoção da ameaça</li>
+<li><strong>Recuperação</strong>: Restauração dos serviços</li>
+<li><strong>Lições aprendidas</strong>: Documentação e melhoria</li>
+</ol>
+<h2 class="document-heading" id="4-conformidade">4. CONFORMIDADE</h2>
+<h3 class="document-heading" id="41-normas-aplicaveis">4.1 Normas Aplicáveis</h3>
+<ul class="document-list">
+<li><strong>LGPD</strong>: Lei Geral de Proteção de Dados</li>
+<li><strong>ISO 27001</strong>: Sistema de Gestão de Segurança da Informação</li>
+<li><strong>PCI-DSS</strong>: Padrão de Segurança da Indústria de Cartões de Pagamento</li>
+</ul>
+<h3 class="document-heading" id="42-auditorias">4.2 Auditorias</h3>
+<ul class="document-list">
+<li>Auditorias internas trimestrais</li>
+<li>Auditorias externas anuais</li>
+<li>Penetration tests semestrais</li>
+</ul>
+<h2 class="document-heading" id="5-treinamento-e-conscientizacao">5. TREINAMENTO E CONSCIENTIZAÇÃO</h2>
+<h3 class="document-heading" id="51-programa-de-treinamento">5.1 Programa de Treinamento</h3>
+<ul class="document-list">
+<li><strong>Onboarding</strong>: 4 horas de treinamento inicial</li>
+<li><strong>Anual</strong>: 8 horas de reciclagem</li>
+<li><strong>Mensal</strong>: Campanhas de conscientização</li>
+</ul>
+<h3 class="document-heading" id="52-topicos-abordados">5.2 Tópicos Abordados</h3>
+<ul class="document-list">
+<li>Políticas de segurança</li>
+<li>Identificação de ameaças</li>
+<li>Procedimentos de resposta</li>
+<li>Proteção de dados pessoais</li>
+</ul>
+<h2 class="document-heading" id="6-responsabilidades">6. RESPONSABILIDADES</h2>
+<h3 class="document-heading" id="61-diretoria">6.1 Diretoria</h3>
+<ul class="document-list">
+<li>Aprovação de políticas</li>
+<li>Alocação de recursos</li>
+<li>Supervisão geral</li>
+</ul>
+<h3 class="document-heading" id="62-gestores">6.2 Gestores</h3>
+<ul class="document-list">
+<li>Implementação de controles</li>
+<li>Supervisão de equipes</li>
+<li>Relatórios de conformidade</li>
+</ul>
+<h3 class="document-heading" id="63-colaboradores">6.3 Colaboradores</h3>
+<ul class="document-list">
+<li>Cumprimento das políticas</li>
+<li>Reporte de incidentes</li>
+<li>Participação em treinamentos</li>
+</ul>
+<h2 class="document-heading" id="7-revisao-e-atualizacao">7. REVISÃO E ATUALIZAÇÃO</h2>
+<p class="document-paragraph">Esta política será revisada anualmente ou sempre que houver mudanças significativas no ambiente de negócios ou regulamentações.</p>
+<h3 class="document-heading" id="71-processo-de-revisao">7.1 Processo de Revisão</h3>
+<ol class="document-list">
+<li>Análise de mudanças no ambiente</li>
+<li>Avaliação de eficácia dos controles</li>
+<li>Atualização da documentação</li>
+<li>Comunicação às partes interessadas</li>
+<li>Treinamento sobre mudanças</li>
+</ol>
+<h2 class="document-heading" id="8-contatos">8. CONTATOS</h2>
+<p class="document-paragraph">Para dúvidas sobre esta política, entre em contato:</p>
+<ul class="document-list">
+<li><strong>CISO</strong>: ciso@cybershieldgroup.com.br</li>
+<li><strong>Compliance</strong>: compliance@cybershieldgroup.com.br</li>
+<li><strong>TI</strong>: ti@cybershieldgroup.com.br</li>
+</ul>
+<hr/>
+<p class="document-paragraph"><strong>Documento</strong>: Política de Segurança da Informação<br/>
+<strong>Versão</strong>: 1.0<br/>
+<strong>Data</strong>: 23 de Julho de 2025<br/>
+<strong>Próxima Revisão</strong>: 23 de Julho de 2026 </p>
+        </div>
+
+        <!-- Footer do Documento -->
+        <div class="document-footer">
+            <div class="company-info">
+                <p><strong>CyberShield Ltda.</strong></p>
+                <p>Rua Pais Leme, 215, Conjunto 1713 - Pinheiros, São Paulo - SP, CEP: 05424-150</p>
+                <p>CNPJ: 00.000.000/0001-00</p>
+                <p>Email: contato@cybershieldgroup.com.br | Tel: (11) 99999-9999</p>
+            </div>
+            <div class="document-meta">
+                <p>Documento gerado automaticamente em 24/07/2025 às 15:24</p>
+                <p>© 2025 CyberShield. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
