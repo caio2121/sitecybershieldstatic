@@ -1,11 +1,14 @@
 // Formulários usam type="button" para evitar qualquer redirecionamento; o envio é via clique.
 
-// Smooth scrolling para âncoras
+// Smooth scrolling para âncoras (exclui links externos como redes sociais)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        // Não interceptar: links externos ou placeholders (atualizados depois pelo applyRealSocialLinks)
+        if (!href || href === '#' || !href.startsWith('#')) return;
+        const target = document.querySelector(href);
         if (target) {
+            e.preventDefault();
             target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
