@@ -571,6 +571,11 @@ body {
     color: #450a0a;
 }
 
+.strike-alert strong,
+.strike-alert--lgpd strong {
+    font-weight: 800;
+}
+
 .strike-alert--lgpd {
     border-color: rgba(180, 83, 9, 0.45);
     border-left-color: #d97706;
