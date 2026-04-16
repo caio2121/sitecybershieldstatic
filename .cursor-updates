@@ -32,4 +32,6 @@
 
 - Nova página `checklist-provimento-cnj-cartorios-interativo.html` (Sim/Não/Não sei, feedback e pontuação), `js/checklist-cnj-interativo.js`, estilos `.interactive-q` e `.checklist-score-panel`, links cruzados e card no `blog/index.html`.
 
+- Texto introdutório do link para versão interativa simplificado na página estática do checklist.
+
 - Item de roteiro de incidente: documentado, equipe e não só “na cabeça”.
