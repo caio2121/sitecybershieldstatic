@@ -30,4 +30,6 @@
 
 - Parágrafo sobre demais sanções do art. 52 LGPD simplificado no checklist.
 
+- Nova página `checklist-provimento-cnj-cartorios-interativo.html` (Sim/Não/Não sei, feedback e pontuação), `js/checklist-cnj-interativo.js`, estilos `.interactive-q` e `.checklist-score-panel`, links cruzados e card no `blog/index.html`.
+
 - Item de roteiro de incidente: documentado, equipe e não só “na cabeça”.
