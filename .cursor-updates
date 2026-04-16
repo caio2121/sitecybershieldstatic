@@ -3,3 +3,5 @@
 - Atualizado index.html com novo conteúdo do index.docx: hero, diferenciais, serviços, standards (com LGPD), público-alvo, sobre, equipe, FAQ (nova seção), contato e footer. Removidos todos os travessões (em-dash) de lgpd-2025.html, iso27001-pmes.html e index.html, substituídos por pontuação natural.
 
 - Adicionado artigo `blog/checklist-provimento-cnj-cartorios.html` (Provimento CNJ nº 213/2026, LGPD, checklist e alertas de penalidades), card correspondente no `blog/index.html`, estilo `.checklist-risk` em `blog/css/style.css`, e screenshots em `screenshots/` (projeto estático, sem `npm run build`).
+
+- Enxugado `checklist-provimento-cnj-cartorios.html`: foco no checklist, tom para titular de serventia, alertas `.strike-alert` com citações literais dos arts. 17 §2º, 24 (CNJ) e 42, 52 (LGPD); meta e card do `blog/index.html` ajustados.

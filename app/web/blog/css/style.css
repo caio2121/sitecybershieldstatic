@@ -521,6 +521,88 @@ body {
     line-height: 1.5;
 }
 
+/* Alertas de risco jurídico (provimento CNJ / LGPD) */
+.strike-alert {
+    margin: 1rem 0 0;
+    padding: 1rem 1rem 1rem 1.1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(220, 38, 38, 0.35);
+    border-left: 5px solid #dc2626;
+    background: linear-gradient(135deg, #fff1f2 0%, #fef2f2 100%);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: #450a0a;
+}
+
+.strike-alert__label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #991b1b;
+    margin-bottom: 0.35rem;
+}
+
+.strike-alert__head {
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: #7f1d1d;
+}
+
+.strike-alert__cite {
+    margin: 0.5rem 0;
+    padding: 0.65rem 0.85rem;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 6px;
+    border-left: 3px solid #b91c1c;
+    font-size: 0.82rem;
+    font-style: normal;
+    color: #1c1917;
+}
+
+.strike-alert__cite + .strike-alert__cite {
+    margin-top: 0.35rem;
+}
+
+.strike-alert__plain {
+    margin: 0.6rem 0 0;
+    font-size: 0.88rem;
+    color: #450a0a;
+}
+
+.strike-alert--lgpd {
+    border-color: rgba(180, 83, 9, 0.45);
+    border-left-color: #d97706;
+    background: linear-gradient(135deg, #fffbeb 0%, #fff7ed 100%);
+}
+
+.strike-alert--lgpd .strike-alert__label {
+    color: #9a3412;
+}
+
+.strike-alert--lgpd .strike-alert__head {
+    color: #7c2d12;
+}
+
+.strike-alert--lgpd .strike-alert__cite {
+    border-left-color: #ea580c;
+}
+
+.checklist-hero {
+    background: var(--color-dark-1, #0f172a);
+    color: #e2e8f0;
+    padding: 1.25rem 1.5rem;
+    border-radius: 10px;
+    margin: 0 0 1.5rem;
+    font-size: 0.98rem;
+    line-height: 1.55;
+}
+
+.checklist-hero strong {
+    color: #6ee7b7;
+}
+
 .cost-table {
     width: 100%;
     border-collapse: collapse;
