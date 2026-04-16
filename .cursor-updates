@@ -9,3 +9,5 @@
 - Destaques em negrito nos trechos de maior impacto do artigo CNJ/LGPD para cartórios; `strong` reforçado nos alertas via CSS.
 
 - Removido parágrafo introdutório sobre checklist/quadros/advogado em `checklist-provimento-cnj-cartorios.html`.
+
+- Removido parágrafo "Nota técnica" (PAD, art. 25) do mesmo artigo.
