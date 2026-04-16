@@ -594,20 +594,6 @@ body {
     border-left-color: #ea580c;
 }
 
-.checklist-hero {
-    background: var(--color-dark-1, #0f172a);
-    color: #e2e8f0;
-    padding: 1.25rem 1.5rem;
-    border-radius: 10px;
-    margin: 0 0 1.5rem;
-    font-size: 0.98rem;
-    line-height: 1.55;
-}
-
-.checklist-hero strong {
-    color: #6ee7b7;
-}
-
 .cost-table {
     width: 100%;
     border-collapse: collapse;
