@@ -7,3 +7,5 @@
 - Enxugado `checklist-provimento-cnj-cartorios.html`: foco no checklist, tom para titular de serventia, alertas `.strike-alert` com citações literais dos arts. 17 §2º, 24 (CNJ) e 42, 52 (LGPD); meta e card do `blog/index.html` ajustados.
 
 - Destaques em negrito nos trechos de maior impacto do artigo CNJ/LGPD para cartórios; `strong` reforçado nos alertas via CSS.
+
+- Removido parágrafo introdutório sobre checklist/quadros/advogado em `checklist-provimento-cnj-cartorios.html`.
