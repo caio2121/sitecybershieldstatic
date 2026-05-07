@@ -15,7 +15,7 @@ blog/
 ├── generate_posts.py            # Script para gerar posts
 ├── README.md                    # Esta documentação
 └── Posts do Blog:
-    ├── pentest-necessidade.html  # Pentest: Por que sua empresa precisa de testes de penetração
+    ├── pentest-teste-de-invasao-empresas.html  # Pentest: por que sua empresa precisa de um teste de invasão
     ├── vulnerabilidades-web.html # Vulnerabilidades mais comuns em aplicações web
     ├── supply-chain.html         # Ataques de Supply Chain
     ├── api-security.html         # Segurança em APIs
