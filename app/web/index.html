@@ -697,7 +697,96 @@
                                 <div id="service-help" class="form-help">Escolha o serviço que melhor atende sua necessidade</div>
                             </div>
 
-                                                         <div class="form-group">
+                            <div id="pentest-questionnaire" hidden aria-live="polite">
+                                <div class="form-group">
+                                    <label for="pentest-type" class="form-label">
+                                        Tipo de Pentest <span class="required" aria-label="campo obrigatório">*</span>
+                                    </label>
+                                    <select
+                                        id="pentest-type"
+                                        name="pentestTipo"
+                                        aria-describedby="pentest-type-help"
+                                    >
+                                        <option value="" selected>Selecione o tipo de teste</option>
+                                        <option value="Gray Box">Gray Box (com credenciais/informações básicas)</option>
+                                        <option value="Black Box">Black Box (sem informações internas)</option>
+                                    </select>
+                                    <div id="pentest-type-help" class="form-help">Informe como o teste deve ser conduzido</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pentest-target" class="form-label">
+                                        Alvo Principal <span class="required" aria-label="campo obrigatório">*</span>
+                                    </label>
+                                    <select
+                                        id="pentest-target"
+                                        name="pentestAlvo"
+                                        aria-describedby="pentest-target-help"
+                                    >
+                                        <option value="" selected>Selecione o alvo principal</option>
+                                        <option value="Portal web">Portal web</option>
+                                        <option value="Aplicativo nativo">Aplicativo nativo</option>
+                                        <option value="Aplicativo mobile">Aplicativo mobile</option>
+                                        <option value="Outro">Outro</option>
+                                    </select>
+                                    <div id="pentest-target-help" class="form-help">Escolha o tipo de sistema no escopo principal</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pentest-domains" class="form-label">
+                                        Quantidade de Domínios/Subdomínios <span class="required" aria-label="campo obrigatório">*</span>
+                                    </label>
+                                    <input
+                                        type="number"
+                                        id="pentest-domains"
+                                        name="pentestDominios"
+                                        placeholder="Ex.: 5"
+                                        min="1"
+                                        max="10000"
+                                        inputmode="numeric"
+                                        aria-describedby="pentest-domains-help"
+                                        spellcheck="false"
+                                    >
+                                    <div id="pentest-domains-help" class="form-help">Informe o total estimado no escopo</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pentest-endpoints" class="form-label">
+                                        Quantidade Aproximada de Endpoints de API <span class="required" aria-label="campo obrigatório">*</span>
+                                    </label>
+                                    <input
+                                        type="number"
+                                        id="pentest-endpoints"
+                                        name="pentestEndpoints"
+                                        placeholder="Ex.: 120"
+                                        min="0"
+                                        max="100000"
+                                        inputmode="numeric"
+                                        aria-describedby="pentest-endpoints-help"
+                                        spellcheck="false"
+                                    >
+                                    <div id="pentest-endpoints-help" class="form-help">Se não houver API, informe 0</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pentest-docs" class="form-label">
+                                        Possui documentação técnica da API? <span class="required" aria-label="campo obrigatório">*</span>
+                                    </label>
+                                    <select
+                                        id="pentest-docs"
+                                        name="pentestDocumentacao"
+                                        aria-describedby="pentest-docs-help"
+                                    >
+                                        <option value="" selected>Selecione uma opção</option>
+                                        <option value="Sim">Sim (Swagger/Postman/OpenAPI ou equivalente)</option>
+                                        <option value="Nao">Não</option>
+                                        <option value="N/A">N/A</option>
+                                    </select>
+                                    <div id="pentest-docs-help" class="form-help">Indique se existe documentação técnica disponível</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                  <label for="contact-message-text" class="form-label">
                                      Mensagem <span class="required" aria-label="campo obrigatório">*</span>
                                  </label>

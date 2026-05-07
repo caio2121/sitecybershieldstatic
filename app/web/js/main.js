@@ -118,6 +118,17 @@ function getCompanyWhatsAppNumber() {
     return String(number).replace(/\D/g, '');
 }
 
+function getServiceLabel(serviceValue) {
+    const serviceMap = {
+        diagnostico: 'Diagnóstico de Segurança (Gratuito)',
+        pentest: 'Pentest: Teste de Invasão',
+        hardening: 'Hardening Técnico',
+        consultoria: 'Consultoria Contínua',
+        lgpd: 'Conformidade LGPD'
+    };
+    return serviceMap[serviceValue] || serviceValue || 'Não informado';
+}
+
 function buildWhatsAppMessage(formType, data) {
     if (formType === 'lead') {
         return [
@@ -137,8 +148,17 @@ function buildWhatsAppMessage(formType, data) {
         `Nome: ${data.nome}`,
         `E-mail: ${data.email}`,
         `Empresa: ${data.empresa || 'Nao informado'}`,
-        `Servico de interesse: ${data.servico}`,
+        `Servico de interesse: ${getServiceLabel(data.servico)}`,
         '',
+        ...(data.servico === 'pentest' ? [
+            'Questionario Pentest:',
+            `- Tipo de teste: ${data.pentestTipo}`,
+            `- Alvo principal: ${data.pentestAlvo}`,
+            `- Dominios/subdominios: ${data.pentestDominios}`,
+            `- Endpoints de API: ${data.pentestEndpoints}`,
+            `- Documentacao tecnica da API: ${data.pentestDocumentacao}`,
+            ''
+        ] : []),
         'Mensagem:',
         data.mensagem
     ].join('\n');
@@ -529,6 +549,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const messageDiv = document.getElementById('contact-message');
     const messageTextarea = document.getElementById('contact-message-text');
     const messageCounter = document.getElementById('message-counter');
+    const serviceField = document.getElementById('contact-service');
+    const pentestQuestionnaire = document.getElementById('pentest-questionnaire');
+    const pentestFields = [
+        document.getElementById('pentest-type'),
+        document.getElementById('pentest-target'),
+        document.getElementById('pentest-domains'),
+        document.getElementById('pentest-endpoints'),
+        document.getElementById('pentest-docs')
+    ].filter(Boolean);
 
     if (!contactForm || !submitBtn) {
         console.error('Contact form or submit button not found!');
@@ -633,6 +662,33 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
         }
 
+        if (formData.servico === 'pentest') {
+            if (!formData.pentestTipo) {
+                showFieldError('pentest-type', 'Selecione se o pentest será Gray Box ou Black Box');
+                isValid = false;
+            }
+
+            if (!formData.pentestAlvo) {
+                showFieldError('pentest-target', 'Selecione o alvo principal do pentest');
+                isValid = false;
+            }
+
+            if (!/^\d+$/.test(formData.pentestDominios) || Number(formData.pentestDominios) < 1) {
+                showFieldError('pentest-domains', 'Informe uma quantidade válida (mínimo 1)');
+                isValid = false;
+            }
+
+            if (!/^\d+$/.test(formData.pentestEndpoints) || Number(formData.pentestEndpoints) < 0) {
+                showFieldError('pentest-endpoints', 'Informe uma quantidade válida de endpoints (0 ou mais)');
+                isValid = false;
+            }
+
+            if (!formData.pentestDocumentacao) {
+                showFieldError('pentest-docs', 'Informe se existe documentação técnica da API');
+                isValid = false;
+            }
+        }
+
         // Validar mensagem
         if (formData.mensagem.trim().length < 10) {
             showFieldError('contact-message-text', 'Mensagem deve ter pelo menos 10 caracteres');
@@ -659,7 +715,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Validação em tempo real
     function setupRealTimeValidation() {
-        const fields = ['contact-name', 'contact-email', 'contact-service', 'contact-message-text'];
+        const fields = [
+            'contact-name',
+            'contact-email',
+            'contact-service',
+            'contact-message-text',
+            'pentest-type',
+            'pentest-target',
+            'pentest-domains',
+            'pentest-endpoints',
+            'pentest-docs'
+        ];
         
         fields.forEach(fieldId => {
             const field = document.getElementById(fieldId);
@@ -677,6 +743,26 @@ document.addEventListener('DOMContentLoaded', function() {
                         showFieldError(fieldId, 'Por favor, selecione um serviço');
                     } else if (field.name === 'mensagem' && value.trim().length < 10 && value.trim().length > 0) {
                         showFieldError(fieldId, 'Mensagem deve ter pelo menos 10 caracteres');
+                    } else if (formData.get('servico') === 'pentest' && field.name === 'pentestTipo' && !value) {
+                        showFieldError(fieldId, 'Selecione se o pentest será Gray Box ou Black Box');
+                    } else if (formData.get('servico') === 'pentest' && field.name === 'pentestAlvo' && !value) {
+                        showFieldError(fieldId, 'Selecione o alvo principal do pentest');
+                    } else if (
+                        formData.get('servico') === 'pentest' &&
+                        field.name === 'pentestDominios' &&
+                        value &&
+                        (!/^\d+$/.test(value) || Number(value) < 1)
+                    ) {
+                        showFieldError(fieldId, 'Informe uma quantidade válida (mínimo 1)');
+                    } else if (
+                        formData.get('servico') === 'pentest' &&
+                        field.name === 'pentestEndpoints' &&
+                        value &&
+                        (!/^\d+$/.test(value) || Number(value) < 0)
+                    ) {
+                        showFieldError(fieldId, 'Informe uma quantidade válida de endpoints (0 ou mais)');
+                    } else if (formData.get('servico') === 'pentest' && field.name === 'pentestDocumentacao' && !value) {
+                        showFieldError(fieldId, 'Informe se existe documentação técnica da API');
                     } else {
                         // Remover erro se válido
                         const formGroup = field.closest('.form-group');
@@ -691,6 +777,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function togglePentestQuestionnaire() {
+        if (!serviceField || !pentestQuestionnaire) return;
+        const isPentest = serviceField.value === 'pentest';
+        pentestQuestionnaire.hidden = !isPentest;
+
+        pentestFields.forEach(field => {
+            field.required = isPentest;
+
+            if (!isPentest) {
+                if (field.tagName === 'SELECT') {
+                    field.selectedIndex = 0;
+                } else {
+                    field.value = '';
+                }
+                const formGroup = field.closest('.form-group');
+                if (formGroup) {
+                    formGroup.classList.remove('error');
+                    const helpElement = formGroup.querySelector('.form-help');
+                    if (helpElement) {
+                        helpElement.style.color = '#6b7280';
+                    }
+                }
+            }
+        });
+    }
+
+    if (serviceField) {
+        serviceField.addEventListener('change', togglePentestQuestionnaire);
+        togglePentestQuestionnaire();
+    }
+
     setupRealTimeValidation();
 
     submitBtn.addEventListener('click', function() {
@@ -701,6 +818,11 @@ document.addEventListener('DOMContentLoaded', function() {
             empresa: formData.get('empresa').trim(),
             servico: formData.get('servico'),
             mensagem: formData.get('mensagem').trim(),
+            pentestTipo: formData.get('pentestTipo') ? formData.get('pentestTipo').trim() : '',
+            pentestAlvo: formData.get('pentestAlvo') ? formData.get('pentestAlvo').trim() : '',
+            pentestDominios: formData.get('pentestDominios') ? formData.get('pentestDominios').trim() : '',
+            pentestEndpoints: formData.get('pentestEndpoints') ? formData.get('pentestEndpoints').trim() : '',
+            pentestDocumentacao: formData.get('pentestDocumentacao') ? formData.get('pentestDocumentacao').trim() : '',
             privacy: formData.get('privacy') === 'on'
         };
         

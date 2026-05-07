@@ -1,6 +1,6 @@
 # Blog CyberShield
 
-Blog especializado em cibersegurança para PMEs, com conteúdo técnico e prático sobre LGPD, pentest, vulnerabilidades web, ISO 27001 e muito mais.
+Blog especializado em cibersegurança para PMEs, com conteúdo técnico e prático sobre pentest, vulnerabilidades web, APIs e cadeia de fornecimento.
 
 ## 📁 Estrutura do Projeto
 
@@ -15,18 +15,11 @@ blog/
 ├── generate_posts.py            # Script para gerar posts
 ├── README.md                    # Esta documentação
 └── Posts do Blog:
-    ├── lgpd-2025.html           # LGPD: O que sua empresa precisa saber em 2025
-    ├── pentest-necessidade.html # Pentest: Por que sua empresa precisa de testes de penetração
+    ├── pentest-necessidade.html  # Pentest: Por que sua empresa precisa de testes de penetração
     ├── vulnerabilidades-web.html # Vulnerabilidades mais comuns em aplicações web
-    ├── proteger-dados-lgpd.html # Como proteger dados de clientes em conformidade com LGPD
-    ├── seguranca-ecommerce.html # Segurança em E-commerce: PCI-DSS na Prática
-    ├── ransomware-prevencao.html # Ransomware: Como prevenir e responder a ataques
-    ├── iso27001-pmes.html       # ISO 27001 para PMEs: Implementação Prática
-    ├── phishing-prevencao.html  # Phishing: Como identificar e prevenir ataques
-    ├── backup-recuperacao.html  # Backup e Recuperação: Estratégias para PMEs
-    ├── seguranca-cloud.html     # Segurança na Nuvem: Protegendo dados em cloud
-    ├── treinamento-conscientizacao.html # Treinamento e Conscientização em Segurança
-    └── incidentes-response.html # Resposta a Incidentes: Plano para PMEs
+    ├── supply-chain.html         # Ataques de Supply Chain
+    ├── api-security.html         # Segurança em APIs
+    └── zero-trust.html           # Zero Trust para pequenas empresas
 ```
 
 ## 🎯 Objetivos do Blog

@@ -35,3 +35,5 @@
 - Texto introdutório do link para versão interativa simplificado na página estática do checklist.
 
 - Item de roteiro de incidente: documentado, equipe e não só “na cabeça”.
+
+- Removidas definitivamente as categorias e páginas solicitadas do blog, ajustados links restantes sem órfãos, e implementado questionário condicional de Pentest no formulário com validação e montagem completa da mensagem para WhatsApp, incluindo evidências em `screenshots/`.
