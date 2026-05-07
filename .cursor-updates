@@ -39,3 +39,5 @@
 - Removidas definitivamente as categorias e páginas solicitadas do blog, ajustados links restantes sem órfãos, e implementado questionário condicional de Pentest no formulário com validação e montagem completa da mensagem para WhatsApp, incluindo evidências em `screenshots/`.
 
 - Reescrito o artigo de pentest com nova estrutura editorial e SEO, migrado para o slug `blog/pentest-teste-de-invasao-empresas.html`, com atualização de links internos e screenshot de validação.
+
+- Artigo de pentest atualizado com metodologias OWASP, PTES (PETS) e NIST no conteúdo e no SEO para capturar buscas por exigências, auditorias e contratos.
