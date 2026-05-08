@@ -41,3 +41,7 @@
 - Reescrito o artigo de pentest com nova estrutura editorial e SEO, migrado para o slug `blog/pentest-teste-de-invasao-empresas.html`, com atualização de links internos e screenshot de validação.
 
 - Artigo de pentest atualizado com metodologias OWASP, PTES (PETS) e NIST no conteúdo e no SEO para capturar buscas por exigências, auditorias e contratos.
+
+- Removida a página `blog/api-security.html`, com ajuste de links órfãos no índice e em artigos relacionados para manter a navegação consistente no blog.
+
+- Criado o artigo `blog/provimento-213-cnj-cartorios-seguranca-informacao.html` com SEO completo, incluído card no `blog/index.html` e registrada evidência visual em `screenshots/blog-provimento-213-cnj-cartorios.png`.

@@ -16,9 +16,8 @@ blog/
 ├── README.md                    # Esta documentação
 └── Posts do Blog:
     ├── pentest-teste-de-invasao-empresas.html  # Pentest: por que sua empresa precisa de um teste de invasão
-    ├── vulnerabilidades-web.html # Vulnerabilidades mais comuns em aplicações web
-    ├── supply-chain.html         # Ataques de Supply Chain
-    ├── api-security.html         # Segurança em APIs
+    ├── vulnerabilidades-web-aplicacoes-api.html # Vulnerabilidades web: principais riscos em sites, sistemas e APIs
+    ├── ataques-supply-chain-fornecedores.html # Ataques de Supply Chain: como proteger sua cadeia de fornecedores
     └── zero-trust.html           # Zero Trust para pequenas empresas
 ```
 
