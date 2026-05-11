@@ -51,3 +51,5 @@
 - Refatorado o checklist CNJ interativo para máxima fidelidade visual ao original (HUD gamificado, hero, gate de liberação, cards por capítulo, sidebar e relatório), mantendo o fluxo estático em GitHub Pages com 9 perguntas.
 
 - Aplicado no artigo `blog/pentest-teste-de-invasao-empresas.html` o texto otimizado de SEO enviado, incluindo atualização de metadados, schema JSON-LD (Article/FAQ/Breadcrumb), conteúdo expandido com FAQ e ajustes de links relacionados.
+
+- Executada a Paridade Visual Fase 2 no checklist CNJ estático com QuestionCard rico (estado Sim/Não/Não sei), ChapterRings com anéis SVG e legenda, FinalReport em dashboard com dial/breakdown/medalhas, mantendo lógica e métricas em 9 perguntas.

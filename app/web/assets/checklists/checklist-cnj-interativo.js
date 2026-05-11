@@ -9,10 +9,13 @@
       title: "Governança & Declarações",
       subtitle: "A espinha dorsal do dossiê",
       roman: "I",
+      icon: "GV",
       risk: {
         headline: "Declaração falsa ou omissão grave atinge o titular, não o fornecedor.",
         legal:
-          "Art. 17, § 2º e Art. 24 do Provimento CNJ 213/2026: inconsistências e omissões relevantes podem levar a procedimento administrativo disciplinar."
+          "Art. 17, § 2º e Art. 24 do Provimento CNJ 213/2026: inconsistências e omissões relevantes podem levar a procedimento administrativo disciplinar.",
+        consequence:
+          "Sem evidência documental, a serventia fica frágil em inspeção e pode sofrer consequências disciplinares."
       }
     },
     {
@@ -20,10 +23,13 @@
       title: "Acesso ao Sistema",
       subtitle: "Quem entra, quando entra, com que permissão",
       roman: "II",
+      icon: "AC",
       risk: {
         headline: "Controle de acesso falho vira prova de omissão em correição.",
         legal:
-          "Sem segregação e rastreabilidade de contas, a serventia amplia exposição em incidente e inspeção."
+          "Sem segregação e rastreabilidade de contas, a serventia amplia exposição em incidente e inspeção.",
+        consequence:
+          "Credenciais mal geridas aumentam risco de uso indevido e dificultam responsabilização."
       }
     },
     {
@@ -31,10 +37,13 @@
       title: "Dados Pessoais (LGPD)",
       subtitle: "O que entra, onde fica, como sai",
       roman: "III",
+      icon: "LG",
       risk: {
         headline: "A ANPD pode aplicar sanções após processo administrativo.",
         legal:
-          "Art. 52 da LGPD: multas, medidas corretivas e eventual restrição parcial de tratamento."
+          "Art. 52 da LGPD: multas, medidas corretivas e eventual restrição parcial de tratamento.",
+        consequence:
+          "Falhas recorrentes em direitos dos titulares e proteção de dados podem gerar sanções relevantes."
       }
     },
     {
@@ -42,10 +51,13 @@
       title: "Continuidade: Backup & Incidente",
       subtitle: "Quando o mundo desaba, o acervo permanece",
       roman: "IV",
+      icon: "BC",
       risk: {
         headline: "Sem continuidade documentada, o incidente vira improviso.",
         legal:
-          "LGPD art. 42 e responsabilização civil/administrativa: a prova operacional é decisiva para reduzir exposição."
+          "LGPD art. 42 e responsabilização civil/administrativa: a prova operacional é decisiva para reduzir exposição.",
+        consequence:
+          "Crises sem plano e sem teste de restauração elevam impacto operacional e jurídico."
       }
     },
     {
@@ -53,10 +65,13 @@
       title: "Fornecedores & Nuvem",
       subtitle: "Delegar o sistema, nunca a responsabilidade",
       roman: "V",
+      icon: "FN",
       risk: {
         headline: "Terceiro não substitui o titular da delegação.",
         legal:
-          "A responsabilidade de governança e validação permanece da serventia, mesmo com operação terceirizada."
+          "A responsabilidade de governança e validação permanece da serventia, mesmo com operação terceirizada.",
+        consequence:
+          "Sem validação interna por escrito, o dossiê perde força e a dependência do fornecedor aumenta."
       }
     }
   ];
@@ -377,12 +392,56 @@
     return classes.join(" ");
   }
 
+  function answerButtonLabel(answerKey) {
+    if (answerKey === "sim") return "<span class=\"answer-btn__icon\">+</span><span>Sim</span>";
+    if (answerKey === "nao") return "<span class=\"answer-btn__icon\">-</span><span>Não</span>";
+    return "<span class=\"answer-btn__icon\">?</span><span>Não sei</span>";
+  }
+
+  function scorePanelTemplate(answer) {
+    if (!answer) return "";
+    if (answer === "sim") {
+      return [
+        '<div class="score-panel score-panel--sim">',
+        '<span class="score-panel__icon">OK</span>',
+        "<div>",
+        "<strong>Controle em conformidade.</strong>",
+        "<p>+100 XP · evidência registrada para o dossiê técnico.</p>",
+        "</div>",
+        "</div>"
+      ].join("");
+    }
+    if (answer === "nao_sei") {
+      return [
+        '<div class="score-panel score-panel--warn">',
+        '<span class="score-panel__icon">?</span>',
+        "<div>",
+        "<strong>Ponto cego em apuração.</strong>",
+        "<p>+20 XP · priorize validação técnica antes da próxima correição.</p>",
+        "</div>",
+        "</div>"
+      ].join("");
+    }
+    return "";
+  }
+
   function feedbackTemplate(question, answer) {
     if (answer === "sim") return "";
     var chapter = CHAPTERS.find(function (c) { return c.id === question.chapterId; });
     if (!chapter) return "";
     var klass = answer === "nao" ? "feedback feedback--nao" : "feedback feedback--nao-sei";
-    return '<div class="' + klass + '">' + chapter.risk.headline + " " + chapter.risk.legal + "</div>";
+    var tone = answer === "nao" ? "Risco jurídico identificado" : "Ponto cego: apurar";
+    return [
+      '<div class="' + klass + '">',
+      '<div class="feedback-head">',
+      "<span>" + tone + "</span>",
+      "<small>Cap. " + chapter.roman + "</small>",
+      "</div>",
+      "<strong>" + chapter.risk.headline + "</strong>",
+      "<p>" + chapter.risk.legal + "</p>",
+      "<em>" + chapter.risk.consequence + "</em>",
+      "</div>"
+    ].join("");
   }
 
   function questionTemplate(question) {
@@ -396,17 +455,18 @@
     return [
       '<article class="' + cardClass + '" id="q-' + question.id + '">',
       '<div class="question-head">',
-      '<div class="question-badge">' + String(question.displayOrder).padStart(2, "0") + "</div>",
+      '<div class="question-badge">' + String(question.id).padStart(2, "0") + "</div>",
       "<div>",
       '<p class="question-meta">Cap. ' + chapter.roman + " · " + chapter.title + "</p>",
       '<h4 class="question-title">' + question.text + "</h4>",
       "</div>",
       "</div>",
       '<div class="answer-row">',
-      '<button class="' + answerButtonClass(question.id, "sim", answer) + '" type="button" data-question-id="' + question.id + '" data-answer="sim">Sim</button>',
-      '<button class="' + answerButtonClass(question.id, "nao", answer) + '" type="button" data-question-id="' + question.id + '" data-answer="nao">Não</button>',
-      '<button class="' + answerButtonClass(question.id, "nao_sei", answer) + '" type="button" data-question-id="' + question.id + '" data-answer="nao_sei">Não sei</button>',
+      '<button class="' + answerButtonClass(question.id, "sim", answer) + '" type="button" data-question-id="' + question.id + '" data-answer="sim">' + answerButtonLabel("sim") + "</button>",
+      '<button class="' + answerButtonClass(question.id, "nao", answer) + '" type="button" data-question-id="' + question.id + '" data-answer="nao">' + answerButtonLabel("nao") + "</button>",
+      '<button class="' + answerButtonClass(question.id, "nao_sei", answer) + '" type="button" data-question-id="' + question.id + '" data-answer="nao_sei">' + answerButtonLabel("nao_sei") + "</button>",
       "</div>",
+      scorePanelTemplate(answer),
       feedbackTemplate(question, answer),
       "</article>"
     ].join("");
@@ -442,24 +502,99 @@
       });
       var sim = chapterQuestions.filter(function (q) { return state.answers[q.id] === "sim"; }).length;
       var answered = chapterQuestions.filter(function (q) { return !!state.answers[q.id]; }).length;
+      var nao = chapterQuestions.filter(function (q) { return state.answers[q.id] === "nao"; }).length;
+      var naoSei = chapterQuestions.filter(function (q) { return state.answers[q.id] === "nao_sei"; }).length;
       var pct = chapterQuestions.length ? Math.round((sim / chapterQuestions.length) * 100) : 0;
+      var answeredPct = chapterQuestions.length ? Math.round((answered / chapterQuestions.length) * 100) : 0;
+      var circumference = 2 * Math.PI * 16;
+      var answeredOffset = circumference * (1 - answeredPct / 100);
+      var simOffset = circumference * (1 - pct / 100);
+      var allOk = sim === chapterQuestions.length;
 
       return [
         '<button type="button" class="chapter-row" data-jump-chapter="' + chapter.id + '">',
-        "<strong>Cap. " + chapter.roman + "</strong>",
+        '<div class="chapter-row__ring">',
+        '<svg viewBox="0 0 40 40" aria-hidden="true">',
+        '<circle cx="20" cy="20" r="16" class="ring-base"></circle>',
+        '<circle cx="20" cy="20" r="16" class="ring-answered" style="stroke-dasharray:' + circumference + ";stroke-dashoffset:" + answeredOffset + ';"></circle>',
+        '<circle cx="20" cy="20" r="16" class="ring-sim" style="stroke-dasharray:' + circumference + ";stroke-dashoffset:" + simOffset + ';"></circle>',
+        "</svg>",
+        '<span class="chapter-row__icon">' + chapter.icon + "</span>",
+        "</div>",
+        '<div class="chapter-row__meta">',
+        "<strong>Cap. " + chapter.roman + (allOk ? ' <em>OK</em>' : "") + "</strong>",
         "<span>" + chapter.title + "</span>",
-        "<small>" + sim + "/" + chapterQuestions.length + " conformes · " + answered + "/" + chapterQuestions.length + " respondidas · " + pct + "%</small>",
+        "<small>" + sim + "/" + chapterQuestions.length + " conformes · " + answered + "/" + chapterQuestions.length + " respondidas</small>",
+        '<small class="chapter-row__legend-inline">' + nao + " risco · " + naoSei + " apurar · " + pct + "%</small>",
+        "</div>",
         "</button>"
       ].join("");
-    }).join("");
+    }).join("") + [
+      '<div class="chapter-legend">',
+      "<span><i class=\"legend-dot legend-dot--ok\"></i>OK</span>",
+      "<span><i class=\"legend-dot legend-dot--risk\"></i>Risco</span>",
+      "<span><i class=\"legend-dot legend-dot--apurar\"></i>Apurar</span>",
+      "</div>"
+    ].join("");
     dom.chapterRings.innerHTML = content;
   }
 
-  function reportVerdictText(pct) {
-    if (pct === 100) return "Conformidade total. O dossiê está consistente para inspeção.";
-    if (pct >= 80) return "Quase blindado. Feche as pendências e mantenha evidências atualizadas.";
-    if (pct >= 50) return "Exposição moderada. Priorize remediação por risco e impacto operacional.";
-    return "Exposição crítica. Estruture plano imediato para reduzir riscos jurídicos e operacionais.";
+  function reportVerdict(pct) {
+    if (pct === 100) {
+      return {
+        title: "Conformidade total",
+        message: "A serventia está apta para fiscalização. Mantenha o ciclo de evidências vivo.",
+        colorClass: "report-color--ok"
+      };
+    }
+    if (pct >= 80) {
+      return {
+        title: "Quase blindado",
+        message: "Base sólida. Feche pendências para elevar resiliência jurídica e operacional.",
+        colorClass: "report-color--ok"
+      };
+    }
+    if (pct >= 50) {
+      return {
+        title: "Exposição moderada",
+        message: "Há lacunas relevantes. Priorize ações por criticidade antes da próxima correição.",
+        colorClass: "report-color--warn"
+      };
+    }
+    return {
+      title: "Exposição crítica",
+      message: "Mais pendências que evidências. Recomenda-se plano imediato com acompanhamento técnico.",
+      colorClass: "report-color--danger"
+    };
+  }
+
+  function renderReportChapterBreakdown() {
+    return CHAPTERS.map(function (chapter) {
+      var chapterQuestions = QUESTIONS.filter(function (q) { return q.chapterId === chapter.id; });
+      var sim = chapterQuestions.filter(function (q) { return state.answers[q.id] === "sim"; }).length;
+      var pct = chapterQuestions.length ? Math.round((sim / chapterQuestions.length) * 100) : 0;
+      var okClass = sim === chapterQuestions.length ? "chapter-breakdown__item--ok" : "";
+      return [
+        '<article class="chapter-breakdown__item ' + okClass + '">',
+        "<strong>Cap. " + chapter.roman + "</strong>",
+        "<span>" + chapter.title + "</span>",
+        "<small>" + sim + "/" + chapterQuestions.length + " · " + pct + "%</small>",
+        "</article>"
+      ].join("");
+    }).join("");
+  }
+
+  function renderReportAchievements() {
+    return ACHIEVEMENTS.map(function (achievement) {
+      var unlocked = !!state.unlocked[achievement.id];
+      var klass = unlocked ? "report-achievement report-achievement--on" : "report-achievement";
+      return [
+        '<article class="' + klass + '">',
+        "<strong>" + achievement.title + "</strong>",
+        "<span>" + achievement.description + "</span>",
+        "</article>"
+      ].join("");
+    }).join("");
   }
 
   function renderFinalReport(stats, xp) {
@@ -472,16 +607,37 @@
 
     var conformity = Math.round((stats.sim / QUESTIONS.length) * 100);
     var rank = getRank(xp);
+    var verdict = reportVerdict(conformity);
+    var circumference = 2 * Math.PI * 50;
+    var dialOffset = circumference * (1 - conformity / 100);
     dom.finalReport.innerHTML = [
       '<p class="card-kicker">Relatório Executivo</p>',
-      '<h3>' + reportVerdictText(conformity) + "</h3>",
-      "<p>Resumo final do seu diagnóstico com 9 controles ativos.</p>",
+      '<h3 class="' + verdict.colorClass + '">' + verdict.title + "</h3>",
+      "<p>" + verdict.message + "</p>",
+      '<div class="report-top">',
+      '<div class="report-top__dial">',
+      '<svg viewBox="0 0 140 140" aria-hidden="true">',
+      '<circle cx="70" cy="70" r="50" class="report-dial__base"></circle>',
+      '<circle cx="70" cy="70" r="50" class="report-dial__value ' + verdict.colorClass + '" style="stroke-dasharray:' + circumference + ";stroke-dashoffset:" + dialOffset + ';"></circle>',
+      "</svg>",
+      '<div class="report-dial__text"><span>Conformidade</span><strong>' + conformity + "%</strong></div>",
+      "</div>",
+      '<div class="report-tags">',
+      '<span class="tag tag--ok">' + stats.sim + " OK</span>",
+      '<span class="tag tag--risk">' + stats.nao + " Pendente</span>",
+      '<span class="tag tag--apurar">' + stats.naoSei + " Apurar</span>",
+      "</div>",
+      "</div>",
       '<div class="report-grid">',
       "<article><span>Conformidade</span><strong>" + conformity + "%</strong></article>",
       "<article><span>XP final</span><strong>" + xp + "</strong></article>",
       "<article><span>Nível</span><strong>" + rank.title + "</strong></article>",
       "<article><span>Medalhas</span><strong>" + Object.keys(state.unlocked).length + "/" + ACHIEVEMENTS.length + "</strong></article>",
       "</div>",
+      '<div class="report-divider"></div>',
+      '<section class="chapter-breakdown"><h4>Status por capítulo</h4><div class="chapter-breakdown__grid">' + renderReportChapterBreakdown() + "</div></section>",
+      '<div class="report-divider"></div>',
+      '<section class="report-achievements"><h4>Medalhas</h4><div class="report-achievements__grid">' + renderReportAchievements() + "</div></section>",
       '<div class="report-actions">',
       '<a class="btn btn-primary" href="https://wa.me/5521920137715?text=Ol%C3%A1!%20Conclu%C3%AD%20o%20checklist%20CNJ%20e%20quero%20apoio%20no%20dossi%C3%AA%20t%C3%A9cnico." target="_blank" rel="noopener noreferrer">Falar com especialista</a>',
       '<button id="restart-btn" class="btn btn-outline" type="button">Refazer diagnóstico</button>',
