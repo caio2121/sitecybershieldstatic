@@ -45,3 +45,5 @@
 - Removida a página `blog/api-security.html`, com ajuste de links órfãos no índice e em artigos relacionados para manter a navegação consistente no blog.
 
 - Criado o artigo `blog/provimento-213-cnj-cartorios-seguranca-informacao.html` com SEO completo, incluído card no `blog/index.html` e registrada evidência visual em `screenshots/blog-provimento-213-cnj-cartorios.png`.
+
+- Implementada a nova página estática `assets/checklists/checklist-cnj-interativo.html` (GitHub Pages), com lógica client-side de diagnóstico CNJ/LGPD ajustada para 9 perguntas (removidas 03, 05, 06, 09, 12 e 13), além de link na home e entrada no sitemap.

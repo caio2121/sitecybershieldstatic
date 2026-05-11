@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checklist Interativo CNJ 213/2026 | CyberShield</title>
+  <meta name="description" content="Checklist interativo de conformidade para cartórios com base no Provimento CNJ 213/2026 e LGPD.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="./checklist-cnj-interativo.css">
+</head>
+<body>
+  <header class="cnj-hero">
+    <div class="cnj-grid-bg" aria-hidden="true"></div>
+    <div class="container cnj-hero-top">
+      <a href="../../index.html" class="cnj-brand-link" aria-label="Voltar para home da CyberShield">
+        <img src="../../images/logo-header.png" alt="CyberShield" class="cnj-brand-logo">
+      </a>
+      <a href="../../index.html#contato" class="cnj-hero-contact">Falar com especialista</a>
+    </div>
+    <div class="container cnj-hero-content">
+      <p class="cnj-kicker">Provimento CNJ 213/2026 · LGPD</p>
+      <h1>Checklist Interativo de Conformidade para Cartórios</h1>
+      <p class="cnj-hero-text">
+        Responda os controles essenciais e veja, em tempo real, o nível de conformidade da serventia.
+        Este diagnóstico é orientativo e não substitui auditoria formal.
+      </p>
+      <div class="cnj-hero-badges">
+        <span>5 capítulos</span>
+        <span>9 controles</span>
+        <span>Relatório imediato</span>
+      </div>
+      <a href="#checklist" class="cnj-start-btn">Iniciar diagnóstico</a>
+    </div>
+  </header>
+
+  <div class="cnj-hud-wrap">
+    <div class="container">
+      <section class="cnj-hud" aria-label="Resumo do diagnóstico">
+        <div class="cnj-hud-item">
+          <p class="cnj-hud-label">Conformes</p>
+          <p class="cnj-hud-value" id="hud-sim">0/9</p>
+        </div>
+        <div class="cnj-hud-item">
+          <p class="cnj-hud-label">Pendentes</p>
+          <p class="cnj-hud-value cnj-danger" id="hud-nao">0</p>
+        </div>
+        <div class="cnj-hud-item">
+          <p class="cnj-hud-label">A apurar</p>
+          <p class="cnj-hud-value cnj-warn" id="hud-nao-sei">0</p>
+        </div>
+        <div class="cnj-hud-item">
+          <p class="cnj-hud-label">Conformidade</p>
+          <p class="cnj-hud-value cnj-cta" id="hud-pct">0%</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <main id="checklist" class="container cnj-main">
+    <section class="cnj-intro-card">
+      <h2>Como responder</h2>
+      <p>
+        Marque <strong>Sim</strong> quando houver prática implementada e evidência,
+        <strong>Não</strong> quando houver lacuna e <strong>Não sei</strong> quando precisar validar.
+      </p>
+      <p>As perguntas 03, 05, 06, 09, 12 e 13 foram removidas conforme sua solicitação.</p>
+    </section>
+
+    <div class="cnj-layout">
+      <section id="questions-root" class="cnj-questions" aria-label="Perguntas do checklist"></section>
+
+      <aside class="cnj-sidebar">
+        <section class="cnj-side-card">
+          <h3>Status por capítulo</h3>
+          <ul id="chapter-status" class="cnj-chapter-status"></ul>
+        </section>
+
+        <section class="cnj-side-card">
+          <h3>Resumo rápido</h3>
+          <p id="summary-text">Responda ao menos uma pergunta para começar o diagnóstico.</p>
+        </section>
+      </aside>
+    </div>
+
+    <section id="final-report" class="cnj-report" hidden aria-live="polite">
+      <h2>Relatório Executivo</h2>
+      <p id="report-verdict" class="cnj-report-verdict"></p>
+      <div class="cnj-report-stats">
+        <article>
+          <p class="cnj-stat-label">Conformidade</p>
+          <p class="cnj-stat-value" id="report-pct">0%</p>
+        </article>
+        <article>
+          <p class="cnj-stat-label">Controles OK</p>
+          <p class="cnj-stat-value" id="report-sim">0</p>
+        </article>
+        <article>
+          <p class="cnj-stat-label">Pendências</p>
+          <p class="cnj-stat-value" id="report-nao">0</p>
+        </article>
+        <article>
+          <p class="cnj-stat-label">A apurar</p>
+          <p class="cnj-stat-value" id="report-nao-sei">0</p>
+        </article>
+      </div>
+      <div class="cnj-report-actions">
+        <a
+          href="https://wa.me/5521920137715?text=Ol%C3%A1!%20Conclu%C3%AD%20o%20checklist%20CNJ%20e%20quero%20apoio%20para%20o%20dossi%C3%AA%20t%C3%A9cnico."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cnj-primary-btn"
+        >
+          Falar com especialista
+        </a>
+        <button type="button" id="restart-btn" class="cnj-secondary-btn">Refazer checklist</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cnj-footer">
+    <div class="container cnj-footer-wrap">
+      <p>CyberShield · Segurança, compliance e continuidade para cartórios</p>
+      <a href="../../index.html">Voltar ao site</a>
+    </div>
+  </footer>
+
+  <script src="./checklist-cnj-interativo.js"></script>
+</body>
+</html>

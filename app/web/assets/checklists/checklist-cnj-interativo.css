@@ -1,0 +1,456 @@
+:root {
+  --cnj-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #021c41 0%, #021730 100%);
+  color: var(--text-color, #f1efef);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.container {
+  width: min(1180px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.cnj-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(241, 239, 239, 0.08);
+}
+
+.cnj-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(241, 239, 239, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241, 239, 239, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.cnj-hero-top,
+.cnj-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cnj-hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.cnj-brand-logo {
+  height: 40px;
+  width: auto;
+}
+
+.cnj-hero-contact {
+  text-decoration: none;
+  color: var(--text-color, #f1efef);
+  border: 1px solid rgba(241, 239, 239, 0.22);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+}
+
+.cnj-hero-content {
+  padding: 2rem 0 3rem;
+}
+
+.cnj-kicker {
+  margin: 0;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: #31bd93;
+}
+
+.cnj-hero h1 {
+  margin: 0.8rem 0 0;
+  font-family: Montserrat, Inter, sans-serif;
+  line-height: 1.05;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.cnj-hero-text {
+  margin: 1rem 0 0;
+  max-width: 72ch;
+  color: #b9c2d9;
+  font-size: 1.03rem;
+  line-height: 1.55;
+}
+
+.cnj-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.1rem;
+}
+
+.cnj-hero-badges span {
+  border: 1px solid rgba(241, 239, 239, 0.16);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+  color: #d3daea;
+}
+
+.cnj-start-btn,
+.cnj-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.4rem;
+  background: #31bd93;
+  color: #021c41;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.8rem 1.2rem;
+}
+
+.cnj-hud-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  backdrop-filter: blur(8px);
+}
+
+.cnj-hud {
+  margin-top: 0.8rem;
+  background: rgba(35, 46, 74, 0.9);
+  border: 1px solid rgba(49, 189, 147, 0.3);
+  border-radius: var(--cnj-radius);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+  padding: 0.9rem;
+}
+
+.cnj-hud-label {
+  margin: 0;
+  font-size: 0.7rem;
+  color: #a3adc7;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+.cnj-hud-value {
+  margin: 0.2rem 0 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.cnj-cta { color: #31bd93; }
+.cnj-danger { color: #ef4444; }
+.cnj-warn { color: #f2b705; }
+
+.cnj-main {
+  padding: 1.2rem 0 2.4rem;
+}
+
+.cnj-intro-card,
+.cnj-side-card,
+.cnj-report,
+.cnj-question-card {
+  background: linear-gradient(180deg, #2a3656 0%, #232e4a 100%);
+  border: 1px solid rgba(241, 239, 239, 0.08);
+  border-radius: var(--cnj-radius);
+}
+
+.cnj-intro-card {
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.cnj-intro-card h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.cnj-intro-card p {
+  margin: 0.7rem 0 0;
+  color: #c6cee2;
+  line-height: 1.5;
+}
+
+.cnj-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 1rem;
+}
+
+.cnj-questions {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.cnj-question-card {
+  padding: 1rem;
+}
+
+.cnj-question-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.55rem;
+}
+
+.cnj-question-number {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: rgba(49, 189, 147, 0.15);
+  border: 1px solid rgba(49, 189, 147, 0.4);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+  color: #31bd93;
+}
+
+.cnj-question-chapter {
+  margin: 0;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9bb0d8;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+.cnj-question-text {
+  margin: 0;
+  font-size: 1.03rem;
+  line-height: 1.42;
+}
+
+.cnj-answer-row {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.cnj-answer-row label {
+  border: 1px solid rgba(241, 239, 239, 0.2);
+  border-radius: 10px;
+  padding: 0.6rem 0.4rem;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cnj-answer-row input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cnj-answer-row label[data-tone="sim"] { color: #31bd93; }
+.cnj-answer-row label[data-tone="nao"] { color: #ef4444; }
+.cnj-answer-row label[data-tone="nao_sei"] { color: #f2b705; }
+
+.cnj-answer-row input:focus-visible + span {
+  outline: 2px solid #31bd93;
+  outline-offset: 3px;
+}
+
+.cnj-answer-row input:checked + span {
+  display: inline-block;
+  border-radius: 7px;
+  padding: 0.2rem 0.45rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cnj-feedback {
+  margin-top: 0.7rem;
+  padding: 0.72rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: #d5dded;
+}
+
+.cnj-feedback-danger {
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.cnj-feedback-warn {
+  border: 1px solid rgba(242, 183, 5, 0.35);
+  background: rgba(242, 183, 5, 0.08);
+}
+
+.cnj-sidebar {
+  display: grid;
+  gap: 0.8rem;
+  align-content: start;
+  position: sticky;
+  top: 94px;
+  height: fit-content;
+}
+
+.cnj-side-card {
+  padding: 0.9rem;
+}
+
+.cnj-side-card h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+}
+
+.cnj-chapter-status {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.cnj-chapter-status li {
+  font-size: 0.9rem;
+  color: #d1daeb;
+  border: 1px solid rgba(241, 239, 239, 0.1);
+  border-radius: 8px;
+  padding: 0.55rem;
+}
+
+.cnj-chapter-status strong {
+  color: #31bd93;
+}
+
+#summary-text {
+  margin: 0;
+  color: #c8d2e8;
+  line-height: 1.5;
+}
+
+.cnj-report {
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.cnj-report h2 {
+  margin: 0;
+}
+
+.cnj-report-verdict {
+  margin: 0.6rem 0 0;
+  color: #ced6e9;
+}
+
+.cnj-report-stats {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.cnj-report-stats article {
+  border: 1px solid rgba(241, 239, 239, 0.14);
+  border-radius: 8px;
+  padding: 0.6rem;
+}
+
+.cnj-stat-label {
+  margin: 0;
+  color: #9eb0d3;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.cnj-stat-value {
+  margin: 0.3rem 0 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.cnj-report-actions {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.cnj-secondary-btn {
+  border: 1px solid rgba(241, 239, 239, 0.25);
+  border-radius: 10px;
+  background: transparent;
+  color: #f1efef;
+  font-weight: 600;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+}
+
+.cnj-footer {
+  border-top: 1px solid rgba(241, 239, 239, 0.1);
+  margin-top: 2rem;
+  padding: 1rem 0 1.4rem;
+}
+
+.cnj-footer-wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  color: #aeb9d3;
+  font-size: 0.9rem;
+}
+
+.cnj-footer a {
+  color: #31bd93;
+}
+
+@media (max-width: 1024px) {
+  .cnj-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cnj-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .container {
+    width: min(1180px, 100% - 1rem);
+  }
+
+  .cnj-hud {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cnj-answer-row {
+    grid-template-columns: 1fr;
+  }
+
+  .cnj-report-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
