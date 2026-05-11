@@ -1,50 +1,67 @@
 (function () {
   "use strict";
 
+  var LEAD_STORAGE_KEY = "cs_lead_static_v2";
+
   var CHAPTERS = [
     {
       id: "governanca",
-      roman: "I",
       title: "Governança & Declarações",
-      riskHeadline: "Declaração falsa ou omissão grave atinge o titular, não o fornecedor.",
-      riskLegal:
-        "Art. 17, § 2º e art. 24 do Provimento CNJ 213/2026: declaração inconsistente e descumprimento injustificado podem resultar em procedimento administrativo disciplinar."
+      subtitle: "A espinha dorsal do dossiê",
+      roman: "I",
+      risk: {
+        headline: "Declaração falsa ou omissão grave atinge o titular, não o fornecedor.",
+        legal:
+          "Art. 17, § 2º e Art. 24 do Provimento CNJ 213/2026: inconsistências e omissões relevantes podem levar a procedimento administrativo disciplinar."
+      }
     },
     {
       id: "acesso",
-      roman: "II",
       title: "Acesso ao Sistema",
-      riskHeadline: "Controle de acesso falho vira prova de omissão em correição.",
-      riskLegal:
-        "Falhas de identidade e segregação de acesso são evidências recorrentes de negligência operacional em inspeções."
+      subtitle: "Quem entra, quando entra, com que permissão",
+      roman: "II",
+      risk: {
+        headline: "Controle de acesso falho vira prova de omissão em correição.",
+        legal:
+          "Sem segregação e rastreabilidade de contas, a serventia amplia exposição em incidente e inspeção."
+      }
     },
     {
       id: "lgpd",
-      roman: "III",
       title: "Dados Pessoais (LGPD)",
-      riskHeadline: "A ANPD pode aplicar sanções administrativas relevantes.",
-      riskLegal:
-        "Art. 52 da LGPD: multas, medidas corretivas e, em casos críticos, restrição do tratamento de dados."
+      subtitle: "O que entra, onde fica, como sai",
+      roman: "III",
+      risk: {
+        headline: "A ANPD pode aplicar sanções após processo administrativo.",
+        legal:
+          "Art. 52 da LGPD: multas, medidas corretivas e eventual restrição parcial de tratamento."
+      }
     },
     {
       id: "continuidade",
-      roman: "IV",
       title: "Continuidade: Backup & Incidente",
-      riskHeadline: "Sem continuidade, a crise vira perda operacional e jurídica.",
-      riskLegal:
-        "LGPD art. 42 e regras de responsabilização civil/administrativa: ausência de evidência de preparo aumenta a exposição."
+      subtitle: "Quando o mundo desaba, o acervo permanece",
+      roman: "IV",
+      risk: {
+        headline: "Sem continuidade documentada, o incidente vira improviso.",
+        legal:
+          "LGPD art. 42 e responsabilização civil/administrativa: a prova operacional é decisiva para reduzir exposição."
+      }
     },
     {
       id: "fornecedores",
-      roman: "V",
       title: "Fornecedores & Nuvem",
-      riskHeadline: "Terceiro não substitui o titular da delegação.",
-      riskLegal:
-        "Delegar tecnologia não transfere a responsabilidade de governança e prova documental perante a fiscalização."
+      subtitle: "Delegar o sistema, nunca a responsabilidade",
+      roman: "V",
+      risk: {
+        headline: "Terceiro não substitui o titular da delegação.",
+        legal:
+          "A responsabilidade de governança e validação permanece da serventia, mesmo com operação terceirizada."
+      }
     }
   ];
 
-  // Perguntas 03, 05, 06, 09, 12 e 13 removidas.
+  // 9 perguntas ativas, mantendo remoções solicitadas: 03, 05, 06, 09, 12, 13
   var QUESTIONS = [
     {
       id: 1,
@@ -86,7 +103,7 @@
       id: 11,
       displayOrder: 7,
       chapterId: "continuidade",
-      text: "Teste de restauração feito e registrado (data, responsável e resultado)?"
+      text: "Teste de restauração feito e registrado (data, quem executou e resultado)?"
     },
     {
       id: 14,
@@ -102,229 +119,485 @@
     }
   ];
 
-  var answers = {};
-  var totalQuestions = QUESTIONS.length;
+  var RANKS = [
+    { minXp: 0, title: "Escrevente" },
+    { minXp: 120, title: "Escrevente Autorizado" },
+    { minXp: 300, title: "Oficial Substituto" },
+    { minXp: 550, title: "Tabelião" },
+    { minXp: 800, title: "Guardião do Dossiê" }
+  ];
 
-  var questionsRoot = document.getElementById("questions-root");
-  var chapterStatusEl = document.getElementById("chapter-status");
-  var reportEl = document.getElementById("final-report");
-  var summaryTextEl = document.getElementById("summary-text");
-
-  function chapterById(chapterId) {
-    return CHAPTERS.find(function (c) {
-      return c.id === chapterId;
-    });
-  }
-
-  function questionTemplate(question) {
-    var chapter = chapterById(question.chapterId);
-    var chapterLabel = chapter ? "Cap. " + chapter.roman + " · " + chapter.title : "Capítulo";
-    return [
-      '<article class="cnj-question-card" data-question-id="' + question.id + '">',
-      '  <div class="cnj-question-head">',
-      '    <span class="cnj-question-number">' + String(question.displayOrder).padStart(2, "0") + "</span>",
-      '    <p class="cnj-question-chapter">' + chapterLabel + "</p>",
-      "  </div>",
-      '  <p class="cnj-question-text">' + question.text + "</p>",
-      '  <fieldset class="cnj-answer-row">',
-      '    <legend class="sr-only">Resposta para a pergunta ' + question.displayOrder + "</legend>",
-      '    <label data-tone="sim">',
-      '      <input type="radio" name="q_' + question.id + '" value="sim">',
-      "      <span>Sim</span>",
-      "    </label>",
-      '    <label data-tone="nao">',
-      '      <input type="radio" name="q_' + question.id + '" value="nao">',
-      "      <span>Não</span>",
-      "    </label>",
-      '    <label data-tone="nao_sei">',
-      '      <input type="radio" name="q_' + question.id + '" value="nao_sei">',
-      "      <span>Não sei</span>",
-      "    </label>",
-      "  </fieldset>",
-      '  <div class="cnj-feedback" hidden></div>',
-      "</article>"
-    ].join("");
-  }
-
-  function renderQuestions() {
-    questionsRoot.innerHTML = QUESTIONS.map(questionTemplate).join("");
-  }
-
-  function setHudText(id, value) {
-    var el = document.getElementById(id);
-    if (el) {
-      el.textContent = value;
+  var ACHIEVEMENTS = [
+    {
+      id: "primeiro-selo",
+      title: "Primeiro Selo",
+      description: "Aplicou o primeiro carimbo de conformidade.",
+      unlock: function (ctx) { return ctx.sim > 0; }
+    },
+    {
+      id: "combo-3",
+      title: "Lacre Perfeito",
+      description: "Três respostas Sim consecutivas.",
+      unlock: function (ctx) { return ctx.streak >= 3; }
+    },
+    {
+      id: "cap-lgpd",
+      title: "Defensor dos Dados",
+      description: "Capítulo LGPD completo em Sim.",
+      unlock: function (ctx) { return ctx.chapterCompleted.lgpd === true; }
+    },
+    {
+      id: "honestidade",
+      title: "Honestidade Cartorial",
+      description: "Registrou pelo menos um Não sei.",
+      unlock: function (ctx) { return ctx.naoSei > 0; }
+    },
+    {
+      id: "encarar-risco",
+      title: "Encarou o Risco",
+      description: "Assumiu pelo menos um Não.",
+      unlock: function (ctx) { return ctx.nao > 0; }
+    },
+    {
+      id: "guardiao",
+      title: "Guardião do Cartório",
+      description: "Conformidade total (9 Sim).",
+      unlock: function (ctx) { return ctx.sim === QUESTIONS.length; }
     }
+  ];
+
+  var state = {
+    lead: loadLead(),
+    answers: {},
+    streak: 0,
+    unlocked: {}
+  };
+
+  var dom = {
+    heroStartBtn: document.getElementById("hero-start-btn"),
+    lockedCtaBtn: document.getElementById("locked-cta-btn"),
+    lockedCta: document.getElementById("locked-cta"),
+    quizArea: document.getElementById("quiz-area"),
+    greetingKicker: document.getElementById("greeting-kicker"),
+    questionsRoot: document.getElementById("questions-root"),
+    chapterRings: document.getElementById("chapter-rings"),
+    finalReport: document.getElementById("final-report"),
+    gate: document.getElementById("lead-gate"),
+    leadForm: document.getElementById("lead-form"),
+    leadName: document.getElementById("lead-name"),
+    leadEmail: document.getElementById("lead-email"),
+    leadWhatsapp: document.getElementById("lead-whatsapp"),
+    leadConsent: document.getElementById("lead-consent"),
+    leadError: document.getElementById("lead-error"),
+    toast: document.getElementById("achievement-toast")
+  };
+
+  function loadLead() {
+    try {
+      var raw = sessionStorage.getItem(LEAD_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function saveLead(lead) {
+    try {
+      sessionStorage.setItem(LEAD_STORAGE_KEY, JSON.stringify(lead));
+    } catch (error) {
+      // sem persistencia se falhar
+    }
+  }
+
+  function openGate() {
+    dom.gate.hidden = false;
+  }
+
+  function closeGate() {
+    dom.gate.hidden = true;
+  }
+
+  function requestStart() {
+    if (!state.lead) {
+      openGate();
+      return;
+    }
+    unlockQuiz();
+    scrollToQuiz();
+  }
+
+  function scrollToQuiz() {
+    var top = document.getElementById("quiz-start");
+    if (top) {
+      top.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function maskPhoneBR(value) {
+    var digits = String(value || "").replace(/\D/g, "").slice(0, 11);
+    if (digits.length <= 2) return digits;
+    if (digits.length <= 6) return "(" + digits.slice(0, 2) + ") " + digits.slice(2);
+    if (digits.length <= 10) return "(" + digits.slice(0, 2) + ") " + digits.slice(2, 6) + "-" + digits.slice(6);
+    return "(" + digits.slice(0, 2) + ") " + digits.slice(2, 7) + "-" + digits.slice(7);
+  }
+
+  function handleLeadSubmit(event) {
+    event.preventDefault();
+    dom.leadError.hidden = true;
+    dom.leadError.textContent = "";
+
+    var lead = {
+      name: String(dom.leadName.value || "").trim(),
+      email: String(dom.leadEmail.value || "").trim().toLowerCase(),
+      whatsapp: String(dom.leadWhatsapp.value || "").replace(/\D/g, "")
+    };
+
+    if (lead.name.length < 2) {
+      return showLeadError("Informe um nome válido.");
+    }
+    if (!/.+@.+\..+/.test(lead.email)) {
+      return showLeadError("Informe um e-mail válido.");
+    }
+    if (lead.whatsapp.length < 10) {
+      return showLeadError("Informe um WhatsApp válido.");
+    }
+    if (!dom.leadConsent.checked) {
+      return showLeadError("Confirme o consentimento LGPD para continuar.");
+    }
+
+    state.lead = lead;
+    saveLead(lead);
+    closeGate();
+    unlockQuiz();
+    scrollToQuiz();
+  }
+
+  function showLeadError(message) {
+    dom.leadError.textContent = message;
+    dom.leadError.hidden = false;
+  }
+
+  function unlockQuiz() {
+    dom.lockedCta.hidden = true;
+    dom.quizArea.hidden = false;
+    var firstName = state.lead && state.lead.name ? state.lead.name.split(" ")[0] : "titular";
+    dom.greetingKicker.textContent = "Olá, " + firstName;
   }
 
   function getCounts() {
     var sim = 0;
     var nao = 0;
     var naoSei = 0;
-    Object.keys(answers).forEach(function (k) {
-      var v = answers[k];
-      if (v === "sim") sim++;
-      else if (v === "nao") nao++;
-      else if (v === "nao_sei") naoSei++;
+    var answered = 0;
+
+    Object.keys(state.answers).forEach(function (id) {
+      var value = state.answers[id];
+      if (!value) return;
+      answered++;
+      if (value === "sim") sim++;
+      if (value === "nao") nao++;
+      if (value === "nao_sei") naoSei++;
     });
-    return {
-      sim: sim,
-      nao: nao,
-      naoSei: naoSei,
-      answered: Object.keys(answers).length
-    };
+
+    return { sim: sim, nao: nao, naoSei: naoSei, answered: answered };
   }
 
-  function getVerdict(pct) {
-    if (pct === 100) {
-      return "Conformidade total: mantenha o ciclo de evidências e revisões periódicas.";
-    }
-    if (pct >= 80) {
-      return "Base sólida: feche pendências restantes para reduzir risco em correições.";
-    }
-    if (pct >= 50) {
-      return "Exposição moderada: priorize planos de ação por criticidade.";
-    }
-    return "Exposição crítica: recomenda-se atuação imediata em governança e continuidade.";
+  function getRank(xp) {
+    var current = RANKS[0];
+    RANKS.forEach(function (rank) {
+      if (xp >= rank.minXp) current = rank;
+    });
+    return current;
   }
 
-  function updateChapterStatus() {
-    var html = CHAPTERS.map(function (chapter) {
-      var chapterQs = QUESTIONS.filter(function (q) {
+  function getNextRank(xp) {
+    for (var i = 0; i < RANKS.length; i++) {
+      if (xp < RANKS[i].minXp) return RANKS[i];
+    }
+    return null;
+  }
+
+  function computeChapterCompleted() {
+    var map = {};
+    CHAPTERS.forEach(function (chapter) {
+      var chapterQuestions = QUESTIONS.filter(function (q) {
         return q.chapterId === chapter.id;
       });
-      var sim = chapterQs.filter(function (q) {
-        return answers[q.id] === "sim";
-      }).length;
-      var answered = chapterQs.filter(function (q) {
-        return answers[q.id];
-      }).length;
-      var pct = chapterQs.length ? Math.round((sim / chapterQs.length) * 100) : 0;
-      return (
-        "<li><strong>Cap. " +
-        chapter.roman +
-        "</strong> " +
-        chapter.title +
-        "<br>" +
-        sim +
-        "/" +
-        chapterQs.length +
-        " conformes · " +
-        answered +
-        "/" +
-        chapterQs.length +
-        " respondidas · " +
-        pct +
-        "%</li>"
-      );
+      map[chapter.id] = chapterQuestions.every(function (question) {
+        return state.answers[question.id] === "sim";
+      });
+    });
+    return map;
+  }
+
+  function computeXp() {
+    return Object.keys(state.answers).reduce(function (acc, id) {
+      var value = state.answers[id];
+      if (value === "sim") return acc + 100;
+      if (value === "nao_sei") return acc + 20;
+      return acc;
+    }, 0);
+  }
+
+  function pushAchievementToasts(newlyUnlocked) {
+    if (!newlyUnlocked.length) return;
+    var achievement = newlyUnlocked[0];
+    dom.toast.innerHTML = "<strong>Medalha liberada: " + achievement.title + "</strong><span>" + achievement.description + "</span>";
+    dom.toast.hidden = false;
+    clearTimeout(dom.toast._timer);
+    dom.toast._timer = setTimeout(function () {
+      dom.toast.hidden = true;
+    }, 2800);
+  }
+
+  function updateAchievements(stats) {
+    var chapterCompleted = computeChapterCompleted();
+    var context = {
+      sim: stats.sim,
+      nao: stats.nao,
+      naoSei: stats.naoSei,
+      streak: state.streak,
+      chapterCompleted: chapterCompleted
+    };
+    var newly = [];
+    ACHIEVEMENTS.forEach(function (achievement) {
+      if (!state.unlocked[achievement.id] && achievement.unlock(context)) {
+        state.unlocked[achievement.id] = true;
+        newly.push(achievement);
+      }
+    });
+    pushAchievementToasts(newly);
+  }
+
+  function answerButtonClass(questionId, answerKey, currentAnswer) {
+    var classes = ["answer-btn"];
+    if (currentAnswer === answerKey) {
+      classes.push("is-selected");
+    }
+    return classes.join(" ");
+  }
+
+  function feedbackTemplate(question, answer) {
+    if (answer === "sim") return "";
+    var chapter = CHAPTERS.find(function (c) { return c.id === question.chapterId; });
+    if (!chapter) return "";
+    var klass = answer === "nao" ? "feedback feedback--nao" : "feedback feedback--nao-sei";
+    return '<div class="' + klass + '">' + chapter.risk.headline + " " + chapter.risk.legal + "</div>";
+  }
+
+  function questionTemplate(question) {
+    var chapter = CHAPTERS.find(function (c) { return c.id === question.chapterId; });
+    var answer = state.answers[question.id] || null;
+    var cardClass = "question-card";
+    if (answer === "sim") cardClass += " question-card--sim";
+    if (answer === "nao") cardClass += " question-card--nao";
+    if (answer === "nao_sei") cardClass += " question-card--nao-sei";
+
+    return [
+      '<article class="' + cardClass + '" id="q-' + question.id + '">',
+      '<div class="question-head">',
+      '<div class="question-badge">' + String(question.displayOrder).padStart(2, "0") + "</div>",
+      "<div>",
+      '<p class="question-meta">Cap. ' + chapter.roman + " · " + chapter.title + "</p>",
+      '<h4 class="question-title">' + question.text + "</h4>",
+      "</div>",
+      "</div>",
+      '<div class="answer-row">',
+      '<button class="' + answerButtonClass(question.id, "sim", answer) + '" type="button" data-question-id="' + question.id + '" data-answer="sim">Sim</button>',
+      '<button class="' + answerButtonClass(question.id, "nao", answer) + '" type="button" data-question-id="' + question.id + '" data-answer="nao">Não</button>',
+      '<button class="' + answerButtonClass(question.id, "nao_sei", answer) + '" type="button" data-question-id="' + question.id + '" data-answer="nao_sei">Não sei</button>',
+      "</div>",
+      feedbackTemplate(question, answer),
+      "</article>"
+    ].join("");
+  }
+
+  function renderQuestions() {
+    var chunks = CHAPTERS.map(function (chapter) {
+      var chapterQuestions = QUESTIONS.filter(function (question) {
+        return question.chapterId === chapter.id;
+      });
+
+      var questionsHtml = chapterQuestions.map(questionTemplate).join("");
+      return [
+        '<section class="chapter-block">',
+        '<div class="chapter-banner">',
+        '<span class="chapter-banner__roman">' + chapter.roman + "</span>",
+        "<div>",
+        "<h3>" + chapter.title + "</h3>",
+        "<p>" + chapter.subtitle + "</p>",
+        "</div>",
+        "</div>",
+        questionsHtml,
+        "</section>"
+      ].join("");
+    });
+    dom.questionsRoot.innerHTML = chunks.join("");
+  }
+
+  function renderChapterRings() {
+    var content = CHAPTERS.map(function (chapter) {
+      var chapterQuestions = QUESTIONS.filter(function (q) {
+        return q.chapterId === chapter.id;
+      });
+      var sim = chapterQuestions.filter(function (q) { return state.answers[q.id] === "sim"; }).length;
+      var answered = chapterQuestions.filter(function (q) { return !!state.answers[q.id]; }).length;
+      var pct = chapterQuestions.length ? Math.round((sim / chapterQuestions.length) * 100) : 0;
+
+      return [
+        '<button type="button" class="chapter-row" data-jump-chapter="' + chapter.id + '">',
+        "<strong>Cap. " + chapter.roman + "</strong>",
+        "<span>" + chapter.title + "</span>",
+        "<small>" + sim + "/" + chapterQuestions.length + " conformes · " + answered + "/" + chapterQuestions.length + " respondidas · " + pct + "%</small>",
+        "</button>"
+      ].join("");
     }).join("");
-
-    chapterStatusEl.innerHTML = html;
+    dom.chapterRings.innerHTML = content;
   }
 
-  function updateReport(counts, pct) {
-    var done = counts.answered === totalQuestions;
-    reportEl.hidden = !done;
-    if (!done) return;
-
-    setHudText("report-pct", pct + "%");
-    setHudText("report-sim", String(counts.sim));
-    setHudText("report-nao", String(counts.nao));
-    setHudText("report-nao-sei", String(counts.naoSei));
-    document.getElementById("report-verdict").textContent = getVerdict(pct);
+  function reportVerdictText(pct) {
+    if (pct === 100) return "Conformidade total. O dossiê está consistente para inspeção.";
+    if (pct >= 80) return "Quase blindado. Feche as pendências e mantenha evidências atualizadas.";
+    if (pct >= 50) return "Exposição moderada. Priorize remediação por risco e impacto operacional.";
+    return "Exposição crítica. Estruture plano imediato para reduzir riscos jurídicos e operacionais.";
   }
 
-  function updateSummary(counts, pct) {
-    if (!counts.answered) {
-      summaryTextEl.textContent = "Responda ao menos uma pergunta para começar o diagnóstico.";
-      return;
-    }
-    summaryTextEl.textContent =
-      "Você respondeu " +
-      counts.answered +
-      " de " +
-      totalQuestions +
-      " controles. Conformidade atual: " +
-      pct +
-      "%. Pendências: " +
-      counts.nao +
-      ".";
-  }
-
-  function applyFeedback(questionId, value) {
-    var card = questionsRoot.querySelector('[data-question-id="' + questionId + '"]');
-    if (!card) return;
-
-    var feedbackEl = card.querySelector(".cnj-feedback");
-    if (!feedbackEl) return;
-
-    if (value === "sim") {
-      feedbackEl.hidden = true;
-      feedbackEl.textContent = "";
-      feedbackEl.className = "cnj-feedback";
+  function renderFinalReport(stats, xp) {
+    var allAnswered = stats.answered === QUESTIONS.length;
+    dom.finalReport.hidden = !allAnswered;
+    if (!allAnswered) {
+      dom.finalReport.innerHTML = "";
       return;
     }
 
-    var question = QUESTIONS.find(function (q) {
-      return q.id === questionId;
-    });
-    if (!question) return;
+    var conformity = Math.round((stats.sim / QUESTIONS.length) * 100);
+    var rank = getRank(xp);
+    dom.finalReport.innerHTML = [
+      '<p class="card-kicker">Relatório Executivo</p>',
+      '<h3>' + reportVerdictText(conformity) + "</h3>",
+      "<p>Resumo final do seu diagnóstico com 9 controles ativos.</p>",
+      '<div class="report-grid">',
+      "<article><span>Conformidade</span><strong>" + conformity + "%</strong></article>",
+      "<article><span>XP final</span><strong>" + xp + "</strong></article>",
+      "<article><span>Nível</span><strong>" + rank.title + "</strong></article>",
+      "<article><span>Medalhas</span><strong>" + Object.keys(state.unlocked).length + "/" + ACHIEVEMENTS.length + "</strong></article>",
+      "</div>",
+      '<div class="report-actions">',
+      '<a class="btn btn-primary" href="https://wa.me/5521920137715?text=Ol%C3%A1!%20Conclu%C3%AD%20o%20checklist%20CNJ%20e%20quero%20apoio%20no%20dossi%C3%AA%20t%C3%A9cnico." target="_blank" rel="noopener noreferrer">Falar com especialista</a>',
+      '<button id="restart-btn" class="btn btn-outline" type="button">Refazer diagnóstico</button>',
+      "</div>"
+    ].join("");
 
-    var chapter = chapterById(question.chapterId);
-    if (!chapter) return;
-
-    feedbackEl.hidden = false;
-    feedbackEl.className =
-      "cnj-feedback " + (value === "nao" ? "cnj-feedback-danger" : "cnj-feedback-warn");
-    feedbackEl.textContent = chapter.riskHeadline + " " + chapter.riskLegal;
+    var restartBtn = document.getElementById("restart-btn");
+    if (restartBtn) {
+      restartBtn.addEventListener("click", restartQuiz);
+    }
   }
 
-  function updateUi() {
-    var counts = getCounts();
-    var pct = Math.round((counts.sim / totalQuestions) * 100);
-    setHudText("hud-sim", counts.sim + "/" + totalQuestions);
-    setHudText("hud-nao", String(counts.nao));
-    setHudText("hud-nao-sei", String(counts.naoSei));
-    setHudText("hud-pct", pct + "%");
-    updateChapterStatus();
-    updateSummary(counts, pct);
-    updateReport(counts, pct);
+  function updateHud(stats, xp) {
+    var maxXp = RANKS[RANKS.length - 1].minXp;
+    var rank = getRank(xp);
+    var nextRank = getNextRank(xp);
+    var progressPct = Math.min(100, Math.round((xp / maxXp) * 100));
+
+    document.getElementById("hud-rank-title").textContent = rank.title;
+    document.getElementById("hud-xp-current").textContent = String(xp);
+    document.getElementById("hud-xp-max").textContent = String(maxXp);
+    document.getElementById("hud-xp-progress").style.width = progressPct + "%";
+    document.getElementById("hud-sim-chip").textContent = stats.sim + "/" + QUESTIONS.length;
+    document.getElementById("hud-streak-chip").textContent = String(state.streak);
+    document.getElementById("hud-achievements-chip").textContent =
+      Object.keys(state.unlocked).length + "/" + ACHIEVEMENTS.length;
+
+    if (nextRank) {
+      document.getElementById("hud-next-rank").textContent =
+        "faltam " + (nextRank.minXp - xp) + " XP para " + nextRank.title;
+    } else {
+      document.getElementById("hud-next-rank").textContent =
+        "nível máximo alcançado";
+    }
   }
 
-  function onChange(event) {
-    var target = event.target;
-    if (!target || target.type !== "radio") return;
-
-    var id = Number(target.name.replace("q_", ""));
-    if (!id) return;
-
-    answers[id] = target.value;
-    applyFeedback(id, target.value);
-    updateUi();
-  }
-
-  function restart() {
-    answers = {};
-    var radios = questionsRoot.querySelectorAll('input[type="radio"]');
-    radios.forEach(function (radio) {
-      radio.checked = false;
-    });
-    var feedbacks = questionsRoot.querySelectorAll(".cnj-feedback");
-    feedbacks.forEach(function (feedback) {
-      feedback.hidden = true;
-      feedback.textContent = "";
-      feedback.className = "cnj-feedback";
-    });
-    updateUi();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  function setup() {
+  function refreshUi() {
+    var stats = getCounts();
+    var xp = computeXp();
+    updateAchievements(stats);
+    updateHud(stats, xp);
     renderQuestions();
-    questionsRoot.addEventListener("change", onChange);
-    document.getElementById("restart-btn").addEventListener("click", restart);
-    updateUi();
+    renderChapterRings();
+    renderFinalReport(stats, xp);
   }
 
-  document.addEventListener("DOMContentLoaded", setup);
+  function setAnswer(questionId, answer) {
+    var previous = state.answers[questionId];
+    state.answers[questionId] = answer;
+    if (answer === "sim") {
+      if (previous !== "sim") {
+        state.streak += 1;
+      }
+    } else {
+      state.streak = 0;
+    }
+    refreshUi();
+  }
+
+  function handleQuestionsClick(event) {
+    var button = event.target.closest("[data-question-id][data-answer]");
+    if (!button) return;
+    var questionId = Number(button.getAttribute("data-question-id"));
+    var answer = button.getAttribute("data-answer");
+    if (!questionId || !answer) return;
+    setAnswer(questionId, answer);
+  }
+
+  function handleChapterJump(event) {
+    var button = event.target.closest("[data-jump-chapter]");
+    if (!button) return;
+    var chapterId = button.getAttribute("data-jump-chapter");
+    var firstQuestion = QUESTIONS.find(function (question) {
+      return question.chapterId === chapterId;
+    });
+    if (!firstQuestion) return;
+    var target = document.getElementById("q-" + firstQuestion.id);
+    if (!target) return;
+    var top = target.getBoundingClientRect().top + window.scrollY - 90;
+    window.scrollTo({ top: top, behavior: "smooth" });
+  }
+
+  function restartQuiz() {
+    state.answers = {};
+    state.streak = 0;
+    state.unlocked = {};
+    refreshUi();
+    scrollToQuiz();
+  }
+
+  function wireEvents() {
+    dom.heroStartBtn.addEventListener("click", requestStart);
+    dom.lockedCtaBtn.addEventListener("click", requestStart);
+
+    dom.leadWhatsapp.addEventListener("input", function (event) {
+      dom.leadWhatsapp.value = maskPhoneBR(event.target.value);
+    });
+
+    dom.leadForm.addEventListener("submit", handleLeadSubmit);
+
+    dom.gate.addEventListener("click", function (event) {
+      var closeTarget = event.target.closest("[data-close-gate]");
+      if (closeTarget) closeGate();
+    });
+
+    dom.questionsRoot.addEventListener("click", handleQuestionsClick);
+    dom.chapterRings.addEventListener("click", handleChapterJump);
+  }
+
+  function init() {
+    wireEvents();
+    refreshUi();
+    if (state.lead) {
+      unlockQuiz();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
 })();

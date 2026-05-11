@@ -47,3 +47,7 @@
 - Criado o artigo `blog/provimento-213-cnj-cartorios-seguranca-informacao.html` com SEO completo, incluído card no `blog/index.html` e registrada evidência visual em `screenshots/blog-provimento-213-cnj-cartorios.png`.
 
 - Implementada a nova página estática `assets/checklists/checklist-cnj-interativo.html` (GitHub Pages), com lógica client-side de diagnóstico CNJ/LGPD ajustada para 9 perguntas (removidas 03, 05, 06, 09, 12 e 13), além de link na home e entrada no sitemap.
+
+- Refatorado o checklist CNJ interativo para máxima fidelidade visual ao original (HUD gamificado, hero, gate de liberação, cards por capítulo, sidebar e relatório), mantendo o fluxo estático em GitHub Pages com 9 perguntas.
+
+- Aplicado no artigo `blog/pentest-teste-de-invasao-empresas.html` o texto otimizado de SEO enviado, incluindo atualização de metadados, schema JSON-LD (Article/FAQ/Breadcrumb), conteúdo expandido com FAQ e ajustes de links relacionados.
