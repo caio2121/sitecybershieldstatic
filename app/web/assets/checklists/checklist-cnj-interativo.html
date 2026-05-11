@@ -1,131 +1,207 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K46VQ6H8MS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-K46VQ6H8MS');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checklist Interativo CNJ 213/2026 | CyberShield</title>
-  <meta name="description" content="Checklist interativo de conformidade para cartórios com base no Provimento CNJ 213/2026 e LGPD.">
+  <title>Checklist CNJ Gamificado | CyberShield</title>
+  <meta name="description" content="Diagnóstico interativo de conformidade para cartórios com base no Provimento CNJ 213/2026 e LGPD.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/tokens.css">
   <link rel="stylesheet" href="./checklist-cnj-interativo.css">
 </head>
 <body>
-  <header class="cnj-hero">
-    <div class="cnj-grid-bg" aria-hidden="true"></div>
-    <div class="container cnj-hero-top">
-      <a href="../../index.html" class="cnj-brand-link" aria-label="Voltar para home da CyberShield">
-        <img src="../../images/logo-header.png" alt="CyberShield" class="cnj-brand-logo">
-      </a>
-      <a href="../../index.html#contato" class="cnj-hero-contact">Falar com especialista</a>
-    </div>
-    <div class="container cnj-hero-content">
-      <p class="cnj-kicker">Provimento CNJ 213/2026 · LGPD</p>
-      <h1>Checklist Interativo de Conformidade para Cartórios</h1>
-      <p class="cnj-hero-text">
-        Responda os controles essenciais e veja, em tempo real, o nível de conformidade da serventia.
-        Este diagnóstico é orientativo e não substitui auditoria formal.
-      </p>
-      <div class="cnj-hero-badges">
-        <span>5 capítulos</span>
-        <span>9 controles</span>
-        <span>Relatório imediato</span>
+  <div id="game-hud" class="game-hud">
+    <div class="container game-hud__container">
+      <div class="hud-rank">
+        <div class="hud-rank__icon">C</div>
+        <div class="hud-rank__meta">
+          <p class="hud-label">Nível</p>
+          <p id="hud-rank-title" class="hud-rank__title">Escrevente</p>
+        </div>
       </div>
-      <a href="#checklist" class="cnj-start-btn">Iniciar diagnóstico</a>
-    </div>
-  </header>
 
-  <div class="cnj-hud-wrap">
-    <div class="container">
-      <section class="cnj-hud" aria-label="Resumo do diagnóstico">
-        <div class="cnj-hud-item">
-          <p class="cnj-hud-label">Conformes</p>
-          <p class="cnj-hud-value" id="hud-sim">0/9</p>
+      <div class="hud-xp">
+        <div class="hud-xp__head">
+          <span class="hud-label">XP</span>
+          <span class="hud-xp__value">
+            <strong id="hud-xp-current">0</strong>
+            <span>/ <span id="hud-xp-max">900</span></span>
+          </span>
         </div>
-        <div class="cnj-hud-item">
-          <p class="cnj-hud-label">Pendentes</p>
-          <p class="cnj-hud-value cnj-danger" id="hud-nao">0</p>
+        <div class="hud-xp__bar">
+          <span id="hud-xp-progress"></span>
         </div>
-        <div class="cnj-hud-item">
-          <p class="cnj-hud-label">A apurar</p>
-          <p class="cnj-hud-value cnj-warn" id="hud-nao-sei">0</p>
+        <p id="hud-next-rank" class="hud-xp__next">faltam 120 XP para Escrevente Autorizado</p>
+      </div>
+
+      <div class="hud-chips">
+        <div class="hud-chip">
+          <span class="hud-chip__label">Controles OK</span>
+          <strong id="hud-sim-chip">0/9</strong>
         </div>
-        <div class="cnj-hud-item">
-          <p class="cnj-hud-label">Conformidade</p>
-          <p class="cnj-hud-value cnj-cta" id="hud-pct">0%</p>
+        <div class="hud-chip">
+          <span class="hud-chip__label">Combo</span>
+          <strong id="hud-streak-chip">0</strong>
         </div>
-      </section>
+        <div class="hud-chip">
+          <span class="hud-chip__label">Medalhas</span>
+          <strong id="hud-achievements-chip">0/6</strong>
+        </div>
+      </div>
     </div>
   </div>
 
-  <main id="checklist" class="container cnj-main">
-    <section class="cnj-intro-card">
-      <h2>Como responder</h2>
-      <p>
-        Marque <strong>Sim</strong> quando houver prática implementada e evidência,
-        <strong>Não</strong> quando houver lacuna e <strong>Não sei</strong> quando precisar validar.
-      </p>
-      <p>As perguntas 03, 05, 06, 09, 12 e 13 foram removidas conforme sua solicitação.</p>
-    </section>
+  <header class="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
 
-    <div class="cnj-layout">
-      <section id="questions-root" class="cnj-questions" aria-label="Perguntas do checklist"></section>
-
-      <aside class="cnj-sidebar">
-        <section class="cnj-side-card">
-          <h3>Status por capítulo</h3>
-          <ul id="chapter-status" class="cnj-chapter-status"></ul>
-        </section>
-
-        <section class="cnj-side-card">
-          <h3>Resumo rápido</h3>
-          <p id="summary-text">Responda ao menos uma pergunta para começar o diagnóstico.</p>
-        </section>
-      </aside>
+    <div class="hero-topbar">
+      <div class="container hero-topbar__content">
+        <a href="../../index.html" class="hero-logo-link" aria-label="Voltar para site da CyberShield">
+          <img src="../../images/logo-header.png" alt="CyberShield" class="hero-logo">
+        </a>
+        <span class="hero-topbar__status">Diagnóstico interativo</span>
+      </div>
     </div>
 
-    <section id="final-report" class="cnj-report" hidden aria-live="polite">
-      <h2>Relatório Executivo</h2>
-      <p id="report-verdict" class="cnj-report-verdict"></p>
-      <div class="cnj-report-stats">
-        <article>
-          <p class="cnj-stat-label">Conformidade</p>
-          <p class="cnj-stat-value" id="report-pct">0%</p>
-        </article>
-        <article>
-          <p class="cnj-stat-label">Controles OK</p>
-          <p class="cnj-stat-value" id="report-sim">0</p>
-        </article>
-        <article>
-          <p class="cnj-stat-label">Pendências</p>
-          <p class="cnj-stat-value" id="report-nao">0</p>
-        </article>
-        <article>
-          <p class="cnj-stat-label">A apurar</p>
-          <p class="cnj-stat-value" id="report-nao-sei">0</p>
-        </article>
-      </div>
-      <div class="cnj-report-actions">
+    <div class="container hero-main">
+      <p class="hero-kicker">Provimento CNJ 213/2026 · LGPD</p>
+      <h1 class="hero-title">
+        Seu cartório está
+        <span>pronto para a fiscalização?</span>
+      </h1>
+      <p class="hero-subtitle">
+        Responda 9 controles prioritários e veja, em tempo real, o nível de conformidade da serventia.
+        Mantivemos as remoções solicitadas: perguntas 03, 05, 06, 09, 12 e 13.
+      </p>
+
+      <div class="hero-actions">
+        <button id="hero-start-btn" class="btn btn-primary" type="button">Iniciar diagnóstico</button>
         <a
-          href="https://wa.me/5521920137715?text=Ol%C3%A1!%20Conclu%C3%AD%20o%20checklist%20CNJ%20e%20quero%20apoio%20para%20o%20dossi%C3%AA%20t%C3%A9cnico."
+          href="https://wa.me/5521920137715?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20de%20ciberseguran%C3%A7a%20da%20CyberShield."
           target="_blank"
           rel="noopener noreferrer"
-          class="cnj-primary-btn"
+          class="btn btn-outline"
         >
           Falar com especialista
         </a>
-        <button type="button" id="restart-btn" class="cnj-secondary-btn">Refazer checklist</button>
       </div>
+
+      <div class="hero-stats">
+        <div>
+          <span>Capítulos</span>
+          <strong>5</strong>
+        </div>
+        <div>
+          <span>Controles</span>
+          <strong>9</strong>
+        </div>
+        <div>
+          <span>Relatório em</span>
+          <strong>2 min</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="quiz-start" class="container main-content">
+    <section id="locked-cta" class="locked-cta">
+      <p class="card-kicker">Antes de começar</p>
+      <h2>Identifique-se para liberar o diagnóstico</h2>
+      <p>
+        Ao final, enviamos o relatório para o seu e-mail e um especialista da CyberShield entra em contato via WhatsApp para interpretar seus resultados.
+      </p>
+      <button id="locked-cta-btn" class="btn btn-primary" type="button">Liberar diagnóstico</button>
+      <small>Dados protegidos · Conforme LGPD</small>
+    </section>
+
+    <section id="quiz-area" class="quiz-layout" hidden>
+      <div class="quiz-column">
+        <div class="quiz-header">
+          <p class="card-kicker" id="greeting-kicker">Olá, titular</p>
+          <h2>9 controles · 5 capítulos</h2>
+          <p>Responda com honestidade para gerar o relatório executivo da serventia.</p>
+        </div>
+
+        <div id="questions-root" class="questions-root"></div>
+
+        <section id="final-report" class="final-report" hidden aria-live="polite"></section>
+      </div>
+
+      <aside class="sidebar">
+        <section class="sidebar-card">
+          <div class="sidebar-card__head">
+            <p class="card-kicker">Status do diagnóstico</p>
+          </div>
+          <div id="chapter-rings" class="chapter-rings"></div>
+        </section>
+      </aside>
     </section>
   </main>
 
-  <footer class="cnj-footer">
-    <div class="container cnj-footer-wrap">
-      <p>CyberShield · Segurança, compliance e continuidade para cartórios</p>
-      <a href="../../index.html">Voltar ao site</a>
+  <footer class="page-footer">
+    <div class="container page-footer__content">
+      <div class="page-footer__brand">
+        <img src="../../images/logo-header.png" alt="CyberShield">
+        <span>Segurança · Compliance · Performance</span>
+      </div>
+      <span>Base normativa: Provimento CNJ 213/2026 · Lei 13.709/2018</span>
     </div>
   </footer>
+
+  <div id="lead-gate" class="lead-gate" hidden>
+    <div class="lead-gate__overlay" data-close-gate="true"></div>
+    <div class="lead-gate__dialog" role="dialog" aria-modal="true" aria-labelledby="lead-gate-title">
+      <button class="lead-gate__close" type="button" aria-label="Fechar" data-close-gate="true">x</button>
+      <p class="card-kicker">Acesso ao diagnóstico</p>
+      <h3 id="lead-gate-title">Para quem é este relatório?</h3>
+      <p class="lead-gate__desc">
+        Enviaremos o relatório final ao seu e-mail e um especialista poderá contatar via WhatsApp para orientar os próximos passos.
+      </p>
+
+      <form id="lead-form" class="lead-form">
+        <label>
+          Nome completo
+          <input type="text" id="lead-name" name="name" placeholder="Ex.: Maria Silva Oliveira" required>
+        </label>
+
+        <label>
+          E-mail profissional
+          <input type="email" id="lead-email" name="email" placeholder="voce@cartorio.com.br" required>
+        </label>
+
+        <label>
+          WhatsApp
+          <input type="tel" id="lead-whatsapp" name="whatsapp" placeholder="(11) 98888-7777" required>
+        </label>
+
+        <label class="lead-consent">
+          <input type="checkbox" id="lead-consent" required>
+          <span>Autorizo o contato da CyberShield por e-mail e WhatsApp conforme LGPD.</span>
+        </label>
+
+        <p id="lead-error" class="lead-error" hidden></p>
+
+        <button id="lead-submit-btn" class="btn btn-primary btn-full" type="submit">
+          Liberar diagnóstico
+        </button>
+        <small>Dados protegidos · Conforme LGPD</small>
+      </form>
+    </div>
+  </div>
+
+  <div id="achievement-toast" class="achievement-toast" hidden></div>
 
   <script src="./checklist-cnj-interativo.js"></script>
 </body>
