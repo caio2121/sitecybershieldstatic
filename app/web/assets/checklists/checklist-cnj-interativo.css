@@ -211,9 +211,18 @@ h4 {
   border-radius: 6px;
   padding: 0.36rem 0.48rem;
   min-width: 84px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "label label"
+    "icon value";
+  align-items: center;
+  column-gap: 0.3rem;
+  row-gap: 0.1rem;
 }
 
 .hud-chip__label {
+  grid-area: label;
   display: block;
   font-size: 0.47rem;
   letter-spacing: 0.16em;
@@ -221,8 +230,33 @@ h4 {
   color: var(--cs-text-dim);
 }
 
+.hud-chip__icon {
+  grid-area: icon;
+  font-size: 0.72rem;
+  line-height: 1;
+  filter: saturate(1.15);
+}
+
 .hud-chip strong {
+  grid-area: value;
+  justify-self: start;
   font-size: 0.76rem;
+  color: var(--cs-text);
+}
+
+.hud-chip--ok .hud-chip__icon,
+.hud-chip--ok strong {
+  color: var(--cs-cta);
+}
+
+.hud-chip--combo .hud-chip__icon,
+.hud-chip--combo strong {
+  color: var(--cs-warn);
+}
+
+.hud-chip--achievements .hud-chip__icon,
+.hud-chip--achievements strong {
+  color: #34d399;
 }
 
 .hero {

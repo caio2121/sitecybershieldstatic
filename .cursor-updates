@@ -61,3 +61,5 @@
 - Corrigido o render do painel de alerta nas perguntas: feedback de risco agora só aparece após resposta `Não` ou `Não sei`, sem exibição prévia antes da seleção do usuário.
 
 - Corrigido o teto de XP no HUD para 9 perguntas (máximo 900), com recalibração dos níveis para evitar inconsistência entre pontuação real e barra de progresso.
+
+- HUD atualizado com chips mais vivos (ícones + cores por categoria) para aproximar visual do Manus e adicionada a pasta `input-marketing/` no `.gitignore` para limpar mudanças não relacionadas.
