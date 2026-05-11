@@ -190,8 +190,7 @@
 
   var dom = {
     heroStartBtn: document.getElementById("hero-start-btn"),
-    lockedCtaBtn: document.getElementById("locked-cta-btn"),
-    lockedCta: document.getElementById("locked-cta"),
+    mainContent: document.getElementById("quiz-start"),
     quizArea: document.getElementById("quiz-area"),
     greetingKicker: document.getElementById("greeting-kicker"),
     questionsRoot: document.getElementById("questions-root"),
@@ -293,7 +292,7 @@
   }
 
   function unlockQuiz() {
-    dom.lockedCta.hidden = true;
+    dom.mainContent.classList.remove("is-locked");
     dom.quizArea.hidden = false;
     var firstName = state.lead && state.lead.name ? state.lead.name.split(" ")[0] : "titular";
     dom.greetingKicker.textContent = "Olá, " + firstName;
@@ -730,7 +729,6 @@
 
   function wireEvents() {
     dom.heroStartBtn.addEventListener("click", requestStart);
-    dom.lockedCtaBtn.addEventListener("click", requestStart);
 
     dom.leadWhatsapp.addEventListener("input", function (event) {
       dom.leadWhatsapp.value = maskPhoneBR(event.target.value);
