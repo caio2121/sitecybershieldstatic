@@ -106,15 +106,15 @@ h4 {
   top: 0;
   z-index: 40;
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(49, 189, 147, 0.25);
-  background: linear-gradient(180deg, rgba(2, 28, 65, 0.92) 0%, rgba(35, 46, 74, 0.92) 100%);
+  border-bottom: 1px solid rgba(49, 189, 147, 0.18);
+  background: linear-gradient(180deg, rgba(7, 38, 85, 0.96) 0%, rgba(10, 43, 92, 0.92) 100%);
 }
 
 .game-hud__container {
   display: flex;
   gap: 1rem;
   align-items: center;
-  padding: 0.72rem 0;
+  padding: 0.42rem 0;
 }
 
 .hud-rank {
@@ -125,27 +125,33 @@ h4 {
 }
 
 .hud-rank__icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
   display: grid;
   place-items: center;
   background: var(--cs-cta);
-  color: var(--cs-bg);
-  font-weight: 800;
+  box-shadow: 0 6px 16px -8px rgba(49, 189, 147, 0.9);
+}
+
+.hud-rank__icon-img {
+  width: 17px;
+  height: 17px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .hud-label {
   margin: 0;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   color: var(--cs-text-dim);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
 .hud-rank__title {
-  margin: 0.15rem 0 0;
-  font-size: 1rem;
+  margin: 0.1rem 0 0;
+  font-size: 0.88rem;
   font-weight: 700;
 }
 
@@ -163,7 +169,7 @@ h4 {
 
 .hud-xp__value {
   font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 0.82rem;
+  font-size: 0.68rem;
 }
 
 .hud-xp__value strong {
@@ -188,11 +194,10 @@ h4 {
 }
 
 .hud-xp__next {
-  margin: 0.34rem 0 0;
+  margin: 0.24rem 0 0;
   color: var(--cs-text-dim);
   font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 0.66rem;
-  text-transform: lowercase;
+  font-size: 0.56rem;
 }
 
 .hud-chips {
@@ -201,23 +206,23 @@ h4 {
 }
 
 .hud-chip {
-  border: 1px solid rgba(241, 239, 239, 0.12);
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 8px;
-  padding: 0.45rem 0.6rem;
-  min-width: 94px;
+  border: 1px solid rgba(241, 239, 239, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+  border-radius: 6px;
+  padding: 0.36rem 0.48rem;
+  min-width: 84px;
 }
 
 .hud-chip__label {
   display: block;
-  font-size: 0.54rem;
+  font-size: 0.47rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cs-text-dim);
 }
 
 .hud-chip strong {
-  font-size: 0.87rem;
+  font-size: 0.76rem;
 }
 
 .hero {
@@ -257,7 +262,7 @@ h4 {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding: 1.2rem 0;
+  padding: 0.9rem 0;
 }
 
 .hero-logo {

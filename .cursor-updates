@@ -55,3 +55,9 @@
 - Executada a Paridade Visual Fase 2 no checklist CNJ estático com QuestionCard rico (estado Sim/Não/Não sei), ChapterRings com anéis SVG e legenda, FinalReport em dashboard com dial/breakdown/medalhas, mantendo lógica e métricas em 9 perguntas.
 
 - Ajustado o fluxo de liberação do checklist para não exibir bloqueio no corpo por padrão: agora o acesso ocorre apenas via popup de identificação e o questionário é renderizado somente após desbloqueio.
+
+- Ajustado o layout do topo do checklist para ficar mais próximo do Manus (ícone no nível, proporções de HUD, tipografia/spacing dos chips e escala de XP/medalhas), preservando a lógica de 9 perguntas.
+
+- Corrigido o render do painel de alerta nas perguntas: feedback de risco agora só aparece após resposta `Não` ou `Não sei`, sem exibição prévia antes da seleção do usuário.
+
+- Corrigido o teto de XP no HUD para 9 perguntas (máximo 900), com recalibração dos níveis para evitar inconsistência entre pontuação real e barra de progresso.

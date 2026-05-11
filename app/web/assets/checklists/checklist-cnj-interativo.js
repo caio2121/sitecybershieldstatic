@@ -136,10 +136,10 @@
 
   var RANKS = [
     { minXp: 0, title: "Escrevente" },
-    { minXp: 120, title: "Escrevente Autorizado" },
-    { minXp: 300, title: "Oficial Substituto" },
-    { minXp: 550, title: "Tabelião" },
-    { minXp: 800, title: "Guardião do Dossiê" }
+    { minXp: 200, title: "Escrevente Autorizado" },
+    { minXp: 450, title: "Oficial Substituto" },
+    { minXp: 700, title: "Tabelião" },
+    { minXp: 900, title: "Guardião do Dossiê" }
   ];
 
   var ACHIEVEMENTS = [
@@ -178,6 +178,18 @@
       title: "Guardião do Cartório",
       description: "Conformidade total (9 Sim).",
       unlock: function (ctx) { return ctx.sim === QUESTIONS.length; }
+    },
+    {
+      id: "dossie-completo",
+      title: "Dossiê Completo",
+      description: "Todas as perguntas foram respondidas.",
+      unlock: function (ctx) { return (ctx.sim + ctx.nao + ctx.naoSei) === QUESTIONS.length; }
+    },
+    {
+      id: "cap-governanca",
+      title: "Mestre da Governança",
+      description: "Capítulo I concluído com todos os controles em Sim.",
+      unlock: function (ctx) { return ctx.chapterCompleted.governanca === true; }
     }
   ];
 
@@ -425,7 +437,7 @@
   }
 
   function feedbackTemplate(question, answer) {
-    if (answer === "sim") return "";
+    if (!answer || answer === "sim") return "";
     var chapter = CHAPTERS.find(function (c) { return c.id === question.chapterId; });
     if (!chapter) return "";
     var klass = answer === "nao" ? "feedback feedback--nao" : "feedback feedback--nao-sei";
@@ -650,7 +662,7 @@
   }
 
   function updateHud(stats, xp) {
-    var maxXp = RANKS[RANKS.length - 1].minXp;
+    var maxXp = QUESTIONS.length * 100;
     var rank = getRank(xp);
     var nextRank = getNextRank(xp);
     var progressPct = Math.min(100, Math.round((xp / maxXp) * 100));
