@@ -1262,7 +1262,7 @@ h4 {
   outline-offset: 2px;
 }
 
-.lead-consent {
+.lead-form label.lead-consent {
   display: flex;
   gap: 0.45rem;
   align-items: flex-start;
@@ -1273,8 +1273,13 @@ h4 {
   font-size: 0.84rem;
 }
 
-.lead-consent input {
+.lead-form label.lead-consent input {
   margin-top: 0.25rem;
+  flex: 0 0 auto;
+}
+
+.lead-form label.lead-consent span {
+  line-height: 1.45;
 }
 
 .lead-error {
