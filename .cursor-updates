@@ -63,3 +63,13 @@
 - Corrigido o teto de XP no HUD para 9 perguntas (máximo 900), com recalibração dos níveis para evitar inconsistência entre pontuação real e barra de progresso.
 
 - HUD atualizado com chips mais vivos (ícones + cores por categoria) para aproximar visual do Manus e adicionada a pasta `input-marketing/` no `.gitignore` para limpar mudanças não relacionadas.
+
+- Implementada captura real do checklist CNJ em GitHub Pages com envio de lead+respostas+score via `fetch` para Google Apps Script, idempotência por sessão, status de envio no relatório final e arquivos de referência (`checklist-cnj-capture.gs` e guia de configuração).
+
+- Arquivos de Apps Script do checklist CNJ movidos da pasta pública `app/web/assets/checklists/` para `ops/checklists/`, evitando exposição direta via URL do site.
+
+- Configurada a URL real do Google Apps Script como `captureEndpoint` em `checklist-cnj-interativo.html` para ativar a captura de dados do checklist em produção.
+
+- Implementado fluxo de captura imediata com upsert (`started`, `in_progress`, `completed`) no checklist CNJ, com `submission_key` persistido em sessão, status de sincronização na UI e endpoint Apps Script preparado para atualizar a mesma linha sem duplicidade.
+
+- Atualizada a whitelist de origem do Apps Script para o domínio correto `https://cybershieldgroup.com.br` (com e sem `www`).

@@ -2,6 +2,19 @@
   "use strict";
 
   var LEAD_STORAGE_KEY = "cs_lead_static_v2";
+  var SUBMISSION_KEY_STORAGE_KEY = "cs_checklist_submission_key_v2";
+  var SUBMISSION_STARTED_AT_KEY = "cs_checklist_submission_started_at_v2";
+  var PROGRESS_SYNC_DEBOUNCE_MS = 1200;
+  var CHECKLIST_CONFIG = {
+    captureEndpoint:
+      window.CHECKLIST_CONFIG && typeof window.CHECKLIST_CONFIG.captureEndpoint === "string"
+        ? window.CHECKLIST_CONFIG.captureEndpoint
+        : "",
+    requestTimeoutMs:
+      window.CHECKLIST_CONFIG && Number(window.CHECKLIST_CONFIG.requestTimeoutMs) > 0
+        ? Number(window.CHECKLIST_CONFIG.requestTimeoutMs)
+        : 12000
+  };
 
   var CHAPTERS = [
     {
@@ -197,7 +210,17 @@
     lead: loadLead(),
     answers: {},
     streak: 0,
-    unlocked: {}
+    unlocked: {},
+    submission: {
+      sending: false,
+      syncStatus: "idle",
+      error: "",
+      key: loadSubmissionKey(),
+      startedAt: loadSubmissionStartedAt(),
+      lastSyncedStatus: "",
+      pendingPayload: null,
+      progressTimer: null
+    }
   };
 
   var dom = {
@@ -208,6 +231,7 @@
     questionsRoot: document.getElementById("questions-root"),
     chapterRings: document.getElementById("chapter-rings"),
     finalReport: document.getElementById("final-report"),
+    syncStatus: document.getElementById("sync-status"),
     gate: document.getElementById("lead-gate"),
     leadForm: document.getElementById("lead-form"),
     leadName: document.getElementById("lead-name"),
@@ -230,6 +254,54 @@
   function saveLead(lead) {
     try {
       sessionStorage.setItem(LEAD_STORAGE_KEY, JSON.stringify(lead));
+    } catch (error) {
+      // sem persistencia se falhar
+    }
+  }
+
+  function loadSubmissionKey() {
+    try {
+      return sessionStorage.getItem(SUBMISSION_KEY_STORAGE_KEY) || "";
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function saveSubmissionKey(key) {
+    try {
+      sessionStorage.setItem(SUBMISSION_KEY_STORAGE_KEY, String(key || ""));
+    } catch (error) {
+      // sem persistencia se falhar
+    }
+  }
+
+  function clearSubmissionKey() {
+    try {
+      sessionStorage.removeItem(SUBMISSION_KEY_STORAGE_KEY);
+    } catch (error) {
+      // sem persistencia se falhar
+    }
+  }
+
+  function loadSubmissionStartedAt() {
+    try {
+      return sessionStorage.getItem(SUBMISSION_STARTED_AT_KEY) || "";
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function saveSubmissionStartedAt(startedAt) {
+    try {
+      sessionStorage.setItem(SUBMISSION_STARTED_AT_KEY, String(startedAt || ""));
+    } catch (error) {
+      // sem persistencia se falhar
+    }
+  }
+
+  function clearSubmissionStartedAt() {
+    try {
+      sessionStorage.removeItem(SUBMISSION_STARTED_AT_KEY);
     } catch (error) {
       // sem persistencia se falhar
     }
@@ -275,7 +347,8 @@
     var lead = {
       name: String(dom.leadName.value || "").trim(),
       email: String(dom.leadEmail.value || "").trim().toLowerCase(),
-      whatsapp: String(dom.leadWhatsapp.value || "").replace(/\D/g, "")
+      whatsapp: String(dom.leadWhatsapp.value || "").replace(/\D/g, ""),
+      consentGivenAt: new Date().toISOString()
     };
 
     if (lead.name.length < 2) {
@@ -291,11 +364,19 @@
       return showLeadError("Confirme o consentimento LGPD para continuar.");
     }
 
+    var startedAt = state.submission.startedAt || new Date().toISOString();
+    var submissionKey = state.submission.key || generateSubmissionKey(lead, startedAt);
+    state.submission.startedAt = startedAt;
+    state.submission.key = submissionKey;
+    saveSubmissionStartedAt(startedAt);
+    saveSubmissionKey(submissionKey);
+
     state.lead = lead;
     saveLead(lead);
     closeGate();
     unlockQuiz();
     scrollToQuiz();
+    submitChecklistData(buildSubmissionPayload("started"));
   }
 
   function showLeadError(message) {
@@ -652,13 +733,260 @@
       '<div class="report-actions">',
       '<a class="btn btn-primary" href="https://wa.me/5521920137715?text=Ol%C3%A1!%20Conclu%C3%AD%20o%20checklist%20CNJ%20e%20quero%20apoio%20no%20dossi%C3%AA%20t%C3%A9cnico." target="_blank" rel="noopener noreferrer">Falar com especialista</a>',
       '<button id="restart-btn" class="btn btn-outline" type="button">Refazer diagnóstico</button>',
-      "</div>"
+      "</div>",
+      '<div id="submission-status" class="submission-status" aria-live="polite"></div>'
     ].join("");
 
     var restartBtn = document.getElementById("restart-btn");
     if (restartBtn) {
       restartBtn.addEventListener("click", restartQuiz);
     }
+
+    renderSyncStatus();
+    maybeSubmitCompletedQuiz(stats, xp, conformity);
+  }
+
+  function getStageLabel(stage) {
+    if (stage === "started") return "lead registrado";
+    if (stage === "in_progress") return "progresso salvo";
+    if (stage === "completed") return "resultado final salvo";
+    return "sincronização pendente";
+  }
+
+  function renderSyncStatus() {
+    var statusMessage = "";
+    var syncClass = "sync-status";
+    var detailsMessage = "";
+    var detailsClass = "submission-status__item submission-status__item--pending";
+
+    if (!CHECKLIST_CONFIG.captureEndpoint) {
+      statusMessage = "Captura não configurada no endpoint.";
+      syncClass += " sync-status--warn";
+      detailsMessage = "Captura não configurada: defina window.CHECKLIST_CONFIG.captureEndpoint.";
+      detailsClass = "submission-status__item submission-status__item--warn";
+    } else if (state.submission.sending) {
+      statusMessage = "Sincronizando dados do diagnóstico...";
+      detailsMessage = "Enviando atualização para a base segura.";
+    } else if (state.submission.error) {
+      statusMessage = "Falha de sincronização. Vamos tentar novamente.";
+      syncClass += " sync-status--error";
+      detailsMessage = state.submission.error;
+      detailsClass = "submission-status__item submission-status__item--error";
+    } else if (state.submission.lastSyncedStatus) {
+      statusMessage = "Sincronização ativa: " + getStageLabel(state.submission.lastSyncedStatus) + ".";
+      syncClass += " sync-status--ok";
+      if (state.submission.lastSyncedStatus === "completed") {
+        detailsMessage =
+          "Diagnóstico registrado com sucesso. Um especialista pode entrar em contato com base no seu consentimento.";
+        detailsClass = "submission-status__item submission-status__item--ok";
+      } else if (state.submission.lastSyncedStatus === "in_progress") {
+        detailsMessage = "Progresso salvo. Continue para gerar o relatório final.";
+        detailsClass = "submission-status__item submission-status__item--ok";
+      } else {
+        detailsMessage = "Contato registrado. Agora você pode responder o checklist.";
+        detailsClass = "submission-status__item submission-status__item--ok";
+      }
+    } else {
+      statusMessage = "Preencha seu contato para iniciar o registro.";
+      detailsMessage = "Conclua todas as perguntas para registrar o relatório final.";
+    }
+
+    if (dom.syncStatus) {
+      dom.syncStatus.className = syncClass;
+      dom.syncStatus.textContent = statusMessage;
+    }
+
+    var detailsEl = document.getElementById("submission-status");
+    if (!detailsEl) return;
+
+    if (state.submission.error) {
+      detailsEl.innerHTML =
+        '<p class="' + detailsClass + '">' +
+        detailsMessage +
+        '</p><button id="retry-submit-btn" type="button" class="btn btn-outline submission-status__retry">Tentar envio novamente</button>';
+      var retryBtn = document.getElementById("retry-submit-btn");
+      if (retryBtn) retryBtn.addEventListener("click", retrySubmissionFromCurrentState);
+      return;
+    }
+
+    detailsEl.innerHTML = '<p class="' + detailsClass + '">' + detailsMessage + "</p>";
+  }
+
+  function normalizeAnswerMap() {
+    return QUESTIONS.reduce(function (acc, question) {
+      acc[String(question.id)] = state.answers[question.id] || null;
+      return acc;
+    }, {});
+  }
+
+  function simpleHash(input) {
+    var hash = 0;
+    var str = String(input || "");
+    for (var i = 0; i < str.length; i++) {
+      hash = (hash << 5) - hash + str.charCodeAt(i);
+      hash |= 0;
+    }
+    return "k" + Math.abs(hash);
+  }
+
+  function generateSubmissionKey(lead, startedAt) {
+    return simpleHash(
+      JSON.stringify({
+        email: lead.email,
+        whatsapp: lead.whatsapp,
+        startedAt: startedAt,
+        salt: Math.random().toString(36).slice(2)
+      })
+    );
+  }
+
+  function buildSubmissionPayload(stage) {
+    if (!state.lead) return null;
+    var stats = getCounts();
+    var xp = computeXp();
+    var conformity = stats.answered ? Math.round((stats.sim / QUESTIONS.length) * 100) : 0;
+    var normalizedStage = stage || "started";
+    var startedAt = state.submission.startedAt || new Date().toISOString();
+    if (!state.submission.startedAt) {
+      state.submission.startedAt = startedAt;
+      saveSubmissionStartedAt(startedAt);
+    }
+
+    var submissionKey = state.submission.key;
+    if (!submissionKey) {
+      submissionKey = generateSubmissionKey(state.lead, startedAt);
+      state.submission.key = submissionKey;
+      saveSubmissionKey(submissionKey);
+    }
+
+    var answers = normalizeAnswerMap();
+
+    return {
+      submissionKey: submissionKey,
+      status: normalizedStage,
+      lead: {
+        name: state.lead.name,
+        email: state.lead.email,
+        whatsapp: state.lead.whatsapp,
+        consentGivenAt: state.lead.consentGivenAt || new Date().toISOString()
+      },
+      answers: normalizedStage === "started" ? {} : answers,
+      stats: {
+        sim: stats.sim,
+        nao: stats.nao,
+        naoSei: stats.naoSei,
+        answered: stats.answered
+      },
+      xp: xp,
+      conformity: conformity,
+      metadata: {
+        timestamp: new Date().toISOString(),
+        startedAt: startedAt,
+        pageUrl: window.location.href,
+        userAgent: navigator.userAgent
+      }
+    };
+  }
+
+  async function postWithTimeout(url, payload) {
+    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timeoutId = null;
+    if (controller) {
+      timeoutId = setTimeout(function () {
+        controller.abort();
+      }, CHECKLIST_CONFIG.requestTimeoutMs);
+    }
+
+    try {
+      return await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload),
+        signal: controller ? controller.signal : undefined
+      });
+    } finally {
+      if (timeoutId) clearTimeout(timeoutId);
+    }
+  }
+
+  async function submitChecklistData(payload) {
+    if (!payload || !CHECKLIST_CONFIG.captureEndpoint) return;
+    if (state.submission.sending) {
+      state.submission.pendingPayload = payload;
+      return;
+    }
+    if (state.submission.lastSyncedStatus === "completed" && payload.status === "completed") {
+      return;
+    }
+
+    state.submission.sending = true;
+    state.submission.syncStatus = "syncing";
+    state.submission.error = "";
+    renderSyncStatus();
+
+    try {
+      var response = await postWithTimeout(CHECKLIST_CONFIG.captureEndpoint, payload);
+      var data = await response.json().catch(function () {
+        return {};
+      });
+      if (!response.ok && data.ok !== true) {
+        throw new Error(data.message || "Falha ao registrar o diagnóstico.");
+      }
+
+      state.submission.sending = false;
+      state.submission.syncStatus = "synced";
+      state.submission.error = "";
+      state.submission.key = payload.submissionKey;
+      state.submission.lastSyncedStatus = payload.status || state.submission.lastSyncedStatus;
+      saveSubmissionKey(payload.submissionKey);
+      renderSyncStatus();
+    } catch (error) {
+      state.submission.sending = false;
+      state.submission.syncStatus = "error";
+      state.submission.error =
+        "Não foi possível registrar seu diagnóstico agora. Verifique sua conexão e tente novamente.";
+      renderSyncStatus();
+    }
+
+    if (state.submission.pendingPayload) {
+      var queuedPayload = state.submission.pendingPayload;
+      state.submission.pendingPayload = null;
+      if (
+        queuedPayload.status !== state.submission.lastSyncedStatus ||
+        queuedPayload.status === "in_progress"
+      ) {
+        submitChecklistData(queuedPayload);
+      }
+    }
+  }
+
+  function maybeSubmitCompletedQuiz(stats, xp, conformity) {
+    if (stats.answered !== QUESTIONS.length) return;
+    var payload = buildSubmissionPayload("completed");
+    if (!payload) return;
+    submitChecklistData(payload);
+  }
+
+  function retrySubmissionFromCurrentState() {
+    var stats = getCounts();
+    var stage = "started";
+    if (stats.answered === QUESTIONS.length) stage = "completed";
+    else if (stats.answered > 0) stage = "in_progress";
+    var payload = buildSubmissionPayload(stage);
+    if (!payload) return;
+    submitChecklistData(payload);
+  }
+
+  function queueProgressSync() {
+    if (!state.lead) return;
+    var stats = getCounts();
+    if (stats.answered === 0 || stats.answered === QUESTIONS.length) return;
+    clearTimeout(state.submission.progressTimer);
+    state.submission.progressTimer = setTimeout(function () {
+      submitChecklistData(buildSubmissionPayload("in_progress"));
+    }, PROGRESS_SYNC_DEBOUNCE_MS);
   }
 
   function updateHud(stats, xp) {
@@ -693,6 +1021,7 @@
     renderQuestions();
     renderChapterRings();
     renderFinalReport(stats, xp);
+    renderSyncStatus();
   }
 
   function setAnswer(questionId, answer) {
@@ -706,6 +1035,7 @@
       state.streak = 0;
     }
     refreshUi();
+    queueProgressSync();
   }
 
   function handleQuestionsClick(event) {
@@ -735,6 +1065,16 @@
     state.answers = {};
     state.streak = 0;
     state.unlocked = {};
+    clearTimeout(state.submission.progressTimer);
+    state.submission.sending = false;
+    state.submission.syncStatus = "idle";
+    state.submission.error = "";
+    state.submission.key = "";
+    state.submission.startedAt = "";
+    state.submission.lastSyncedStatus = "";
+    state.submission.pendingPayload = null;
+    clearSubmissionKey();
+    clearSubmissionStartedAt();
     refreshUi();
     scrollToQuiz();
   }
@@ -762,6 +1102,11 @@
     refreshUi();
     if (state.lead) {
       unlockQuiz();
+      if (state.submission.key) {
+        state.submission.lastSyncedStatus = "started";
+      } else {
+        submitChecklistData(buildSubmissionPayload("started"));
+      }
     }
   }
 

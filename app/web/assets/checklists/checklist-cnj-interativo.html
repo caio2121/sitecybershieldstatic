@@ -127,6 +127,7 @@
           <p class="card-kicker" id="greeting-kicker">Olá, titular</p>
           <h2>9 controles · 5 capítulos</h2>
           <p>Responda com honestidade para gerar o relatório executivo da serventia.</p>
+          <p id="sync-status" class="sync-status" aria-live="polite"></p>
         </div>
 
         <div id="questions-root" class="questions-root"></div>
@@ -183,7 +184,7 @@
 
         <label class="lead-consent">
           <input type="checkbox" id="lead-consent" required>
-          <span>Autorizo o contato da CyberShield por e-mail e WhatsApp conforme LGPD.</span>
+          <span>Autorizo o armazenamento dos meus dados e o contato da CyberShield por e-mail e WhatsApp conforme LGPD.</span>
         </label>
 
         <p id="lead-error" class="lead-error" hidden></p>
@@ -198,6 +199,12 @@
 
   <div id="achievement-toast" class="achievement-toast" hidden></div>
 
+  <script>
+    window.CHECKLIST_CONFIG = window.CHECKLIST_CONFIG || {
+      captureEndpoint: "https://script.google.com/macros/s/AKfycbx8-YDrDbQ2wy3l-PYb06bL03lCLQGiv9DEONaZeT5sopEZgkcCgXokzdZx0i_kPXy3Ng/exec",
+      requestTimeoutMs: 12000
+    };
+  </script>
   <script src="./checklist-cnj-interativo.js"></script>
 </body>
 </html>
