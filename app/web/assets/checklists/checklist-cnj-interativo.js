@@ -830,14 +830,13 @@
   }
 
   function generateSubmissionKey(lead, startedAt) {
-    return simpleHash(
-      JSON.stringify({
-        email: lead.email,
-        whatsapp: lead.whatsapp,
-        startedAt: startedAt,
-        salt: Math.random().toString(36).slice(2)
-      })
-    );
+    var emailPart = String(lead.email || "lead")
+      .replace(/[^a-z0-9]/gi, "")
+      .toLowerCase()
+      .slice(0, 8) || "lead";
+    var tsPart = Date.now().toString(36);
+    var randomPart = Math.random().toString(36).slice(2, 10);
+    return "sk_" + emailPart + "_" + tsPart + "_" + randomPart;
   }
 
   function buildSubmissionPayload(stage) {
@@ -853,7 +852,7 @@
     }
 
     var submissionKey = state.submission.key;
-    if (!submissionKey) {
+    if (!submissionKey || String(submissionKey).length < 10) {
       submissionKey = generateSubmissionKey(state.lead, startedAt);
       state.submission.key = submissionKey;
       saveSubmissionKey(submissionKey);
@@ -901,7 +900,8 @@
       return await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          // text/plain evita preflight CORS em Web App do Apps Script
+          "Content-Type": "text/plain;charset=utf-8"
         },
         body: JSON.stringify(payload),
         signal: controller ? controller.signal : undefined
@@ -928,9 +928,12 @@
 
     try {
       var response = await postWithTimeout(CHECKLIST_CONFIG.captureEndpoint, payload);
-      var data = await response.json().catch(function () {
-        return {};
-      });
+      var data = {};
+      try {
+        data = await response.json();
+      } catch (error) {
+        data = {};
+      }
       if (!response.ok && data.ok !== true) {
         throw new Error(data.message || "Falha ao registrar o diagnóstico.");
       }

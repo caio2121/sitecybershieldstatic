@@ -75,3 +75,7 @@
 - Atualizada a whitelist de origem do Apps Script para o domínio correto `https://cybershieldgroup.com.br` (com e sem `www`).
 
 - Corrigido o alinhamento do checkbox de consentimento no modal de lead com regras CSS de maior especificidade para manter input e texto na mesma linha em desktop e mobile.
+
+- Removida do hero do checklist CNJ a frase interna sobre remoções de perguntas, mantendo a página sem recados operacionais visíveis ao usuário final.
+
+- Ajustado o envio inicial do formulário para aumentar a confiabilidade da gravação na planilha: `submissionKey` sempre válido (>=10) e POST em `text/plain` para evitar bloqueio de preflight CORS no Apps Script.
