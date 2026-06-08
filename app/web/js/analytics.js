@@ -116,23 +116,27 @@
     }
 
     function initClickTracking() {
+        if (window.CyberShieldLeadTracking) {
+            window.CyberShieldLeadTracking.initDelegatedLeadClickTracking();
+        }
+
         document.addEventListener('click', event => {
             const link = event.target.closest('a');
             if (!link) return;
             const href = link.getAttribute('href') || '';
             const text = link.textContent.trim().replace(/\s+/g, ' ').slice(0, 120);
             const context = getContext(link);
-
-            if (href.includes('wa.me/')) {
-                track('click_whatsapp', { link_text: text, link_url: href, page_section: context });
-            } else if (href.startsWith('mailto:')) {
-                track('click_email', { link_text: text, page_section: context });
-            } else if (href.startsWith('tel:')) {
-                track('click_phone', { link_text: text, page_section: context });
-            }
+            const leadTracking = window.CyberShieldLeadTracking;
+            const isScrollContact = leadTracking
+                ? leadTracking.isScrollOnlyContactLink(href)
+                : (href === '#contato' || (href.includes('#contato') && !href.includes('wa.me')));
 
             if (link.classList.contains('btn') || link.classList.contains('blog-card-link')) {
-                track('cta_click', { link_text: text, link_url: href, page_section: context });
+                track('cta_click', {
+                    link_text: text,
+                    link_url: isScrollContact ? '#contato' : href,
+                    page_section: context
+                });
             }
 
             if (href.includes('assets/checklists/') || href.endsWith('.pdf')) {

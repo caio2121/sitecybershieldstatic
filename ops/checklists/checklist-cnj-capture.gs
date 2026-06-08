@@ -6,11 +6,22 @@ var CONFIG = {
   spreadsheetId: "PUT_YOUR_SPREADSHEET_ID_HERE",
   submissionsSheet: "checklist_submissions",
   auditSheet: "checklist_audit",
+  commercialPipelineSheet: "commercial_pipeline",
+  ga4MeasurementId: "G-XXXXXXXXXX",
+  ga4ApiSecret: "PUT_YOUR_GA4_API_SECRET_HERE",
   allowedOrigins: [
     "https://niltondev.github.io",
     "https://cybershieldgroup.com.br",
     "https://www.cybershieldgroup.com.br"
   ]
+};
+
+var COMMERCIAL_STATUS_TO_GA4 = {
+  em_atendimento: "working_lead",
+  qualificado: "qualify_lead",
+  desqualificado: "disqualify_lead",
+  ganho: "close_convert_lead",
+  perdido: "close_unconvert_lead"
 };
 
 function doPost(e) {
@@ -34,6 +45,9 @@ function doPost(e) {
     }
 
     var upsertInfo = upsertSubmission_(payload, nowIso, origin);
+    if (payload.status === "started") {
+      upsertCommercialPipelineFromChecklist_(payload, nowIso, origin);
+    }
 
     return jsonResponse_(
       origin,
@@ -304,4 +318,233 @@ function safeParse_(e) {
   } catch (error) {
     return null;
   }
+}
+
+function commercialPipelineHeaders_() {
+  return [
+    "lead_id",
+    "created_at",
+    "updated_at",
+    "lead_source",
+    "lead_channel",
+    "service_name",
+    "ga_client_id",
+    "submission_key",
+    "commercial_status",
+    "qualification_type",
+    "disqualification_reason",
+    "loss_reason",
+    "conversion_type",
+    "value",
+    "currency",
+    "ga4_last_event",
+    "ga4_event_sent",
+    "ga4_sent_at"
+  ];
+}
+
+function upsertCommercialPipelineFromChecklist_(payload, receivedAt, origin) {
+  var sheet = getOrCreateSheet_(CONFIG.commercialPipelineSheet, commercialPipelineHeaders_());
+  var submissionKey = String(payload.submissionKey || "");
+  if (!submissionKey) return;
+
+  var existingRow = findCommercialPipelineRowBySubmissionKey_(sheet, submissionKey);
+  var gaClientId = payload.metadata && payload.metadata.gaClientId
+    ? String(payload.metadata.gaClientId)
+    : "";
+  var leadId = existingRow ? sheet.getRange(existingRow, 1).getValue() : Utilities.getUuid();
+
+  var row = [
+    leadId,
+    existingRow ? sheet.getRange(existingRow, 2).getValue() : receivedAt,
+    receivedAt,
+    "website",
+    "form",
+    "general",
+    gaClientId,
+    submissionKey,
+    existingRow ? sheet.getRange(existingRow, 9).getValue() || "novo" : "novo",
+    existingRow ? sheet.getRange(existingRow, 10).getValue() : "",
+    existingRow ? sheet.getRange(existingRow, 11).getValue() : "",
+    existingRow ? sheet.getRange(existingRow, 12).getValue() : "",
+    existingRow ? sheet.getRange(existingRow, 13).getValue() : "",
+    existingRow ? sheet.getRange(existingRow, 14).getValue() : 0,
+    existingRow ? sheet.getRange(existingRow, 15).getValue() || "BRL" : "BRL",
+    existingRow ? sheet.getRange(existingRow, 16).getValue() : "",
+    existingRow ? sheet.getRange(existingRow, 17).getValue() || "no" : "no",
+    existingRow ? sheet.getRange(existingRow, 18).getValue() : ""
+  ];
+
+  if (existingRow) {
+    sheet.getRange(existingRow, 1, 1, row.length).setValues([row]);
+    return;
+  }
+
+  sheet.appendRow(row);
+}
+
+function findCommercialPipelineRowBySubmissionKey_(sheet, submissionKey) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 2) return 0;
+
+  var keys = sheet.getRange(2, 8, lastRow - 1, 1).getValues();
+  for (var i = 0; i < keys.length; i++) {
+    if (String(keys[i][0] || "") === String(submissionKey)) {
+      return i + 2;
+    }
+  }
+  return 0;
+}
+
+/**
+ * Instalar gatilho onEdit para a aba commercial_pipeline:
+ * no editor Apps Script, execute installCommercialPipelineTrigger() uma vez.
+ */
+function installCommercialPipelineTrigger() {
+  var triggers = ScriptApp.getProjectTriggers();
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === "onCommercialPipelineEdit") {
+      ScriptApp.deleteTrigger(triggers[i]);
+    }
+  }
+
+  ScriptApp.newTrigger("onCommercialPipelineEdit")
+    .forSpreadsheet(CONFIG.spreadsheetId)
+    .onEdit()
+    .create();
+}
+
+function onCommercialPipelineEdit(e) {
+  if (!e || !e.range) return;
+  var sheet = e.range.getSheet();
+  if (!sheet || sheet.getName() !== CONFIG.commercialPipelineSheet) return;
+  if (e.range.getRow() < 2) return;
+
+  var statusColumn = commercialPipelineHeaders_().indexOf("commercial_status") + 1;
+  if (e.range.getColumn() !== statusColumn && e.range.getLastColumn() < statusColumn) {
+    return;
+  }
+
+  processCommercialPipelineRow_(e.range.getRow());
+}
+
+function processCommercialPipelineRow_(rowIndex) {
+  var sheet = getOrCreateSheet_(CONFIG.commercialPipelineSheet, commercialPipelineHeaders_());
+  var headers = commercialPipelineHeaders_();
+  var values = sheet.getRange(rowIndex, 1, 1, headers.length).getValues()[0];
+  var row = {};
+  for (var i = 0; i < headers.length; i++) {
+    row[headers[i]] = values[i];
+  }
+
+  var commercialStatus = String(row.commercial_status || "").toLowerCase().trim();
+  var ga4Event = COMMERCIAL_STATUS_TO_GA4[commercialStatus];
+  if (!ga4Event) return;
+  if (String(row.ga4_last_event || "") === ga4Event && String(row.ga4_event_sent || "") === "yes") {
+    return;
+  }
+
+  var clientId = String(row.ga_client_id || "").trim();
+  if (!clientId) {
+    clientId = Utilities.getUuid();
+  }
+
+  var params = buildOfflineLeadParams_(row, ga4Event, commercialStatus);
+  var sent = sendGa4MeasurementEvent_(clientId, ga4Event, params);
+  if (!sent.ok) {
+    writePipelineAudit_(rowIndex, ga4Event, sent);
+    return;
+  }
+
+  var sentAt = new Date().toISOString();
+  sheet.getRange(rowIndex, headers.indexOf("ga4_last_event") + 1).setValue(ga4Event);
+  sheet.getRange(rowIndex, headers.indexOf("ga4_event_sent") + 1).setValue("yes");
+  sheet.getRange(rowIndex, headers.indexOf("ga4_sent_at") + 1).setValue(sentAt);
+  sheet.getRange(rowIndex, headers.indexOf("updated_at") + 1).setValue(sentAt);
+  writePipelineAudit_(rowIndex, ga4Event, sent);
+}
+
+function buildOfflineLeadParams_(row, eventName, commercialStatus) {
+  var params = {
+    lead_source: "website",
+    lead_id: String(row.lead_id || ""),
+    service_name: String(row.service_name || "general")
+  };
+
+  if (eventName === "working_lead") {
+    params.lead_channel = String(row.lead_channel || "manual");
+    params.lead_status = "working";
+  } else if (eventName === "qualify_lead") {
+    params.lead_status = "qualified";
+    params.qualification_type = String(row.qualification_type || "company_fit");
+  } else if (eventName === "disqualify_lead") {
+    params.lead_status = "disqualified";
+    params.disqualification_reason = String(row.disqualification_reason || "other");
+  } else if (eventName === "close_convert_lead") {
+    params.lead_status = "converted";
+    params.conversion_type = String(row.conversion_type || "contract_signed");
+    params.value = safeNumber_(row.value);
+    params.currency = String(row.currency || "BRL");
+  } else if (eventName === "close_unconvert_lead") {
+    params.lead_status = "not_converted";
+    params.loss_reason = String(row.loss_reason || "other");
+  }
+
+  params.commercial_status = commercialStatus;
+  return params;
+}
+
+function sendGa4MeasurementEvent_(clientId, eventName, params) {
+  if (!CONFIG.ga4MeasurementId || CONFIG.ga4MeasurementId.indexOf("G-") !== 0) {
+    return { ok: false, reason: "measurement_id_not_configured" };
+  }
+  if (!CONFIG.ga4ApiSecret || CONFIG.ga4ApiSecret.indexOf("PUT_YOUR") === 0) {
+    return { ok: false, reason: "api_secret_not_configured" };
+  }
+
+  var url = "https://www.google-analytics.com/mp/collect?measurement_id="
+    + encodeURIComponent(CONFIG.ga4MeasurementId)
+    + "&api_secret="
+    + encodeURIComponent(CONFIG.ga4ApiSecret);
+
+  var payload = {
+    client_id: clientId,
+    events: [{
+      name: eventName,
+      params: params || {}
+    }]
+  };
+
+  try {
+    var response = UrlFetchApp.fetch(url, {
+      method: "post",
+      contentType: "application/json",
+      payload: JSON.stringify(payload),
+      muteHttpExceptions: true
+    });
+    var code = response.getResponseCode();
+    return {
+      ok: code >= 200 && code < 300,
+      status: code,
+      body: response.getContentText()
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      reason: "request_failed",
+      error: String(error && error.message ? error.message : error)
+    };
+  }
+}
+
+function writePipelineAudit_(rowIndex, eventName, result) {
+  var sheet = getOrCreateSheet_(CONFIG.auditSheet, auditHeaders_());
+  sheet.appendRow([
+    new Date().toISOString(),
+    "commercial_pipeline",
+    "ga4_mp_" + eventName,
+    result && result.status ? result.status : 0,
+    JSON.stringify(result || {}),
+    JSON.stringify({ row: rowIndex, event: eventName })
+  ]);
 }

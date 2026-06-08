@@ -120,27 +120,26 @@ function getSectionContext(element) {
 }
 
 function initGAEventTracking() {
+    if (window.CyberShieldLeadTracking) {
+        window.CyberShieldLeadTracking.initDelegatedLeadClickTracking();
+    }
+
     document.addEventListener('click', event => {
         const link = event.target.closest('a');
         if (!link) return;
 
         const href = link.getAttribute('href') || '';
         const text = link.textContent.trim().replace(/\s+/g, ' ').slice(0, 120);
-        const contactType = link.getAttribute('data-contact');
         const context = getSectionContext(link);
-
-        if (contactType === 'whatsapp' || href.includes('wa.me/')) {
-            trackGAEvent('click_whatsapp', { link_text: text, link_url: href, page_section: context });
-        } else if (contactType === 'email' || href.startsWith('mailto:')) {
-            trackGAEvent('click_email', { link_text: text, page_section: context });
-        } else if (contactType === 'phone' || href.startsWith('tel:')) {
-            trackGAEvent('click_phone', { link_text: text, page_section: context });
-        }
+        const leadTracking = window.CyberShieldLeadTracking;
+        const isScrollContact = leadTracking
+            ? leadTracking.isScrollOnlyContactLink(href)
+            : (href === '#contato' || (href.includes('#contato') && !href.includes('wa.me')));
 
         if (link.classList.contains('btn')) {
             trackGAEvent('cta_click', {
                 link_text: text,
-                link_url: href,
+                link_url: isScrollContact ? '#contato' : href,
                 page_section: context
             });
         }
@@ -604,11 +603,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         setLeadLoading(true);
         const downloadOk = triggerChecklistDownload();
+        if (window.CyberShieldLeadTracking) {
+            window.CyberShieldLeadTracking.trackLeadFormSubmit('leadForm', {
+                form_location: 'lead_capture',
+                cta_text: 'Baixar checklist gratuito'
+            });
+        }
         openWhatsAppWithFormData('lead', data);
-        trackGAEvent('form_submit_whatsapp', {
-            form_id: 'leadForm',
-            form_type: 'lead_checklist'
-        });
 
         if (downloadOk) {
             showLeadMessage('Checklist enviado para download e WhatsApp aberto em nova aba. Confira e envie a mensagem para registrar seu lead.', 'success');
@@ -1100,13 +1101,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         setLoading(true);
+        if (window.CyberShieldLeadTracking) {
+            window.CyberShieldLeadTracking.trackLeadFormSubmit('contactForm', {
+                form_location: 'contact_section',
+                service_value: data.servico,
+                cta_text: 'Solicitar avaliacao gratuita'
+            });
+        }
         openWhatsAppWithFormData('contact', data);
-        trackGAEvent('form_submit_whatsapp', {
-            form_id: 'contactForm',
-            form_type: 'contact',
-            service_value: data.servico,
-            service_label: getServiceLabel(data.servico)
-        });
         if (isMinimalSubmit) {
             trackGAEvent('form_submit_minimal', {
                 form_id: 'contactForm',

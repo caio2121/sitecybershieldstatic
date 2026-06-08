@@ -376,6 +376,18 @@
     closeGate();
     unlockQuiz();
     scrollToQuiz();
+
+    if (window.CyberShieldLeadTracking) {
+      window.CyberShieldLeadTracking.trackGenerateLead({
+        lead_channel: "form",
+        lead_type: "diagnostic_request",
+        service_name: "general",
+        form_id: "lead-form",
+        form_location: "cnj_checklist",
+        cta_text: "Iniciar checklist CNJ"
+      });
+    }
+
     submitChecklistData(buildSubmissionPayload("started"));
   }
 
@@ -882,7 +894,10 @@
         timestamp: new Date().toISOString(),
         startedAt: startedAt,
         pageUrl: window.location.href,
-        userAgent: navigator.userAgent
+        userAgent: navigator.userAgent,
+        gaClientId: window.CyberShieldLeadTracking && window.CyberShieldLeadTracking.getGaClientId
+          ? window.CyberShieldLeadTracking.getGaClientId()
+          : ""
       }
     };
   }
