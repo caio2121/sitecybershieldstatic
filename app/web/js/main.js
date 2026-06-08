@@ -300,6 +300,8 @@ function getCompanyWhatsAppNumber() {
     return String(number).replace(/\D/g, '');
 }
 
+const CONTACT_SERVICE_VALUES = ['diagnostico', 'pentest', 'hardening', 'consultoria', 'lgpd'];
+
 function getServiceLabel(serviceValue) {
     const serviceMap = {
         diagnostico: 'Diagnóstico de Segurança (Gratuito)',
@@ -309,6 +311,48 @@ function getServiceLabel(serviceValue) {
         lgpd: 'Conformidade LGPD'
     };
     return serviceMap[serviceValue] || serviceValue || 'Não informado';
+}
+
+function normalizePhoneDigits(phone) {
+    return String(phone || '').replace(/\D/g, '');
+}
+
+function hasValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
+}
+
+function hasValidWhatsApp(whatsapp) {
+    return normalizePhoneDigits(whatsapp).length >= 10;
+}
+
+function hasValidContact(email, whatsapp) {
+    const emailTrim = String(email || '').trim();
+    const whatsappTrim = String(whatsapp || '').trim();
+    const emailOk = emailTrim && hasValidEmail(emailTrim);
+    const whatsappOk = whatsappTrim && hasValidWhatsApp(whatsappTrim);
+    return emailOk || whatsappOk;
+}
+
+function hasPentestDetails(data) {
+    return Boolean(
+        data.pentestTipo ||
+        data.pentestAlvo ||
+        data.pentestDominios ||
+        data.pentestEndpoints ||
+        data.pentestDocumentacao
+    );
+}
+
+function getContactServiceFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    let servico = params.get('servico');
+
+    if (!servico && window.location.hash.includes('?')) {
+        const hashQuery = window.location.hash.split('?')[1];
+        servico = new URLSearchParams(hashQuery).get('servico');
+    }
+
+    return CONTACT_SERVICE_VALUES.includes(servico) ? servico : null;
 }
 
 function buildWhatsAppMessage(formType, data) {
@@ -324,25 +368,30 @@ function buildWhatsAppMessage(formType, data) {
         ].join('\n');
     }
 
+    const pentestLines = data.servico === 'pentest' && hasPentestDetails(data)
+        ? [
+            'Detalhes do escopo (opcional):',
+            ...(data.pentestTipo ? [`- Tipo de teste: ${data.pentestTipo}`] : []),
+            ...(data.pentestAlvo ? [`- Alvo principal: ${data.pentestAlvo}`] : []),
+            ...(data.pentestDominios ? [`- Dominios/subdominios: ${data.pentestDominios}`] : []),
+            ...(data.pentestEndpoints ? [`- Endpoints de API: ${data.pentestEndpoints}`] : []),
+            ...(data.pentestDocumentacao ? [`- Documentacao tecnica da API: ${data.pentestDocumentacao}`] : []),
+            ''
+        ]
+        : [];
+
     return [
         'Novo contato via site CyberShield',
         '',
         `Nome: ${data.nome}`,
-        `E-mail: ${data.email}`,
+        `E-mail: ${data.email || 'Nao informado'}`,
+        `WhatsApp: ${data.whatsapp || 'Nao informado'}`,
         `Empresa: ${data.empresa || 'Nao informado'}`,
         `Servico de interesse: ${getServiceLabel(data.servico)}`,
         '',
-        ...(data.servico === 'pentest' ? [
-            'Questionario Pentest:',
-            `- Tipo de teste: ${data.pentestTipo}`,
-            `- Alvo principal: ${data.pentestAlvo}`,
-            `- Dominios/subdominios: ${data.pentestDominios}`,
-            `- Endpoints de API: ${data.pentestEndpoints}`,
-            `- Documentacao tecnica da API: ${data.pentestDocumentacao}`,
-            ''
-        ] : []),
+        ...pentestLines,
         'Mensagem:',
-        data.mensagem
+        data.mensagem || 'Nao informada'
     ].join('\n');
 }
 
@@ -830,62 +879,71 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function validateContactFields(email, whatsapp) {
+        const emailTrim = String(email || '').trim();
+        const whatsappTrim = String(whatsapp || '').trim();
+        const emailOk = emailTrim && hasValidEmail(emailTrim);
+        const whatsappOk = whatsappTrim && hasValidWhatsApp(whatsappTrim);
+
+        if (emailOk || whatsappOk) {
+            return true;
+        }
+
+        if (!emailTrim && !whatsappTrim) {
+            showFieldError('contact-email', 'Informe e-mail ou WhatsApp para contato');
+            showFieldError('contact-whatsapp', 'Informe e-mail ou WhatsApp para contato');
+            return false;
+        }
+
+        if (emailTrim && !emailOk) {
+            showFieldError('contact-email', 'Digite um e-mail válido');
+        }
+
+        if (whatsappTrim && !whatsappOk) {
+            showFieldError('contact-whatsapp', 'WhatsApp deve ter pelo menos 10 dígitos');
+        }
+
+        return false;
+    }
+
+    function validateOptionalPentestFields(formData) {
+        let isValid = true;
+
+        if (formData.pentestDominios && (!/^\d+$/.test(formData.pentestDominios) || Number(formData.pentestDominios) < 1)) {
+            showFieldError('pentest-domains', 'Informe uma quantidade válida (mínimo 1)');
+            isValid = false;
+        }
+
+        if (formData.pentestEndpoints && (!/^\d+$/.test(formData.pentestEndpoints) || Number(formData.pentestEndpoints) < 0)) {
+            showFieldError('pentest-endpoints', 'Informe uma quantidade válida de endpoints (0 ou mais)');
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
     function validateForm(formData) {
         clearFormErrors();
         let isValid = true;
 
-        // Validar nome
         if (formData.nome.trim().length < 2) {
             showFieldError('contact-name', 'Nome deve ter pelo menos 2 caracteres');
             isValid = false;
         }
 
-        // Validar email
-        if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-            showFieldError('contact-email', 'Digite um e-mail válido');
+        if (!validateContactFields(formData.email, formData.whatsapp)) {
             isValid = false;
         }
 
-        // Validar serviço
         if (!formData.servico) {
             showFieldError('contact-service', 'Por favor, selecione um serviço');
             isValid = false;
         }
 
-        if (formData.servico === 'pentest') {
-            if (!formData.pentestTipo) {
-                showFieldError('pentest-type', 'Selecione se o pentest será Gray Box ou Black Box');
-                isValid = false;
-            }
-
-            if (!formData.pentestAlvo) {
-                showFieldError('pentest-target', 'Selecione o alvo principal do pentest');
-                isValid = false;
-            }
-
-            if (!/^\d+$/.test(formData.pentestDominios) || Number(formData.pentestDominios) < 1) {
-                showFieldError('pentest-domains', 'Informe uma quantidade válida (mínimo 1)');
-                isValid = false;
-            }
-
-            if (!/^\d+$/.test(formData.pentestEndpoints) || Number(formData.pentestEndpoints) < 0) {
-                showFieldError('pentest-endpoints', 'Informe uma quantidade válida de endpoints (0 ou mais)');
-                isValid = false;
-            }
-
-            if (!formData.pentestDocumentacao) {
-                showFieldError('pentest-docs', 'Informe se existe documentação técnica da API');
-                isValid = false;
-            }
-        }
-
-        // Validar mensagem
-        if (formData.mensagem.trim().length < 10) {
-            showFieldError('contact-message-text', 'Mensagem deve ter pelo menos 10 caracteres');
+        if (!validateOptionalPentestFields(formData)) {
             isValid = false;
         }
 
-        // Validar política de privacidade
         if (!formData.privacy) {
             showFieldError('contact-privacy', 'É necessário aceitar a política de privacidade');
             isValid = false;
@@ -893,7 +951,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!isValid) {
             showMessage('Por favor, corrija os erros no formulário', 'error');
-            // Focar no primeiro campo com erro
             const firstError = contactForm.querySelector('.form-group.error input, .form-group.error select, .form-group.error textarea');
             if (firstError) {
                 firstError.focus();
@@ -903,67 +960,75 @@ document.addEventListener('DOMContentLoaded', function() {
         return isValid;
     }
 
+    function clearFieldError(fieldId) {
+        const field = document.getElementById(fieldId);
+        if (!field) return;
+
+        const formGroup = field.closest('.form-group');
+        if (!formGroup) return;
+
+        formGroup.classList.remove('error');
+        const helpElement = formGroup.querySelector('.form-help');
+        if (helpElement) {
+            helpElement.style.color = '#6b7280';
+        }
+    }
+
+    function validateContactFieldsOnBlur(email, whatsapp) {
+        const emailTrim = String(email || '').trim();
+        const whatsappTrim = String(whatsapp || '').trim();
+
+        clearFieldError('contact-email');
+        clearFieldError('contact-whatsapp');
+
+        if (!emailTrim && !whatsappTrim) {
+            return;
+        }
+
+        validateContactFields(email, whatsapp);
+    }
+
     // Validação em tempo real
     function setupRealTimeValidation() {
         const fields = [
             'contact-name',
             'contact-email',
+            'contact-whatsapp',
             'contact-service',
-            'contact-message-text',
-            'pentest-type',
-            'pentest-target',
             'pentest-domains',
-            'pentest-endpoints',
-            'pentest-docs'
+            'pentest-endpoints'
         ];
-        
+
         fields.forEach(fieldId => {
             const field = document.getElementById(fieldId);
-            if (field) {
-                field.addEventListener('blur', function() {
-                    const formData = new FormData(contactForm);
-                    const value = formData.get(field.name);
-                    
-                    // Validar campo específico
-                    if (field.name === 'nome' && value.trim().length < 2 && value.trim().length > 0) {
-                        showFieldError(fieldId, 'Nome deve ter pelo menos 2 caracteres');
-                    } else if (field.name === 'email' && value && !value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-                        showFieldError(fieldId, 'Digite um e-mail válido');
-                    } else if (field.name === 'servico' && !value) {
-                        showFieldError(fieldId, 'Por favor, selecione um serviço');
-                    } else if (field.name === 'mensagem' && value.trim().length < 10 && value.trim().length > 0) {
-                        showFieldError(fieldId, 'Mensagem deve ter pelo menos 10 caracteres');
-                    } else if (formData.get('servico') === 'pentest' && field.name === 'pentestTipo' && !value) {
-                        showFieldError(fieldId, 'Selecione se o pentest será Gray Box ou Black Box');
-                    } else if (formData.get('servico') === 'pentest' && field.name === 'pentestAlvo' && !value) {
-                        showFieldError(fieldId, 'Selecione o alvo principal do pentest');
-                    } else if (
-                        formData.get('servico') === 'pentest' &&
-                        field.name === 'pentestDominios' &&
-                        value &&
-                        (!/^\d+$/.test(value) || Number(value) < 1)
-                    ) {
-                        showFieldError(fieldId, 'Informe uma quantidade válida (mínimo 1)');
-                    } else if (
-                        formData.get('servico') === 'pentest' &&
-                        field.name === 'pentestEndpoints' &&
-                        value &&
-                        (!/^\d+$/.test(value) || Number(value) < 0)
-                    ) {
-                        showFieldError(fieldId, 'Informe uma quantidade válida de endpoints (0 ou mais)');
-                    } else if (formData.get('servico') === 'pentest' && field.name === 'pentestDocumentacao' && !value) {
-                        showFieldError(fieldId, 'Informe se existe documentação técnica da API');
-                    } else {
-                        // Remover erro se válido
-                        const formGroup = field.closest('.form-group');
-                        formGroup.classList.remove('error');
-                        const helpElement = formGroup.querySelector('.form-help');
-                        if (helpElement) {
-                            helpElement.style.color = '#6b7280';
-                        }
-                    }
-                });
-            }
+            if (!field) return;
+
+            field.addEventListener('blur', function() {
+                const formData = new FormData(contactForm);
+                const value = formData.get(field.name);
+
+                if (field.name === 'nome' && value.trim().length < 2 && value.trim().length > 0) {
+                    showFieldError(fieldId, 'Nome deve ter pelo menos 2 caracteres');
+                } else if (field.name === 'email' || field.name === 'whatsapp') {
+                    validateContactFieldsOnBlur(formData.get('email'), formData.get('whatsapp'));
+                } else if (field.name === 'servico' && !value) {
+                    showFieldError(fieldId, 'Por favor, selecione um serviço');
+                } else if (
+                    field.name === 'pentestDominios' &&
+                    value &&
+                    (!/^\d+$/.test(value) || Number(value) < 1)
+                ) {
+                    showFieldError(fieldId, 'Informe uma quantidade válida (mínimo 1)');
+                } else if (
+                    field.name === 'pentestEndpoints' &&
+                    value &&
+                    (!/^\d+$/.test(value) || Number(value) < 0)
+                ) {
+                    showFieldError(fieldId, 'Informe uma quantidade válida de endpoints (0 ou mais)');
+                } else {
+                    clearFieldError(fieldId);
+                }
+            });
         });
     }
 
@@ -973,7 +1038,7 @@ document.addEventListener('DOMContentLoaded', function() {
         pentestQuestionnaire.hidden = !isPentest;
 
         pentestFields.forEach(field => {
-            field.required = isPentest;
+            field.required = false;
 
             if (!isPentest) {
                 if (field.tagName === 'SELECT') {
@@ -981,21 +1046,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     field.value = '';
                 }
-                const formGroup = field.closest('.form-group');
-                if (formGroup) {
-                    formGroup.classList.remove('error');
-                    const helpElement = formGroup.querySelector('.form-help');
-                    if (helpElement) {
-                        helpElement.style.color = '#6b7280';
-                    }
-                }
+                clearFieldError(field.id);
             }
+        });
+    }
+
+    function initContactFormFromQuery() {
+        if (!serviceField) return;
+
+        const servico = getContactServiceFromUrl();
+        if (!servico) return;
+
+        serviceField.value = servico;
+        togglePentestQuestionnaire();
+        trackGAEvent('service_interest', {
+            service_value: servico,
+            service_label: getServiceLabel(servico),
+            source: 'url_prefill'
         });
     }
 
     if (serviceField) {
         serviceField.addEventListener('change', togglePentestQuestionnaire);
         togglePentestQuestionnaire();
+        initContactFormFromQuery();
     }
 
     setupRealTimeValidation();
@@ -1005,6 +1079,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const data = {
             nome: formData.get('nome').trim(),
             email: formData.get('email').trim(),
+            whatsapp: formData.get('whatsapp').trim(),
             empresa: formData.get('empresa').trim(),
             servico: formData.get('servico'),
             mensagem: formData.get('mensagem').trim(),
@@ -1015,6 +1090,8 @@ document.addEventListener('DOMContentLoaded', function() {
             pentestDocumentacao: formData.get('pentestDocumentacao') ? formData.get('pentestDocumentacao').trim() : '',
             privacy: formData.get('privacy') === 'on'
         };
+
+        const isMinimalSubmit = !data.empresa && !data.mensagem && !hasPentestDetails(data);
         
         console.log('Form data extracted:', data);
 
@@ -1030,6 +1107,12 @@ document.addEventListener('DOMContentLoaded', function() {
             service_value: data.servico,
             service_label: getServiceLabel(data.servico)
         });
+        if (isMinimalSubmit) {
+            trackGAEvent('form_submit_minimal', {
+                form_id: 'contactForm',
+                service_value: data.servico
+            });
+        }
         showMessage('Abrindo WhatsApp com sua mensagem preenchida em nova aba...', 'success');
         setLoading(false);
     });

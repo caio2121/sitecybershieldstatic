@@ -834,6 +834,58 @@ body {
     margin-bottom: var(--space-24);
 }
 
+.form-contact-group {
+    margin-bottom: var(--space-24);
+    padding: var(--space-16);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
+}
+
+.form-contact-group__label {
+    margin: 0 0 var(--space-8);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.form-contact-group .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.pentest-details {
+    margin-top: var(--space-8);
+    padding: var(--space-16);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
+}
+
+.pentest-details__summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-primary);
+    list-style: none;
+}
+
+.pentest-details__summary::-webkit-details-marker {
+    display: none;
+}
+
+.pentest-details__summary::before {
+    content: '+ ';
+    font-weight: 700;
+}
+
+.pentest-details[open] .pentest-details__summary::before {
+    content: '− ';
+}
+
+.pentest-details__hint {
+    margin: var(--space-8) 0 var(--space-16);
+    color: var(--color-text-muted, #64748b);
+    font-size: 0.9rem;
+}
+
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -1635,11 +1687,16 @@ body {
     color: var(--color-ink);
 }
 
+.lead-capture .contact-form {
+    color: var(--color-ink);
+}
+
 .lead-form-content h4 {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
     text-align: center;
+    color: var(--color-ink);
 }
 
 .form-disclaimer {

@@ -343,7 +343,7 @@
                         <li><i class="fas fa-check"></i> Reunião de alinhamento</li>
                         <li><i class="fas fa-check"></i> Roadmap de melhorias por prioridade</li>
                     </ul>
-                    <a href="#contato" class="btn btn-primary">Solicitar diagnóstico gratuito</a>
+                    <a href="?servico=diagnostico#contato" class="btn btn-primary">Solicitar diagnóstico gratuito</a>
                 </div>
 
                 <div class="service-card">
@@ -357,7 +357,7 @@
                         <li><i class="fas fa-check"></i> Relatório executivo + técnico</li>
                         <li><i class="fas fa-check"></i> Plano de correção priorizado</li>
                     </ul>
-                    <a href="#contato" class="btn btn-outline">Solicitar pentest</a>
+                    <a href="?servico=pentest#contato" class="btn btn-outline">Solicitar pentest</a>
                 </div>
 
                 <div class="service-card">
@@ -371,7 +371,7 @@
                         <li><i class="fas fa-check"></i> Políticas de segurança e acesso</li>
                         <li><i class="fas fa-check"></i> Monitoramento contínuo 24/7</li>
                     </ul>
-                    <a href="#contato" class="btn btn-outline">Solicitar hardening</a>
+                    <a href="?servico=hardening#contato" class="btn btn-outline">Solicitar hardening</a>
                 </div>
             </div>
         </div>
@@ -768,7 +768,7 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h2>Solicite uma Avaliação Gratuita de Cibersegurança</h2>
-                    <p>Descubra as vulnerabilidades da sua empresa antes que hackers as encontrem. Avaliação sem custo e sem compromisso.</p>
+                    <p>Descubra as vulnerabilidades da sua empresa antes que hackers as encontrem. Avaliação sem custo e sem compromisso. Leva menos de 1 minuto — um especialista responde em até 2h úteis.</p>
                     <div class="contact-methods">
                         <div class="contact-method">
                             <i class="fas fa-envelope"></i>
@@ -810,22 +810,40 @@
                                 <div id="name-help" class="form-help">Digite seu nome completo (mínimo 2 caracteres)</div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="contact-email" class="form-label">
-                                    E-mail <span class="required" aria-label="campo obrigatório">*</span>
-                                </label>
-                                <input 
-                                    type="email" 
-                                    id="contact-email"
-                                    name="email" 
-                                    placeholder="seu@email.com"
-                                    required
-                                    autocomplete="email"
-                                    aria-describedby="email-help"
-                                    aria-required="true"
-                                    spellcheck="false"
-                                >
-                                <div id="email-help" class="form-help">Digite um e-mail válido para contato</div>
+                            <div class="form-contact-group">
+                                <p class="form-contact-group__label">
+                                    Como podemos falar com você? <span class="required" aria-label="campo obrigatório">*</span>
+                                </p>
+                                <p id="contact-group-help" class="form-help">Informe e-mail, WhatsApp ou ambos</p>
+
+                                <div class="form-group">
+                                    <label for="contact-email" class="form-label">E-mail</label>
+                                    <input 
+                                        type="email" 
+                                        id="contact-email"
+                                        name="email" 
+                                        placeholder="seu@email.com"
+                                        autocomplete="email"
+                                        aria-describedby="contact-group-help email-help"
+                                        spellcheck="false"
+                                    >
+                                    <div id="email-help" class="form-help">Opcional se informar WhatsApp</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contact-whatsapp" class="form-label">WhatsApp</label>
+                                    <input 
+                                        type="tel" 
+                                        id="contact-whatsapp"
+                                        name="whatsapp" 
+                                        placeholder="(21) 99999-9999"
+                                        autocomplete="tel"
+                                        aria-describedby="contact-group-help whatsapp-help"
+                                        inputmode="tel"
+                                        spellcheck="false"
+                                    >
+                                    <div id="whatsapp-help" class="form-help">Opcional se informar e-mail</div>
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -867,9 +885,13 @@
                             </div>
 
                             <div id="pentest-questionnaire" hidden aria-live="polite">
+                                <details class="pentest-details">
+                                    <summary class="pentest-details__summary">Detalhes do escopo — opcional</summary>
+                                    <p class="pentest-details__hint">Preencha se já souber; ajuda a acelerar o orçamento. Não é obrigatório para o primeiro contato.</p>
+
                                 <div class="form-group">
                                     <label for="pentest-type" class="form-label">
-                                        Tipo de Pentest <span class="required" aria-label="campo obrigatório">*</span>
+                                        Tipo de Pentest
                                     </label>
                                     <select
                                         id="pentest-type"
@@ -885,7 +907,7 @@
 
                                 <div class="form-group">
                                     <label for="pentest-target" class="form-label">
-                                        Alvo Principal <span class="required" aria-label="campo obrigatório">*</span>
+                                        Alvo Principal
                                     </label>
                                     <select
                                         id="pentest-target"
@@ -903,7 +925,7 @@
 
                                 <div class="form-group">
                                     <label for="pentest-domains" class="form-label">
-                                        Quantidade de Domínios/Subdomínios <span class="required" aria-label="campo obrigatório">*</span>
+                                        Quantidade de Domínios/Subdomínios
                                     </label>
                                     <input
                                         type="number"
@@ -921,7 +943,7 @@
 
                                 <div class="form-group">
                                     <label for="pentest-endpoints" class="form-label">
-                                        Quantidade Aproximada de Endpoints de API <span class="required" aria-label="campo obrigatório">*</span>
+                                        Quantidade Aproximada de Endpoints de API
                                     </label>
                                     <input
                                         type="number"
@@ -939,7 +961,7 @@
 
                                 <div class="form-group">
                                     <label for="pentest-docs" class="form-label">
-                                        Possui documentação técnica da API? <span class="required" aria-label="campo obrigatório">*</span>
+                                        Possui documentação técnica da API?
                                     </label>
                                     <select
                                         id="pentest-docs"
@@ -953,26 +975,24 @@
                                     </select>
                                     <div id="pentest-docs-help" class="form-help">Indique se existe documentação técnica disponível</div>
                                 </div>
+                                </details>
                             </div>
 
                             <div class="form-group">
                                  <label for="contact-message-text" class="form-label">
-                                     Mensagem <span class="required" aria-label="campo obrigatório">*</span>
+                                     Mensagem
                                  </label>
                                  <textarea 
                                      id="contact-message-text"
                                      name="mensagem" 
                                      placeholder="Descreva como podemos ajudar sua empresa..."
                                      rows="5" 
-                                     required 
-                                     minlength="10" 
                                      maxlength="2000"
                                      autocomplete="off"
                                      aria-describedby="message-help message-counter"
-                                     aria-required="true"
                                      spellcheck="true"
                                  ></textarea>
-                                 <div id="message-help" class="form-help">Descreva sua necessidade ou dúvida (mínimo 10 caracteres)</div>
+                                 <div id="message-help" class="form-help">Opcional: conte brevemente sua necessidade</div>
                                  <div id="message-counter" class="form-counter" aria-live="polite">0 / 2000 caracteres</div>
                              </div>
 
@@ -1011,7 +1031,7 @@
                                         <span>Enviando...</span>
                                     </span>
                                 </button>
-                                <div id="submit-help" class="form-help">Retornamos em até 2 horas úteis</div>
+                                <div id="submit-help" class="form-help">Leva menos de 1 minuto. Retornamos em até 2 horas úteis.</div>
                             </div>
                         </fieldset>
                     </form>
