@@ -8,53 +8,105 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
+      var cyberShieldConsent = 'denied';
+      try {
+        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+      } catch (e) {}
+      gtag('consent', 'default', {
+        'analytics_storage': cyberShieldConsent,
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
       gtag('config', 'G-K46VQ6H8MS');
     </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="manifest" href="/manifest.json">
+
     <!-- SEO Meta Tags -->
     <title>Blog CyberShield - Cibersegurança para PMEs | Dicas e Insights</title>
     <meta name="description" content="Blog especializado em cibersegurança para PMEs. Dicas práticas sobre LGPD, pentest, vulnerabilidades web, ISO 27001 e muito mais. Conteúdo gratuito e atualizado.">
     <meta name="keywords" content="blog cibersegurança, LGPD, pentest, vulnerabilidades web, ISO 27001, segurança digital, PMEs, consultoria segurança">
     <meta name="author" content="CyberShield">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.cybershieldgroup.com.br/blog/">
+    <meta property="og:url" content="https://cybershieldgroup.com.br/blog/">
     <meta property="og:title" content="Blog CyberShield - Cibersegurança para PMEs">
     <meta property="og:description" content="Blog especializado em cibersegurança para PMEs. Dicas práticas sobre LGPD, pentest, vulnerabilidades web, ISO 27001 e muito mais.">
-    <meta property="og:image" content="https://www.cybershieldgroup.com.br/images/blog-og.jpg">
-    
+    <meta property="og:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.cybershieldgroup.com.br/blog/">
+    <meta property="twitter:url" content="https://cybershieldgroup.com.br/blog/">
     <meta property="twitter:title" content="Blog CyberShield - Cibersegurança para PMEs">
     <meta property="twitter:description" content="Blog especializado em cibersegurança para PMEs. Dicas práticas sobre LGPD, pentest, vulnerabilidades web, ISO 27001 e muito mais.">
-    <meta property="twitter:image" content="https://www.cybershieldgroup.com.br/images/blog-og.jpg">
-    
+    <meta property="twitter:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.png">
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.cybershieldgroup.com.br/blog/">
-    
+    <link rel="canonical" href="https://cybershieldgroup.com.br/blog/">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Blog",
+          "@id": "https://cybershieldgroup.com.br/blog/#blog",
+          "name": "Blog CyberShield",
+          "url": "https://cybershieldgroup.com.br/blog/",
+          "description": "Conteúdo especializado em cibersegurança para empresas, com temas de pentest, LGPD, vulnerabilidades web, supply chain e segurança da informação.",
+          "publisher": {
+            "@type": "Organization",
+            "@id": "https://cybershieldgroup.com.br/#organization",
+            "name": "CyberShield",
+            "url": "https://cybershieldgroup.com.br/"
+          },
+          "inLanguage": "pt-BR"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://cybershieldgroup.com.br/blog/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://cybershieldgroup.com.br/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://cybershieldgroup.com.br/blog/"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
     <!-- Preconnect para performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
+
     <!-- Stylesheets (tokens do site principal para consistência) -->
     <link rel="stylesheet" href="../css/tokens.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         /* Estilos específicos do blog */
         .blog-hero {
@@ -63,20 +115,20 @@
             padding: 80px 0;
             text-align: center;
         }
-        
+
         .blog-hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
             font-weight: 700;
         }
-        
+
         .blog-hero p {
             font-size: 1.2rem;
             opacity: 0.9;
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -85,7 +137,7 @@
             min-height: 400px;
             align-items: start;
         }
-        
+
         .blog-card {
             background: white;
             border-radius: 12px;
@@ -95,12 +147,12 @@
             opacity: 1;
             display: block;
         }
-        
+
         .blog-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 30px rgba(0,0,0,0.15);
         }
-        
+
         .blog-card-image {
             height: 200px;
             display: flex;
@@ -109,23 +161,23 @@
             color: white;
             font-size: 3rem;
         }
-        
+
         .blog-card-content {
             padding: 1.5rem;
         }
-        
+
         .blog-card h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
             color: #333;
         }
-        
+
         .blog-card p {
             color: #666;
             margin-bottom: 1rem;
             line-height: 1.6;
         }
-        
+
         .blog-card-meta {
             display: flex;
             justify-content: space-between;
@@ -134,13 +186,13 @@
             color: #888;
             margin-bottom: 1rem;
         }
-        
+
         .blog-card-tags {
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
         }
-        
+
         .blog-tag {
             background: #f0f4ff;
             color: #667eea;
@@ -149,12 +201,12 @@
             font-size: 0.8rem;
             font-weight: 500;
         }
-        
+
         .blog-card .btn {
             width: 100%;
             text-align: center;
         }
-        
+
         .blog-categories {
             display: flex;
             justify-content: center;
@@ -162,7 +214,7 @@
             margin: 2rem 0;
             flex-wrap: wrap;
         }
-        
+
         .category-btn {
             background: white;
             border: 2px solid #10b981;
@@ -174,7 +226,7 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        
+
         .category-btn:hover,
         .category-btn.active {
             background: #10b981;
@@ -183,20 +235,20 @@
             box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
             transform: translateY(-2px);
         }
-        
+
         .blog-newsletter {
             background: #10172a;
             color: white;
             padding: 3rem 0;
             margin: 3rem 0;
         }
-        
+
         .newsletter-content {
             text-align: center;
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .newsletter-form {
             display: flex;
             gap: 1rem;
@@ -204,7 +256,7 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-        
+
         .newsletter-form input {
             flex: 1;
             min-width: 250px;
@@ -213,25 +265,25 @@
             border-radius: 8px;
             font-size: 1rem;
         }
-        
+
         .newsletter-form .btn {
             padding: 0.8rem 2rem;
             white-space: nowrap;
         }
-        
+
         @media (max-width: 768px) {
             .blog-hero h1 {
                 font-size: 2rem;
             }
-            
+
             .blog-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .newsletter-form {
                 flex-direction: column;
             }
-            
+
             .newsletter-form input {
                 min-width: auto;
             }
@@ -259,6 +311,8 @@
             </div>
         </div>
     </header>
+
+    <main id="main-content">
 
     <!-- Blog Hero -->
     <section class="blog-hero">
@@ -379,6 +433,8 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -421,6 +477,7 @@
         </div>
     </footer>
 
+    <script src="../js/analytics.js"></script>
     <script src="js/main.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -458,4 +515,4 @@
     });
     </script>
 </body>
-</html> 
+</html>

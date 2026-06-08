@@ -27,8 +27,10 @@ window.CyberShieldConfig = {
             whatsapp: '5521920137715'
         },
         address: {
-            city: 'Rio de Janeiro',
-            state: 'RJ',
+            street: 'Rua Pais Leme, 215, Conjunto 1713',
+            city: 'São Paulo',
+            state: 'SP',
+            postalCode: '05424-150',
             country: 'Brasil'
         }
     },
@@ -66,8 +68,13 @@ window.CyberShieldConfig = {
         downloadTracking: true,
         formValidation: true,
         analytics: true,
-        cookieConsent: false,
+        cookieConsent: true,
         formsSubmissionEnabled: true
+    },
+
+    analytics: {
+        measurementId: 'G-K46VQ6H8MS',
+        consentStorageKey: 'cs_cookie_consent'
     }
 };
 

@@ -8,14 +8,32 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
+      var cyberShieldConsent = 'denied';
+      try {
+        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+      } catch (e) {}
+      gtag('consent', 'default', {
+        'analytics_storage': cyberShieldConsent,
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
       gtag('config', 'G-K46VQ6H8MS');
     </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
     <title>Política de Privacidade - CyberShield</title>
     <meta name="description" content="Política de Privacidade da CyberShield - Como coletamos, usamos e protegemos seus dados pessoais.">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cybershieldgroup.com.br/politica-privacidade.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cybershieldgroup.com.br/politica-privacidade.html">
+    <meta property="og:title" content="Política de Privacidade - CyberShield">
+    <meta property="og:description" content="Como a CyberShield coleta, usa e protege dados pessoais em conformidade com a LGPD.">
+    <meta property="og:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -135,6 +153,7 @@
         </div>
     </header>
 
+    <main id="main-content">
     <!-- Privacy Policy Content -->
     <section class="privacy-policy">
         <div class="container">
@@ -273,6 +292,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">

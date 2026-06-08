@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K46VQ6H8MS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      var cyberShieldConsent = 'denied';
+      try {
+        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+      } catch (e) {}
+      gtag('consent', 'default', {
+        'analytics_storage': cyberShieldConsent,
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
+      gtag('config', 'G-K46VQ6H8MS');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <title>Página não encontrada | CyberShield</title>
+    <meta name="description" content="A página solicitada não foi encontrada. Acesse os serviços, blog ou canais de contato da CyberShield.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://cybershieldgroup.com.br/404.html">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .not-found {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 120px 1.5rem 4rem;
+            color: #fff;
+            background: var(--color-dark-1);
+        }
+
+        .not-found__content {
+            width: min(760px, 100%);
+            text-align: center;
+        }
+
+        .not-found__code {
+            display: block;
+            color: var(--color-primary);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0;
+            margin-bottom: 1rem;
+        }
+
+        .not-found h1 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            line-height: 1.08;
+            margin-bottom: 1rem;
+        }
+
+        .not-found p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin: 0 auto 2rem;
+            max-width: 620px;
+        }
+
+        .not-found__actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" style="color: inherit; text-decoration: none;">
+                    <img src="images/logo-header.png" alt="CyberShield" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#servicos">Serviços</a>
+                <a href="index.html#sobre">Sobre</a>
+                <a href="index.html#contato">Contato</a>
+                <a href="blog/index.html">Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="not-found">
+        <div class="not-found__content">
+            <span class="not-found__code">Erro 404</span>
+            <h1>Página não encontrada</h1>
+            <p>O endereço acessado não existe ou foi movido. Você pode voltar para a página inicial, conhecer os serviços de cibersegurança ou falar diretamente com um especialista.</p>
+            <div class="not-found__actions">
+                <a href="index.html" class="btn btn-primary"><i class="fas fa-home" aria-hidden="true"></i> Voltar ao início</a>
+                <a href="index.html#servicos" class="btn btn-secondary"><i class="fas fa-shield-alt" aria-hidden="true"></i> Ver serviços</a>
+                <a href="index.html#contato" class="btn btn-outline"><i class="fas fa-paper-plane" aria-hidden="true"></i> Fale conosco</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

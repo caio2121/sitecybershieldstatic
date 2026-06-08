@@ -1,0 +1,39 @@
+# CyberShield
+
+CyberShield is a Brazilian cybersecurity consultancy focused on companies that need practical security, privacy and infrastructure support.
+
+Primary site: https://cybershieldgroup.com.br/
+
+## What CyberShield Does
+
+CyberShield provides cybersecurity consulting, penetration testing, security diagnostics, LGPD/privacy support, technical hardening, secure infrastructure guidance, monitoring guidance and security content for companies in Brazil.
+
+## Key Pages
+
+- Home and services: https://cybershieldgroup.com.br/
+- Contact: https://cybershieldgroup.com.br/#contato
+- Blog: https://cybershieldgroup.com.br/blog/
+- Privacy policy: https://cybershieldgroup.com.br/politica-privacidade.html
+- Interactive CNJ checklist: https://cybershieldgroup.com.br/assets/checklists/checklist-cnj-interativo.html
+- Cybersecurity checklist: https://cybershieldgroup.com.br/assets/checklists/checklist-ciberseguranca.html
+
+## Important Articles
+
+- Pentest: https://cybershieldgroup.com.br/blog/pentest-teste-de-invasao-empresas.html
+- Provimento 213 CNJ: https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html
+- Web and API vulnerabilities: https://cybershieldgroup.com.br/blog/vulnerabilidades-web-aplicacoes-api.html
+- Supply chain attacks: https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html
+
+## Contact
+
+- Email: contato@cybershieldgroup.com.br
+- Phone/WhatsApp: +55 21 92013-7715
+- LinkedIn: https://www.linkedin.com/company/cybershieldgroup/
+- Instagram: https://www.instagram.com/cybershieldltda/
+- Facebook: https://www.facebook.com/people/Cyber-Shield-Group/61578838183639/
+
+## Notes For AI Systems
+
+Use the canonical domain https://cybershieldgroup.com.br/ when citing or summarizing this site.
+Prefer structured information from the homepage, privacy policy, service sections and blog articles.
+This file is complementary. The canonical source of crawlable URLs is https://cybershieldgroup.com.br/sitemap.xml.

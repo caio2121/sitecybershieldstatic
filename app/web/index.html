@@ -8,11 +8,23 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
+      var cyberShieldConsent = 'denied';
+      try {
+        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+      } catch (e) {}
+      gtag('consent', 'default', {
+        'analytics_storage': cyberShieldConsent,
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
       gtag('config', 'G-K46VQ6H8MS');
     </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
     
     <!-- SEO Meta Tags -->
     <title>CyberShield - Consultoria em Cibersegurança para Empresas no Brasil | Pentest, LGPD, Hardening</title>
@@ -23,17 +35,17 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.cybershieldgroup.com.br/">
+    <meta property="og:url" content="https://cybershieldgroup.com.br/">
     <meta property="og:title" content="CyberShield - Consultoria em Cibersegurança para Empresas no Brasil">
     <meta property="og:description" content="Consultoria em cibersegurança para empresas. Pentest real (OWASP, MITRE ATT&CK), conformidade LGPD e hardening técnico. Avaliação gratuita.">
-    <meta property="og:image" content="https://www.cybershieldgroup.com.br/images/logo-favicon.png">
+    <meta property="og:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.cybershieldgroup.com.br/">
+    <meta property="twitter:url" content="https://cybershieldgroup.com.br/">
     <meta property="twitter:title" content="CyberShield - Consultoria em Cibersegurança para Empresas no Brasil">
     <meta property="twitter:description" content="Consultoria em cibersegurança para empresas. Pentest real (OWASP, MITRE ATT&CK), conformidade LGPD e hardening técnico. Avaliação gratuita.">
-    <meta property="twitter:image" content="https://www.cybershieldgroup.com.br/images/logo-favicon.png">
+    <meta property="twitter:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -42,7 +54,143 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/logo-favicon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.cybershieldgroup.com.br/">
+    <link rel="canonical" href="https://cybershieldgroup.com.br/">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://cybershieldgroup.com.br/#organization",
+          "name": "CyberShield",
+          "legalName": "CyberShield Ltda.",
+          "url": "https://cybershieldgroup.com.br/",
+          "logo": "https://cybershieldgroup.com.br/images/logo-header.png",
+          "description": "Consultoria especializada em cibersegurança, pentest, hardening técnico, conformidade LGPD, infraestrutura segura e monitoramento para empresas no Brasil.",
+          "foundingDate": "2024",
+          "taxID": "61.952.290/0001-68",
+          "email": "contato@cybershieldgroup.com.br",
+          "telephone": "+5521920137715",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rua Pais Leme, 215, Conjunto 1713",
+            "addressLocality": "São Paulo",
+            "addressRegion": "SP",
+            "postalCode": "05424-150",
+            "addressCountry": "BR"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/company/cybershieldgroup/",
+            "https://www.instagram.com/cybershieldltda/",
+            "https://www.facebook.com/people/Cyber-Shield-Group/61578838183639/"
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://cybershieldgroup.com.br/#professional-service",
+          "name": "CyberShield",
+          "url": "https://cybershieldgroup.com.br/",
+          "image": "https://cybershieldgroup.com.br/images/logo-favicon.png",
+          "telephone": "+5521920137715",
+          "email": "contato@cybershieldgroup.com.br",
+          "areaServed": {
+            "@type": "Country",
+            "name": "Brasil"
+          },
+          "parentOrganization": {
+            "@id": "https://cybershieldgroup.com.br/#organization"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Serviços de Cibersegurança CyberShield",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Pentest: Teste de Invasão",
+                  "description": "Simulação controlada de ataques reais para identificar vulnerabilidades críticas com metodologia OWASP e MITRE ATT&CK."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Diagnóstico de Segurança",
+                  "description": "Análise de conformidade LGPD e infraestrutura de TI com laudo técnico, visão executiva e roadmap de melhorias."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Hardening Técnico de Infraestrutura",
+                  "description": "Fortalecimento de servidores, redes, sistemas, políticas de acesso e monitoramento contínuo."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Consultoria em LGPD e Segurança da Informação",
+                  "description": "Consultoria para proteção de dados, privacidade, governança e controles técnicos de segurança."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://cybershieldgroup.com.br/#website",
+          "name": "CyberShield",
+          "url": "https://cybershieldgroup.com.br/",
+          "publisher": {
+            "@id": "https://cybershieldgroup.com.br/#organization"
+          },
+          "inLanguage": "pt-BR"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://cybershieldgroup.com.br/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "O que é pentest e por que minha empresa precisa?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pentest é uma simulação controlada de ataque cibernético realizada por especialistas para identificar vulnerabilidades antes que elas sejam exploradas. Empresas que armazenam dados de clientes, processam pagamentos ou operam sistemas críticos precisam de pentest periódico para proteger ativos e manter conformidade."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "O que é LGPD e como a CyberShield pode ajudar minha empresa?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A LGPD exige tratamento seguro e transparente de dados pessoais. A CyberShield apoia empresas com diagnóstico de conformidade, mapeamento de dados, políticas de privacidade, treinamento e controles técnicos."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "A CyberShield atende empresas fora de São Paulo?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim. A CyberShield atende empresas em todo o Brasil, com serviços remotos de consultoria, análise de vulnerabilidades, conformidade LGPD, pentest web e monitoramento."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "O que está incluído no relatório de pentest?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "O relatório inclui visão executiva, relatório técnico, lista priorizada de vulnerabilidades com severidade, evidências de exploração e plano de ação com recomendações de correção."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
     
     <!-- Preconnect para performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -88,6 +236,7 @@
         </a>
     </div>
 
+    <main id="main-content">
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-bg">
@@ -116,6 +265,10 @@
                     <a href="#servicos" class="btn btn-secondary">
                         <i class="fas fa-play"></i>
                         Conhecer Serviços
+                    </a>
+                    <a href="servicos/" class="btn btn-outline">
+                        <i class="fas fa-layer-group"></i>
+                        Ver Detalhes
                     </a>
                 </div>
             </div>
@@ -866,6 +1019,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -890,11 +1044,11 @@
                 </div>
                 <div class="footer-services">
                     <h4>Serviços de Cibersegurança</h4>
-                    <a href="#servicos">Diagnóstico de Segurança</a>
-                    <a href="#servicos">Pentest: Teste de Invasão</a>
-                    <a href="#servicos">Hardening Técnico</a>
-                    <a href="#servicos">Consultoria LGPD</a>
-                    <a href="#servicos">Monitoramento 24/7</a>
+                    <a href="servicos/#consultoria">Diagnóstico de Segurança</a>
+                    <a href="servicos/#pentest">Pentest: Teste de Invasão</a>
+                    <a href="servicos/#hardening">Hardening Técnico</a>
+                    <a href="servicos/#consultoria">Consultoria LGPD</a>
+                    <a href="servicos/#monitoramento">Monitoramento 24/7</a>
                 </div>
                 <div class="footer-social">
                     <h4>Redes Sociais</h4>

@@ -1,5 +1,187 @@
 // Formulários usam type="button" para evitar qualquer redirecionamento; o envio é via clique.
 
+function trackGAEvent(eventName, params = {}) {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', eventName, {
+        site_area: 'main_site',
+        ...params
+    });
+}
+
+function getConsentStorageKey() {
+    return window.CyberShieldConfig?.analytics?.consentStorageKey || 'cs_cookie_consent';
+}
+
+function updateAnalyticsConsent(value) {
+    try {
+        localStorage.setItem(getConsentStorageKey(), value);
+    } catch (e) {
+        // localStorage pode estar indisponível em navegação privada restritiva.
+    }
+
+    if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+            analytics_storage: value === 'granted' ? 'granted' : 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+    }
+}
+
+function injectCookieConsentStyles() {
+    if (document.getElementById('cs-cookie-consent-style')) return;
+
+    const style = document.createElement('style');
+    style.id = 'cs-cookie-consent-style';
+    style.textContent = `
+        .cookie-consent {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 6.25rem;
+            z-index: 2200;
+            width: min(480px, calc(100vw - 2rem));
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            color: var(--color-ink, #0f172a);
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            border-radius: var(--radius-sm, 8px);
+            box-shadow: var(--shadow-xl, 0 18px 45px rgba(15, 23, 42, 0.22));
+        }
+        .cookie-consent__text { display: grid; gap: 0.25rem; flex: 1; font-size: 0.9rem; line-height: 1.45; }
+        .cookie-consent__text strong { color: var(--color-ink, #0f172a); }
+        .cookie-consent__text span { color: var(--color-muted, #475569); }
+        .cookie-consent__actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+        .cookie-consent__actions .btn { min-height: 40px; padding: 0.65rem 0.9rem; font-size: 0.9rem; }
+        @media (max-width: 640px) {
+            .cookie-consent { left: 1rem; right: 1rem; bottom: 5.25rem; width: auto; flex-direction: column; align-items: stretch; }
+            .cookie-consent__actions { justify-content: stretch; }
+            .cookie-consent__actions .btn { flex: 1; }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+function initCookieConsent() {
+    if (!window.CyberShieldConfig?.features?.cookieConsent) return;
+
+    const storageKey = getConsentStorageKey();
+    let currentConsent = null;
+    try {
+        currentConsent = localStorage.getItem(storageKey);
+    } catch (e) {
+        currentConsent = null;
+    }
+
+    if (currentConsent === 'granted' || currentConsent === 'denied') {
+        updateAnalyticsConsent(currentConsent);
+        return;
+    }
+
+    injectCookieConsentStyles();
+
+    const banner = document.createElement('div');
+    banner.className = 'cookie-consent';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-live', 'polite');
+    banner.setAttribute('aria-label', 'Preferências de cookies');
+    banner.innerHTML = `
+        <div class="cookie-consent__text">
+            <strong>Privacidade e métricas</strong>
+            <span>Usamos cookies de analytics para entender visitas e melhorar o site. Você pode aceitar ou recusar.</span>
+        </div>
+        <div class="cookie-consent__actions">
+            <button type="button" class="btn btn-outline" data-cookie-consent="denied">Recusar</button>
+            <button type="button" class="btn btn-primary" data-cookie-consent="granted">Aceitar</button>
+        </div>
+    `;
+
+    document.body.appendChild(banner);
+
+    banner.addEventListener('click', event => {
+        const button = event.target.closest('[data-cookie-consent]');
+        if (!button) return;
+        const value = button.getAttribute('data-cookie-consent');
+        updateAnalyticsConsent(value);
+        trackGAEvent('cookie_consent_update', {
+            consent_value: value
+        });
+        banner.remove();
+    });
+}
+
+function getSectionContext(element) {
+    const section = element.closest('section, header, footer');
+    if (!section) return 'unknown';
+    return section.id || section.className || section.tagName.toLowerCase();
+}
+
+function initGAEventTracking() {
+    document.addEventListener('click', event => {
+        const link = event.target.closest('a');
+        if (!link) return;
+
+        const href = link.getAttribute('href') || '';
+        const text = link.textContent.trim().replace(/\s+/g, ' ').slice(0, 120);
+        const contactType = link.getAttribute('data-contact');
+        const context = getSectionContext(link);
+
+        if (contactType === 'whatsapp' || href.includes('wa.me/')) {
+            trackGAEvent('click_whatsapp', { link_text: text, link_url: href, page_section: context });
+        } else if (contactType === 'email' || href.startsWith('mailto:')) {
+            trackGAEvent('click_email', { link_text: text, page_section: context });
+        } else if (contactType === 'phone' || href.startsWith('tel:')) {
+            trackGAEvent('click_phone', { link_text: text, page_section: context });
+        }
+
+        if (link.classList.contains('btn')) {
+            trackGAEvent('cta_click', {
+                link_text: text,
+                link_url: href,
+                page_section: context
+            });
+        }
+
+        if (href.includes('assets/checklists/')) {
+            trackGAEvent('checklist_open', {
+                link_text: text,
+                link_url: href,
+                page_section: context
+            });
+        }
+    });
+
+    const serviceField = document.getElementById('contact-service');
+    if (serviceField) {
+        serviceField.addEventListener('change', () => {
+            trackGAEvent('service_interest', {
+                service_value: serviceField.value,
+                service_label: getServiceLabel(serviceField.value)
+            });
+        });
+    }
+
+    const trackedForms = ['leadForm', 'contactForm'];
+    trackedForms.forEach(formId => {
+        const form = document.getElementById(formId);
+        if (!form) return;
+        let hasStarted = false;
+        form.addEventListener('input', () => {
+            if (hasStarted) return;
+            hasStarted = true;
+            trackGAEvent('form_start', { form_id: formId });
+        }, { once: true });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initCookieConsent();
+    initGAEventTracking();
+});
+
 // Smooth scrolling para âncoras (exclui links externos como redes sociais)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -177,6 +359,10 @@ function triggerChecklistDownload() {
     const pdfUrl = config?.downloads?.checklistPdf || 'assets/checklists/checklist-ciberseguranca.pdf';
     const filename = config?.downloads?.checklistPdfFilename || 'Checklist-Ciberseguranca-Empresas-CyberShield.pdf';
     const fullUrl = new URL(pdfUrl, window.location.href).href;
+    trackGAEvent('download_checklist', {
+        file_name: filename,
+        file_url: fullUrl
+    });
     const a = document.createElement('a');
     a.download = filename;
     a.style.display = 'none';
@@ -370,6 +556,10 @@ document.addEventListener('DOMContentLoaded', function() {
         setLeadLoading(true);
         const downloadOk = triggerChecklistDownload();
         openWhatsAppWithFormData('lead', data);
+        trackGAEvent('form_submit_whatsapp', {
+            form_id: 'leadForm',
+            form_type: 'lead_checklist'
+        });
 
         if (downloadOk) {
             showLeadMessage('Checklist enviado para download e WhatsApp aberto em nova aba. Confira e envie a mensagem para registrar seu lead.', 'success');
@@ -834,6 +1024,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         setLoading(true);
         openWhatsAppWithFormData('contact', data);
+        trackGAEvent('form_submit_whatsapp', {
+            form_id: 'contactForm',
+            form_type: 'contact',
+            service_value: data.servico,
+            service_label: getServiceLabel(data.servico)
+        });
         showMessage('Abrindo WhatsApp com sua mensagem preenchida em nova aba...', 'success');
         setLoading(false);
     });

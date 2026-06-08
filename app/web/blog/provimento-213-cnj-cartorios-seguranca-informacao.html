@@ -8,11 +8,23 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
+      var cyberShieldConsent = 'denied';
+      try {
+        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+      } catch (e) {}
+      gtag('consent', 'default', {
+        'analytics_storage': cyberShieldConsent,
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
       gtag('config', 'G-K46VQ6H8MS');
     </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
 
     <!-- SEO Meta Tags -->
     <title>Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais | Blog CyberShield</title>
@@ -23,26 +35,83 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://www.cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
+    <meta property="og:url" content="https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
     <meta property="og:title" content="Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais">
     <meta property="og:description" content="Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.">
-    <meta property="og:image" content="https://www.cybershieldgroup.com.br/images/blog-og.jpg">
+    <meta property="og:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
+    <meta property="twitter:url" content="https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
     <meta property="twitter:title" content="Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais">
     <meta property="twitter:description" content="Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.">
-    <meta property="twitter:image" content="https://www.cybershieldgroup.com.br/images/blog-og.jpg">
+    <meta property="twitter:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.png">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
+    <link rel="canonical" href="https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html#article",
+          "headline": "Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais",
+          "description": "Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.",
+          "url": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html",
+          "image": "https://cybershieldgroup.com.br/images/logo-favicon.png",
+          "inLanguage": "pt-BR",
+          "author": {
+            "@type": "Organization",
+            "name": "CyberShield"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "CyberShield",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://cybershieldgroup.com.br/images/logo-header.png"
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://cybershieldgroup.com.br/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://cybershieldgroup.com.br/blog/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Provimento 213 do CNJ",
+              "item": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Preconnect para performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,6 +145,8 @@
             </div>
         </div>
     </header>
+
+    <main id="main-content">
 
     <!-- Post Hero -->
     <section class="post-hero">
@@ -208,6 +279,8 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -250,6 +323,7 @@
         </div>
     </footer>
 
+    <script src="../js/analytics.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

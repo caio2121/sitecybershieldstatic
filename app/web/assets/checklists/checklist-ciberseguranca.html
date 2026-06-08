@@ -8,12 +8,32 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
+      var cyberShieldConsent = 'denied';
+      try {
+        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+      } catch (e) {}
+      gtag('consent', 'default', {
+        'analytics_storage': cyberShieldConsent,
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
     gtag('config', 'G-K46VQ6H8MS');
   </script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
   <title>Checklist de Cibersegurança para Empresas | CyberShield</title>
+  <meta name="description" content="Checklist gratuito de cibersegurança para empresas com itens de LGPD, governança, proteção de dados, vulnerabilidades e resposta a incidentes.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://cybershieldgroup.com.br/assets/checklists/checklist-ciberseguranca.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cybershieldgroup.com.br/assets/checklists/checklist-ciberseguranca.html">
+  <meta property="og:title" content="Checklist de Cibersegurança para Empresas | CyberShield">
+  <meta property="og:description" content="Checklist gratuito para avaliar controles de cibersegurança, LGPD, vulnerabilidades e resposta a incidentes.">
+  <meta property="og:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
 
   <meta name="document-number" content="Checklist CS 001">
   <meta name="document-client" content="Material gratuito">
@@ -140,6 +160,7 @@
   </style>
 </head>
 <body>
+<main id="main-content">
   <div class="watermark" aria-hidden="true">
     <div class="wm-center">
       <img src="../../images/logo-favicon.png" alt="Logo CyberShield">
@@ -289,6 +310,8 @@
     </div>
   </section>
 
+</main>
+
   <script>
     (function () {
       const docNo = (document.querySelector('meta[name="document-number"]')?.getAttribute('content') || '').trim();
@@ -301,5 +324,6 @@
       });
     })();
   </script>
+  <script src="../../js/analytics.js"></script>
 </body>
 </html>

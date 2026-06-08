@@ -8,11 +8,23 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
+      var cyberShieldConsent = 'denied';
+      try {
+        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+      } catch (e) {}
+      gtag('consent', 'default', {
+        'analytics_storage': cyberShieldConsent,
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+
       gtag('config', 'G-K46VQ6H8MS');
     </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
 
     <!-- SEO Meta Tags -->
     <title>Ataques de Supply Chain: como proteger sua cadeia de fornecedores</title>
@@ -23,26 +35,83 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://www.cybershield.technsolutions.com.br/blog/ataques-supply-chain-fornecedores.html">
+    <meta property="og:url" content="https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html">
     <meta property="og:title" content="Ataques de Supply Chain: como proteger sua cadeia de fornecedores">
     <meta property="og:description" content="Entenda o que são ataques de supply chain e como proteger fornecedores, softwares, APIs e integrações críticas da sua empresa.">
-    <meta property="og:image" content="https://www.cybershield.technsolutions.com.br/images/supply-chain-og.jpg">
+    <meta property="og:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.cybershield.technsolutions.com.br/blog/ataques-supply-chain-fornecedores.html">
+    <meta property="twitter:url" content="https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html">
     <meta property="twitter:title" content="Ataques de Supply Chain: como proteger sua cadeia de fornecedores">
     <meta property="twitter:description" content="Entenda o que são ataques de supply chain e como proteger fornecedores, softwares, APIs e integrações críticas da sua empresa.">
-    <meta property="twitter:image" content="https://www.cybershield.technsolutions.com.br/images/supply-chain-og.jpg">
+    <meta property="twitter:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.png">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.cybershield.technsolutions.com.br/blog/ataques-supply-chain-fornecedores.html">
+    <link rel="canonical" href="https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html#article",
+          "headline": "Ataques de Supply Chain: como proteger sua cadeia de fornecedores",
+          "description": "Entenda o que são ataques de supply chain e como proteger fornecedores, softwares, APIs e integrações críticas da sua empresa.",
+          "url": "https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html",
+          "image": "https://cybershieldgroup.com.br/images/logo-favicon.png",
+          "inLanguage": "pt-BR",
+          "author": {
+            "@type": "Organization",
+            "name": "CyberShield"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "CyberShield",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://cybershieldgroup.com.br/images/logo-header.png"
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://cybershieldgroup.com.br/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://cybershieldgroup.com.br/blog/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Ataques de Supply Chain",
+              "item": "https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Preconnect para performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,6 +144,8 @@
             </div>
         </div>
     </header>
+
+    <main id="main-content">
 
     <section class="post-hero">
         <div class="container">
@@ -153,6 +224,8 @@
         </div>
     </section>
 
+    </main>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -194,6 +267,7 @@
         </div>
     </footer>
 
+    <script src="../js/analytics.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
