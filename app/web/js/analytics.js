@@ -15,11 +15,12 @@
         } catch (e) {}
 
         if (typeof window.gtag === 'function') {
+            var granted = value === 'granted' ? 'granted' : 'denied';
             window.gtag('consent', 'update', {
-                analytics_storage: value === 'granted' ? 'granted' : 'denied',
-                ad_storage: 'denied',
-                ad_user_data: 'denied',
-                ad_personalization: 'denied'
+                analytics_storage: granted,
+                ad_storage: granted,
+                ad_user_data: granted,
+                ad_personalization: granted
             });
         }
     }
