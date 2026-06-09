@@ -74,6 +74,10 @@ window.CyberShieldConfig = {
 
     analytics: {
         measurementId: 'G-K46VQ6H8MS',
+        adsConversionId: 'AW-18216339237',
+        // Rótulo de conversão do Google Ads (formato AW-XXXX/LABEL).
+        // Preencher quando a ação de conversão for criada no painel do Ads.
+        adsConversionLabel: '',
         consentStorageKey: 'cs_cookie_consent'
     }
 };

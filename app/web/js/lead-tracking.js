@@ -145,6 +145,22 @@
         });
     }
 
+    // Dispara a conversão do Google Ads somente quando um rótulo de conversão
+    // (AW-XXXX/LABEL) estiver configurado em CyberShieldConfig.analytics.
+    function trackAdsConversion(params) {
+        if (typeof global.gtag !== 'function') return;
+        var analytics = (global.CyberShieldConfig && global.CyberShieldConfig.analytics) || {};
+        var conversionId = analytics.adsConversionId;
+        var conversionLabel = analytics.adsConversionLabel;
+        if (!conversionId || !conversionLabel) return;
+        global.gtag('event', 'conversion', {
+            send_to: conversionId + '/' + conversionLabel,
+            lead_channel: params.lead_channel || '',
+            lead_type: params.lead_type || '',
+            service_name: params.service_name || ''
+        });
+    }
+
     function trackGenerateLead(extraParams) {
         var params = {
             lead_source: 'website',
@@ -171,6 +187,7 @@
         }
 
         trackEvent('generate_lead', params);
+        trackAdsConversion(params);
         return true;
     }
 
