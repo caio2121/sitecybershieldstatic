@@ -54,6 +54,8 @@ function injectCookieConsentStyles() {
         .cookie-consent__text { display: grid; gap: 0.25rem; flex: 1; font-size: 0.9rem; line-height: 1.45; }
         .cookie-consent__text strong { color: var(--color-ink, #0f172a); }
         .cookie-consent__text span { color: var(--color-muted, #475569); }
+        .cookie-consent__text .cookie-consent__link { color: var(--color-primary, #10b981); font-weight: 600; text-decoration: underline; width: fit-content; }
+        .cookie-consent__text .cookie-consent__link:hover { color: var(--color-primary-dark, #059669); }
         .cookie-consent__actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
         .cookie-consent__actions .btn { min-height: 40px; padding: 0.65rem 0.9rem; font-size: 0.9rem; }
         @media (max-width: 640px) {
@@ -91,7 +93,8 @@ function initCookieConsent() {
     banner.innerHTML = `
         <div class="cookie-consent__text">
             <strong>Privacidade e métricas</strong>
-            <span>Usamos cookies de analytics para entender visitas e melhorar o site. Você pode aceitar ou recusar.</span>
+            <span>Utilizamos cookies de análise para entender como os visitantes utilizam nosso site e melhorar nossos serviços. Esses cookies serão utilizados apenas com o seu consentimento. Você pode aceitar ou recusar o uso desses cookies.</span>
+            <a class="cookie-consent__link" href="/politica-privacidade.html#cookies">Saiba mais em nossa Política de Cookies.</a>
         </div>
         <div class="cookie-consent__actions">
             <button type="button" class="btn btn-outline" data-cookie-consent="denied">Recusar</button>
