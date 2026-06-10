@@ -1,6 +1,6 @@
 # Cursor Updates
 
-- Atualizado o texto do banner de consentimento de cookies em `analytics.js` para a nova redação e adicionado link "Saiba mais em nossa Política de Cookies." apontando para `/politica-privacidade.html#cookies` (âncora `id="cookies"` adicionada na seção 9 da política), com estilo `.cookie-consent__link`.
+- Atualizado o texto do banner de consentimento de cookies (em `main.js` e `analytics.js`, que são as duas implementações usadas pelas páginas) para a nova redação e adicionado link "Saiba mais em nossa Política de Cookies." apontando para `/politica-privacidade.html#cookies` (âncora `id="cookies"` adicionada na seção 9 da política), com estilo `.cookie-consent__link`.
 
 - Instalada a tag do Google Ads (`AW-18216339237`) em todas as páginas do site reaproveitando o único loader `gtag.js` do GA4 (sem duplicar tag), com `adsConversionId`/`adsConversionLabel` em `config.js`, consentimento de anúncios concedido no aceite (`analytics.js`), disparo opcional de conversão via `send_to` em `lead-tracking.js` e guia `ops/analytics/google-ads-setup.md`.
 
