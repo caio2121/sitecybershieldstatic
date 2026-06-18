@@ -98,7 +98,31 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
     applyRealSocialLinks();
+    initPostShareCopy();
 });
+
+function initPostShareCopy() {
+    document.querySelectorAll('[data-copy-share]').forEach(button => {
+        button.addEventListener('click', async () => {
+            const url = button.getAttribute('data-copy-share');
+            if (!url) return;
+
+            const defaultLabel = button.getAttribute('aria-label') || 'Copiar link';
+
+            try {
+                await navigator.clipboard.writeText(url);
+                button.setAttribute('aria-label', 'Link copiado!');
+                button.classList.add('post-share-link--copied');
+                setTimeout(() => {
+                    button.setAttribute('aria-label', defaultLabel);
+                    button.classList.remove('post-share-link--copied');
+                }, 2000);
+            } catch (e) {
+                window.prompt('Copie o link para compartilhar:', url);
+            }
+        });
+    });
+}
 
 // Form validation e feedback
 const contactForm = document.querySelector('.contact-form form');
