@@ -102,20 +102,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initPostShareCopy() {
-    document.querySelectorAll('[data-copy-share]').forEach(button => {
-        button.addEventListener('click', async () => {
-            const url = button.getAttribute('data-copy-share');
+    document.querySelectorAll('[data-copy-share]').forEach(link => {
+        link.addEventListener('click', async (event) => {
+            event.preventDefault();
+            const url = link.getAttribute('data-copy-share');
             if (!url) return;
 
-            const defaultLabel = button.getAttribute('aria-label') || 'Copiar link';
+            const defaultLabel = link.getAttribute('aria-label') || 'Copiar link';
 
             try {
                 await navigator.clipboard.writeText(url);
-                button.setAttribute('aria-label', 'Link copiado!');
-                button.classList.add('post-share-link--copied');
+                link.setAttribute('aria-label', 'Link copiado!');
+                link.classList.add('post-share-link--copied');
                 setTimeout(() => {
-                    button.setAttribute('aria-label', defaultLabel);
-                    button.classList.remove('post-share-link--copied');
+                    link.setAttribute('aria-label', defaultLabel);
+                    link.classList.remove('post-share-link--copied');
                 }, 2000);
             } catch (e) {
                 window.prompt('Copie o link para compartilhar:', url);

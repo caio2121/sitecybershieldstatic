@@ -466,18 +466,16 @@ body {
 }
 
 .post-author-avatar {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     width: 36px;
     height: 36px;
     min-width: 36px;
     border-radius: 50%;
     background: var(--color-dark-1);
-    color: #ffffff;
-    font-size: 0.95rem;
+    object-fit: contain;
+    padding: 8px;
+    box-sizing: border-box;
     flex-shrink: 0;
-    line-height: 1;
 }
 
 .post-author-name {
@@ -519,7 +517,16 @@ body {
     color: var(--color-muted);
     text-decoration: none;
     font-family: inherit;
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
     transition: background 0.2s ease, color 0.2s ease;
+}
+
+.post-share-link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 .post-share-link:hover {
