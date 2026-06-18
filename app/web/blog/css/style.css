@@ -539,6 +539,31 @@ body {
     color: var(--color-primary);
 }
 
+.post-share-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.5rem;
+    transform: translateX(-50%) translateY(120%);
+    background: var(--color-dark-1);
+    color: #fff;
+    padding: 0.85rem 1.25rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    max-width: min(90vw, 420px);
+    text-align: center;
+}
+
+.post-share-toast.is-visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
 .post-featured-image {
     max-width: 872px;
     margin: 1.5rem auto 0;

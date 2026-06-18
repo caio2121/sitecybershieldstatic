@@ -1,6 +1,10 @@
 // Smooth scrolling para âncoras (exclui links externos como redes sociais)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        if (this.hasAttribute('data-copy-share')) {
+            e.preventDefault();
+            return;
+        }
         const href = this.getAttribute('href');
         // Não interceptar: links externos ou placeholders (atualizados depois pelo applyRealSocialLinks)
         if (!href || href === '#' || !href.startsWith('#')) return;
@@ -91,38 +95,103 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observar elementos para animação
-document.addEventListener('DOMContentLoaded', () => {
+function copyTextToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+    }
+
+    return new Promise((resolve, reject) => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.top = '-9999px';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        try {
+            const copied = document.execCommand('copy');
+            document.body.removeChild(textarea);
+            copied ? resolve() : reject(new Error('copy failed'));
+        } catch (error) {
+            document.body.removeChild(textarea);
+            reject(error);
+        }
+    });
+}
+
+function showShareToast(message) {
+    let toast = document.querySelector('.post-share-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'post-share-toast';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.classList.add('is-visible');
+    clearTimeout(showShareToast._timer);
+    showShareToast._timer = setTimeout(() => {
+        toast.classList.remove('is-visible');
+    }, 3200);
+}
+
+function initPostShareCopy() {
+    document.querySelectorAll('[data-copy-share]').forEach(link => {
+        if (link.dataset.shareBound === 'true') return;
+        link.dataset.shareBound = 'true';
+
+        link.addEventListener('click', async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const url = link.getAttribute('data-copy-share');
+            if (!url) return;
+
+            const title = document.querySelector('.post-header h1')?.textContent?.trim() || 'CyberShield';
+            const defaultLabel = link.getAttribute('aria-label') || 'Compartilhar no Instagram';
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({ title, text: title, url });
+                    return;
+                } catch (error) {
+                    if (error && error.name === 'AbortError') return;
+                }
+            }
+
+            try {
+                await copyTextToClipboard(url);
+                link.setAttribute('aria-label', 'Link copiado!');
+                link.classList.add('post-share-link--copied');
+                showShareToast('Link copiado! Cole no Instagram para compartilhar.');
+                setTimeout(() => {
+                    link.setAttribute('aria-label', defaultLabel);
+                    link.classList.remove('post-share-link--copied');
+                }, 2000);
+            } catch (error) {
+                window.prompt('Copie o link para compartilhar no Instagram:', url);
+            }
+        });
+    });
+}
+
+function bootBlogUi() {
     const animateElements = document.querySelectorAll('.service-card, .target-item, .team-member, .stat-item, .value-item');
     animateElements.forEach(el => {
         observer.observe(el);
     });
     applyRealSocialLinks();
     initPostShareCopy();
-});
+}
 
-function initPostShareCopy() {
-    document.querySelectorAll('[data-copy-share]').forEach(link => {
-        link.addEventListener('click', async (event) => {
-            event.preventDefault();
-            const url = link.getAttribute('data-copy-share');
-            if (!url) return;
-
-            const defaultLabel = link.getAttribute('aria-label') || 'Copiar link';
-
-            try {
-                await navigator.clipboard.writeText(url);
-                link.setAttribute('aria-label', 'Link copiado!');
-                link.classList.add('post-share-link--copied');
-                setTimeout(() => {
-                    link.setAttribute('aria-label', defaultLabel);
-                    link.classList.remove('post-share-link--copied');
-                }, 2000);
-            } catch (e) {
-                window.prompt('Copie o link para compartilhar:', url);
-            }
-        });
-    });
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootBlogUi);
+} else {
+    bootBlogUi();
 }
 
 // Form validation e feedback
