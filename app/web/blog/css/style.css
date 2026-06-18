@@ -206,15 +206,12 @@ body {
 }
 
 .blog-card-image {
-    height: 200px;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #10b981;
-    font-size: 3rem;
+    aspect-ratio: 872 / 622;
+    background: var(--color-dark-1);
+    display: block;
     position: relative;
     overflow: hidden;
+    line-height: 0;
 }
 
 .blog-card-image::before {
@@ -229,11 +226,8 @@ body {
 
 .blog-card-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
-    position: relative;
-    z-index: 1;
 }
 
 .blog-card-image:has(img)::before {
@@ -411,16 +405,16 @@ body {
 /* Post Cover */
 .post-cover {
     width: 100%;
-    max-height: 320px;
-    overflow: hidden;
     background: var(--color-dark-1);
+    line-height: 0;
 }
 
 .post-cover img {
     width: 100%;
-    height: 320px;
-    object-fit: cover;
+    max-width: 872px;
+    height: auto;
     display: block;
+    margin: 0 auto;
 }
 
 /* Post Hero */
@@ -733,15 +727,15 @@ body {
 }
 
 .related-card-image {
-    height: 140px;
+    aspect-ratio: 872 / 622;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--color-dark-1) 0%, var(--color-dark-2) 50%, var(--color-dark-3) 100%);
+    background: var(--color-dark-1);
+    line-height: 0;
 }
 
 .related-card-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
 }
 
@@ -864,10 +858,6 @@ body {
     .post-meta {
         flex-direction: column;
         gap: 0.5rem;
-    }
-
-    .post-cover img {
-        height: 220px;
     }
     
     .blog-grid {
