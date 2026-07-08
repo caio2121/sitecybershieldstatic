@@ -1,4 +1,4 @@
-﻿// Smooth scrolling para Ã¢ncoras (exclui links externos como redes sociais)
+// Smooth scrolling para âncoras (exclui links externos como redes sociais)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         if (this.hasAttribute('data-copy-share')) {
@@ -6,7 +6,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             return;
         }
         const href = this.getAttribute('href');
-        // NÃ£o interceptar: links externos ou placeholders (atualizados depois pelo applyRealSocialLinks)
+        // Não interceptar: links externos ou placeholders (atualizados depois pelo applyRealSocialLinks)
         if (!href || href === '#' || !href.startsWith('#')) return;
         const target = document.querySelector(href);
         if (target) {
@@ -86,7 +86,7 @@ function applyRealSocialLinks() {
     });
 }
 
-// Intersection Observer para animaÃ§Ãµes de entrada
+// Intersection Observer para animações de entrada
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -217,7 +217,7 @@ if (contactForm) {
             submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado!';
             submitBtn.style.background = '#c79933';
             
-            // Reset apÃ³s 3 segundos
+            // Reset após 3 segundos
             setTimeout(() => {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
@@ -244,7 +244,7 @@ if (leadForm) {
         const cargo = this.querySelector('select[name="cargo"]').value;
         
         if (!nome || !email || !empresa || !cargo) {
-            alert('Por favor, preencha todos os campos obrigatÃ³rios.');
+            alert('Por favor, preencha todos os campos obrigatórios.');
             return;
         }
         
@@ -263,7 +263,7 @@ if (leadForm) {
             link.download = 'checklist-seguranca-web-abscan.html';
             link.click();
             
-            // Reset apÃ³s 5 segundos
+            // Reset após 5 segundos
             setTimeout(() => {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
@@ -277,7 +277,7 @@ if (leadForm) {
     });
 }
 
-// FunÃ§Ã£o para mostrar mensagem de agradecimento
+// Função para mostrar mensagem de agradecimento
 function showThankYouMessage() {
     const message = document.createElement('div');
     message.className = 'thank-you-message';
@@ -285,14 +285,14 @@ function showThankYouMessage() {
         <div class="thank-you-content">
             <i class="fas fa-check-circle"></i>
             <h3>Obrigado!</h3>
-            <p>Seu checklist foi enviado para seu e-mail. Em breve entraremos em contato para uma avaliaÃ§Ã£o personalizada.</p>
+            <p>Seu checklist foi enviado para seu e-mail. Em breve entraremos em contato para uma avaliação personalizada.</p>
             <button onclick="this.parentElement.parentElement.remove()">Fechar</button>
         </div>
     `;
     
     document.body.appendChild(message);
     
-    // Remover automaticamente apÃ³s 10 segundos
+    // Remover automaticamente após 10 segundos
     setTimeout(() => {
         if (message.parentElement) {
             message.remove();
@@ -327,18 +327,18 @@ function animateCounter(element, target, duration = 2000) {
     }, 16);
 }
 
-// Animar contadores quando visÃ­veis
+// Animar contadores quando visíveis
 const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const statNumber = entry.target.querySelector('.stat-number');
             const text = statNumber.textContent;
             
-            if (text === '100%' || text === '0' || text === '24/7' || text === 'âˆž') {
-                // Para valores especiais, apenas adicionar classe de animaÃ§Ã£o
+            if (text === '100%' || text === '0' || text === '24/7' || text === '∞') {
+                // Para valores especiais, apenas adicionar classe de animação
                 statNumber.classList.add('animate-pulse');
             } else {
-                // Para nÃºmeros, animar contador
+                // Para números, animar contador
                 const target = parseInt(text);
                 animateCounter(statNumber, target);
             }
@@ -371,7 +371,7 @@ window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
-// Adicionar CSS para animaÃ§Ãµes
+// Adicionar CSS para animações
 const style = document.createElement('style');
 style.textContent = `
     .animate-in {
@@ -440,7 +440,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (categoria === 'Todos') {
                     card.style.display = '';
                 } else {
-                    // Verifica se alguma tag do card corresponde Ã  categoria
+                    // Verifica se alguma tag do card corresponde à categoria
                     const tags = Array.from(card.querySelectorAll('.blog-tag')).map(t => t.textContent.trim());
                     if (tags.includes(categoria)) {
                         card.style.display = '';

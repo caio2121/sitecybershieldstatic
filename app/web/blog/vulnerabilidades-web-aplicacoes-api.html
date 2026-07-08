@@ -28,24 +28,24 @@
     <link rel="manifest" href="/manifest.json">
 
     <!-- SEO Meta Tags -->
-    <title>Vulnerabilidades web: principais riscos em sites, sistemas e APIs</title>
-    <meta name="description" content="Entenda quais sÃ£o as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de seguranÃ§a ajudam a reduzir riscos.">
-    <meta name="keywords" content="vulnerabilidades web, seguranÃ§a de sites, seguranÃ§a de sistemas, seguranÃ§a de APIs, testes de seguranÃ§a, OWASP">
+    <title>Vulnerabilidades web em sites, sistemas e APIs | Blog ABREU & BRUM</title>
+    <meta name="description" content="Principais riscos em aplicações web e como uma avaliação do domínio com AB Scan ajuda a priorizar correções.">
+    <meta name="keywords" content="vulnerabilidades web, segurança de sites, segurança de sistemas, segurança de APIs, testes de segurança, OWASP">
     <meta name="author" content="ABREU & BRUM">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://abreuebrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html">
-    <meta property="og:title" content="Vulnerabilidades web: principais riscos em sites, sistemas e APIs">
-    <meta property="og:description" content="Entenda quais sÃ£o as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de seguranÃ§a ajudam a reduzir riscos.">
+    <meta property="og:title" content="Vulnerabilidades web em sites, sistemas e APIs">
+    <meta property="og:description" content="Principais riscos em aplicações web e como uma avaliação do domínio com AB Scan ajuda a priorizar correções.">
     <meta property="og:image" content="https://abreuebrum.com.br/images/blog/vulnerabilidades-web-aplicacoes-api.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://abreuebrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html">
-    <meta property="twitter:title" content="Vulnerabilidades web: principais riscos em sites, sistemas e APIs">
-    <meta property="twitter:description" content="Entenda quais sÃ£o as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de seguranÃ§a ajudam a reduzir riscos.">
+    <meta property="twitter:title" content="Vulnerabilidades web em sites, sistemas e APIs">
+    <meta property="twitter:description" content="Principais riscos em aplicações web e como uma avaliação do domínio com AB Scan ajuda a priorizar correções.">
     <meta property="twitter:image" content="https://abreuebrum.com.br/images/blog/vulnerabilidades-web-aplicacoes-api.png">
 
     <!-- Favicon -->
@@ -65,7 +65,7 @@
           "@type": "Article",
           "@id": "https://abreuebrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html#article",
           "headline": "Vulnerabilidades web: principais riscos em sites, sistemas e APIs",
-          "description": "Entenda quais sÃ£o as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de seguranÃ§a ajudam a reduzir riscos.",
+          "description": "Entenda quais são as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de segurança ajudam a reduzir riscos.",
           "url": "https://abreuebrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html",
           "image": "https://abreuebrum.com.br/images/blog/vulnerabilidades-web-aplicacoes-api.png",
           "inLanguage": "pt-BR",
@@ -126,34 +126,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+<header class="header">
         <div class="container">
-            <div class="logo">
-                <a href="../index.html" style="color: inherit; text-decoration: none;">
-                    <img src="../images/logo-abreu-brum.svg" alt="ABREU & BRUM" class="logo-img">
-                </a>
-            </div>
-            <nav class="nav">
-                <a href="../index.html">Home</a>
-                <a href="../servicos/">ServiÃ§os</a>
-                <a href="../index.html#modelo-comercial">Modelo</a>
-                <a href="../index.html#contato">Contato</a>
-                <a href="index.html">Blog</a>
+            <a href="../index.html" class="logo" aria-label="ABREU & BRUM">
+                <img src="../images/logo-abreu-brum.svg" alt="ABREU & BRUM" class="logo-img">
+            </a>
+            <nav class="nav" aria-label="Navegação principal">
+                <a href="../index.html#ab-scan">AB Scan</a>
+                <a href="../index.html#relatorio-exemplo">Relatório exemplo</a>
+                <a href="../index.html#fluxo">Como funciona</a>
+                <a href="../index.html#pentest-manual">PenTest manual</a>
+                <a href="../index.html#contato" class="nav-cta">Contato</a>
             </nav>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
+            <button class="mobile-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
         </div>
     </header>
 
-    <main id="main-content">
+    <div class="floating-cta">
+        <a href="../index.html#contato" class="btn btn-primary">
+            <i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i>
+            Solicitar avaliação
+        </a>
+    </div>
+
+<main id="main-content">
 
     <section class="post-header">
         <div class="container post-header-inner">
-            <a href="index.html" class="post-category">Pentest &amp; Vulnerabilidades</a>
+            <a href="index.html" class="post-category">PenTest e vulnerabilidades</a>
             <h1>Vulnerabilidades web: principais riscos em sites, sistemas e APIs</h1>
-            <p class="post-deck">Entenda quais sÃ£o as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de seguranÃ§a ajudam a reduzir riscos.</p>
+            <p class="post-deck">Entenda quais são as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de segurança ajudam a reduzir riscos.</p>
             <div class="post-byline">
                 <div class="post-author">
                     <img src="../images/logo-favicon.svg" alt="" class="post-author-avatar" width="36" height="36">
@@ -178,37 +184,37 @@
     <!-- Post Content -->
     <section class="container">
         <article class="post-content">
-            <h2>Por que esse tema exige atenÃ§Ã£o imediata</h2>
-            <p>Vulnerabilidades web continuam entre as causas mais comuns de incidentes em empresas de todos os portes. Sites institucionais, sistemas internos e APIs podem expor dados crÃ­ticos quando hÃ¡ falhas de desenvolvimento, configuraÃ§Ã£o ou monitoramento.</p>
-            <p>Na prÃ¡tica, uma vulnerabilidade explorada pode gerar indisponibilidade, vazamento de informaÃ§Ãµes, prejuÃ­zo operacional e impacto jurÃ­dico, especialmente em ambientes com dados pessoais e integraÃ§Ãµes com terceiros.</p>
+            <h2>Por que esse tema exige atenção imediata</h2>
+            <p>Vulnerabilidades web continuam entre as causas mais comuns de incidentes em empresas de todos os portes. Sites institucionais, sistemas internos e APIs podem expor dados críticos quando há falhas de desenvolvimento, configuração ou monitoramento.</p>
+            <p>Na prática, uma vulnerabilidade explorada pode gerar indisponibilidade, vazamento de informações, prejuízo operacional e impacto jurídico, especialmente em ambientes com dados pessoais e integrações com terceiros.</p>
 
             <h2>Principais vulnerabilidades web em ambientes corporativos</h2>
             <ul>
-                <li><strong>Falhas de autenticaÃ§Ã£o e sessÃ£o:</strong> controle fraco de login, tokens mal gerenciados e ausÃªncia de proteÃ§Ã£o contra abuso de credenciais.</li>
-                <li><strong>Quebra de autorizaÃ§Ã£o:</strong> usuÃ¡rios acessam recursos fora do seu perfil por falha de validaÃ§Ã£o de permissÃµes.</li>
-                <li><strong>InjeÃ§Ãµes:</strong> entrada de dados sem tratamento adequado pode permitir comandos maliciosos em consultas e serviÃ§os.</li>
-                <li><strong>ExposiÃ§Ã£o de dados sensÃ­veis:</strong> dados trafegados ou armazenados sem proteÃ§Ã£o adequada aumentam o risco de vazamento.</li>
-                <li><strong>ConfiguraÃ§Ãµes inseguras:</strong> serviÃ§os com padrÃµes abertos, componentes desatualizados e logs expostos facilitam ataques.</li>
+                <li><strong>Falhas de autenticação e sessão:</strong> controle fraco de login, tokens mal gerenciados e ausência de proteção contra abuso de credenciais.</li>
+                <li><strong>Quebra de autorização:</strong> usuários acessam recursos fora do seu perfil por falha de validação de permissões.</li>
+                <li><strong>Injeções:</strong> entrada de dados sem tratamento adequado pode permitir comandos maliciosos em consultas e serviços.</li>
+                <li><strong>Exposição de dados sensíveis:</strong> dados trafegados ou armazenados sem proteção adequada aumentam o risco de vazamento.</li>
+                <li><strong>Configurações inseguras:</strong> serviços com padrões abertos, componentes desatualizados e logs expostos facilitam ataques.</li>
             </ul>
 
             <h2>Como esses riscos afetam sites, sistemas e APIs</h2>
-            <p>Em sites, o impacto costuma aparecer como comprometimento de formulÃ¡rios, sessÃµes e pÃ¡ginas pÃºblicas. Em sistemas internos, falhas de autorizaÃ§Ã£o podem abrir acesso indevido a operaÃ§Ãµes crÃ­ticas. Em APIs, erros de autenticaÃ§Ã£o, validaÃ§Ã£o e rate limit elevam o risco de extraÃ§Ã£o massiva de dados e uso indevido de integraÃ§Ãµes.</p>
+            <p>Em sites, o impacto costuma aparecer como comprometimento de formulários, sessões e páginas públicas. Em sistemas internos, falhas de autorização podem abrir acesso indevido a operações críticas. Em APIs, erros de autenticação, validação e rate limit elevam o risco de extração massiva de dados e uso indevido de integrações.</p>
 
             <div class="highlight-box">
-                <strong>Ponto crÃ­tico:</strong><br>
-                Vulnerabilidade web nÃ£o Ã© apenas um problema tÃ©cnico. Ela afeta continuidade, reputaÃ§Ã£o, conformidade e capacidade de crescimento do negÃ³cio.
+                <strong>Ponto crítico:</strong><br>
+                Vulnerabilidade web não é apenas um problema técnico. Ela afeta continuidade, reputação, conformidade e capacidade de crescimento do negócio.
             </div>
 
-            <h2>Por que testes de seguranÃ§a reduzem risco real</h2>
-            <p>Testes de seguranÃ§a permitem identificar falhas antes que elas sejam exploradas em produÃ§Ã£o. Mais do que apontar problemas, eles ajudam a priorizar correÃ§Ãµes por impacto, reduzir superfÃ­cie de ataque e melhorar a maturidade tÃ©cnica da operaÃ§Ã£o.</p>
-            <p>Quando aplicados de forma recorrente, os testes criam um ciclo de melhoria contÃ­nua: descoberta, correÃ§Ã£o, validaÃ§Ã£o e prevenÃ§Ã£o de reincidÃªncia.</p>
+            <h2>Por que testes de segurança reduzem risco real</h2>
+            <p>Testes de segurança permitem identificar falhas antes que elas sejam exploradas em produção. Mais do que apontar problemas, eles ajudam a priorizar correções por impacto, reduzir superfície de ataque e melhorar a maturidade técnica da operação.</p>
+            <p>Quando aplicados de forma recorrente, os testes criam um ciclo de melhoria contínua: descoberta, correção, validação e prevenção de reincidência.</p>
 
             <div class="cta-box">
-                <h3>Quer priorizar vulnerabilidades com critÃ©rio tÃ©cnico?</h3>
-                <p>A ABREU & BRUM apoia empresas na identificaÃ§Ã£o de riscos em sites, sistemas e APIs, com foco em evidÃªncias prÃ¡ticas e plano de correÃ§Ã£o objetivo.</p>
+                <h3>Comece com uma avaliação do domínio</h3>
+                <p>O AB Scan ajuda sua empresa a identificar riscos em sites e APIs expostas com relatório profissional para priorizar correções.</p>
                 <a href="../index.html#contato" class="btn btn-secondary">
                     <i class="fas fa-shield-alt"></i>
-                    Falar com especialista
+                    Solicitar avaliação
                 </a>
             </div>
         </article>
@@ -225,8 +231,8 @@
                             <img src="../images/blog/pentest-teste-de-invasao-empresas.png" alt="Capa: Pentest" loading="lazy">
                         </div>
                         <div class="related-card-body">
-                            <h4>Pentest: por que sua empresa precisa de um teste de invasÃ£o</h4>
-                            <p>Entenda quando testar, como interpretar evidÃªncias e como priorizar correÃ§Ãµes com base em risco.</p>
+                            <h4>Pentest: por que sua empresa precisa de um teste de invasão</h4>
+                            <p>Entenda quando testar, como interpretar evidências e como priorizar correções com base em risco.</p>
                         </div>
                     </a>
                 </div>
@@ -236,8 +242,8 @@
                             <img src="../images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png" alt="Capa: Provimento 213 CNJ" loading="lazy">
                         </div>
                         <div class="related-card-body">
-                            <h4>Provimento 213 do CNJ: o que muda para cartÃ³rios</h4>
-                            <p>Entenda os impactos em seguranÃ§a da informaÃ§Ã£o, LGPD e continuidade para serventias extrajudiciais.</p>
+                            <h4>Provimento 213 do CNJ: o que muda para cartórios</h4>
+                            <p>Entenda os impactos em segurança da informação, LGPD e continuidade para serventias extrajudiciais.</p>
                         </div>
                     </a>
                 </div>
@@ -248,7 +254,7 @@
                         </div>
                         <div class="related-card-body">
                             <h4>Ataques de Supply Chain: como proteger sua cadeia de fornecedores</h4>
-                            <p>Veja como fortalecer a avaliaÃ§Ã£o de fornecedores e dependÃªncias crÃ­ticas no contexto de seguranÃ§a.</p>
+                            <p>Veja como fortalecer a avaliação de fornecedores e dependências críticas no contexto de segurança.</p>
                         </div>
                     </a>
                 </div>
@@ -258,48 +264,46 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+            <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="logo">
-                        <a href="../index.html" style="color: inherit; text-decoration: none;">
-                            <img src="../images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" class="logo-img">
-                        </a>
-                    </div>
-                    <p>SeguranÃ§a digital que inspira confianÃ§a</p>
+                    <a href="../index.html" class="logo" aria-label="ABREU & BRUM">
+                        <img src="../images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" class="logo-img">
+                    </a>
+                    <p>Cybersecurity | PenTest | Consultoria</p>
+                    <p><small>CNPJ: <span data-company="cnpj">61.952.290/0001-68</span></small></p>
+                    <p><small>São Paulo, SP, Brasil</small></p>
                 </div>
                 <div class="footer-links">
-                    <h4>Links RÃ¡pidos</h4>
-                    <a href="../index.html">Home</a>
-                    <a href="../servicos/">ServiÃ§os</a>
-                    <a href="../index.html#modelo-comercial">Modelo</a>
-                    <a href="../index.html#contato">Contato</a>
+                    <h4>Navegação</h4>
+                    <a href="../index.html#ab-scan">AB Scan</a>
+                    <a href="../index.html#relatorio-exemplo">Relatório exemplo</a>
+                    <a href="../index.html#fluxo">Como funciona</a>
                     <a href="index.html">Blog</a>
+                    <a href="../index.html#contato">Contato</a>
                 </div>
                 <div class="footer-services">
-                    <h4>ServiÃ§os</h4>
+                    <h4>Soluções</h4>
                     <a href="../index.html#ab-scan">AB Scan</a>
                     <a href="../index.html#pentest-manual">PenTest manual</a>
-                    <a href="../index.html#relatorio-exemplo">Relatorio exemplo</a>
-                    <a href="../index.html#contato">Contato</a>
+                    <a href="../servicos/">Serviços complementares</a>
+                    <a href="index.html">Blog</a>
                 </div>
                 <div class="footer-social">
-                    <h4>Redes Sociais</h4>
-                    <div class="social-links">
-                        <a href="mailto:contato@abreuebrum.com.br" aria-label="E-mail da ABREU & BRUM"><i class="fas fa-envelope"></i></a>
-                        <a href="tel:+5521920137715" aria-label="Telefone da ABREU & BRUM"><i class="fas fa-phone"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </div>
+                    <h4>Contato</h4>
+                    <a href="mailto:contato@abreuebrum.com.br" data-contact="email" data-email-type="primary">contato@abreuebrum.com.br</a>
+                    <a href="tel:+5521920137715" data-contact="phone">(21) 92013-7715</a>
+                    <a href="../politica-privacidade.html">Política de Privacidade</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 ABREU & BRUM. Todos os direitos reservados.</p>
+                <p>&copy; 2026 ABREU &amp; BRUM. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
+    <script src="../js/config.js"></script>
     <script src="../js/lead-tracking.js"></script>
     <script src="../js/analytics.js"></script>
     <script src="js/main.js"></script>

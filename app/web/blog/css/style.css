@@ -1,4 +1,4 @@
-﻿/* Blog â€” alinhado ao design system (tokens em ../tokens.css) */
+﻿/* Blog , alinhado ao design system (tokens em ../tokens.css) */
 @import url('../../css/tokens.css');
 
 /* Reset e Base */
@@ -719,7 +719,7 @@ body {
     line-height: 1.5;
 }
 
-/* Alertas de risco jurÃ­dico (provimento CNJ / LGPD) */
+/* Alertas de risco jurídico (provimento CNJ / LGPD) */
 .strike-alert {
     margin: 1rem 0 0;
     padding: 1rem 1rem 1rem 1.1rem;
@@ -1157,7 +1157,7 @@ body {
     color: inherit;
 }
 
-/* Checklist interativo (CNJ/LGPD cartÃ³rios) */
+/* Checklist interativo (CNJ/LGPD cartórios) */
 .interactive-q {
     margin-bottom: 1.25rem;
     padding-bottom: 1rem;

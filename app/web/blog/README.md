@@ -1,196 +1,52 @@
-﻿# Blog ABREU & BRUM
+# Blog ABREU & BRUM
 
-Blog especializado em ciberseguranÃ§a para PMEs, com conteÃºdo tÃ©cnico e prÃ¡tico sobre pentest, vulnerabilidades web, APIs e cadeia de fornecimento.
+Conteúdo B2B sobre segurança web, evidências para contratos, PenTest manual e conformidade.
 
-## ðŸ“ Estrutura do Projeto
+**Domínio:** https://abreuebrum.com.br/blog/
+
+## Estrutura
 
 ```
 blog/
-â”œâ”€â”€ index.html                    # PÃ¡gina inicial do blog
-â”œâ”€â”€ css/
-â”‚   â””â”€â”€ style.css                # Estilos do blog
-â”œâ”€â”€ js/
-â”‚   â””â”€â”€ main.js                  # JavaScript do blog
-â”œâ”€â”€ images/                      # Imagens do blog
-â”œâ”€â”€ generate_posts.py            # Script para gerar posts
-â”œâ”€â”€ README.md                    # Esta documentaÃ§Ã£o
-â””â”€â”€ Posts do Blog:
-    â”œâ”€â”€ pentest-teste-de-invasao-empresas.html  # Pentest: por que sua empresa precisa de um teste de invasÃ£o
-    â”œâ”€â”€ vulnerabilidades-web-aplicacoes-api.html # Vulnerabilidades web: principais riscos em sites, sistemas e APIs
-    â”œâ”€â”€ ataques-supply-chain-fornecedores.html # Ataques de Supply Chain: como proteger sua cadeia de fornecedores
-    â””â”€â”€ zero-trust.html           # Zero Trust para pequenas empresas
+├── index.html
+├── pentest-teste-de-invasao-empresas.html
+├── vulnerabilidades-web-aplicacoes-api.html
+├── ataques-supply-chain-fornecedores.html
+├── provimento-213-cnj-cartorios-seguranca-informacao.html
+├── zero-trust.html              # stub: redirect para index (noindex)
+├── supply-chain.html            # stub: redirect para ataques-supply-chain (noindex)
+├── css/style.css
+├── js/main.js
+└── README.md
 ```
 
-## ðŸŽ¯ Objetivos do Blog
+## Posts ativos
 
-### **PÃºblico-Alvo**
-- Pequenas e mÃ©dias empresas (PMEs)
-- Diretores e gestores de TI
-- Profissionais de compliance
-- Startups e empresas em crescimento
+| Arquivo | Tema | CTA principal |
+|---------|------|---------------|
+| `pentest-teste-de-invasao-empresas.html` | PenTest manual | Solicitar escopo de PenTest |
+| `vulnerabilidades-web-aplicacoes-api.html` | Exposição web | Solicitar avaliação (AB Scan) |
+| `ataques-supply-chain-fornecedores.html` | Fornecedores | Solicitar avaliação |
+| `provimento-213-cnj-cartorios-seguranca-informacao.html` | CNJ / cartórios | Solicitar avaliação |
 
-### **Temas Principais**
-1. **LGPD e Conformidade** - ImplementaÃ§Ã£o prÃ¡tica para PMEs
-2. **Pentest e SeguranÃ§a** - Testes de penetraÃ§Ã£o e vulnerabilidades
-3. **Tecnologias Web** - ProteÃ§Ã£o de aplicaÃ§Ãµes e sites
-4. **E-commerce** - SeguranÃ§a em pagamentos online
-5. **GestÃ£o de Riscos** - PrevenÃ§Ã£o e resposta a incidentes
-6. **Treinamento** - ConscientizaÃ§Ã£o em seguranÃ§a
+## Capas (og:image)
 
-## ðŸ“Š EstatÃ­sticas dos Posts
+PNG 16:9 em `../images/blog/`, compostos sobre o template oficial em `../images/brand/templates/abreu_brum_template_16x9.png`.
 
-### **Posts Completos (3)**
-- âœ… **LGPD 2025** (30 Jun 2025) - ConteÃºdo completo sobre Lei Geral de ProteÃ§Ã£o de Dados
-- âœ… **Pentest** (23 Jun 2025) - Guia completo sobre testes de penetraÃ§Ã£o
-- âœ… **Vulnerabilidades Web** (16 Jun 2025) - Top 10 OWASP e proteÃ§Ãµes
+Gerar novamente:
 
-### **Posts em Desenvolvimento (9)**
-- ðŸ”„ **Proteger Dados LGPD** (9 Jun 2025) - Controles prÃ¡ticos de proteÃ§Ã£o
-- ðŸ”„ **E-commerce PCI-DSS** (2 Jun 2025) - SeguranÃ§a em pagamentos
-- ðŸ”„ **Ransomware** (26 Mai 2025) - PrevenÃ§Ã£o e resposta
-- ðŸ”„ **ISO 27001** (19 Mai 2025) - ImplementaÃ§Ã£o para PMEs
-- ðŸ”„ **Phishing** (12 Mai 2025) - IdentificaÃ§Ã£o e prevenÃ§Ã£o
-- ðŸ”„ **Backup** (5 Mai 2025) - EstratÃ©gias de recuperaÃ§Ã£o
-- ðŸ”„ **Cloud Security** (28 Abr 2025) - SeguranÃ§a na nuvem
-- ðŸ”„ **Treinamento** (21 Abr 2025) - ConscientizaÃ§Ã£o em seguranÃ§a
-- ðŸ”„ **Incidentes** (14 Abr 2025) - Plano de resposta
-
-## ðŸŽ¨ Design e UX
-
-### **Identidade Visual**
-- **Cores:** Gradiente azul e dourado (#c79933 â†’ #a97f27) - igual ao site principal
-- **Fonte:** Inter (Google Fonts)
-- **Ãcones:** Font Awesome 6.0
-- **Layout:** Responsivo e moderno
-- **Background:** Gradiente escuro (#01224d â†’ #0a305f) com padrÃ£o de grid
-
-### **CaracterÃ­sticas**
-- âœ… Design responsivo (mobile-first)
-- âœ… SEO otimizado (meta tags, Open Graph)
-- âœ… Performance otimizada (preconnect, lazy loading)
-- âœ… Acessibilidade (semÃ¢ntica HTML, contraste)
-- âœ… NavegaÃ§Ã£o intuitiva
-- âœ… CTAs estratÃ©gicos
-
-## ðŸ“ˆ SEO e Marketing
-
-### **Meta Tags Otimizadas**
-- TÃ­tulos Ãºnicos e descritivos
-- Meta descriptions atrativas
-- Keywords relevantes para PMEs
-- Open Graph para redes sociais
-- Canonical URLs
-
-### **EstratÃ©gia de ConteÃºdo**
-- **FrequÃªncia:** 1 post por semana (simulado: Abril-Junho 2025)
-- **Formato:** Artigos tÃ©cnicos prÃ¡ticos
-- **Tamanho:** 8-15 minutos de leitura
-- **Call-to-Action:** Newsletter e contato
-- **Cronograma:** Posts mais recentes primeiro
-
-## ðŸ› ï¸ Tecnologias Utilizadas
-
-### **Frontend**
-- HTML5 semÃ¢ntico
-- CSS3 com Flexbox/Grid
-- JavaScript vanilla
-- Font Awesome (Ã­cones)
-- Google Fonts (tipografia)
-
-### **Ferramentas**
-- Python (script de geraÃ§Ã£o)
-- Git (controle de versÃ£o)
-- VS Code (desenvolvimento)
-
-## ðŸ“ Como Adicionar Novos Posts
-
-### **1. MÃ©todo Manual**
-1. Criar novo arquivo HTML
-2. Copiar estrutura de post existente
-3. Adaptar conteÃºdo e meta tags
-4. Atualizar links relacionados
-
-### **2. MÃ©todo AutomÃ¡tico**
-1. Editar `generate_posts.py`
-2. Adicionar configuraÃ§Ã£o do post
-3. Executar script: `python3 generate_posts.py`
-
-### **Estrutura de um Post**
-```html
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <!-- Meta tags SEO -->
-    <title>TÃ­tulo do Post | Blog ABREU & BRUM</title>
-    <meta name="description" content="DescriÃ§Ã£o do post">
-    <meta name="keywords" content="palavras-chave">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="TÃ­tulo do Post">
-    <meta property="og:description" content="DescriÃ§Ã£o do post">
-    
-    <!-- Estilos -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!-- Header -->
-    <!-- Hero Section -->
-    <!-- ConteÃºdo -->
-    <!-- Related Posts -->
-    <!-- Footer -->
-</body>
-</html>
+```bash
+python ops/scripts/compose_blog_covers.py
 ```
 
-## ðŸŽ¯ MÃ©tricas de Sucesso
+## Shell do blog
 
-### **Objetivos**
-- **TrÃ¡fego:** 1.000+ visitantes/mÃªs
-- **Engajamento:** 3+ minutos tempo mÃ©dio
-- **ConversÃµes:** 5% taxa de newsletter
-- **SEO:** Top 10 para keywords principais
+Header, footer, skip-link e floating CTA seguem o padrão de `../index.html` (AB Scan como entrada comercial).
 
-### **KPIs**
-- Pageviews por post
-- Tempo de permanÃªncia
-- Taxa de rejeiÃ§Ã£o
-- InscriÃ§Ãµes na newsletter
-- Contatos via blog
+## SEO
 
-## ðŸ“ž Contato e Suporte
+- Sitemap: `../sitemap.xml`
+- Stubs `zero-trust.html` e `supply-chain.html`: `noindex` + redirect
+- Canonical e OG em `abreuebrum.com.br`
 
-### **Desenvolvimento**
-- **ResponsÃ¡vel:** ABREU & BRUM
-- **Email:** contato@abreuebrum.com.br
-- **WhatsApp:** (11) 99999-9999
-
-### **ConteÃºdo**
-- **Editor:** Equipe ABREU & BRUM
-- **RevisÃ£o:** Semanal
-- **AtualizaÃ§Ãµes:** Conforme necessÃ¡rio
-
-## ðŸ”„ PrÃ³ximos Passos
-
-### **Curto Prazo (1-2 meses)**
-- [ ] Completar conteÃºdo dos 9 posts restantes
-- [ ] Implementar sistema de newsletter
-- [ ] Adicionar comentÃ¡rios nos posts
-- [ ] Otimizar imagens e performance
-
-### **MÃ©dio Prazo (3-6 meses)**
-- [ ] Implementar CMS (WordPress/Ghost)
-- [ ] Adicionar funcionalidade de busca
-- [ ] Criar categorias e tags
-- [ ] Implementar analytics avanÃ§ado
-
-### **Longo Prazo (6+ meses)**
-- [ ] Podcast de ciberseguranÃ§a
-- [ ] Webinars e eventos online
-- [ ] E-books e materiais premium
-- [ ] Comunidade de especialistas
-
----
-
-**Ãšltima atualizaÃ§Ã£o:** Junho 2025  
-**VersÃ£o:** 1.1  
-**Status:** Em desenvolvimento ativo 
+**Última atualização:** Julho 2026
