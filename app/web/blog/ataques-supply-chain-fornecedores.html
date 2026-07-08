@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -8,12 +8,12 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      var cyberShieldConsent = 'denied';
+      var abConsent = 'denied';
       try {
-        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+        abConsent = localStorage.getItem('ab_cookie_consent') === 'granted' ? 'granted' : 'denied';
       } catch (e) {}
       gtag('consent', 'default', {
-        'analytics_storage': cyberShieldConsent,
+        'analytics_storage': abConsent,
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
@@ -29,33 +29,33 @@
 
     <!-- SEO Meta Tags -->
     <title>Ataques de Supply Chain: como proteger sua cadeia de fornecedores</title>
-    <meta name="description" content="Entenda o que são ataques de supply chain e como proteger fornecedores, softwares, APIs e integrações críticas da sua empresa.">
-    <meta name="keywords" content="ataques supply chain, segurança de fornecedores, segurança de software, segurança de APIs, riscos de terceiros">
-    <meta name="author" content="CyberShield">
+    <meta name="description" content="Entenda o que sÃ£o ataques de supply chain e como proteger fornecedores, softwares, APIs e integraÃ§Ãµes crÃ­ticas da sua empresa.">
+    <meta name="keywords" content="ataques supply chain, seguranÃ§a de fornecedores, seguranÃ§a de software, seguranÃ§a de APIs, riscos de terceiros">
+    <meta name="author" content="ABREU & BRUM">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html">
+    <meta property="og:url" content="https://abreubrum.com.br/blog/ataques-supply-chain-fornecedores.html">
     <meta property="og:title" content="Ataques de Supply Chain: como proteger sua cadeia de fornecedores">
-    <meta property="og:description" content="Entenda o que são ataques de supply chain e como proteger fornecedores, softwares, APIs e integrações críticas da sua empresa.">
-    <meta property="og:image" content="https://cybershieldgroup.com.br/images/blog/ataques-supply-chain-fornecedores.png">
+    <meta property="og:description" content="Entenda o que sÃ£o ataques de supply chain e como proteger fornecedores, softwares, APIs e integraÃ§Ãµes crÃ­ticas da sua empresa.">
+    <meta property="og:image" content="https://abreubrum.com.br/images/blog/ataques-supply-chain-fornecedores.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html">
+    <meta property="twitter:url" content="https://abreubrum.com.br/blog/ataques-supply-chain-fornecedores.html">
     <meta property="twitter:title" content="Ataques de Supply Chain: como proteger sua cadeia de fornecedores">
-    <meta property="twitter:description" content="Entenda o que são ataques de supply chain e como proteger fornecedores, softwares, APIs e integrações críticas da sua empresa.">
-    <meta property="twitter:image" content="https://cybershieldgroup.com.br/images/blog/ataques-supply-chain-fornecedores.png">
+    <meta property="twitter:description" content="Entenda o que sÃ£o ataques de supply chain e como proteger fornecedores, softwares, APIs e integraÃ§Ãµes crÃ­ticas da sua empresa.">
+    <meta property="twitter:image" content="https://abreubrum.com.br/images/blog/ataques-supply-chain-fornecedores.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.png">
+    <link rel="icon" type="image/svg+xml" href="/images/logo-favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.svg">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html">
+    <link rel="canonical" href="https://abreubrum.com.br/blog/ataques-supply-chain-fornecedores.html">
 
     <script type="application/ld+json">
     {
@@ -63,50 +63,50 @@
       "@graph": [
         {
           "@type": "Article",
-          "@id": "https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html#article",
+          "@id": "https://abreubrum.com.br/blog/ataques-supply-chain-fornecedores.html#article",
           "headline": "Ataques de Supply Chain: como proteger sua cadeia de fornecedores",
-          "description": "Entenda o que são ataques de supply chain e como proteger fornecedores, softwares, APIs e integrações críticas da sua empresa.",
-          "url": "https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html",
-          "image": "https://cybershieldgroup.com.br/images/blog/ataques-supply-chain-fornecedores.png",
+          "description": "Entenda o que sÃ£o ataques de supply chain e como proteger fornecedores, softwares, APIs e integraÃ§Ãµes crÃ­ticas da sua empresa.",
+          "url": "https://abreubrum.com.br/blog/ataques-supply-chain-fornecedores.html",
+          "image": "https://abreubrum.com.br/images/blog/ataques-supply-chain-fornecedores.png",
           "inLanguage": "pt-BR",
           "author": {
             "@type": "Organization",
-            "name": "CyberShield"
+            "name": "ABREU & BRUM"
           },
           "publisher": {
             "@type": "Organization",
-            "name": "CyberShield",
+            "name": "ABREU & BRUM",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://cybershieldgroup.com.br/images/logo-header.png"
+              "url": "https://abreubrum.com.br/images/logo-abreu-brum.svg"
             }
           },
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html"
+            "@id": "https://abreubrum.com.br/blog/ataques-supply-chain-fornecedores.html"
           }
         },
         {
           "@type": "BreadcrumbList",
-          "@id": "https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html#breadcrumb",
+          "@id": "https://abreubrum.com.br/blog/ataques-supply-chain-fornecedores.html#breadcrumb",
           "itemListElement": [
             {
               "@type": "ListItem",
               "position": 1,
               "name": "Home",
-              "item": "https://cybershieldgroup.com.br/"
+              "item": "https://abreubrum.com.br/"
             },
             {
               "@type": "ListItem",
               "position": 2,
               "name": "Blog",
-              "item": "https://cybershieldgroup.com.br/blog/"
+              "item": "https://abreubrum.com.br/blog/"
             },
             {
               "@type": "ListItem",
               "position": 3,
               "name": "Ataques de Supply Chain",
-              "item": "https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html"
+              "item": "https://abreubrum.com.br/blog/ataques-supply-chain-fornecedores.html"
             }
           ]
         }
@@ -130,13 +130,13 @@
         <div class="container">
             <div class="logo">
                 <a href="../index.html" style="color: inherit; text-decoration: none;">
-                    <img src="../images/logo-header.png" alt="CyberShield" class="logo-img">
+                    <img src="../images/logo-abreu-brum.svg" alt="ABREU & BRUM" class="logo-img">
                 </a>
             </div>
             <nav class="nav">
                 <a href="../index.html">Home</a>
-                <a href="../index.html#servicos">Serviços</a>
-                <a href="../index.html#sobre">Sobre</a>
+                <a href="../servicos/">ServiÃ§os</a>
+                <a href="../index.html#modelo-comercial">Modelo</a>
                 <a href="../index.html#contato">Contato</a>
                 <a href="index.html">Blog</a>
             </nav>
@@ -152,21 +152,21 @@
         <div class="container post-header-inner">
             <a href="index.html" class="post-category">Pentest &amp; Vulnerabilidades</a>
             <h1>Ataques de Supply Chain: como proteger sua cadeia de fornecedores</h1>
-            <p class="post-deck">Entenda o que são ataques de supply chain e como proteger fornecedores, softwares, APIs e integrações críticas da sua empresa.</p>
+            <p class="post-deck">Entenda o que sÃ£o ataques de supply chain e como proteger fornecedores, softwares, APIs e integraÃ§Ãµes crÃ­ticas da sua empresa.</p>
             <div class="post-byline">
                 <div class="post-author">
-                    <img src="../images/brasao-branco.png" alt="" class="post-author-avatar" width="36" height="36">
-                    <span class="post-author-name">CyberShield</span>
+                    <img src="../images/logo-favicon.svg" alt="" class="post-author-avatar" width="36" height="36">
+                    <span class="post-author-name">ABREU & BRUM</span>
                 </div>
                 <span class="post-byline-item"><i class="fas fa-calendar"></i> Maio 2026</span>
                 <span class="post-byline-item"><i class="fas fa-clock"></i> 7 min leitura</span>
             </div>
             <div class="post-share">
                 <span class="post-share-label">Compartilhar</span>
-                <a href="https://wa.me/?text=Ataques%20de%20Supply%20Chain%20https%3A%2F%2Fcybershieldgroup.com.br%2Fblog%2Fataques-supply-chain-fornecedores.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcybershieldgroup.com.br%2Fblog%2Fataques-supply-chain-fornecedores.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcybershieldgroup.com.br%2Fblog%2Fataques-supply-chain-fornecedores.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="post-share-link" data-copy-share="https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html" aria-label="Copiar link para compartilhar no Instagram" role="button"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/?text=Ataques%20de%20Supply%20Chain%20https%3A%2F%2Fabreubrum.com.br%2Fblog%2Fataques-supply-chain-fornecedores.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fabreubrum.com.br%2Fblog%2Fataques-supply-chain-fornecedores.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fabreubrum.com.br%2Fblog%2Fataques-supply-chain-fornecedores.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://abreubrum.com.br/blog/ataques-supply-chain-fornecedores.html" class="post-share-link" data-copy-share="https://abreubrum.com.br/blog/ataques-supply-chain-fornecedores.html" aria-label="Copiar link para compartilhar no Instagram" role="button"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
         <figure class="post-featured-image">
@@ -176,40 +176,40 @@
 
     <section class="container">
         <article class="post-content">
-            <h2>O que é um ataque de supply chain</h2>
-            <p>Ataques de supply chain exploram fornecedores, softwares de terceiros, bibliotecas, integrações e parceiros para atingir o ambiente da empresa-alvo. Em vez de atacar diretamente a organização, o criminoso compromete um elo da cadeia e usa essa confiança para avançar.</p>
+            <h2>O que Ã© um ataque de supply chain</h2>
+            <p>Ataques de supply chain exploram fornecedores, softwares de terceiros, bibliotecas, integraÃ§Ãµes e parceiros para atingir o ambiente da empresa-alvo. Em vez de atacar diretamente a organizaÃ§Ã£o, o criminoso compromete um elo da cadeia e usa essa confianÃ§a para avanÃ§ar.</p>
 
             <h2>Por que esse risco cresce em empresas conectadas</h2>
-            <p>Operações modernas dependem de múltiplos serviços externos, APIs e componentes reutilizados. Essa interdependência acelera o negócio, mas também amplia a superfície de ataque. Uma única falha em fornecedor crítico pode causar indisponibilidade, vazamento de dados e impacto financeiro relevante.</p>
+            <p>OperaÃ§Ãµes modernas dependem de mÃºltiplos serviÃ§os externos, APIs e componentes reutilizados. Essa interdependÃªncia acelera o negÃ³cio, mas tambÃ©m amplia a superfÃ­cie de ataque. Uma Ãºnica falha em fornecedor crÃ­tico pode causar indisponibilidade, vazamento de dados e impacto financeiro relevante.</p>
 
-            <h2>Pontos mais críticos de exposição</h2>
+            <h2>Pontos mais crÃ­ticos de exposiÃ§Ã£o</h2>
             <ul>
-                <li><strong>Fornecedores com acesso privilegiado:</strong> contas de suporte, manutenção e administração remota.</li>
-                <li><strong>Softwares e dependências:</strong> componentes desatualizados ou comprometidos no processo de desenvolvimento.</li>
-                <li><strong>APIs e integrações:</strong> autenticação fraca, autorização inadequada e ausência de monitoramento contínuo.</li>
-                <li><strong>Processos de atualização:</strong> distribuição de pacotes sem validação de origem e integridade.</li>
+                <li><strong>Fornecedores com acesso privilegiado:</strong> contas de suporte, manutenÃ§Ã£o e administraÃ§Ã£o remota.</li>
+                <li><strong>Softwares e dependÃªncias:</strong> componentes desatualizados ou comprometidos no processo de desenvolvimento.</li>
+                <li><strong>APIs e integraÃ§Ãµes:</strong> autenticaÃ§Ã£o fraca, autorizaÃ§Ã£o inadequada e ausÃªncia de monitoramento contÃ­nuo.</li>
+                <li><strong>Processos de atualizaÃ§Ã£o:</strong> distribuiÃ§Ã£o de pacotes sem validaÃ§Ã£o de origem e integridade.</li>
             </ul>
 
             <div class="highlight-box">
-                <strong>Visão prática:</strong><br>
-                Segurança de supply chain exige controle técnico, governança de terceiros e validação contínua de riscos operacionais.
+                <strong>VisÃ£o prÃ¡tica:</strong><br>
+                SeguranÃ§a de supply chain exige controle tÃ©cnico, governanÃ§a de terceiros e validaÃ§Ã£o contÃ­nua de riscos operacionais.
             </div>
 
             <h2>Como proteger sua cadeia de fornecedores</h2>
             <ul>
-                <li><strong>Classifique fornecedores por criticidade:</strong> priorize quem acessa dados, sistemas ou operações sensíveis.</li>
-                <li><strong>Defina requisitos mínimos de segurança:</strong> contratos com critérios de acesso, auditoria e resposta a incidentes.</li>
-                <li><strong>Fortaleça segurança de APIs e integrações:</strong> autenticação robusta, menor privilégio e limitação de uso.</li>
+                <li><strong>Classifique fornecedores por criticidade:</strong> priorize quem acessa dados, sistemas ou operaÃ§Ãµes sensÃ­veis.</li>
+                <li><strong>Defina requisitos mÃ­nimos de seguranÃ§a:</strong> contratos com critÃ©rios de acesso, auditoria e resposta a incidentes.</li>
+                <li><strong>FortaleÃ§a seguranÃ§a de APIs e integraÃ§Ãµes:</strong> autenticaÃ§Ã£o robusta, menor privilÃ©gio e limitaÃ§Ã£o de uso.</li>
                 <li><strong>Monitore continuamente:</strong> registre eventos, detecte anomalias e reavalie riscos periodicamente.</li>
-                <li><strong>Teste cenários reais:</strong> simule falhas e valide tempo de resposta para reduzir impacto em produção.</li>
+                <li><strong>Teste cenÃ¡rios reais:</strong> simule falhas e valide tempo de resposta para reduzir impacto em produÃ§Ã£o.</li>
             </ul>
 
-            <h2>Conclusão</h2>
-            <p>Ataques de supply chain não são risco teórico. Eles afetam fornecedores, softwares, APIs e integrações que sustentam o negócio. Com avaliação técnica recorrente e controles objetivos, sua empresa reduz exposição e ganha resiliência operacional.</p>
+            <h2>ConclusÃ£o</h2>
+            <p>Ataques de supply chain nÃ£o sÃ£o risco teÃ³rico. Eles afetam fornecedores, softwares, APIs e integraÃ§Ãµes que sustentam o negÃ³cio. Com avaliaÃ§Ã£o tÃ©cnica recorrente e controles objetivos, sua empresa reduz exposiÃ§Ã£o e ganha resiliÃªncia operacional.</p>
 
             <div class="cta-box">
-                <h3>Quer mapear riscos de terceiros com prioridade técnica?</h3>
-                <p>A CyberShield ajuda sua empresa a avaliar fornecedores e integrações críticas, com foco em risco real e plano de mitigação viável.</p>
+                <h3>Quer mapear riscos de terceiros com prioridade tÃ©cnica?</h3>
+                <p>A ABREU & BRUM ajuda sua empresa a avaliar fornecedores e integraÃ§Ãµes crÃ­ticas, com foco em risco real e plano de mitigaÃ§Ã£o viÃ¡vel.</p>
                 <a href="../index.html#contato" class="btn btn-secondary">
                     <i class="fas fa-link"></i>
                     Falar com especialista
@@ -229,7 +229,7 @@
                         </div>
                         <div class="related-card-body">
                             <h4>Vulnerabilidades web: principais riscos em sites, sistemas e APIs</h4>
-                            <p>Veja como falhas de autenticação, autorização e exposição de dados aumentam o risco em ambientes web.</p>
+                            <p>Veja como falhas de autenticaÃ§Ã£o, autorizaÃ§Ã£o e exposiÃ§Ã£o de dados aumentam o risco em ambientes web.</p>
                         </div>
                     </a>
                 </div>
@@ -239,8 +239,8 @@
                             <img src="../images/blog/pentest-teste-de-invasao-empresas.png" alt="Capa: Pentest" loading="lazy">
                         </div>
                         <div class="related-card-body">
-                            <h4>Pentest: por que sua empresa precisa de um teste de invasão</h4>
-                            <p>Entenda como testes de segurança ajudam a validar controles e priorizar correções.</p>
+                            <h4>Pentest: por que sua empresa precisa de um teste de invasÃ£o</h4>
+                            <p>Entenda como testes de seguranÃ§a ajudam a validar controles e priorizar correÃ§Ãµes.</p>
                         </div>
                     </a>
                 </div>
@@ -250,8 +250,8 @@
                             <img src="../images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png" alt="Capa: Provimento 213 CNJ" loading="lazy">
                         </div>
                         <div class="related-card-body">
-                            <h4>Provimento 213 do CNJ: o que muda para cartórios</h4>
-                            <p>Veja como pentest e evidências técnicas apoiam a conformidade ao Provimento 213.</p>
+                            <h4>Provimento 213 do CNJ: o que muda para cartÃ³rios</h4>
+                            <p>Veja como pentest e evidÃªncias tÃ©cnicas apoiam a conformidade ao Provimento 213.</p>
                         </div>
                     </a>
                 </div>
@@ -267,37 +267,37 @@
                 <div class="footer-brand">
                     <div class="logo">
                         <a href="../index.html" style="color: inherit; text-decoration: none;">
-                            <img src="../images/logo-footer.png" alt="CyberShield" class="logo-img">
+                            <img src="../images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" class="logo-img">
                         </a>
                     </div>
-                    <p>Segurança digital que inspira confiança</p>
+                    <p>SeguranÃ§a digital que inspira confianÃ§a</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Links Rápidos</h4>
+                    <h4>Links RÃ¡pidos</h4>
                     <a href="../index.html">Home</a>
-                    <a href="../index.html#servicos">Serviços</a>
-                    <a href="../index.html#sobre">Sobre</a>
+                    <a href="../servicos/">ServiÃ§os</a>
+                    <a href="../index.html#modelo-comercial">Modelo</a>
                     <a href="../index.html#contato">Contato</a>
                     <a href="index.html">Blog</a>
                 </div>
                 <div class="footer-services">
-                    <h4>Serviços</h4>
-                    <a href="../index.html#servicos">Diagnóstico de Segurança</a>
-                    <a href="../index.html#servicos">Pentest</a>
-                    <a href="../index.html#servicos">Hardening Técnico</a>
-                    <a href="../index.html#servicos">Consultoria LGPD</a>
+                    <h4>ServiÃ§os</h4>
+                    <a href="../index.html#ab-scan">AB Scan</a>
+                    <a href="../index.html#pentest-manual">PenTest manual</a>
+                    <a href="../index.html#relatorio-exemplo">Relatorio exemplo</a>
+                    <a href="../index.html#contato">Contato</a>
                 </div>
                 <div class="footer-social">
                     <h4>Redes Sociais</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:contato@abreubrum.com.br" aria-label="E-mail da ABREU & BRUM"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:+5521920137715" aria-label="Telefone da ABREU & BRUM"><i class="fas fa-phone"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 CyberShield. Todos os direitos reservados.</p>
+                <p>&copy; 2026 ABREU & BRUM. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -307,3 +307,7 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+
+
+

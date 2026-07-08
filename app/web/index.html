@@ -1,19 +1,18 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K46VQ6H8MS"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      var cyberShieldConsent = 'denied';
+      var abConsent = 'denied';
       try {
-        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+        abConsent = localStorage.getItem('ab_cookie_consent') === 'granted' ? 'granted' : 'denied';
       } catch (e) {}
       gtag('consent', 'default', {
-        'analytics_storage': cyberShieldConsent,
+        'analytics_storage': abConsent,
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
@@ -26,36 +25,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
-    
-    <!-- SEO Meta Tags -->
-    <title>CyberShield - Consultoria em Cibersegurança para Empresas no Brasil | Pentest, LGPD, Hardening</title>
-    <meta name="description" content="Consultoria em cibersegurança para empresas no Brasil. Pentest real (OWASP, MITRE ATT&CK), conformidade LGPD, hardening técnico. Relatórios executivo e técnico. Avaliação gratuita!">
-    <meta name="keywords" content="cibersegurança, segurança digital, LGPD, pentest, hardening, consultoria segurança, proteção dados, ISO 27001, NIST">
-    <meta name="author" content="CyberShield">
+
+    <title>AB Scan | Analise autorizada de seguranca web | ABREU &amp; BRUM</title>
+    <meta name="description" content="AB Scan e uma analise autorizada de seguranca web para dominios validados por DNS, com relatorio executivo e tecnico para contratos, fornecedores e auditorias.">
+    <meta name="keywords" content="scan de seguranca web, analise de seguranca para dominio, relatorio de seguranca web, scanner autorizado, validacao DNS para scan, pentest web, evidencia de seguranca para contrato">
+    <meta name="author" content="ABREU &amp; BRUM">
     <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Facebook -->
+
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://cybershieldgroup.com.br/">
-    <meta property="og:title" content="CyberShield - Consultoria em Cibersegurança para Empresas no Brasil">
-    <meta property="og:description" content="Consultoria em cibersegurança para empresas. Pentest real (OWASP, MITRE ATT&CK), conformidade LGPD e hardening técnico. Avaliação gratuita.">
-    <meta property="og:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
-    
-    <!-- Twitter -->
+    <meta property="og:url" content="https://abreubrum.com.br/">
+    <meta property="og:title" content="AB Scan | Analise autorizada de seguranca web">
+    <meta property="og:description" content="Valide seu dominio, execute uma analise segura e receba evidencias priorizadas para decidir se um PenTest manual e necessario.">
+    <meta property="og:image" content="https://abreubrum.com.br/images/logo-social.svg">
+
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://cybershieldgroup.com.br/">
-    <meta property="twitter:title" content="CyberShield - Consultoria em Cibersegurança para Empresas no Brasil">
-    <meta property="twitter:description" content="Consultoria em cibersegurança para empresas. Pentest real (OWASP, MITRE ATT&CK), conformidade LGPD e hardening técnico. Avaliação gratuita.">
-    <meta property="twitter:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/logo-favicon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/logo-favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/logo-favicon.png">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://cybershieldgroup.com.br/">
+    <meta property="twitter:url" content="https://abreubrum.com.br/">
+    <meta property="twitter:title" content="AB Scan | ABREU &amp; BRUM">
+    <meta property="twitter:description" content="Analise autorizada de seguranca web com validacao DNS, evidencias, score e relatorio executivo/tecnico.">
+    <meta property="twitter:image" content="https://abreubrum.com.br/images/logo-social.svg">
+
+    <link rel="icon" type="image/svg+xml" href="images/logo-favicon.svg">
+    <link rel="apple-touch-icon" href="images/logo-favicon.svg">
+    <link rel="canonical" href="https://abreubrum.com.br/">
 
     <script type="application/ld+json">
     {
@@ -63,128 +54,63 @@
       "@graph": [
         {
           "@type": "Organization",
-          "@id": "https://cybershieldgroup.com.br/#organization",
-          "name": "CyberShield",
-          "legalName": "CyberShield Ltda.",
-          "url": "https://cybershieldgroup.com.br/",
-          "logo": "https://cybershieldgroup.com.br/images/logo-header.png",
-          "description": "Consultoria especializada em cibersegurança, pentest, hardening técnico, conformidade LGPD, infraestrutura segura e monitoramento para empresas no Brasil.",
-          "foundingDate": "2024",
-          "taxID": "61.952.290/0001-68",
-          "email": "contato@cybershieldgroup.com.br",
+          "@id": "https://abreubrum.com.br/#organization",
+          "name": "ABREU & BRUM",
+          "legalName": "ABREU & BRUM",
+          "url": "https://abreubrum.com.br/",
+          "logo": "https://abreubrum.com.br/images/logo-abreu-brum.svg",
+          "description": "Empresa brasileira de cybersecurity, pentest e consultoria com foco em analise autorizada de seguranca web para dominios validados.",
+          "email": "contato@abreubrum.com.br",
           "telephone": "+5521920137715",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Rua Pais Leme, 215, Conjunto 1713",
-            "addressLocality": "São Paulo",
+            "addressLocality": "Sao Paulo",
             "addressRegion": "SP",
-            "postalCode": "05424-150",
             "addressCountry": "BR"
-          },
-          "sameAs": [
-            "https://www.linkedin.com/company/cybershieldgroup/",
-            "https://www.instagram.com/cybershieldltda/",
-            "https://www.facebook.com/people/Cyber-Shield-Group/61578838183639/"
-          ]
-        },
-        {
-          "@type": "ProfessionalService",
-          "@id": "https://cybershieldgroup.com.br/#professional-service",
-          "name": "CyberShield",
-          "url": "https://cybershieldgroup.com.br/",
-          "image": "https://cybershieldgroup.com.br/images/logo-favicon.png",
-          "telephone": "+5521920137715",
-          "email": "contato@cybershieldgroup.com.br",
-          "areaServed": {
-            "@type": "Country",
-            "name": "Brasil"
-          },
-          "parentOrganization": {
-            "@id": "https://cybershieldgroup.com.br/#organization"
-          },
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Serviços de Cibersegurança CyberShield",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Pentest: Teste de Invasão",
-                  "description": "Simulação controlada de ataques reais para identificar vulnerabilidades críticas com metodologia OWASP e MITRE ATT&CK."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Diagnóstico de Segurança",
-                  "description": "Análise de conformidade LGPD e infraestrutura de TI com laudo técnico, visão executiva e roadmap de melhorias."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Hardening Técnico de Infraestrutura",
-                  "description": "Fortalecimento de servidores, redes, sistemas, políticas de acesso e monitoramento contínuo."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Consultoria em LGPD e Segurança da Informação",
-                  "description": "Consultoria para proteção de dados, privacidade, governança e controles técnicos de segurança."
-                }
-              }
-            ]
           }
         },
         {
-          "@type": "WebSite",
-          "@id": "https://cybershieldgroup.com.br/#website",
-          "name": "CyberShield",
-          "url": "https://cybershieldgroup.com.br/",
+          "@type": "SoftwareApplication",
+          "@id": "https://abreubrum.com.br/#ab-scan",
+          "name": "AB Scan",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "description": "Plataforma web B2B self-service de analise automatizada, segura e nao destrutiva para dominios autorizados por validacao DNS.",
           "publisher": {
-            "@id": "https://cybershieldgroup.com.br/#organization"
+            "@id": "https://abreubrum.com.br/#organization"
           },
-          "inLanguage": "pt-BR"
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "BRL",
+            "description": "Diagnostico inicial gratuito e relatorio completo pago com credito para PenTest manual por 90 dias."
+          }
         },
         {
           "@type": "FAQPage",
-          "@id": "https://cybershieldgroup.com.br/#faq",
+          "@id": "https://abreubrum.com.br/#faq",
           "mainEntity": [
             {
               "@type": "Question",
-              "name": "O que é pentest e por que minha empresa precisa?",
+              "name": "O AB Scan executa analise em qualquer dominio?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Pentest é uma simulação controlada de ataque cibernético realizada por especialistas para identificar vulnerabilidades antes que elas sejam exploradas. Empresas que armazenam dados de clientes, processam pagamentos ou operam sistemas críticos precisam de pentest periódico para proteger ativos e manter conformidade."
+                "text": "Nao. O dominio precisa ser autorizado por validacao DNS TXT antes de qualquer scan."
               }
             },
             {
               "@type": "Question",
-              "name": "O que é LGPD e como a CyberShield pode ajudar minha empresa?",
+              "name": "O scan automatizado substitui um PenTest manual?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "A LGPD exige tratamento seguro e transparente de dados pessoais. A CyberShield apoia empresas com diagnóstico de conformidade, mapeamento de dados, políticas de privacidade, treinamento e controles técnicos."
+                "text": "Nao. O AB Scan organiza o diagnostico inicial, evidencia riscos e ajuda a decidir quando um PenTest manual mais aprofundado faz sentido."
               }
             },
             {
               "@type": "Question",
-              "name": "A CyberShield atende empresas fora de São Paulo?",
+              "name": "O valor do scan completo pode virar credito?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Sim. A CyberShield atende empresas em todo o Brasil, com serviços remotos de consultoria, análise de vulnerabilidades, conformidade LGPD, pentest web e monitoramento."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "O que está incluído no relatório de pentest?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "O relatório inclui visão executiva, relatório técnico, lista priorizada de vulnerabilidades com severidade, evidências de exploração e plano de ação com recomendações de correção."
+                "text": "Sim. O valor pago no scan completo pode ser usado como credito integral para PenTest manual por 90 dias, conforme escopo comercial aplicavel."
               }
             }
           ]
@@ -192,896 +118,467 @@
       ]
     }
     </script>
-    
-    <!-- Preconnect para performance -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <!-- Stylesheets (tokens antes do style para sobrescrita consistente) -->
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Configuration Script -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="js/config.js"></script>
 </head>
 <body data-site-area="main_site">
-    <!-- Header -->
+    <a href="#main-content" class="skip-link">Pular para o conteudo</a>
+
     <header class="header">
         <div class="container">
-            <div class="logo">
-                <a href="index.html" style="color: inherit; text-decoration: none;">
-                    <img src="images/logo-header.png" alt="CyberShield" class="logo-img">
-                </a>
-            </div>
-            <nav class="nav">
-                <a href="#home">Home</a>
-                <a href="#servicos">Serviços</a>
-                <a href="#sobre">Sobre</a>
-                <a href="#contato">Contato</a>
-                <a href="blog/index.html">Blog</a>
+            <a href="index.html" class="logo" aria-label="ABREU & BRUM">
+                <img src="images/logo-abreu-brum.svg" alt="ABREU & BRUM" class="logo-img">
+            </a>
+            <nav class="nav" aria-label="Navegacao principal">
+                <a href="#ab-scan">AB Scan</a>
+                <a href="#relatorio-exemplo">Relatorio</a>
+                <a href="#modelo-comercial">Modelo</a>
+                <a href="#pentest-manual">PenTest manual</a>
+                <a href="servicos/">Servicos</a>
+                <a href="#contato" class="nav-cta">Contato</a>
             </nav>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
+            <button class="mobile-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
         </div>
     </header>
 
-    <!-- Floating CTA -->
     <div class="floating-cta">
-        <a href="#contato" class="btn btn-primary">
-            <img src="images/logo-favicon.png" alt="CyberShield" style="width: 20px; height: 20px; margin-right: 8px;">
-            Fale com um Especialista
+        <a href="#ab-scan" class="btn btn-primary">
+            <i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i>
+            Ver AB Scan
         </a>
     </div>
 
     <main id="main-content">
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg">
-            <div class="hero-particles"></div>
-        </div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Consultoria em Cibersegurança
-                    <span class="gradient-text">para Empresas no Brasil</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Sua empresa está vulnerável a ataques cibernéticos agora mesmo. A CyberShield oferece pentest real (OWASP, MITRE ATT&CK), conformidade LGPD e hardening técnico, com relatórios executivo e técnico priorizados por risco, monitoramento 24/7 e total transparência nos resultados.
-                </p>
-                <div class="hero-badges">
-                    <span class="hero-badge"><i class="fas fa-certificate"></i> ISO 27001 &amp; NIST</span>
-                    <span class="hero-badge"><i class="fas fa-file-alt"></i> Relatório executivo + técnico</span>
-                    <span class="hero-badge"><i class="fas fa-check-circle"></i> Avaliação 100% gratuita</span>
-                    <span class="hero-badge"><i class="fas fa-globe-americas"></i> Atende todo o Brasil</span>
-                </div>
-                <div class="hero-buttons">
-                    <a href="#contato" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        Solicite Avaliação Gratuita
-                    </a>
-                    <a href="#servicos" class="btn btn-secondary">
-                        <i class="fas fa-play"></i>
-                        Conhecer Serviços
-                    </a>
-                    <a href="servicos/" class="btn btn-outline">
-                        <i class="fas fa-layer-group"></i>
-                        Ver Detalhes
-                    </a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="security-shield">
-                    <img src="images/logo-favicon.png" alt="CyberShield Shield" style="width: 120px; height: 120px; opacity: 0.8;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Diferenciais Técnicos -->
-    <section class="differentiators" aria-labelledby="diferenciais-heading">
-        <div class="container">
-            <header class="differentiators-header">
-                <h2 id="diferenciais-heading" class="differentiators-title">Como garantimos resultados em cibersegurança</h2>
-                <p class="differentiators-subtitle">Metodologia estruturada, evidência técnica e entrega orientada a decisão, não apenas relatórios genéricos.</p>
-            </header>
-            <div class="differentiators-grid">
-                <article class="differentiator-card">
-                    <div class="differentiator-icon" aria-hidden="true">
-                        <i class="fas fa-crosshairs"></i>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="hero-eyebrow">ABREU &amp; BRUM | Cybersecurity, PenTest e Consultoria</p>
+                    <h1 class="hero-title"><span class="brand-product">AB Scan</span> para dominios autorizados, relatorios claros e decisao B2B.</h1>
+                    <p class="hero-subtitle">Valide seu dominio, execute uma analise segura e receba evidencias para priorizar riscos, destravar exigencias comerciais e decidir se um PenTest manual e necessario.</p>
+                    <div class="hero-badges" aria-label="Diferenciais principais">
+                        <span class="hero-badge"><i class="fas fa-check-circle" aria-hidden="true"></i> Validacao DNS obrigatoria</span>
+                        <span class="hero-badge"><i class="fas fa-file-lines" aria-hidden="true"></i> Relatorio executivo e tecnico</span>
+                        <span class="hero-badge"><i class="fas fa-handshake" aria-hidden="true"></i> Credito para PenTest manual</span>
                     </div>
-                    <h3 class="differentiator-title">Pentest com metodologia real</h3>
-                    <p class="differentiator-desc">Testes de invasão com OWASP Top 10 e MITRE ATT&CK, exploração controlada e relatório executivo + técnico com plano de correção priorizado.</p>
-                </article>
-                <article class="differentiator-card">
-                    <div class="differentiator-icon" aria-hidden="true">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="differentiator-title">Monitoramento e detecção 24/7</h3>
-                    <p class="differentiator-desc">Detecção proativa de ameaças, correlação de eventos e análise comportamental para resposta antecipada a incidentes de segurança.</p>
-                </article>
-                <article class="differentiator-card">
-                    <div class="differentiator-icon" aria-hidden="true">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h3 class="differentiator-title">Arquitetura segura por design</h3>
-                    <p class="differentiator-desc">Infraestrutura com hardening, boas práticas e revisão contínua para reduzir superfície de ataque desde a concepção.</p>
-                </article>
-                <article class="differentiator-card">
-                    <div class="differentiator-icon" aria-hidden="true">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="differentiator-title">Relatórios executivos estratégicos</h3>
-                    <p class="differentiator-desc">Visão técnica para TI e visão executiva para o board, com plano de ação priorizado por risco e custo de remediação estimado.</p>
-                </article>
-            </div>
-            <p class="differentiators-cta">
-                <a href="#contato" class="btn btn-outline">Fale com um especialista em cibersegurança</a>
-            </p>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="servicos" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Soluções de Cibersegurança para Empresas</h2>
-                <p>Proteção completa: do diagnóstico à remediação e monitoramento contínuo</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card featured">
-                    <div class="card-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>Diagnóstico de Segurança</h3>
-                    <p>Análise completa de conformidade LGPD + infraestrutura de TI. Laudo detalhado, reunião de alinhamento e roadmap de melhorias, com prazo definido conforme o escopo.</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Laudo técnico e executivo</li>
-                        <li><i class="fas fa-check"></i> Reunião de alinhamento</li>
-                        <li><i class="fas fa-check"></i> Roadmap de melhorias por prioridade</li>
-                    </ul>
-                    <a href="?servico=diagnostico#contato" class="btn btn-primary">Solicitar diagnóstico gratuito</a>
-                </div>
-
-                <div class="service-card">
-                    <div class="card-icon">
-                        <i class="fas fa-bug"></i>
-                    </div>
-                    <h3>Pentest: Teste de Invasão</h3>
-                    <p>Simulação controlada de ataques reais para identificar vulnerabilidades críticas antes que hackers as explorem. Metodologia OWASP e MITRE ATT&CK.</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Análise de vulnerabilidades (CVSS)</li>
-                        <li><i class="fas fa-check"></i> Relatório executivo + técnico</li>
-                        <li><i class="fas fa-check"></i> Plano de correção priorizado</li>
-                    </ul>
-                    <a href="?servico=pentest#contato" class="btn btn-outline">Solicitar pentest</a>
-                </div>
-
-                <div class="service-card">
-                    <div class="card-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>Hardening Técnico de Infraestrutura</h3>
-                    <p>Fortalecimento de servidores, redes e sistemas com configurações avançadas de segurança, políticas de acesso e monitoramento contínuo.</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Configuração segura de sistemas</li>
-                        <li><i class="fas fa-check"></i> Políticas de segurança e acesso</li>
-                        <li><i class="fas fa-check"></i> Monitoramento contínuo 24/7</li>
-                    </ul>
-                    <a href="?servico=hardening#contato" class="btn btn-outline">Solicitar hardening</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Standards Section -->
-    <section class="standards">
-        <div class="container">
-            <div class="section-header">
-                <h2>Conformidade com ISO 27001, NIST e LGPD</h2>
-                <p>Segurança baseada em padrões internacionais reconhecidos globalmente</p>
-            </div>
-            <div class="standards-content">
-                <div class="standards-text">
-                    <p>A CyberShield implementa controles alinhados à ISO 27001 (Sistema de Gestão de Segurança da Informação) e ao NIST Cybersecurity Framework, padrões adotados por organizações dos setores público e privado no Brasil e no mundo.</p>
-                    <p>Combinamos esses frameworks com a LGPD (Lei nº 13.709/2018) para garantir que sua empresa esteja tecnicamente protegida e juridicamente em conformidade, evitando multas de até 2% do faturamento anual.</p>
-                </div>
-                <div class="standards-grid">
-                    <div class="standard-card">
-                        <div class="standard-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3>ISO 27001</h3>
-                        <p>Padrão internacional para gestão de segurança da informação (SGSI). Define controles, políticas e processos para proteção sistemática dos ativos de dados.</p>
-                    </div>
-                    <div class="standard-card">
-                        <div class="standard-icon">
-                            <i class="fas fa-shield-virus"></i>
-                        </div>
-                        <h3>NIST Cybersecurity Framework</h3>
-                        <p>Framework do Instituto Nacional de Padrões dos EUA para identificar, proteger, detectar, responder e recuperar de ameaças cibernéticas.</p>
-                    </div>
-                    <div class="standard-card">
-                        <div class="standard-icon">
-                            <i class="fas fa-balance-scale"></i>
-                        </div>
-                        <h3>Conformidade LGPD</h3>
-                        <p>Adequação completa à Lei Geral de Proteção de Dados: mapeamento de dados pessoais, políticas de privacidade, DPO e controles técnicos obrigatórios.</p>
-                    </div>
-                </div>
-                <div class="standards-cta">
-                    <p>Nossos projetos são documentados com evidências de conformidade, prontos para auditorias e due diligence.</p>
-                    <a href="#contato" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        Solicite Avaliação Gratuita
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lead Capture Section -->
-    <section class="lead-capture">
-        <div class="container">
-            <div class="lead-content">
-                <div class="lead-text">
-                    <h2>Baixe Gratuitamente</h2>
-                    <h3>Checklist de Cibersegurança para Empresas</h3>
-                    <p>Descubra se sua empresa está protegida contra as principais ameaças cibernéticas. Este checklist gratuito inclui:</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> 30+ itens de verificação de segurança</li>
-                        <li><i class="fas fa-check"></i> Checklist de conformidade LGPD</li>
-                        <li><i class="fas fa-check"></i> Avaliação de vulnerabilidades críticas</li>
-                        <li><i class="fas fa-check"></i> Plano de ação personalizado</li>
-                    </ul>
-                    <div class="lead-benefits">
-                        <div class="benefit-item">
-                            <i class="fas fa-download"></i>
-                            <span>Download Imediato</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-lock"></i>
-                            <span>100% Gratuito</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-clock"></i>
-                            <span>5 minutos para completar</span>
-                        </div>
-                    </div>
-                    <p style="margin-top: 14px;">
-                        <a href="assets/checklists/checklist-cnj-interativo.html" class="btn btn-secondary">
-                            <i class="fas fa-list-check"></i>
-                            Acessar checklist CNJ interativo
+                    <div class="hero-buttons">
+                        <a href="#ab-scan" class="btn btn-primary" data-event-name="sample_report_viewed">
+                            <i class="fas fa-arrow-down" aria-hidden="true"></i>
+                            Ver AB Scan
                         </a>
-                    </p>
+                        <a href="#relatorio-exemplo" class="btn btn-secondary">
+                            <i class="fas fa-file-shield" aria-hidden="true"></i>
+                            Ver relatorio exemplo
+                        </a>
+                    </div>
                 </div>
-                <div class="contact-form">
-                    <div id="lead-message" class="contact-message" style="display: none;" role="alert" aria-live="polite"></div>
-                    <form id="leadForm" class="lead-form-content" method="post" autocomplete="on" novalidate>
-                        <h4>Preencha seus dados para baixar o checklist e registrar seu lead via WhatsApp</h4>
-                        
-                        <div class="form-group">
-                            <label for="lead-name" class="form-label">
-                                Nome Completo <span class="required" aria-label="campo obrigatório">*</span>
-                            </label>
-                            <input 
-                                type="text" 
-                                id="lead-name"
-                                name="nome" 
-                                placeholder="Digite seu nome completo"
-                                required 
-                                minlength="2" 
-                                maxlength="100"
-                                autocomplete="name"
-                                aria-describedby="lead-name-help"
-                                aria-required="true"
-                                spellcheck="false"
-                            >
-                            <div id="lead-name-help" class="form-help">Digite seu nome completo (mínimo 2 caracteres)</div>
-                        </div>
+                <aside class="hero-panel" aria-label="Resumo do AB Scan">
+                    <img src="images/logo-abreu-brum.svg" alt="ABREU & BRUM">
+                    <h2><span class="brand-product">AB Scan</span></h2>
+                    <p>Analise automatizada, controlada e nao destrutiva para dominios que a empresa comprova controlar.</p>
+                    <ul class="clean-list">
+                        <li><i class="fas fa-lock" aria-hidden="true"></i><span>Nao escaneia sem validacao de dominio.</span></li>
+                        <li><i class="fas fa-shield-halved" aria-hidden="true"></i><span>Bloqueia localhost, IPs privados, metadata cloud e redirects perigosos.</span></li>
+                        <li><i class="fas fa-chart-line" aria-hidden="true"></i><span>Prioriza riscos com evidencia, severidade, confianca e recomendacao.</span></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
 
-                        <div class="form-group">
-                            <label for="lead-email" class="form-label">
-                                E-mail <span class="required" aria-label="campo obrigatório">*</span>
-                            </label>
-                            <input 
-                                type="email" 
-                                id="lead-email"
-                                name="email" 
-                                placeholder="seu@email.com"
-                                required
-                                autocomplete="email"
-                                aria-describedby="lead-email-help"
-                                aria-required="true"
-                                spellcheck="false"
-                            >
-                            <div id="lead-email-help" class="form-help">Digite um e-mail válido</div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="lead-company" class="form-label">
-                                Empresa <span class="required" aria-label="campo obrigatório">*</span>
-                            </label>
-                            <input 
-                                type="text" 
-                                id="lead-company"
-                                name="empresa" 
-                                placeholder="Nome da sua empresa"
-                                required
-                                maxlength="100"
-                                autocomplete="organization"
-                                aria-describedby="lead-company-help"
-                                aria-required="true"
-                                spellcheck="false"
-                            >
-                            <div id="lead-company-help" class="form-help">Nome da sua empresa ou organização</div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="lead-role" class="form-label">
-                                Seu Cargo <span class="required" aria-label="campo obrigatório">*</span>
-                            </label>
-                            <select 
-                                id="lead-role"
-                                name="cargo" 
-                                required
-                                aria-describedby="lead-role-help"
-                                aria-required="true"
-                            >
-                                <option value="" disabled selected>Selecione seu cargo</option>
-                                <option value="diretor">Diretor/CEO</option>
-                                <option value="ti">Diretor de TI</option>
-                                <option value="compliance">Compliance</option>
-                                <option value="gerente">Gerente</option>
-                                <option value="analista">Analista</option>
-                                <option value="outro">Outro</option>
-                            </select>
-                            <div id="lead-role-help" class="form-help">Selecione o cargo que melhor representa sua função</div>
-                        </div>
-
-                        <div class="form-group form-checkbox">
-                            <label class="checkbox-label">
-                                <input 
-                                    type="checkbox" 
-                                    id="lead-privacy"
-                                    name="privacy" 
-                                    required
-                                    aria-describedby="lead-privacy-help"
-                                    aria-required="true"
-                                >
-                                <span class="checkmark"></span>
-                                <span class="checkbox-text">
-                                    Li e aceito a <a href="politica-privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a> 
-                                    <span class="required" aria-label="campo obrigatório">*</span>
-                                </span>
-                            </label>
-                            <div id="lead-privacy-help" class="form-help">É necessário aceitar a política de privacidade para continuar</div>
-                        </div>
-
-                        <div class="form-actions">
-                            <button 
-                                type="button" 
-                                class="btn btn-primary" 
-                                id="leadSubmitBtn"
-                                aria-describedby="lead-submit-help"
-                            >
-                                <span id="leadBtnText">
-                                    <i class="fas fa-download" aria-hidden="true"></i>
-                                    <span>Baixar Checklist Gratuito</span>
-                                </span>
-                                <span id="leadBtnLoading" style="display: none;">
-                                    <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
-                                    <span>Processando...</span>
-                                </span>
-                            </button>
-                            <div id="lead-submit-help" class="form-help">Clique para baixar o PDF e abrir o WhatsApp com seus dados</div>
-                        </div>
-                    </form>
+        <section id="ab-scan" class="section">
+            <div class="container">
+                <div class="section-header center">
+                    <p class="eyebrow">Produto principal</p>
+                    <h2><span class="brand-product">AB Scan</span> cria um caminho seguro entre duvida tecnica e decisao comercial.</h2>
+                    <p>Empresas precisam demonstrar seguranca para clientes, fornecedores, auditorias e homologacoes. O AB Scan organiza esse primeiro passo com autorizacao, escopo controlado e linguagem util para quem decide e para quem corrige.</p>
+                </div>
+                <div class="grid-3">
+                    <article class="card">
+                        <div class="card-icon"><i class="fas fa-building-lock" aria-hidden="true"></i></div>
+                        <h3>Para decisores</h3>
+                        <p>Evidencia estruturada para destravar contrato, homologacao de fornecedor, negociacao ou exigencia de seguranca recebida de um cliente.</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon"><i class="fas fa-comments" aria-hidden="true"></i></div>
+                        <h3>Para gestores</h3>
+                        <p>Resumo executivo sem alarmismo, com riscos priorizados, limites do scan e proximos passos compreensiveis.</p>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon"><i class="fas fa-code-branch" aria-hidden="true"></i></div>
+                        <h3>Para tecnicos</h3>
+                        <p>Achados com evidencias, severidade, confianca, impacto, recomendacao, status e origem para orientar correcao e reteste.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Target Audience -->
-    <section class="target">
-        <div class="container">
-            <div class="section-header">
-                <h2>Quem se Beneficia da Nossa Consultoria em Cibersegurança?</h2>
-                <p>Empresas que tratam dados sensíveis e buscam proteção real, não apenas conformidade no papel</p>
-            </div>
-            <div class="target-grid">
-                <div class="target-item">
-                    <div class="target-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h4>Pequenas e Médias Empresas</h4>
-                    <p>Com TI improvisada que precisam de estrutura de segurança profissional sem custo de grande empresa</p>
+        <section id="fluxo" class="section section-soft">
+            <div class="container">
+                <div class="section-header center">
+                    <p class="eyebrow">Fluxo planejado</p>
+                    <h2>Da validacao do dominio ao PenTest manual, sem atalhos inseguros.</h2>
                 </div>
-                <div class="target-item">
-                    <div class="target-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h4>Escritórios de Advocacia</h4>
-                    <p>Que lidam com dados sensíveis de clientes e precisam de conformidade LGPD e sigilo garantido</p>
-                </div>
-                <div class="target-item">
-                    <div class="target-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h4>Clínicas e Hospitais</h4>
-                    <p>Proteção de dados de saúde (dados sensíveis pela LGPD), prontuários e conformidade ANPD</p>
-                </div>
-                <div class="target-item">
-                    <div class="target-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h4>Startups em Crescimento</h4>
-                    <p>Que precisam escalar com segurança e demonstrar maturidade para investidores e enterprise</p>
+                <div class="flow">
+                    <article class="flow-step">
+                        <h3>Diagnostico inicial</h3>
+                        <p>Validacao DNS TXT, scan basico, score e relatorio parcial para entender exposicao inicial.</p>
+                    </article>
+                    <article class="flow-step">
+                        <h3>Relatorio completo</h3>
+                        <p>Crawling seguro, heuristicas, inventario, evidencias e PDF profissional para areas tecnica e executiva.</p>
+                    </article>
+                    <article class="flow-step">
+                        <h3>Credito PenTest</h3>
+                        <p>O valor do scan completo pode virar credito integral para PenTest manual por 90 dias.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="sobre" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Sobre a CyberShield</h2>
-                    <h3>Nossa Missão</h3>
-                    <p>Oferecer consultoria especializada em infraestrutura, segurança da informação e privacidade de dados, com transparência, ética e resultados concretos para empresas que valorizam integridade e excelência técnica.</p>
-                    
-                    <h3>Nossa Visão</h3>
-                    <p>Ser reconhecida como referência em cibersegurança ética, acessível e orientada a resultados no Brasil, tornando a proteção digital uma realidade para empresas de todos os portes.</p>
+        <section id="seguranca-autorizada" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Autorizacao e controle</p>
+                    <h2>Scanner comercial, responsavel e restrito a dominios autorizados.</h2>
+                    <p>O AB Scan nao e uma ferramenta aberta para testar terceiros. A comunicacao, a arquitetura e o processo comercial devem reforcar autorizacao obrigatoria, auditoria e limites tecnicos.</p>
+                </div>
+                <div class="grid-4">
+                    <article class="card">
+                        <h3>DNS TXT</h3>
+                        <p>O scan so deve iniciar quando o dominio estiver validado pelo proprietario ou responsavel autorizado.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Bloqueios de destino</h3>
+                        <p>Regras contra localhost, IPs privados, metadata cloud e redirecionamentos perigosos.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Execucao controlada</h3>
+                        <p>Timeouts, limites de tamanho, redirects, rate limit e User-Agent proprio para reduzir risco operacional.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Rastreabilidade</h3>
+                        <p>Logs, auditoria e diferenciacao entre achados confirmados, potenciais, informativos e inconclusivos.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-                    <h3>Credenciais e Metodologia</h3>
-                    <p>Trabalhamos com as metodologias OWASP Top 10, MITRE ATT&CK, ISO 27001 e NIST Cybersecurity Framework. Nossa equipe possui experiência em infraestrutura cloud (AWS, Azure), DevSecOps, Kubernetes e conformidade regulatória LGPD/GDPR.</p>
-                </div>
-                <div class="about-values">
-                    <h3>Nossos Valores</h3>
-                    <div class="values-grid">
-                        <div class="value-item">
-                            <i class="fas fa-handshake"></i>
-                            <span>Ética e Transparência</span>
-                        </div>
-                        <div class="value-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Segurança Garantida</span>
-                        </div>
-                        <div class="value-item">
-                            <i class="fas fa-star"></i>
-                            <span>Qualidade com Custo Otimizado</span>
-                        </div>
-                        <div class="value-item">
-                            <i class="fas fa-robot"></i>
-                            <span>Automação e Escalabilidade</span>
-                        </div>
-                        <div class="value-item">
-                            <i class="fas fa-users"></i>
-                            <span>Proximidade Real</span>
+        <section id="relatorio-exemplo" class="section section-soft">
+            <div class="container">
+                <div class="grid-2">
+                    <div>
+                        <p class="eyebrow">Relatorio exemplo</p>
+                        <h2>Uma entrega que conversa com diretoria, tecnico e comprador.</h2>
+                        <p>O relatorio deve mostrar score, inventario, exposicao publica, evidencias, riscos priorizados, impacto, recomendacao e limites do scan. O objetivo e apoiar decisao, nao prometer seguranca absoluta.</p>
+                        <div class="cta-row">
+                            <a href="#contato" class="btn btn-primary">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                Solicitar contexto do relatorio
+                            </a>
+                            <a href="servicos/#pentest" class="btn btn-outline">
+                                Ver PenTest manual
+                            </a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="team">
-        <div class="container">
-            <div class="section-header">
-                <h2>Nossa Equipe de Especialistas em Cibersegurança</h2>
-                <p>Profissionais dedicados à proteção dos seus dados e sistemas</p>
-            </div>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-avatar">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h4>Especialista em Segurança Ofensiva</h4>
-                    <p class="member-role">Consultor Técnico Senior: Pentest &amp; Análise de Vulnerabilidades</p>
-                    <p class="member-skills">Infraestrutura · Cloud · Docker · LGPD · Pentest · OWASP</p>
-                    <div class="member-tasks">
-                        <span>Análise de Vulnerabilidades</span>
-                        <span>Hardening de Sistemas</span>
-                        <span>Conformidade LGPD</span>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <div class="member-avatar">
-                        <i class="fas fa-user-cog"></i>
-                    </div>
-                    <h4>Arquiteto de Segurança em Cloud</h4>
-                    <p class="member-role">Especialista em Infraestrutura Segura: DevSecOps</p>
-                    <p class="member-skills">DevOps · Kubernetes · AWS · Azure · SIEM · Monitoramento</p>
-                    <div class="member-tasks">
-                        <span>Arquitetura de Segurança</span>
-                        <span>Automação DevSecOps</span>
-                        <span>Monitoramento 24/7</span>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <div class="member-avatar">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <h4>Consultor de Privacidade e DPO</h4>
-                    <p class="member-role">Especialista em LGPD, GDPR e Compliance</p>
-                    <p class="member-skills">LGPD · GDPR · ISO 27001 · Auditoria · Compliance · DPO</p>
-                    <div class="member-tasks">
-                        <span>Auditoria de Conformidade</span>
-                        <span>Treinamento de Equipes</span>
-                        <span>Políticas de Privacidade</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq">
-        <div class="container">
-            <div class="section-header">
-                <h2>Perguntas Frequentes sobre Cibersegurança</h2>
-                <p>Dúvidas comuns de empresas que buscam proteção digital</p>
-            </div>
-            <div class="faq-grid">
-                <details class="faq-item">
-                    <summary class="faq-question">O que é pentest e por que minha empresa precisa?</summary>
-                    <div class="faq-answer">
-                        <p>Pentest (teste de penetração) é uma simulação controlada de ataque cibernético realizada por especialistas para identificar vulnerabilidades antes que hackers as explorem. Empresas que armazenam dados de clientes, processam pagamentos ou operam sistemas críticos precisam de pentest periódico para proteger seus ativos e manter conformidade com normas como LGPD e ISO 27001. Sem pentest, você só descobre as falhas quando é tarde demais.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary class="faq-question">O que é LGPD e como a CyberShield pode ajudar minha empresa a se adequar?</summary>
-                    <div class="faq-answer">
-                        <p>A LGPD (Lei Geral de Proteção de Dados, Lei nº 13.709/2018) exige que empresas tratem dados pessoais de forma segura e transparente, sob pena de multas de até 2% do faturamento anual (limite de R$ 50 milhões por infração). A CyberShield oferece diagnóstico completo de conformidade LGPD, mapeamento de dados pessoais, implementação de políticas de privacidade, treinamento de equipes e controles técnicos obrigatórios.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary class="faq-question">Quanto custa uma consultoria em cibersegurança?</summary>
-                    <div class="faq-answer">
-                        <p>O custo varia conforme o escopo do projeto. O diagnóstico inicial é gratuito e já entrega um panorama real das vulnerabilidades. Projetos de pentest, hardening e consultoria contínua são precificados conforme o porte da empresa e a complexidade da infraestrutura. O investimento em cibersegurança é significativamente menor do que o custo médio de um incidente, que segundo o relatório IBM Cost of Data Breach 2024 supera R$ 6 milhões no Brasil. Entre em contato para um orçamento personalizado.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary class="faq-question">A CyberShield atende empresas fora de São Paulo?</summary>
-                    <div class="faq-answer">
-                        <p>Sim. A CyberShield atende empresas em todo o Brasil. A maioria dos serviços (consultoria, análise de vulnerabilidades, conformidade LGPD, pentest web e monitoramento) é realizada remotamente, com a mesma qualidade independente da localização da sua empresa.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary class="faq-question">O que está incluído no relatório de pentest?</summary>
-                    <div class="faq-answer">
-                        <p>O relatório de pentest da CyberShield inclui: (1) Relatório executivo para tomada de decisão por gestores e board, (2) Relatório técnico detalhado para a equipe de TI, (3) lista priorizada de vulnerabilidades com score CVSS, (4) evidências de exploração com screenshots e logs, e (5) plano de ação com recomendações de correção e custo estimado de remediação.</p>
-                    </div>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contato" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2>Solicite uma Avaliação Gratuita de Cibersegurança</h2>
-                    <p>Descubra as vulnerabilidades da sua empresa antes que hackers as encontrem. Avaliação sem custo e sem compromisso. Leva menos de 1 minuto — um especialista responde em até 2h úteis.</p>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:" data-contact="email" data-email-type="primary">contato@cybershieldgroup.com.br</a>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+5521920137715" data-contact="phone">(21) 92013-7715</a>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fab fa-whatsapp"></i>
-                            <a href="https://wa.me/5521920137715?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20de%20ciberseguran%C3%A7a%20da%20CyberShield." data-contact="whatsapp" target="_blank" rel="noopener">WhatsApp Business (Resposta em até 2h)</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <div id="contact-message" class="contact-message" style="display: none;" role="alert" aria-live="polite"></div>
-                    <form id="contactForm" method="post" autocomplete="on" novalidate>
-                        <fieldset>
-                            <legend class="sr-only">Formulário de Contato: Avaliação Gratuita</legend>
-                            
-                            <div class="form-group">
-                                <label for="contact-name" class="form-label">
-                                    Nome Completo <span class="required" aria-label="campo obrigatório">*</span>
-                                </label>
-                                <input 
-                                    type="text" 
-                                    id="contact-name"
-                                    name="nome" 
-                                    placeholder="Digite seu nome completo"
-                                    required 
-                                    minlength="2" 
-                                    maxlength="100"
-                                    autocomplete="name"
-                                    aria-describedby="name-help"
-                                    aria-required="true"
-                                    spellcheck="false"
-                                >
-                                <div id="name-help" class="form-help">Digite seu nome completo (mínimo 2 caracteres)</div>
+                    <aside class="report-preview" aria-label="Previa de relatorio AB Scan">
+                        <div class="report-score">
+                            <div class="score-circle">72</div>
+                            <div>
+                                <h3>Score de risco moderado</h3>
+                                <p>Exemplo ilustrativo de priorizacao para dominio validado.</p>
                             </div>
+                        </div>
+                        <div class="severity-row">
+                            <span class="severity info">INFO</span>
+                            <span class="severity low">LOW</span>
+                            <span class="severity medium">MEDIUM</span>
+                            <span class="severity high">HIGH</span>
+                        </div>
+                        <ul class="report-list">
+                            <li><strong>Achado:</strong> cabecalhos de seguranca ausentes em rota publica.</li>
+                            <li><strong>Status:</strong> potencial, com confianca media.</li>
+                            <li><strong>Evidencia:</strong> resposta HTTP coletada no dominio autorizado.</li>
+                            <li><strong>Recomendacao:</strong> aplicar politica de headers e retestar apos publicacao.</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
 
-                            <div class="form-contact-group">
-                                <p class="form-contact-group__label">
-                                    Como podemos falar com você? <span class="required" aria-label="campo obrigatório">*</span>
-                                </p>
-                                <p id="contact-group-help" class="form-help">Informe e-mail, WhatsApp ou ambos</p>
+        <section id="modelo-comercial" class="section">
+            <div class="container">
+                <div class="section-header center">
+                    <p class="eyebrow">Modelo comercial</p>
+                    <h2>Oferta simples: gratuito, completo e credito para aprofundar quando fizer sentido.</h2>
+                </div>
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Etapa</th>
+                                <th>Oferta</th>
+                                <th>Preco</th>
+                                <th>Entrega</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Entrada</td>
+                                <td>Scan gratuito</td>
+                                <td>R$ 0</td>
+                                <td>Validacao DNS, scan basico, score e relatorio parcial.</td>
+                            </tr>
+                            <tr>
+                                <td>Aprofundamento</td>
+                                <td>Scan completo</td>
+                                <td>R$ 2.000</td>
+                                <td>Crawling seguro, heuristicas, PDF completo e inventario.</td>
+                            </tr>
+                            <tr>
+                                <td>Conversao</td>
+                                <td>Credito PenTest</td>
+                                <td>Incluso no pago</td>
+                                <td>Credito integral por 90 dias para PenTest manual.</td>
+                            </tr>
+                            <tr>
+                                <td>Servico premium</td>
+                                <td>PenTest manual</td>
+                                <td>Contratado a parte</td>
+                                <td>Validacao manual aprofundada fora do escopo automatizado.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
 
+        <section id="pentest-manual" class="section section-soft">
+            <div class="container">
+                <div class="grid-2">
+                    <div>
+                        <p class="eyebrow">Oferta secundaria premium</p>
+                        <h2>PenTest manual continua existindo, agora como proximo passo natural.</h2>
+                        <p>Quando o relatorio indicar riscos relevantes, exigencia contratual forte ou necessidade de validacao manual, a ABREU &amp; BRUM estrutura o escopo de PenTest sob demanda.</p>
+                    </div>
+                    <div class="card card-highlight">
+                        <h3>Ideal para empresas que precisam de:</h3>
+                        <ul class="clean-list">
+                            <li><i class="fas fa-check" aria-hidden="true"></i><span>Validacao manual mais aprofundada em aplicacoes web e APIs.</span></li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i><span>Relatorio com evidencia tecnica e leitura executiva.</span></li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i><span>Resposta a cliente, auditoria, contrato ou homologacao de fornecedor.</span></li>
+                        </ul>
+                        <a href="#contato" class="btn btn-primary">Tenho interesse em PenTest manual</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section">
+            <div class="container">
+                <div class="section-header center">
+                    <p class="eyebrow">FAQ</p>
+                    <h2>Perguntas frequentes sobre o AB Scan.</h2>
+                </div>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary class="faq-question">O AB Scan pode analisar dominios sem autorizacao?</summary>
+                        <div class="faq-answer">
+                            <p>Nao. A validacao de controle do dominio por DNS TXT e obrigatoria antes de qualquer execucao.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">O relatorio garante que a empresa esta segura?</summary>
+                        <div class="faq-answer">
+                            <p>Nao. O relatorio organiza evidencias e riscos observados dentro do escopo automatizado. Ele apoia decisao e correcao, mas nao e garantia absoluta nem substitui auditoria ou PenTest manual quando exigido.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Quando devo contratar PenTest manual?</summary>
+                        <div class="faq-answer">
+                            <p>Quando houver risco relevante, aplicacao critica, exigencia contratual, necessidade de validacao manual ou duvidas que o scan automatizado nao consegue responder sozinho.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">As rotas de scanner e checkout ja estao publicadas neste site?</summary>
+                        <div class="faq-answer">
+                            <p>Nao nesta etapa. O site apresenta o posicionamento e o funil comercial, sem criar links para backend, login ou checkout que ainda nao existem neste repositorio.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="section contact">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <p class="eyebrow">Contato qualificado</p>
+                        <h2>Fale sobre o dominio, exigencia ou proximo passo.</h2>
+                        <p>Enquanto o backend self-service nao esta publicado neste repositorio, o contato abaixo ajuda a qualificar acesso ao AB Scan, relatorio exemplo ou interesse em PenTest manual.</p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <span>E-mail</span>
+                                <a href="mailto:contato@abreubrum.com.br" data-contact="email" data-email-type="primary">contato@abreubrum.com.br</a>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                <span>Telefone</span>
+                                <a href="tel:+5521920137715" data-contact="phone">(21) 92013-7715</a>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                <span>WhatsApp</span>
+                                <a href="https://wa.me/5521920137715" data-contact="whatsapp">WhatsApp Business</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <div id="contact-message" class="contact-message" style="display: none;" role="alert" aria-live="polite"></div>
+                        <form id="contactForm" method="post" autocomplete="on" novalidate>
+                            <fieldset>
+                                <legend class="eyebrow">Formulario</legend>
                                 <div class="form-group">
-                                    <label for="contact-email" class="form-label">E-mail</label>
-                                    <input 
-                                        type="email" 
-                                        id="contact-email"
-                                        name="email" 
-                                        placeholder="seu@email.com"
-                                        autocomplete="email"
-                                        aria-describedby="contact-group-help email-help"
-                                        spellcheck="false"
-                                    >
-                                    <div id="email-help" class="form-help">Opcional se informar WhatsApp</div>
+                                    <label for="contact-name" class="form-label">Nome <span aria-label="campo obrigatorio">*</span></label>
+                                    <input id="contact-name" name="nome" type="text" autocomplete="name" required aria-describedby="name-help">
+                                    <div id="name-help" class="form-help">Digite seu nome completo</div>
+                                </div>
+
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label for="contact-email" class="form-label">E-mail</label>
+                                        <input id="contact-email" name="email" type="email" autocomplete="email" aria-describedby="email-help">
+                                        <div id="email-help" class="form-help">Opcional se informar WhatsApp</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contact-whatsapp" class="form-label">WhatsApp</label>
+                                        <input id="contact-whatsapp" name="whatsapp" type="tel" autocomplete="tel" aria-describedby="whatsapp-help">
+                                        <div id="whatsapp-help" class="form-help">Opcional se informar e-mail</div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="contact-whatsapp" class="form-label">WhatsApp</label>
-                                    <input 
-                                        type="tel" 
-                                        id="contact-whatsapp"
-                                        name="whatsapp" 
-                                        placeholder="(21) 99999-9999"
-                                        autocomplete="tel"
-                                        aria-describedby="contact-group-help whatsapp-help"
-                                        inputmode="tel"
-                                        spellcheck="false"
-                                    >
-                                    <div id="whatsapp-help" class="form-help">Opcional se informar e-mail</div>
+                                    <label for="contact-company" class="form-label">Empresa</label>
+                                    <input id="contact-company" name="empresa" type="text" autocomplete="organization" aria-describedby="company-help">
+                                    <div id="company-help" class="form-help">Opcional: nome da empresa ou organizacao</div>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="contact-company" class="form-label">
-                                    Empresa
-                                </label>
-                                <input 
-                                    type="text" 
-                                    id="contact-company"
-                                    name="empresa" 
-                                    placeholder="Nome da sua empresa"
-                                    maxlength="100"
-                                    autocomplete="organization"
-                                    aria-describedby="company-help"
-                                    spellcheck="false"
-                                >
-                                <div id="company-help" class="form-help">Opcional: Nome da sua empresa ou organização</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="contact-service" class="form-label">
-                                    Serviço de Interesse <span class="required" aria-label="campo obrigatório">*</span>
-                                </label>
-                                <select 
-                                    id="contact-service"
-                                    name="servico" 
-                                    required
-                                    aria-describedby="service-help"
-                                    aria-required="true"
-                                >
-                                    <option value="" disabled selected>Selecione o serviço desejado</option>
-                                    <option value="diagnostico">Diagnóstico de Segurança (Gratuito)</option>
-                                    <option value="pentest">Pentest: Teste de Invasão</option>
-                                    <option value="hardening">Hardening Técnico</option>
-                                    <option value="consultoria">Consultoria Contínua</option>
-                                    <option value="lgpd">Conformidade LGPD</option>
-                                </select>
-                                <div id="service-help" class="form-help">Escolha o serviço que melhor atende sua necessidade</div>
-                            </div>
-
-                            <div id="pentest-questionnaire" hidden aria-live="polite">
-                                <details class="pentest-details">
-                                    <summary class="pentest-details__summary">Detalhes do escopo — opcional</summary>
-                                    <p class="pentest-details__hint">Preencha se já souber; ajuda a acelerar o orçamento. Não é obrigatório para o primeiro contato.</p>
 
                                 <div class="form-group">
-                                    <label for="pentest-type" class="form-label">
-                                        Tipo de Pentest
-                                    </label>
-                                    <select
-                                        id="pentest-type"
-                                        name="pentestTipo"
-                                        aria-describedby="pentest-type-help"
-                                    >
-                                        <option value="" selected>Selecione o tipo de teste</option>
-                                        <option value="Gray Box">Gray Box (com credenciais/informações básicas)</option>
-                                        <option value="Black Box">Black Box (sem informações internas)</option>
+                                    <label for="contact-service" class="form-label">Interesse <span aria-label="campo obrigatorio">*</span></label>
+                                    <select id="contact-service" name="servico" required aria-describedby="service-help">
+                                        <option value="" disabled selected>Selecione o caminho mais proximo</option>
+                                        <option value="abscan">AB Scan</option>
+                                        <option value="relatorio">Relatorio de seguranca web</option>
+                                        <option value="pentest">PenTest manual sob demanda</option>
+                                        <option value="fornecedor">Homologacao de fornecedor ou contrato</option>
                                     </select>
-                                    <div id="pentest-type-help" class="form-help">Informe como o teste deve ser conduzido</div>
+                                    <div id="service-help" class="form-help">Nao envie tokens DNS, senhas ou dados sensiveis no formulario.</div>
+                                </div>
+
+                                <div id="pentest-questionnaire" hidden aria-live="polite">
+                                    <details>
+                                        <summary>Contexto opcional para PenTest manual</summary>
+                                        <div class="grid-2" style="margin-top: 1rem;">
+                                            <div class="form-group">
+                                                <label for="pentest-type">Tipo de escopo</label>
+                                                <select id="pentest-type" name="pentestTipo">
+                                                    <option value="">Nao informado</option>
+                                                    <option value="Aplicacao web">Aplicacao web</option>
+                                                    <option value="API">API</option>
+                                                    <option value="Portal">Portal</option>
+                                                    <option value="Outro">Outro</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pentest-target">Alvo principal</label>
+                                                <input id="pentest-target" name="pentestAlvo" type="text" autocomplete="off">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pentest-domains">Dominios/subdominios</label>
+                                                <input id="pentest-domains" name="pentestDominios" type="number" min="1" inputmode="numeric">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pentest-endpoints">Endpoints de API</label>
+                                                <input id="pentest-endpoints" name="pentestEndpoints" type="number" min="0" inputmode="numeric">
+                                            </div>
+                                        </div>
+                                        <input id="pentest-docs" name="pentestDocumentacao" type="hidden" value="">
+                                    </details>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="pentest-target" class="form-label">
-                                        Alvo Principal
-                                    </label>
-                                    <select
-                                        id="pentest-target"
-                                        name="pentestAlvo"
-                                        aria-describedby="pentest-target-help"
-                                    >
-                                        <option value="" selected>Selecione o alvo principal</option>
-                                        <option value="Portal web">Portal web</option>
-                                        <option value="Aplicativo nativo">Aplicativo nativo</option>
-                                        <option value="Aplicativo mobile">Aplicativo mobile</option>
-                                        <option value="Outro">Outro</option>
-                                    </select>
-                                    <div id="pentest-target-help" class="form-help">Escolha o tipo de sistema no escopo principal</div>
+                                    <label for="contact-message-text" class="form-label">Mensagem</label>
+                                    <textarea id="contact-message-text" name="mensagem" maxlength="2000" aria-describedby="message-help message-counter" placeholder="Ex.: preciso entender se o AB Scan atende uma homologacao de fornecedor ou se devo partir para PenTest manual."></textarea>
+                                    <div id="message-help" class="form-help">Opcional: descreva o contexto sem incluir dados sensiveis.</div>
+                                    <div id="message-counter" class="form-counter" aria-live="polite">0 / 2000 caracteres</div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="pentest-domains" class="form-label">
-                                        Quantidade de Domínios/Subdomínios
+                                <div class="form-group form-checkbox">
+                                    <label class="checkbox-label">
+                                        <input id="contact-privacy" name="privacy" type="checkbox" required aria-describedby="privacy-help">
+                                        <span>Li e aceito a <a href="politica-privacidade.html" target="_blank" rel="noopener">Politica de Privacidade</a>.</span>
                                     </label>
-                                    <input
-                                        type="number"
-                                        id="pentest-domains"
-                                        name="pentestDominios"
-                                        placeholder="Ex.: 5"
-                                        min="1"
-                                        max="10000"
-                                        inputmode="numeric"
-                                        aria-describedby="pentest-domains-help"
-                                        spellcheck="false"
-                                    >
-                                    <div id="pentest-domains-help" class="form-help">Informe o total estimado no escopo</div>
+                                    <div id="privacy-help" class="form-help">Necessario para contato comercial.</div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="pentest-endpoints" class="form-label">
-                                        Quantidade Aproximada de Endpoints de API
-                                    </label>
-                                    <input
-                                        type="number"
-                                        id="pentest-endpoints"
-                                        name="pentestEndpoints"
-                                        placeholder="Ex.: 120"
-                                        min="0"
-                                        max="100000"
-                                        inputmode="numeric"
-                                        aria-describedby="pentest-endpoints-help"
-                                        spellcheck="false"
-                                    >
-                                    <div id="pentest-endpoints-help" class="form-help">Se não houver API, informe 0</div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-primary" id="submitBtn" aria-describedby="submit-help">
+                                        <span id="btnText"><i class="fas fa-paper-plane" aria-hidden="true"></i> Enviar contato</span>
+                                        <span id="btnLoading" style="display: none;"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Enviando...</span>
+                                    </button>
+                                    <div id="submit-help" class="form-help">Abriremos o WhatsApp com sua mensagem pronta; revise antes de enviar.</div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="pentest-docs" class="form-label">
-                                        Possui documentação técnica da API?
-                                    </label>
-                                    <select
-                                        id="pentest-docs"
-                                        name="pentestDocumentacao"
-                                        aria-describedby="pentest-docs-help"
-                                    >
-                                        <option value="" selected>Selecione uma opção</option>
-                                        <option value="Sim">Sim (Swagger/Postman/OpenAPI ou equivalente)</option>
-                                        <option value="Nao">Não</option>
-                                        <option value="N/A">N/A</option>
-                                    </select>
-                                    <div id="pentest-docs-help" class="form-help">Indique se existe documentação técnica disponível</div>
-                                </div>
-                                </details>
-                            </div>
-
-                            <div class="form-group">
-                                 <label for="contact-message-text" class="form-label">
-                                     Mensagem
-                                 </label>
-                                 <textarea 
-                                     id="contact-message-text"
-                                     name="mensagem" 
-                                     placeholder="Descreva como podemos ajudar sua empresa..."
-                                     rows="5" 
-                                     maxlength="2000"
-                                     autocomplete="off"
-                                     aria-describedby="message-help message-counter"
-                                     spellcheck="true"
-                                 ></textarea>
-                                 <div id="message-help" class="form-help">Opcional: conte brevemente sua necessidade</div>
-                                 <div id="message-counter" class="form-counter" aria-live="polite">0 / 2000 caracteres</div>
-                             </div>
-
-                            <div class="form-group form-checkbox">
-                                <label class="checkbox-label">
-                                    <input 
-                                        type="checkbox" 
-                                        id="contact-privacy"
-                                        name="privacy" 
-                                        required
-                                        aria-describedby="privacy-help"
-                                        aria-required="true"
-                                    >
-                                    <span class="checkmark"></span>
-                                    <span class="checkbox-text">
-                                        Li e aceito a <a href="politica-privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a> 
-                                        <span class="required" aria-label="campo obrigatório">*</span>
-                                    </span>
-                                </label>
-                                <div id="privacy-help" class="form-help">É necessário aceitar a política de privacidade para continuar</div>
-                            </div>
-
-                            <div class="form-actions">
-                                <button 
-                                    type="button" 
-                                    class="btn btn-primary" 
-                                    id="submitBtn"
-                                    aria-describedby="submit-help"
-                                >
-                                    <span id="btnText">
-                                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                                        <span>Solicitar Avaliação Gratuita</span>
-                                    </span>
-                                    <span id="btnLoading" style="display: none;">
-                                        <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
-                                        <span>Enviando...</span>
-                                    </span>
-                                </button>
-                                <div id="submit-help" class="form-help">Leva menos de 1 minuto. Retornamos em até 2 horas úteis.</div>
-                            </div>
-                        </fieldset>
-                    </form>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="logo">
-                        <img src="images/logo-footer.png" alt="CyberShield" class="logo-img">
-                    </div>
-                    <p>Segurança digital que inspira confiança</p>
+                    <a href="index.html" class="logo" aria-label="ABREU & BRUM">
+                        <img src="images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" class="logo-img">
+                    </a>
+                    <p>Cybersecurity | PenTest | Consultoria</p>
                     <p><small>CNPJ: <span data-company="cnpj">61.952.290/0001-68</span></small></p>
-                    <p><small>São Paulo, SP, Brasil</small></p>
-                    <p><small>(21) 92013-7715</small></p>
+                    <p><small>Sao Paulo, SP, Brasil</small></p>
                 </div>
                 <div class="footer-links">
-                    <h4>Links Rápidos</h4>
-                    <a href="#home">Home</a>
-                    <a href="#servicos">Serviços</a>
-                    <a href="#sobre">Sobre</a>
+                    <h4>Navegacao</h4>
+                    <a href="#ab-scan">AB Scan</a>
+                    <a href="#relatorio-exemplo">Relatorio exemplo</a>
+                    <a href="#modelo-comercial">Modelo comercial</a>
                     <a href="#contato">Contato</a>
-                    <a href="blog/index.html">Blog</a>
                 </div>
                 <div class="footer-services">
-                    <h4>Serviços de Cibersegurança</h4>
-                    <a href="servicos/#consultoria">Diagnóstico de Segurança</a>
-                    <a href="servicos/#pentest">Pentest: Teste de Invasão</a>
-                    <a href="servicos/#hardening">Hardening Técnico</a>
-                    <a href="servicos/#consultoria">Consultoria LGPD</a>
-                    <a href="servicos/#monitoramento">Monitoramento 24/7</a>
+                    <h4>Ofertas</h4>
+                    <a href="#ab-scan">AB Scan</a>
+                    <a href="#pentest-manual">PenTest manual</a>
+                    <a href="servicos/">Servicos complementares</a>
+                    <a href="blog/">Blog</a>
                 </div>
                 <div class="footer-social">
-                    <h4>Redes Sociais</h4>
-                    <div class="social-links">
-                        <a href="#" data-social="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn da CyberShield"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" data-social="instagram" target="_blank" rel="noopener" aria-label="Instagram da CyberShield"><i class="fab fa-instagram"></i></a>
-                        <a href="#" data-social="facebook" target="_blank" rel="noopener" aria-label="Facebook da CyberShield"><i class="fab fa-facebook"></i></a>
-                    </div>
+                    <h4>Contato</h4>
+                    <a href="mailto:contato@abreubrum.com.br" data-contact="email" data-email-type="primary">contato@abreubrum.com.br</a>
+                    <a href="tel:+5521920137715" data-contact="phone">(21) 92013-7715</a>
+                    <a href="politica-privacidade.html">Politica de Privacidade</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 CyberShield. Todos os direitos reservados. <a href="politica-privacidade.html">Política de Privacidade</a> · <a href="#contato">Fale Conosco</a></p>
+                <p>&copy; 2026 ABREU &amp; BRUM. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -1090,3 +587,6 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+
+

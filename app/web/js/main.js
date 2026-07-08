@@ -1,23 +1,18 @@
-// Formulários usam type="button" para evitar qualquer redirecionamento; o envio é via clique.
-
-function trackGAEvent(eventName, params = {}) {
+﻿function trackGAEvent(eventName, params) {
     if (typeof window.gtag !== 'function') return;
-    window.gtag('event', eventName, {
-        site_area: 'main_site',
-        ...params
-    });
+    window.gtag('event', eventName, Object.assign({
+        site_area: document.body && document.body.getAttribute('data-site-area') || 'main_site'
+    }, params || {}));
 }
 
 function getConsentStorageKey() {
-    return window.CyberShieldConfig?.analytics?.consentStorageKey || 'cs_cookie_consent';
+    return (window.ABConfig && window.ABConfig.analytics && window.ABConfig.analytics.consentStorageKey) || 'ab_cookie_consent';
 }
 
 function updateAnalyticsConsent(value) {
     try {
         localStorage.setItem(getConsentStorageKey(), value);
-    } catch (e) {
-        // localStorage pode estar indisponível em navegação privada restritiva.
-    }
+    } catch (e) {}
 
     if (typeof window.gtag === 'function') {
         window.gtag('consent', 'update', {
@@ -29,115 +24,82 @@ function updateAnalyticsConsent(value) {
     }
 }
 
-function injectCookieConsentStyles() {
-    if (document.getElementById('cs-cookie-consent-style')) return;
+function readAnalyticsConsent() {
+    try {
+        var current = localStorage.getItem(getConsentStorageKey());
+        if (current === 'granted' || current === 'denied') return current;
+    } catch (e) {}
+    return null;
+}
 
-    const style = document.createElement('style');
-    style.id = 'cs-cookie-consent-style';
-    style.textContent = `
-        .cookie-consent {
-            position: fixed;
-            right: 1.25rem;
-            bottom: 6.25rem;
-            z-index: 2200;
-            width: min(480px, calc(100vw - 2rem));
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            color: var(--color-ink, #0f172a);
-            background: rgba(255, 255, 255, 0.98);
-            border: 1px solid rgba(15, 23, 42, 0.12);
-            border-radius: var(--radius-sm, 8px);
-            box-shadow: var(--shadow-xl, 0 18px 45px rgba(15, 23, 42, 0.22));
-        }
-        .cookie-consent__text { display: grid; gap: 0.25rem; flex: 1; font-size: 0.9rem; line-height: 1.45; }
-        .cookie-consent__text strong { color: var(--color-ink, #0f172a); }
-        .cookie-consent__text span { color: var(--color-muted, #475569); }
-        .cookie-consent__text .cookie-consent__link { color: var(--color-primary, #10b981); font-weight: 600; text-decoration: underline; width: fit-content; }
-        .cookie-consent__text .cookie-consent__link:hover { color: var(--color-primary-dark, #059669); }
-        .cookie-consent__actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
-        .cookie-consent__actions .btn { min-height: 40px; padding: 0.65rem 0.9rem; font-size: 0.9rem; }
-        @media (max-width: 640px) {
-            .cookie-consent { left: 1rem; right: 1rem; bottom: 5.25rem; width: auto; flex-direction: column; align-items: stretch; }
-            .cookie-consent__actions { justify-content: stretch; }
-            .cookie-consent__actions .btn { flex: 1; }
-        }
-    `;
+function injectCookieConsentStyles() {
+    if (document.getElementById('ab-cookie-consent-style')) return;
+    var style = document.createElement('style');
+    style.id = 'ab-cookie-consent-style';
+    style.textContent = ''
+        + '.cookie-consent{position:fixed;right:1.25rem;bottom:5.25rem;z-index:2200;width:min(480px,calc(100vw - 2rem));display:flex;align-items:center;gap:1rem;padding:1rem;color:var(--color-ink,#0b1f3a);background:rgba(255,255,255,.98);border:1px solid rgba(1,34,77,.16);border-radius:8px;box-shadow:0 18px 45px rgba(1,34,77,.18);}'
+        + '.cookie-consent__text{display:grid;gap:.25rem;flex:1;font-size:.9rem;line-height:1.45}.cookie-consent__text span{color:var(--color-muted,#43546a)}.cookie-consent__link{color:var(--color-primary,#01224d);font-weight:700;text-decoration:underline;width:fit-content}.cookie-consent__actions{display:flex;gap:.5rem;flex-shrink:0}.cookie-consent__actions .btn{min-height:40px;padding:.65rem .9rem;font-size:.9rem}@media (max-width:640px){.cookie-consent{left:1rem;right:1rem;bottom:1rem;width:auto;flex-direction:column;align-items:stretch}.cookie-consent__actions{justify-content:stretch}.cookie-consent__actions .btn{flex:1}}';
     document.head.appendChild(style);
 }
 
 function initCookieConsent() {
-    if (!window.CyberShieldConfig?.features?.cookieConsent) return;
+    if (window.ABConfig && window.ABConfig.features && window.ABConfig.features.cookieConsent === false) return;
 
-    const storageKey = getConsentStorageKey();
-    let currentConsent = null;
-    try {
-        currentConsent = localStorage.getItem(storageKey);
-    } catch (e) {
-        currentConsent = null;
-    }
-
+    var currentConsent = readAnalyticsConsent();
     if (currentConsent === 'granted' || currentConsent === 'denied') {
         updateAnalyticsConsent(currentConsent);
         return;
     }
 
     injectCookieConsentStyles();
-
-    const banner = document.createElement('div');
+    var banner = document.createElement('div');
     banner.className = 'cookie-consent';
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-live', 'polite');
-    banner.setAttribute('aria-label', 'Preferências de cookies');
-    banner.innerHTML = `
-        <div class="cookie-consent__text">
-            <strong>Privacidade e métricas</strong>
-            <span>Utilizamos cookies de análise para entender como os visitantes utilizam nosso site e melhorar nossos serviços. Esses cookies serão utilizados apenas com o seu consentimento. Você pode aceitar ou recusar o uso desses cookies.</span>
-            <a class="cookie-consent__link" href="/politica-privacidade.html#cookies">Saiba mais em nossa Política de Cookies.</a>
-        </div>
-        <div class="cookie-consent__actions">
-            <button type="button" class="btn btn-outline" data-cookie-consent="denied">Recusar</button>
-            <button type="button" class="btn btn-primary" data-cookie-consent="granted">Aceitar</button>
-        </div>
-    `;
-
+    banner.setAttribute('aria-label', 'Preferencias de cookies');
+    banner.innerHTML = ''
+        + '<div class="cookie-consent__text">'
+        + '<strong>Privacidade e metricas</strong>'
+        + '<span>Usamos cookies de analise para entender a navegacao e melhorar o site. Esses cookies serao usados apenas com consentimento.</span>'
+        + '<a class="cookie-consent__link" href="/politica-privacidade.html#cookies">Saiba mais na Politica de Privacidade.</a>'
+        + '</div>'
+        + '<div class="cookie-consent__actions">'
+        + '<button type="button" class="btn btn-outline" data-cookie-consent="denied">Recusar</button>'
+        + '<button type="button" class="btn btn-primary" data-cookie-consent="granted">Aceitar</button>'
+        + '</div>';
     document.body.appendChild(banner);
 
-    banner.addEventListener('click', event => {
-        const button = event.target.closest('[data-cookie-consent]');
+    banner.addEventListener('click', function(event) {
+        var button = event.target.closest('[data-cookie-consent]');
         if (!button) return;
-        const value = button.getAttribute('data-cookie-consent');
+        var value = button.getAttribute('data-cookie-consent');
         updateAnalyticsConsent(value);
-        trackGAEvent('cookie_consent_update', {
-            consent_value: value
-        });
+        trackGAEvent('cookie_consent_update', { consent_value: value });
         banner.remove();
     });
 }
 
 function getSectionContext(element) {
-    const section = element.closest('section, header, footer');
-    if (!section) return 'unknown';
-    return section.id || section.className || section.tagName.toLowerCase();
+    var section = element.closest('section, header, footer');
+    return section && (section.id || section.className || section.tagName.toLowerCase()) || 'unknown';
 }
 
 function initGAEventTracking() {
-    if (window.CyberShieldLeadTracking) {
-        window.CyberShieldLeadTracking.initDelegatedLeadClickTracking();
+    if (window.ABLeadTracking) {
+        window.ABLeadTracking.initDelegatedLeadClickTracking();
     }
 
-    document.addEventListener('click', event => {
-        const link = event.target.closest('a');
+    document.addEventListener('click', function(event) {
+        var link = event.target.closest('a');
         if (!link) return;
 
-        const href = link.getAttribute('href') || '';
-        const text = link.textContent.trim().replace(/\s+/g, ' ').slice(0, 120);
-        const context = getSectionContext(link);
-        const leadTracking = window.CyberShieldLeadTracking;
-        const isScrollContact = leadTracking
+        var href = link.getAttribute('href') || '';
+        var text = link.textContent.trim().replace(/\s+/g, ' ').slice(0, 120);
+        var context = getSectionContext(link);
+        var leadTracking = window.ABLeadTracking;
+        var isScrollContact = leadTracking
             ? leadTracking.isScrollOnlyContactLink(href)
-            : (href === '#contato' || (href.includes('#contato') && !href.includes('wa.me')));
+            : (href === '#contato' || href.indexOf('#contato') !== -1);
 
         if (link.classList.contains('btn')) {
             trackGAEvent('cta_click', {
@@ -147,18 +109,14 @@ function initGAEventTracking() {
             });
         }
 
-        if (href.includes('assets/checklists/')) {
-            trackGAEvent('checklist_open', {
-                link_text: text,
-                link_url: href,
-                page_section: context
-            });
+        if (href.indexOf('#relatorio-exemplo') !== -1) {
+            trackGAEvent('sample_report_viewed', { page_section: context });
         }
     });
 
-    const serviceField = document.getElementById('contact-service');
+    var serviceField = document.getElementById('contact-service');
     if (serviceField) {
-        serviceField.addEventListener('change', () => {
+        serviceField.addEventListener('change', function() {
             trackGAEvent('service_interest', {
                 service_value: serviceField.value,
                 service_label: getServiceLabel(serviceField.value)
@@ -166,12 +124,11 @@ function initGAEventTracking() {
         });
     }
 
-    const trackedForms = ['leadForm', 'contactForm'];
-    trackedForms.forEach(formId => {
-        const form = document.getElementById(formId);
+    ['contactForm'].forEach(function(formId) {
+        var form = document.getElementById(formId);
         if (!form) return;
-        let hasStarted = false;
-        form.addEventListener('input', () => {
+        var hasStarted = false;
+        form.addEventListener('input', function() {
             if (hasStarted) return;
             hasStarted = true;
             trackGAEvent('form_start', { form_id: formId });
@@ -179,140 +136,33 @@ function initGAEventTracking() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    initCookieConsent();
-    initGAEventTracking();
-});
-
-// Smooth scrolling para âncoras (exclui links externos como redes sociais)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        // Não interceptar: links externos ou placeholders (atualizados depois pelo applyRealSocialLinks)
-        if (!href || href === '#' || !href.startsWith('#')) return;
-        const target = document.querySelector(href);
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Header scroll effect
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('.header');
-    if (window.scrollY > 100) {
-        header.style.background = 'rgba(15, 23, 42, 0.98)';
-        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.2)';
-    } else {
-        header.style.background = 'rgba(15, 23, 42, 0.95)';
-        header.style.boxShadow = 'none';
-    }
-});
-
-// Mobile menu toggle
-const mobileMenu = document.querySelector('.mobile-menu');
-const nav = document.querySelector('.nav');
-
-if (mobileMenu && nav) {
-    mobileMenu.addEventListener('click', () => {
-        nav.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-    });
-}
-
-// Intersection Observer para animações de entrada
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-        }
-    });
-}, observerOptions);
-
-// Observar elementos para animação
-document.addEventListener('DOMContentLoaded', () => {
-    const animateElements = document.querySelectorAll('.service-card, .target-item, .team-member, .differentiator-card, .value-item');
-    animateElements.forEach(el => {
-        observer.observe(el);
-    });
-    applyRealSocialLinks();
-});
-
-function applyRealSocialLinks() {
-    const socialMap = {
-        linkedin: 'https://www.linkedin.com/company/cybershieldgroup/',
-        instagram: 'https://www.instagram.com/cybershieldltda/',
-        facebook: 'https://www.facebook.com/people/Cyber-Shield-Group/61578838183639/'
-    };
-
-    document.querySelectorAll('.social-links a[data-social]').forEach(link => {
-        const platform = link.getAttribute('data-social');
-        if (socialMap[platform]) {
-            link.href = socialMap[platform];
-            link.target = '_blank';
-            link.rel = 'noopener';
-        }
-    });
-
-    // Fallback para páginas legadas sem data-social.
-    document.querySelectorAll('.social-links a').forEach(link => {
-        const icon = link.querySelector('i');
-        if (!icon) return;
-
-        if (icon.classList.contains('fa-linkedin')) {
-            link.href = socialMap.linkedin;
-        } else if (
-            icon.classList.contains('fa-instagram') ||
-            icon.classList.contains('fa-twitter')
-        ) {
-            link.href = socialMap.instagram;
-            if (icon.classList.contains('fa-twitter')) {
-                icon.classList.remove('fa-twitter');
-                icon.classList.add('fa-instagram');
-            }
-        } else if (
-            icon.classList.contains('fa-facebook') ||
-            icon.classList.contains('fa-github') ||
-            icon.classList.contains('fa-youtube')
-        ) {
-            link.href = socialMap.facebook;
-            if (icon.classList.contains('fa-github') || icon.classList.contains('fa-youtube')) {
-                icon.classList.remove('fa-github', 'fa-youtube');
-                icon.classList.add('fa-facebook');
-            }
-        }
-
-        link.target = '_blank';
-        link.rel = 'noopener';
+function initMobileMenu() {
+    var mobileMenu = document.querySelector('.mobile-menu');
+    var nav = document.querySelector('.nav');
+    if (!mobileMenu || !nav) return;
+    mobileMenu.addEventListener('click', function() {
+        var isActive = nav.classList.toggle('active');
+        mobileMenu.classList.toggle('active', isActive);
+        mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
     });
 }
 
 function getCompanyWhatsAppNumber() {
-    const config = window.CyberShieldConfig || {};
-    const number = config?.contact?.phone?.whatsapp || config?.social?.whatsapp?.number || '5521920137715';
+    var config = window.ABConfig || {};
+    var number = config.contact && config.contact.phone && (config.contact.phone.whatsapp || config.contact.phone.primary) || '5521920137715';
     return String(number).replace(/\D/g, '');
 }
 
-const CONTACT_SERVICE_VALUES = ['diagnostico', 'pentest', 'hardening', 'consultoria', 'lgpd'];
+var CONTACT_SERVICE_VALUES = ['abscan', 'relatorio', 'pentest', 'fornecedor'];
 
 function getServiceLabel(serviceValue) {
-    const serviceMap = {
-        diagnostico: 'Diagnóstico de Segurança (Gratuito)',
-        pentest: 'Pentest: Teste de Invasão',
-        hardening: 'Hardening Técnico',
-        consultoria: 'Consultoria Contínua',
-        lgpd: 'Conformidade LGPD'
+    var serviceMap = {
+        abscan: 'AB Scan',
+        relatorio: 'Relatorio de seguranca web',
+        pentest: 'PenTest manual sob demanda',
+        fornecedor: 'Homologacao de fornecedor ou contrato'
     };
-    return serviceMap[serviceValue] || serviceValue || 'Não informado';
+    return serviceMap[serviceValue] || serviceValue || 'Nao informado';
 }
 
 function normalizePhoneDigits(phone) {
@@ -327,522 +177,98 @@ function hasValidWhatsApp(whatsapp) {
     return normalizePhoneDigits(whatsapp).length >= 10;
 }
 
-function hasValidContact(email, whatsapp) {
-    const emailTrim = String(email || '').trim();
-    const whatsappTrim = String(whatsapp || '').trim();
-    const emailOk = emailTrim && hasValidEmail(emailTrim);
-    const whatsappOk = whatsappTrim && hasValidWhatsApp(whatsappTrim);
-    return emailOk || whatsappOk;
-}
-
 function hasPentestDetails(data) {
-    return Boolean(
-        data.pentestTipo ||
-        data.pentestAlvo ||
-        data.pentestDominios ||
-        data.pentestEndpoints ||
-        data.pentestDocumentacao
-    );
+    return Boolean(data.pentestTipo || data.pentestAlvo || data.pentestDominios || data.pentestEndpoints || data.pentestDocumentacao);
 }
 
 function getContactServiceFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    let servico = params.get('servico');
-
-    if (!servico && window.location.hash.includes('?')) {
-        const hashQuery = window.location.hash.split('?')[1];
-        servico = new URLSearchParams(hashQuery).get('servico');
-    }
-
-    return CONTACT_SERVICE_VALUES.includes(servico) ? servico : null;
+    var params = new URLSearchParams(window.location.search);
+    var servico = params.get('servico');
+    return CONTACT_SERVICE_VALUES.indexOf(servico) !== -1 ? servico : null;
 }
 
-function buildWhatsAppMessage(formType, data) {
-    if (formType === 'lead') {
-        return [
-            'Novo lead via site CyberShield',
-            '',
-            `Nome: ${data.nome}`,
-            `E-mail: ${data.email}`,
-            `Empresa: ${data.empresa}`,
-            `Cargo: ${data.cargo}`,
-            'Interesse: Checklist de Ciberseguranca Gratuito'
-        ].join('\n');
-    }
-
-    const pentestLines = data.servico === 'pentest' && hasPentestDetails(data)
+function buildWhatsAppMessage(data) {
+    var pentestLines = data.servico === 'pentest' && hasPentestDetails(data)
         ? [
-            'Detalhes do escopo (opcional):',
-            ...(data.pentestTipo ? [`- Tipo de teste: ${data.pentestTipo}`] : []),
-            ...(data.pentestAlvo ? [`- Alvo principal: ${data.pentestAlvo}`] : []),
-            ...(data.pentestDominios ? [`- Dominios/subdominios: ${data.pentestDominios}`] : []),
-            ...(data.pentestEndpoints ? [`- Endpoints de API: ${data.pentestEndpoints}`] : []),
-            ...(data.pentestDocumentacao ? [`- Documentacao tecnica da API: ${data.pentestDocumentacao}`] : []),
+            'Contexto opcional para PenTest:',
+            data.pentestTipo ? '- Tipo de escopo: ' + data.pentestTipo : '',
+            data.pentestAlvo ? '- Alvo principal: ' + data.pentestAlvo : '',
+            data.pentestDominios ? '- Dominios/subdominios: ' + data.pentestDominios : '',
+            data.pentestEndpoints ? '- Endpoints de API: ' + data.pentestEndpoints : '',
+            data.pentestDocumentacao ? '- Documentacao tecnica: ' + data.pentestDocumentacao : '',
             ''
-        ]
+        ].filter(Boolean)
         : [];
 
     return [
-        'Novo contato via site CyberShield',
+        'Novo contato via site ABREU & BRUM',
         '',
-        `Nome: ${data.nome}`,
-        `E-mail: ${data.email || 'Nao informado'}`,
-        `WhatsApp: ${data.whatsapp || 'Nao informado'}`,
-        `Empresa: ${data.empresa || 'Nao informado'}`,
-        `Servico de interesse: ${getServiceLabel(data.servico)}`,
+        'Nome: ' + data.nome,
+        'E-mail: ' + (data.email || 'Nao informado'),
+        'WhatsApp: ' + (data.whatsapp || 'Nao informado'),
+        'Empresa: ' + (data.empresa || 'Nao informado'),
+        'Interesse: ' + getServiceLabel(data.servico),
         '',
-        ...pentestLines,
+        pentestLines.join('\n'),
         'Mensagem:',
         data.mensagem || 'Nao informada'
-    ].join('\n');
+    ].filter(function(line) { return line !== ''; }).join('\n');
 }
 
-function openWhatsAppWithFormData(formType, data) {
-    const number = getCompanyWhatsAppNumber();
-    const message = buildWhatsAppMessage(formType, data);
-    const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-    const w = window.open(url, '_blank', 'noopener,noreferrer');
+function openWhatsAppWithFormData(data) {
+    var number = getCompanyWhatsAppNumber();
+    var message = buildWhatsAppMessage(data);
+    var url = 'https://wa.me/' + number + '?text=' + encodeURIComponent(message);
+    var w = window.open(url, '_blank', 'noopener,noreferrer');
     return !!w;
 }
 
-function triggerChecklistDownload() {
-    const config = window.CyberShieldConfig || {};
-    const pdfUrl = config?.downloads?.checklistPdf || 'assets/checklists/checklist-ciberseguranca.pdf';
-    const filename = config?.downloads?.checklistPdfFilename || 'Checklist-Ciberseguranca-Empresas-CyberShield.pdf';
-    const fullUrl = new URL(pdfUrl, window.location.href).href;
-    trackGAEvent('download_checklist', {
-        file_name: filename,
-        file_url: fullUrl
-    });
-    const a = document.createElement('a');
-    a.download = filename;
-    a.style.display = 'none';
-    a.rel = 'noopener noreferrer';
-    document.body.appendChild(a);
-    fetch(fullUrl, { credentials: 'same-origin' })
-        .then(r => r.blob())
-        .then(blob => {
-            const url = URL.createObjectURL(blob);
-            a.href = url;
-            a.click();
-            URL.revokeObjectURL(url);
-        })
-        .catch(() => {
-            a.href = fullUrl;
-            a.download = filename;
-            a.target = '_blank';
-            a.click();
-        })
-        .finally(() => { if (a.parentNode) a.parentNode.removeChild(a); });
-    return true;
+function showFieldError(fieldId, message) {
+    var field = document.getElementById(fieldId);
+    if (!field) return;
+    var formGroup = field.closest('.form-group');
+    if (!formGroup) return;
+    formGroup.classList.add('error');
+    var helpElement = formGroup.querySelector('.form-help');
+    if (helpElement) {
+        helpElement.textContent = message;
+        helpElement.style.color = '#b42318';
+    }
 }
 
-// Lead capture form
-document.addEventListener('DOMContentLoaded', function() {
-    const leadForm = document.getElementById('leadForm');
-    const leadSubmitBtn = document.getElementById('leadSubmitBtn');
-    const leadBtnText = document.getElementById('leadBtnText');
-    const leadBtnLoading = document.getElementById('leadBtnLoading');
-    
-    if (!leadForm) {
-        console.error('Lead form not found!');
-        return;
+function clearFieldError(fieldId) {
+    var field = document.getElementById(fieldId);
+    if (!field) return;
+    var formGroup = field.closest('.form-group');
+    if (!formGroup) return;
+    formGroup.classList.remove('error');
+    var helpElement = formGroup.querySelector('.form-help');
+    if (helpElement) {
+        helpElement.style.color = '';
     }
+}
 
-    console.log('Lead form found, envio via WhatsApp.');
+function initContactForm() {
+    var contactForm = document.getElementById('contactForm');
+    var submitBtn = document.getElementById('submitBtn');
+    var btnText = document.getElementById('btnText');
+    var btnLoading = document.getElementById('btnLoading');
+    var messageDiv = document.getElementById('contact-message');
+    var messageTextarea = document.getElementById('contact-message-text');
+    var messageCounter = document.getElementById('message-counter');
+    var serviceField = document.getElementById('contact-service');
+    var pentestQuestionnaire = document.getElementById('pentest-questionnaire');
 
-    function showLeadMessage(text, type = 'success') {
-        const messageDiv = document.getElementById('lead-message');
-        if (!messageDiv) {
-            console.error('Lead message div not found!');
-            return;
-        }
-        
+    if (!contactForm || !submitBtn) return;
+
+    function showMessage(text, type) {
+        if (!messageDiv) return;
         messageDiv.textContent = text;
-        messageDiv.className = `contact-message ${type}`;
+        messageDiv.className = 'contact-message ' + (type || 'success');
         messageDiv.style.display = 'block';
-        
-        // Scroll para a mensagem
         messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        
-        // Auto-hide após 10 segundos para mensagens de sucesso
-        if (type === 'success') {
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 10000);
-        }
-    }
-
-    function setLeadLoading(isLoading) {
-        leadSubmitBtn.disabled = isLoading;
-        leadBtnText.style.display = isLoading ? 'none' : 'inline';
-        leadBtnLoading.style.display = isLoading ? 'inline' : 'none';
-        
-        // Atualizar aria-label para acessibilidade
-        if (isLoading) {
-            leadSubmitBtn.setAttribute('aria-label', 'Processando solicitação, aguarde...');
-        } else {
-            leadSubmitBtn.setAttribute('aria-label', 'Baixar checklist gratuito');
-        }
-    }
-
-    function clearLeadFormErrors() {
-        // Remover classes de erro de todos os campos
-        leadForm.querySelectorAll('.form-group').forEach(group => {
-            group.classList.remove('error');
-        });
-    }
-
-    function showLeadFieldError(fieldId, message) {
-        const field = document.getElementById(fieldId);
-        if (field) {
-            const formGroup = field.closest('.form-group');
-            formGroup.classList.add('error');
-            
-            // Atualizar texto de ajuda
-            const helpElement = formGroup.querySelector('.form-help');
-            if (helpElement) {
-                helpElement.textContent = message;
-                helpElement.style.color = '#dc2626';
-            }
-        }
-    }
-
-    function validateLeadForm(formData) {
-        clearLeadFormErrors();
-        let isValid = true;
-
-        // Validar nome
-        if (formData.nome.trim().length < 2) {
-            showLeadFieldError('lead-name', 'Nome deve ter pelo menos 2 caracteres');
-            isValid = false;
-        }
-
-        // Validar email
-        if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-            showLeadFieldError('lead-email', 'Digite um e-mail válido');
-            isValid = false;
-        }
-
-        // Validar empresa
-        if (formData.empresa.trim().length < 2) {
-            showLeadFieldError('lead-company', 'Nome da empresa deve ter pelo menos 2 caracteres');
-            isValid = false;
-        }
-
-        // Validar cargo
-        if (!formData.cargo) {
-            showLeadFieldError('lead-role', 'Por favor, selecione um cargo');
-            isValid = false;
-        }
-
-        // Validar política de privacidade
-        if (!formData.privacy) {
-            showLeadFieldError('lead-privacy', 'É necessário aceitar a política de privacidade');
-            isValid = false;
-        }
-
-        if (!isValid) {
-            showLeadMessage('Por favor, corrija os erros no formulário', 'error');
-            // Focar no primeiro campo com erro
-            const firstError = leadForm.querySelector('.form-group.error input, .form-group.error select');
-            if (firstError) {
-                firstError.focus();
-            }
-        }
-
-        return isValid;
-    }
-
-    // Validação em tempo real
-    function setupLeadRealTimeValidation() {
-        const fields = ['lead-name', 'lead-email', 'lead-company', 'lead-role'];
-        
-        fields.forEach(fieldId => {
-            const field = document.getElementById(fieldId);
-            if (field) {
-                field.addEventListener('blur', function() {
-                    const formData = new FormData(leadForm);
-                    const value = formData.get(field.name);
-                    
-                    // Validar campo específico
-                    if (field.name === 'nome' && value.trim().length < 2 && value.trim().length > 0) {
-                        showLeadFieldError(fieldId, 'Nome deve ter pelo menos 2 caracteres');
-                    } else if (field.name === 'email' && value && !value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-                        showLeadFieldError(fieldId, 'Digite um e-mail válido');
-                    } else if (field.name === 'empresa' && value.trim().length < 2 && value.trim().length > 0) {
-                        showLeadFieldError(fieldId, 'Nome da empresa deve ter pelo menos 2 caracteres');
-                    } else if (field.name === 'cargo' && !value) {
-                        showLeadFieldError(fieldId, 'Por favor, selecione um cargo');
-                    } else {
-                        // Remover erro se válido
-                        const formGroup = field.closest('.form-group');
-                        formGroup.classList.remove('error');
-                        const helpElement = formGroup.querySelector('.form-help');
-                        if (helpElement) {
-                            helpElement.style.color = '#6b7280';
-                        }
-                    }
-                });
-            }
-        });
-    }
-
-    setupLeadRealTimeValidation();
-
-    leadSubmitBtn.addEventListener('click', function() {
-        const formData = new FormData(leadForm);
-        const data = {
-            nome: formData.get('nome').trim(),
-            email: formData.get('email').trim(),
-            empresa: formData.get('empresa').trim(),
-            cargo: formData.get('cargo'),
-            privacy: formData.get('privacy') === 'on'
-        };
-
-        if (!validateLeadForm(data)) {
-            return;
-        }
-
-        setLeadLoading(true);
-        const downloadOk = triggerChecklistDownload();
-        if (window.CyberShieldLeadTracking) {
-            window.CyberShieldLeadTracking.trackLeadFormSubmit('leadForm', {
-                form_location: 'lead_capture',
-                cta_text: 'Baixar checklist gratuito'
-            });
-        }
-        openWhatsAppWithFormData('lead', data);
-
-        if (downloadOk) {
-            showLeadMessage('Checklist enviado para download e WhatsApp aberto em nova aba. Confira e envie a mensagem para registrar seu lead.', 'success');
-        } else {
-            showLeadMessage('Ocorreu um erro no download. Tente novamente ou entre em contato pelo WhatsApp.', 'error');
-        }
-        setLeadLoading(false);
-    });
-
-    // Navegação por teclado: Enter vai para o próximo campo ou dispara o envio
-    leadForm.addEventListener('keydown', function(e) {
-        if (e.key !== 'Enter') return;
-        e.preventDefault();
-        const nextField = e.target.parentElement.nextElementSibling?.querySelector('input, select');
-        if (nextField) {
-            nextField.focus();
-        } else {
-            leadSubmitBtn.click();
-        }
-    });
-});
-
-// Função para mostrar mensagem de agradecimento
-function showThankYouMessage() {
-    const message = document.createElement('div');
-    message.className = 'thank-you-message';
-    message.innerHTML = `
-        <div class="thank-you-content">
-            <i class="fas fa-check-circle"></i>
-            <h3>Obrigado!</h3>
-            <p>Seu checklist foi enviado para seu e-mail. Em breve entraremos em contato para uma avaliação personalizada.</p>
-            <button onclick="this.parentElement.parentElement.remove()">Fechar</button>
-        </div>
-    `;
-    
-    document.body.appendChild(message);
-    
-    // Remover automaticamente após 10 segundos
-    setTimeout(() => {
-        if (message.parentElement) {
-            message.remove();
-        }
-    }, 10000);
-}
-
-// Parallax effect para hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    const heroParticles = document.querySelector('.hero-particles');
-    
-    if (hero && heroParticles) {
-        heroParticles.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-});
-
-// Counter animation para stats
-function animateCounter(element, target, duration = 2000) {
-    let start = 0;
-    const increment = target / (duration / 16);
-    
-    const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-            element.textContent = target;
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(start);
-        }
-    }, 16);
-}
-
-// Animar contadores quando visíveis
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const statNumber = entry.target.querySelector('.stat-number');
-            const text = statNumber.textContent;
-            
-            if (text === '100%' || text === '0' || text === '24/7' || text === '∞') {
-                // Para valores especiais, apenas adicionar classe de animação
-                statNumber.classList.add('animate-pulse');
-            } else {
-                // Para números, animar contador
-                const target = parseInt(text);
-                animateCounter(statNumber, target);
-            }
-            
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    const statItems = document.querySelectorAll('.stat-item');
-    statItems.forEach(item => {
-        statsObserver.observe(item);
-    });
-});
-
-// Hover effects para cards
-document.querySelectorAll('.service-card, .target-item, .team-member').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) scale(1.02)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
-// Loading animation
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-});
-
-// Adicionar CSS para animações
-const style = document.createElement('style');
-style.textContent = `
-    .animate-in {
-        animation: fadeInUp 0.6s ease-out forwards;
-    }
-    
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .animate-pulse {
-        animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
-    
-    .nav.active {
-        display: flex;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(15, 23, 42, 0.98);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        padding: 1rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        border-top: 1px solid rgba(30, 41, 59, 0.3);
-    }
-    
-    body.loaded .hero {
-        animation: fadeIn 1s ease-out;
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-`;
-document.head.appendChild(style);
-
-// Contact Form Handler
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM Content Loaded - Contact form via WhatsApp');
-    
-    const contactForm = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btnText');
-    const btnLoading = document.getElementById('btnLoading');
-    const messageDiv = document.getElementById('contact-message');
-    const messageTextarea = document.getElementById('contact-message-text');
-    const messageCounter = document.getElementById('message-counter');
-    const serviceField = document.getElementById('contact-service');
-    const pentestQuestionnaire = document.getElementById('pentest-questionnaire');
-    const pentestFields = [
-        document.getElementById('pentest-type'),
-        document.getElementById('pentest-target'),
-        document.getElementById('pentest-domains'),
-        document.getElementById('pentest-endpoints'),
-        document.getElementById('pentest-docs')
-    ].filter(Boolean);
-
-    if (!contactForm || !submitBtn) {
-        console.error('Contact form or submit button not found!');
-        return;
-    }
-
-    console.log('Contact form found, envio via WhatsApp.');
-
-    // Contador de caracteres para a mensagem
-    if (messageTextarea && messageCounter) {
-        function updateCounter() {
-            const length = messageTextarea.value.length;
-            const maxLength = 2000;
-            const remaining = maxLength - length;
-            
-            messageCounter.textContent = `${length} / ${maxLength} caracteres`;
-            
-            // Atualizar classes CSS baseado no limite
-            messageCounter.className = 'form-counter';
-            if (length > maxLength * 0.9) {
-                messageCounter.classList.add('warning');
-            }
-            if (length > maxLength) {
-                messageCounter.classList.add('error');
-            }
-        }
-
-        messageTextarea.addEventListener('input', updateCounter);
-        updateCounter(); // Inicializar contador
-    }
-
-    function showMessage(text, type = 'success') {
-        messageDiv.textContent = text;
-        messageDiv.className = `contact-message ${type}`;
-        messageDiv.style.display = 'block';
-        
-        // Scroll para a mensagem
-        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        
-        // Auto-hide após 10 segundos para mensagens de sucesso
-        if (type === 'success') {
-            setTimeout(() => {
+        if (type !== 'error') {
+            window.setTimeout(function() {
                 messageDiv.style.display = 'none';
             }, 10000);
         }
@@ -850,48 +276,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function setLoading(isLoading) {
         submitBtn.disabled = isLoading;
-        btnText.style.display = isLoading ? 'none' : 'inline';
-        btnLoading.style.display = isLoading ? 'inline' : 'none';
-        
-        // Atualizar aria-label para acessibilidade
-        if (isLoading) {
-            submitBtn.setAttribute('aria-label', 'Enviando mensagem, aguarde...');
-        } else {
-            submitBtn.setAttribute('aria-label', 'Enviar mensagem');
-        }
+        if (btnText) btnText.style.display = isLoading ? 'none' : 'inline';
+        if (btnLoading) btnLoading.style.display = isLoading ? 'inline' : 'none';
+        submitBtn.setAttribute('aria-label', isLoading ? 'Preparando mensagem, aguarde' : 'Enviar contato');
     }
 
     function clearFormErrors() {
-        // Remover classes de erro de todos os campos
-        contactForm.querySelectorAll('.form-group').forEach(group => {
+        contactForm.querySelectorAll('.form-group').forEach(function(group) {
             group.classList.remove('error');
+            var helpElement = group.querySelector('.form-help');
+            if (helpElement) helpElement.style.color = '';
         });
     }
 
-    function showFieldError(fieldId, message) {
-        const field = document.getElementById(fieldId);
-        if (field) {
-            const formGroup = field.closest('.form-group');
-            formGroup.classList.add('error');
-            
-            // Atualizar texto de ajuda
-            const helpElement = formGroup.querySelector('.form-help');
-            if (helpElement) {
-                helpElement.textContent = message;
-                helpElement.style.color = '#dc2626';
-            }
-        }
-    }
-
     function validateContactFields(email, whatsapp) {
-        const emailTrim = String(email || '').trim();
-        const whatsappTrim = String(whatsapp || '').trim();
-        const emailOk = emailTrim && hasValidEmail(emailTrim);
-        const whatsappOk = whatsappTrim && hasValidWhatsApp(whatsappTrim);
+        var emailTrim = String(email || '').trim();
+        var whatsappTrim = String(whatsapp || '').trim();
+        var emailOk = emailTrim && hasValidEmail(emailTrim);
+        var whatsappOk = whatsappTrim && hasValidWhatsApp(whatsappTrim);
 
-        if (emailOk || whatsappOk) {
-            return true;
-        }
+        if (emailOk || whatsappOk) return true;
 
         if (!emailTrim && !whatsappTrim) {
             showFieldError('contact-email', 'Informe e-mail ou WhatsApp para contato');
@@ -899,168 +303,80 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
 
-        if (emailTrim && !emailOk) {
-            showFieldError('contact-email', 'Digite um e-mail válido');
-        }
-
-        if (whatsappTrim && !whatsappOk) {
-            showFieldError('contact-whatsapp', 'WhatsApp deve ter pelo menos 10 dígitos');
-        }
-
+        if (emailTrim && !emailOk) showFieldError('contact-email', 'Digite um e-mail valido');
+        if (whatsappTrim && !whatsappOk) showFieldError('contact-whatsapp', 'WhatsApp deve ter pelo menos 10 digitos');
         return false;
     }
 
-    function validateOptionalPentestFields(formData) {
-        let isValid = true;
-
-        if (formData.pentestDominios && (!/^\d+$/.test(formData.pentestDominios) || Number(formData.pentestDominios) < 1)) {
-            showFieldError('pentest-domains', 'Informe uma quantidade válida (mínimo 1)');
+    function validateOptionalPentestFields(data) {
+        var isValid = true;
+        if (data.pentestDominios && (!/^\d+$/.test(data.pentestDominios) || Number(data.pentestDominios) < 1)) {
+            showFieldError('pentest-domains', 'Informe uma quantidade valida');
             isValid = false;
         }
-
-        if (formData.pentestEndpoints && (!/^\d+$/.test(formData.pentestEndpoints) || Number(formData.pentestEndpoints) < 0)) {
-            showFieldError('pentest-endpoints', 'Informe uma quantidade válida de endpoints (0 ou mais)');
+        if (data.pentestEndpoints && (!/^\d+$/.test(data.pentestEndpoints) || Number(data.pentestEndpoints) < 0)) {
+            showFieldError('pentest-endpoints', 'Informe uma quantidade valida');
             isValid = false;
         }
-
         return isValid;
     }
 
-    function validateForm(formData) {
+    function validateForm(data) {
         clearFormErrors();
-        let isValid = true;
+        var isValid = true;
 
-        if (formData.nome.trim().length < 2) {
+        if (data.nome.trim().length < 2) {
             showFieldError('contact-name', 'Nome deve ter pelo menos 2 caracteres');
             isValid = false;
         }
 
-        if (!validateContactFields(formData.email, formData.whatsapp)) {
+        if (!validateContactFields(data.email, data.whatsapp)) isValid = false;
+
+        if (!data.servico) {
+            showFieldError('contact-service', 'Selecione um interesse');
             isValid = false;
         }
 
-        if (!formData.servico) {
-            showFieldError('contact-service', 'Por favor, selecione um serviço');
-            isValid = false;
-        }
+        if (!validateOptionalPentestFields(data)) isValid = false;
 
-        if (!validateOptionalPentestFields(formData)) {
-            isValid = false;
-        }
-
-        if (!formData.privacy) {
-            showFieldError('contact-privacy', 'É necessário aceitar a política de privacidade');
+        if (!data.privacy) {
+            showFieldError('contact-privacy', 'E necessario aceitar a politica de privacidade');
             isValid = false;
         }
 
         if (!isValid) {
-            showMessage('Por favor, corrija os erros no formulário', 'error');
-            const firstError = contactForm.querySelector('.form-group.error input, .form-group.error select, .form-group.error textarea');
-            if (firstError) {
-                firstError.focus();
-            }
+            showMessage('Por favor, corrija os campos destacados.', 'error');
+            var firstError = contactForm.querySelector('.form-group.error input, .form-group.error select, .form-group.error textarea');
+            if (firstError) firstError.focus();
         }
 
         return isValid;
     }
 
-    function clearFieldError(fieldId) {
-        const field = document.getElementById(fieldId);
-        if (!field) return;
-
-        const formGroup = field.closest('.form-group');
-        if (!formGroup) return;
-
-        formGroup.classList.remove('error');
-        const helpElement = formGroup.querySelector('.form-help');
-        if (helpElement) {
-            helpElement.style.color = '#6b7280';
-        }
-    }
-
-    function validateContactFieldsOnBlur(email, whatsapp) {
-        const emailTrim = String(email || '').trim();
-        const whatsappTrim = String(whatsapp || '').trim();
-
-        clearFieldError('contact-email');
-        clearFieldError('contact-whatsapp');
-
-        if (!emailTrim && !whatsappTrim) {
-            return;
-        }
-
-        validateContactFields(email, whatsapp);
-    }
-
-    // Validação em tempo real
-    function setupRealTimeValidation() {
-        const fields = [
-            'contact-name',
-            'contact-email',
-            'contact-whatsapp',
-            'contact-service',
-            'pentest-domains',
-            'pentest-endpoints'
-        ];
-
-        fields.forEach(fieldId => {
-            const field = document.getElementById(fieldId);
-            if (!field) return;
-
-            field.addEventListener('blur', function() {
-                const formData = new FormData(contactForm);
-                const value = formData.get(field.name);
-
-                if (field.name === 'nome' && value.trim().length < 2 && value.trim().length > 0) {
-                    showFieldError(fieldId, 'Nome deve ter pelo menos 2 caracteres');
-                } else if (field.name === 'email' || field.name === 'whatsapp') {
-                    validateContactFieldsOnBlur(formData.get('email'), formData.get('whatsapp'));
-                } else if (field.name === 'servico' && !value) {
-                    showFieldError(fieldId, 'Por favor, selecione um serviço');
-                } else if (
-                    field.name === 'pentestDominios' &&
-                    value &&
-                    (!/^\d+$/.test(value) || Number(value) < 1)
-                ) {
-                    showFieldError(fieldId, 'Informe uma quantidade válida (mínimo 1)');
-                } else if (
-                    field.name === 'pentestEndpoints' &&
-                    value &&
-                    (!/^\d+$/.test(value) || Number(value) < 0)
-                ) {
-                    showFieldError(fieldId, 'Informe uma quantidade válida de endpoints (0 ou mais)');
-                } else {
-                    clearFieldError(fieldId);
-                }
-            });
-        });
+    function updateCounter() {
+        if (!messageTextarea || !messageCounter) return;
+        messageCounter.textContent = messageTextarea.value.length + ' / 2000 caracteres';
     }
 
     function togglePentestQuestionnaire() {
         if (!serviceField || !pentestQuestionnaire) return;
-        const isPentest = serviceField.value === 'pentest';
+        var isPentest = serviceField.value === 'pentest';
         pentestQuestionnaire.hidden = !isPentest;
-
-        pentestFields.forEach(field => {
-            field.required = false;
-
-            if (!isPentest) {
-                if (field.tagName === 'SELECT') {
-                    field.selectedIndex = 0;
-                } else {
-                    field.value = '';
-                }
-                clearFieldError(field.id);
-            }
-        });
+        if (!isPentest) {
+            ['pentest-type', 'pentest-target', 'pentest-domains', 'pentest-endpoints', 'pentest-docs'].forEach(function(id) {
+                var field = document.getElementById(id);
+                if (!field) return;
+                if (field.tagName === 'SELECT') field.selectedIndex = 0;
+                else field.value = '';
+                clearFieldError(id);
+            });
+        }
     }
 
     function initContactFormFromQuery() {
         if (!serviceField) return;
-
-        const servico = getContactServiceFromUrl();
+        var servico = getContactServiceFromUrl();
         if (!servico) return;
-
         serviceField.value = servico;
         togglePentestQuestionnaire();
         trackGAEvent('service_interest', {
@@ -1070,68 +386,73 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    if (messageTextarea) {
+        messageTextarea.addEventListener('input', updateCounter);
+        updateCounter();
+    }
+
     if (serviceField) {
         serviceField.addEventListener('change', togglePentestQuestionnaire);
         togglePentestQuestionnaire();
         initContactFormFromQuery();
     }
 
-    setupRealTimeValidation();
+    contactForm.addEventListener('blur', function(event) {
+        var field = event.target;
+        if (!field || !field.id) return;
+        clearFieldError(field.id);
+    }, true);
 
     submitBtn.addEventListener('click', function() {
-        const formData = new FormData(contactForm);
-        const data = {
-            nome: formData.get('nome').trim(),
-            email: formData.get('email').trim(),
-            whatsapp: formData.get('whatsapp').trim(),
-            empresa: formData.get('empresa').trim(),
-            servico: formData.get('servico'),
-            mensagem: formData.get('mensagem').trim(),
-            pentestTipo: formData.get('pentestTipo') ? formData.get('pentestTipo').trim() : '',
-            pentestAlvo: formData.get('pentestAlvo') ? formData.get('pentestAlvo').trim() : '',
-            pentestDominios: formData.get('pentestDominios') ? formData.get('pentestDominios').trim() : '',
-            pentestEndpoints: formData.get('pentestEndpoints') ? formData.get('pentestEndpoints').trim() : '',
-            pentestDocumentacao: formData.get('pentestDocumentacao') ? formData.get('pentestDocumentacao').trim() : '',
+        var formData = new FormData(contactForm);
+        var data = {
+            nome: String(formData.get('nome') || '').trim(),
+            email: String(formData.get('email') || '').trim(),
+            whatsapp: String(formData.get('whatsapp') || '').trim(),
+            empresa: String(formData.get('empresa') || '').trim(),
+            servico: String(formData.get('servico') || '').trim(),
+            mensagem: String(formData.get('mensagem') || '').trim(),
+            pentestTipo: String(formData.get('pentestTipo') || '').trim(),
+            pentestAlvo: String(formData.get('pentestAlvo') || '').trim(),
+            pentestDominios: String(formData.get('pentestDominios') || '').trim(),
+            pentestEndpoints: String(formData.get('pentestEndpoints') || '').trim(),
+            pentestDocumentacao: String(formData.get('pentestDocumentacao') || '').trim(),
             privacy: formData.get('privacy') === 'on'
         };
 
-        const isMinimalSubmit = !data.empresa && !data.mensagem && !hasPentestDetails(data);
-        
-        console.log('Form data extracted:', data);
-
-        if (!validateForm(data)) {
-            return;
-        }
+        if (!validateForm(data)) return;
 
         setLoading(true);
-        if (window.CyberShieldLeadTracking) {
-            window.CyberShieldLeadTracking.trackLeadFormSubmit('contactForm', {
+        if (window.ABLeadTracking) {
+            window.ABLeadTracking.trackLeadFormSubmit('contactForm', {
                 form_location: 'contact_section',
                 service_value: data.servico,
-                cta_text: 'Solicitar avaliacao gratuita'
+                cta_text: 'Enviar contato'
             });
         }
-        openWhatsAppWithFormData('contact', data);
-        if (isMinimalSubmit) {
-            trackGAEvent('form_submit_minimal', {
-                form_id: 'contactForm',
-                service_value: data.servico
-            });
-        }
-        showMessage('Abrindo WhatsApp com sua mensagem preenchida em nova aba...', 'success');
+
+        openWhatsAppWithFormData(data);
+        showMessage('Abrindo WhatsApp com sua mensagem preenchida. Revise antes de enviar.', 'success');
         setLoading(false);
     });
 
-    // Navegação por teclado: Enter vai para o próximo campo ou dispara o envio (exceto em textarea)
-    contactForm.addEventListener('keydown', function(e) {
-        if (e.key !== 'Enter') return;
-        if (e.target.tagName === 'TEXTAREA') return; // Enter em textarea quebra linha
-        e.preventDefault();
-        const nextField = e.target.parentElement.nextElementSibling?.querySelector('input, select, textarea');
-        if (nextField) {
-            nextField.focus();
-        } else {
-            submitBtn.click();
-        }
+    contactForm.addEventListener('keydown', function(event) {
+        if (event.key !== 'Enter') return;
+        if (event.target.tagName === 'TEXTAREA') return;
+        event.preventDefault();
+        var fields = Array.from(contactForm.querySelectorAll('input:not([type="hidden"]), select, textarea, button'));
+        var index = fields.indexOf(event.target);
+        var next = fields[index + 1];
+        if (next) next.focus();
     });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initCookieConsent();
+    initGAEventTracking();
+    initMobileMenu();
+    initContactForm();
+    document.body.classList.add('loaded');
 });
+
+

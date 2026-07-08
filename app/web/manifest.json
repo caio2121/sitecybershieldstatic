@@ -1,25 +1,22 @@
-{
-  "name": "CyberShield",
-  "short_name": "CyberShield",
-  "description": "Consultoria em cibersegurança, pentest, LGPD, hardening e monitoramento para empresas no Brasil.",
+﻿{
+  "name": "ABREU & BRUM",
+  "short_name": "ABREU & BRUM",
+  "description": "AB Scan: analise autorizada de seguranca web para dominios validados, relatorios profissionais e PenTest manual complementar.",
   "lang": "pt-BR",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#10b981",
+  "background_color": "#ffffff",
+  "theme_color": "#01224d",
   "icons": [
     {
-      "src": "/images/logo-favicon.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/images/logo-favicon.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "/images/logo-favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ]
 }
+
+
+

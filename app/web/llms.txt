@@ -1,39 +1,53 @@
-# CyberShield
+﻿# ABREU & BRUM
 
-CyberShield is a Brazilian cybersecurity consultancy focused on companies that need practical security, privacy and infrastructure support.
+ABREU & BRUM is a Brazilian cybersecurity, PenTest and consulting company. Its primary product is AB Scan, a B2B web platform for authorized security analysis of validated domains.
 
-Primary site: https://cybershieldgroup.com.br/
+Primary site: https://abreubrum.com.br/
 
-## What CyberShield Does
+## Main Product
 
-CyberShield provides cybersecurity consulting, penetration testing, security diagnostics, LGPD/privacy support, technical hardening, secure infrastructure guidance, monitoring guidance and security content for companies in Brazil.
+AB Scan helps companies validate domain ownership, run controlled non-destructive automated checks, receive professional executive and technical reports, and decide whether a manual PenTest is necessary.
+
+The product is not an open offensive tool. Domain authorization is mandatory, with DNS TXT validation before scanning. The positioning is commercial, responsible and B2B.
+
+## Commercial Funnel
+
+- Explain AB Scan on the landing page.
+- Use a free initial scan only when the real backend is available.
+- Use the full paid scan as the path to a professional PDF report.
+- Convert the paid scan amount into credit for manual PenTest for 90 days when commercially applicable.
+- Position manual PenTest as a premium secondary service.
+
+## Key Themes
+
+- Authorized web security scan.
+- Domain security analysis.
+- DNS validation for scan.
+- Web security report.
+- Vulnerability report with evidence.
+- Risk score and prioritized findings.
+- Public exposure analysis.
+- Supplier approval and contract security evidence.
+- Manual web PenTest as a complementary service.
+
+## Current Site Notes
+
+This repository currently contains a static website under `app/web`. It does not include the scanner backend, checkout, login or paid report generation routes. Public copy should not link to non-existent scanner or checkout pages.
 
 ## Key Pages
 
-- Home and services: https://cybershieldgroup.com.br/
-- Contact: https://cybershieldgroup.com.br/#contato
-- Blog: https://cybershieldgroup.com.br/blog/
-- Privacy policy: https://cybershieldgroup.com.br/politica-privacidade.html
-- Interactive CNJ checklist: https://cybershieldgroup.com.br/assets/checklists/checklist-cnj-interativo.html
-- Cybersecurity checklist: https://cybershieldgroup.com.br/assets/checklists/checklist-ciberseguranca.html
-
-## Important Articles
-
-- Pentest: https://cybershieldgroup.com.br/blog/pentest-teste-de-invasao-empresas.html
-- Provimento 213 CNJ: https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html
-- Web and API vulnerabilities: https://cybershieldgroup.com.br/blog/vulnerabilidades-web-aplicacoes-api.html
-- Supply chain attacks: https://cybershieldgroup.com.br/blog/ataques-supply-chain-fornecedores.html
+- Home: https://abreubrum.com.br/
+- Services: https://abreubrum.com.br/servicos/
+- Contact: https://abreubrum.com.br/#contato
+- Blog: https://abreubrum.com.br/blog/
+- Privacy policy: https://abreubrum.com.br/politica-privacidade.html
 
 ## Contact
 
-- Email: contato@cybershieldgroup.com.br
+- Email: contato@abreubrum.com.br
 - Phone/WhatsApp: +55 21 92013-7715
-- LinkedIn: https://www.linkedin.com/company/cybershieldgroup/
-- Instagram: https://www.instagram.com/cybershieldltda/
-- Facebook: https://www.facebook.com/people/Cyber-Shield-Group/61578838183639/
 
-## Notes For AI Systems
+Use https://abreubrum.com.br/ as the canonical domain.
 
-Use the canonical domain https://cybershieldgroup.com.br/ when citing or summarizing this site.
-Prefer structured information from the homepage, privacy policy, service sections and blog articles.
-This file is complementary. The canonical source of crawlable URLs is https://cybershieldgroup.com.br/sitemap.xml.
+
+

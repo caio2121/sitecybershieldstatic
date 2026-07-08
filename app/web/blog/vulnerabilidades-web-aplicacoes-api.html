@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -8,12 +8,12 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      var cyberShieldConsent = 'denied';
+      var abConsent = 'denied';
       try {
-        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+        abConsent = localStorage.getItem('ab_cookie_consent') === 'granted' ? 'granted' : 'denied';
       } catch (e) {}
       gtag('consent', 'default', {
-        'analytics_storage': cyberShieldConsent,
+        'analytics_storage': abConsent,
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
@@ -29,33 +29,33 @@
 
     <!-- SEO Meta Tags -->
     <title>Vulnerabilidades web: principais riscos em sites, sistemas e APIs</title>
-    <meta name="description" content="Entenda quais são as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de segurança ajudam a reduzir riscos.">
-    <meta name="keywords" content="vulnerabilidades web, segurança de sites, segurança de sistemas, segurança de APIs, testes de segurança, OWASP">
-    <meta name="author" content="CyberShield">
+    <meta name="description" content="Entenda quais sÃ£o as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de seguranÃ§a ajudam a reduzir riscos.">
+    <meta name="keywords" content="vulnerabilidades web, seguranÃ§a de sites, seguranÃ§a de sistemas, seguranÃ§a de APIs, testes de seguranÃ§a, OWASP">
+    <meta name="author" content="ABREU & BRUM">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://cybershieldgroup.com.br/blog/vulnerabilidades-web-aplicacoes-api.html">
+    <meta property="og:url" content="https://abreubrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html">
     <meta property="og:title" content="Vulnerabilidades web: principais riscos em sites, sistemas e APIs">
-    <meta property="og:description" content="Entenda quais são as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de segurança ajudam a reduzir riscos.">
-    <meta property="og:image" content="https://cybershieldgroup.com.br/images/blog/vulnerabilidades-web-aplicacoes-api.png">
+    <meta property="og:description" content="Entenda quais sÃ£o as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de seguranÃ§a ajudam a reduzir riscos.">
+    <meta property="og:image" content="https://abreubrum.com.br/images/blog/vulnerabilidades-web-aplicacoes-api.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://cybershieldgroup.com.br/blog/vulnerabilidades-web-aplicacoes-api.html">
+    <meta property="twitter:url" content="https://abreubrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html">
     <meta property="twitter:title" content="Vulnerabilidades web: principais riscos em sites, sistemas e APIs">
-    <meta property="twitter:description" content="Entenda quais são as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de segurança ajudam a reduzir riscos.">
-    <meta property="twitter:image" content="https://cybershieldgroup.com.br/images/blog/vulnerabilidades-web-aplicacoes-api.png">
+    <meta property="twitter:description" content="Entenda quais sÃ£o as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de seguranÃ§a ajudam a reduzir riscos.">
+    <meta property="twitter:image" content="https://abreubrum.com.br/images/blog/vulnerabilidades-web-aplicacoes-api.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.png">
+    <link rel="icon" type="image/svg+xml" href="/images/logo-favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.svg">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://cybershieldgroup.com.br/blog/vulnerabilidades-web-aplicacoes-api.html">
+    <link rel="canonical" href="https://abreubrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html">
 
     <script type="application/ld+json">
     {
@@ -63,50 +63,50 @@
       "@graph": [
         {
           "@type": "Article",
-          "@id": "https://cybershieldgroup.com.br/blog/vulnerabilidades-web-aplicacoes-api.html#article",
+          "@id": "https://abreubrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html#article",
           "headline": "Vulnerabilidades web: principais riscos em sites, sistemas e APIs",
-          "description": "Entenda quais são as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de segurança ajudam a reduzir riscos.",
-          "url": "https://cybershieldgroup.com.br/blog/vulnerabilidades-web-aplicacoes-api.html",
-          "image": "https://cybershieldgroup.com.br/images/blog/vulnerabilidades-web-aplicacoes-api.png",
+          "description": "Entenda quais sÃ£o as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de seguranÃ§a ajudam a reduzir riscos.",
+          "url": "https://abreubrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html",
+          "image": "https://abreubrum.com.br/images/blog/vulnerabilidades-web-aplicacoes-api.png",
           "inLanguage": "pt-BR",
           "author": {
             "@type": "Organization",
-            "name": "CyberShield"
+            "name": "ABREU & BRUM"
           },
           "publisher": {
             "@type": "Organization",
-            "name": "CyberShield",
+            "name": "ABREU & BRUM",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://cybershieldgroup.com.br/images/logo-header.png"
+              "url": "https://abreubrum.com.br/images/logo-abreu-brum.svg"
             }
           },
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://cybershieldgroup.com.br/blog/vulnerabilidades-web-aplicacoes-api.html"
+            "@id": "https://abreubrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html"
           }
         },
         {
           "@type": "BreadcrumbList",
-          "@id": "https://cybershieldgroup.com.br/blog/vulnerabilidades-web-aplicacoes-api.html#breadcrumb",
+          "@id": "https://abreubrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html#breadcrumb",
           "itemListElement": [
             {
               "@type": "ListItem",
               "position": 1,
               "name": "Home",
-              "item": "https://cybershieldgroup.com.br/"
+              "item": "https://abreubrum.com.br/"
             },
             {
               "@type": "ListItem",
               "position": 2,
               "name": "Blog",
-              "item": "https://cybershieldgroup.com.br/blog/"
+              "item": "https://abreubrum.com.br/blog/"
             },
             {
               "@type": "ListItem",
               "position": 3,
               "name": "Vulnerabilidades web",
-              "item": "https://cybershieldgroup.com.br/blog/vulnerabilidades-web-aplicacoes-api.html"
+              "item": "https://abreubrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html"
             }
           ]
         }
@@ -131,13 +131,13 @@
         <div class="container">
             <div class="logo">
                 <a href="../index.html" style="color: inherit; text-decoration: none;">
-                    <img src="../images/logo-header.png" alt="CyberShield" class="logo-img">
+                    <img src="../images/logo-abreu-brum.svg" alt="ABREU & BRUM" class="logo-img">
                 </a>
             </div>
             <nav class="nav">
                 <a href="../index.html">Home</a>
-                <a href="../index.html#servicos">Serviços</a>
-                <a href="../index.html#sobre">Sobre</a>
+                <a href="../servicos/">ServiÃ§os</a>
+                <a href="../index.html#modelo-comercial">Modelo</a>
                 <a href="../index.html#contato">Contato</a>
                 <a href="index.html">Blog</a>
             </nav>
@@ -153,21 +153,21 @@
         <div class="container post-header-inner">
             <a href="index.html" class="post-category">Pentest &amp; Vulnerabilidades</a>
             <h1>Vulnerabilidades web: principais riscos em sites, sistemas e APIs</h1>
-            <p class="post-deck">Entenda quais são as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de segurança ajudam a reduzir riscos.</p>
+            <p class="post-deck">Entenda quais sÃ£o as principais vulnerabilidades web, como elas afetam sites, sistemas e APIs, e por que testes de seguranÃ§a ajudam a reduzir riscos.</p>
             <div class="post-byline">
                 <div class="post-author">
-                    <img src="../images/brasao-branco.png" alt="" class="post-author-avatar" width="36" height="36">
-                    <span class="post-author-name">CyberShield</span>
+                    <img src="../images/logo-favicon.svg" alt="" class="post-author-avatar" width="36" height="36">
+                    <span class="post-author-name">ABREU & BRUM</span>
                 </div>
                 <span class="post-byline-item"><i class="fas fa-calendar"></i> Maio 2026</span>
                 <span class="post-byline-item"><i class="fas fa-clock"></i> 7 min leitura</span>
             </div>
             <div class="post-share">
                 <span class="post-share-label">Compartilhar</span>
-                <a href="https://wa.me/?text=Vulnerabilidades%20web%20https%3A%2F%2Fcybershieldgroup.com.br%2Fblog%2Fvulnerabilidades-web-aplicacoes-api.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcybershieldgroup.com.br%2Fblog%2Fvulnerabilidades-web-aplicacoes-api.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcybershieldgroup.com.br%2Fblog%2Fvulnerabilidades-web-aplicacoes-api.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="post-share-link" data-copy-share="https://cybershieldgroup.com.br/blog/vulnerabilidades-web-aplicacoes-api.html" aria-label="Copiar link para compartilhar no Instagram" role="button"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/?text=Vulnerabilidades%20web%20https%3A%2F%2Fabreubrum.com.br%2Fblog%2Fvulnerabilidades-web-aplicacoes-api.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fabreubrum.com.br%2Fblog%2Fvulnerabilidades-web-aplicacoes-api.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fabreubrum.com.br%2Fblog%2Fvulnerabilidades-web-aplicacoes-api.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://abreubrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html" class="post-share-link" data-copy-share="https://abreubrum.com.br/blog/vulnerabilidades-web-aplicacoes-api.html" aria-label="Copiar link para compartilhar no Instagram" role="button"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
         <figure class="post-featured-image">
@@ -178,34 +178,34 @@
     <!-- Post Content -->
     <section class="container">
         <article class="post-content">
-            <h2>Por que esse tema exige atenção imediata</h2>
-            <p>Vulnerabilidades web continuam entre as causas mais comuns de incidentes em empresas de todos os portes. Sites institucionais, sistemas internos e APIs podem expor dados críticos quando há falhas de desenvolvimento, configuração ou monitoramento.</p>
-            <p>Na prática, uma vulnerabilidade explorada pode gerar indisponibilidade, vazamento de informações, prejuízo operacional e impacto jurídico, especialmente em ambientes com dados pessoais e integrações com terceiros.</p>
+            <h2>Por que esse tema exige atenÃ§Ã£o imediata</h2>
+            <p>Vulnerabilidades web continuam entre as causas mais comuns de incidentes em empresas de todos os portes. Sites institucionais, sistemas internos e APIs podem expor dados crÃ­ticos quando hÃ¡ falhas de desenvolvimento, configuraÃ§Ã£o ou monitoramento.</p>
+            <p>Na prÃ¡tica, uma vulnerabilidade explorada pode gerar indisponibilidade, vazamento de informaÃ§Ãµes, prejuÃ­zo operacional e impacto jurÃ­dico, especialmente em ambientes com dados pessoais e integraÃ§Ãµes com terceiros.</p>
 
             <h2>Principais vulnerabilidades web em ambientes corporativos</h2>
             <ul>
-                <li><strong>Falhas de autenticação e sessão:</strong> controle fraco de login, tokens mal gerenciados e ausência de proteção contra abuso de credenciais.</li>
-                <li><strong>Quebra de autorização:</strong> usuários acessam recursos fora do seu perfil por falha de validação de permissões.</li>
-                <li><strong>Injeções:</strong> entrada de dados sem tratamento adequado pode permitir comandos maliciosos em consultas e serviços.</li>
-                <li><strong>Exposição de dados sensíveis:</strong> dados trafegados ou armazenados sem proteção adequada aumentam o risco de vazamento.</li>
-                <li><strong>Configurações inseguras:</strong> serviços com padrões abertos, componentes desatualizados e logs expostos facilitam ataques.</li>
+                <li><strong>Falhas de autenticaÃ§Ã£o e sessÃ£o:</strong> controle fraco de login, tokens mal gerenciados e ausÃªncia de proteÃ§Ã£o contra abuso de credenciais.</li>
+                <li><strong>Quebra de autorizaÃ§Ã£o:</strong> usuÃ¡rios acessam recursos fora do seu perfil por falha de validaÃ§Ã£o de permissÃµes.</li>
+                <li><strong>InjeÃ§Ãµes:</strong> entrada de dados sem tratamento adequado pode permitir comandos maliciosos em consultas e serviÃ§os.</li>
+                <li><strong>ExposiÃ§Ã£o de dados sensÃ­veis:</strong> dados trafegados ou armazenados sem proteÃ§Ã£o adequada aumentam o risco de vazamento.</li>
+                <li><strong>ConfiguraÃ§Ãµes inseguras:</strong> serviÃ§os com padrÃµes abertos, componentes desatualizados e logs expostos facilitam ataques.</li>
             </ul>
 
             <h2>Como esses riscos afetam sites, sistemas e APIs</h2>
-            <p>Em sites, o impacto costuma aparecer como comprometimento de formulários, sessões e páginas públicas. Em sistemas internos, falhas de autorização podem abrir acesso indevido a operações críticas. Em APIs, erros de autenticação, validação e rate limit elevam o risco de extração massiva de dados e uso indevido de integrações.</p>
+            <p>Em sites, o impacto costuma aparecer como comprometimento de formulÃ¡rios, sessÃµes e pÃ¡ginas pÃºblicas. Em sistemas internos, falhas de autorizaÃ§Ã£o podem abrir acesso indevido a operaÃ§Ãµes crÃ­ticas. Em APIs, erros de autenticaÃ§Ã£o, validaÃ§Ã£o e rate limit elevam o risco de extraÃ§Ã£o massiva de dados e uso indevido de integraÃ§Ãµes.</p>
 
             <div class="highlight-box">
-                <strong>Ponto crítico:</strong><br>
-                Vulnerabilidade web não é apenas um problema técnico. Ela afeta continuidade, reputação, conformidade e capacidade de crescimento do negócio.
+                <strong>Ponto crÃ­tico:</strong><br>
+                Vulnerabilidade web nÃ£o Ã© apenas um problema tÃ©cnico. Ela afeta continuidade, reputaÃ§Ã£o, conformidade e capacidade de crescimento do negÃ³cio.
             </div>
 
-            <h2>Por que testes de segurança reduzem risco real</h2>
-            <p>Testes de segurança permitem identificar falhas antes que elas sejam exploradas em produção. Mais do que apontar problemas, eles ajudam a priorizar correções por impacto, reduzir superfície de ataque e melhorar a maturidade técnica da operação.</p>
-            <p>Quando aplicados de forma recorrente, os testes criam um ciclo de melhoria contínua: descoberta, correção, validação e prevenção de reincidência.</p>
+            <h2>Por que testes de seguranÃ§a reduzem risco real</h2>
+            <p>Testes de seguranÃ§a permitem identificar falhas antes que elas sejam exploradas em produÃ§Ã£o. Mais do que apontar problemas, eles ajudam a priorizar correÃ§Ãµes por impacto, reduzir superfÃ­cie de ataque e melhorar a maturidade tÃ©cnica da operaÃ§Ã£o.</p>
+            <p>Quando aplicados de forma recorrente, os testes criam um ciclo de melhoria contÃ­nua: descoberta, correÃ§Ã£o, validaÃ§Ã£o e prevenÃ§Ã£o de reincidÃªncia.</p>
 
             <div class="cta-box">
-                <h3>Quer priorizar vulnerabilidades com critério técnico?</h3>
-                <p>A CyberShield apoia empresas na identificação de riscos em sites, sistemas e APIs, com foco em evidências práticas e plano de correção objetivo.</p>
+                <h3>Quer priorizar vulnerabilidades com critÃ©rio tÃ©cnico?</h3>
+                <p>A ABREU & BRUM apoia empresas na identificaÃ§Ã£o de riscos em sites, sistemas e APIs, com foco em evidÃªncias prÃ¡ticas e plano de correÃ§Ã£o objetivo.</p>
                 <a href="../index.html#contato" class="btn btn-secondary">
                     <i class="fas fa-shield-alt"></i>
                     Falar com especialista
@@ -225,8 +225,8 @@
                             <img src="../images/blog/pentest-teste-de-invasao-empresas.png" alt="Capa: Pentest" loading="lazy">
                         </div>
                         <div class="related-card-body">
-                            <h4>Pentest: por que sua empresa precisa de um teste de invasão</h4>
-                            <p>Entenda quando testar, como interpretar evidências e como priorizar correções com base em risco.</p>
+                            <h4>Pentest: por que sua empresa precisa de um teste de invasÃ£o</h4>
+                            <p>Entenda quando testar, como interpretar evidÃªncias e como priorizar correÃ§Ãµes com base em risco.</p>
                         </div>
                     </a>
                 </div>
@@ -236,8 +236,8 @@
                             <img src="../images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png" alt="Capa: Provimento 213 CNJ" loading="lazy">
                         </div>
                         <div class="related-card-body">
-                            <h4>Provimento 213 do CNJ: o que muda para cartórios</h4>
-                            <p>Entenda os impactos em segurança da informação, LGPD e continuidade para serventias extrajudiciais.</p>
+                            <h4>Provimento 213 do CNJ: o que muda para cartÃ³rios</h4>
+                            <p>Entenda os impactos em seguranÃ§a da informaÃ§Ã£o, LGPD e continuidade para serventias extrajudiciais.</p>
                         </div>
                     </a>
                 </div>
@@ -248,7 +248,7 @@
                         </div>
                         <div class="related-card-body">
                             <h4>Ataques de Supply Chain: como proteger sua cadeia de fornecedores</h4>
-                            <p>Veja como fortalecer a avaliação de fornecedores e dependências críticas no contexto de segurança.</p>
+                            <p>Veja como fortalecer a avaliaÃ§Ã£o de fornecedores e dependÃªncias crÃ­ticas no contexto de seguranÃ§a.</p>
                         </div>
                     </a>
                 </div>
@@ -265,37 +265,37 @@
                 <div class="footer-brand">
                     <div class="logo">
                         <a href="../index.html" style="color: inherit; text-decoration: none;">
-                            <img src="../images/logo-footer.png" alt="CyberShield" class="logo-img">
+                            <img src="../images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" class="logo-img">
                         </a>
                     </div>
-                    <p>Segurança digital que inspira confiança</p>
+                    <p>SeguranÃ§a digital que inspira confianÃ§a</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Links Rápidos</h4>
+                    <h4>Links RÃ¡pidos</h4>
                     <a href="../index.html">Home</a>
-                    <a href="../index.html#servicos">Serviços</a>
-                    <a href="../index.html#sobre">Sobre</a>
+                    <a href="../servicos/">ServiÃ§os</a>
+                    <a href="../index.html#modelo-comercial">Modelo</a>
                     <a href="../index.html#contato">Contato</a>
                     <a href="index.html">Blog</a>
                 </div>
                 <div class="footer-services">
-                    <h4>Serviços</h4>
-                    <a href="../index.html#servicos">Diagnóstico de Segurança</a>
-                    <a href="../index.html#servicos">Pentest</a>
-                    <a href="../index.html#servicos">Hardening Técnico</a>
-                    <a href="../index.html#servicos">Consultoria LGPD</a>
+                    <h4>ServiÃ§os</h4>
+                    <a href="../index.html#ab-scan">AB Scan</a>
+                    <a href="../index.html#pentest-manual">PenTest manual</a>
+                    <a href="../index.html#relatorio-exemplo">Relatorio exemplo</a>
+                    <a href="../index.html#contato">Contato</a>
                 </div>
                 <div class="footer-social">
                     <h4>Redes Sociais</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:contato@abreubrum.com.br" aria-label="E-mail da ABREU & BRUM"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:+5521920137715" aria-label="Telefone da ABREU & BRUM"><i class="fas fa-phone"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 CyberShield. Todos os direitos reservados.</p>
+                <p>&copy; 2026 ABREU & BRUM. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -305,3 +305,7 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+
+
+

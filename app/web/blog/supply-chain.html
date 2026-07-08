@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -8,12 +8,12 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      var cyberShieldConsent = 'denied';
+      var abConsent = 'denied';
       try {
-        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+        abConsent = localStorage.getItem('ab_cookie_consent') === 'granted' ? 'granted' : 'denied';
       } catch (e) {}
       gtag('consent', 'default', {
-        'analytics_storage': cyberShieldConsent,
+        'analytics_storage': abConsent,
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
@@ -28,34 +28,34 @@
     <link rel="manifest" href="/manifest.json">
     
     <!-- SEO Meta Tags -->
-    <title>Ataques de Supply Chain: Como Blindar sua Cadeia de Fornecimento | Blog CyberShield</title>
-    <meta name="description" content="Ataques à cadeia de fornecimento cresceram 40% em 2024. PMEs são especialmente vulneráveis, pois dependem de fornecedores.">
-    <meta name="keywords" content="supply chain, cadeia de fornecimento, ataques, PMEs, fornecedores, segurança, avaliação de riscos">
-    <meta name="author" content="CyberShield">
+    <title>Ataques de Supply Chain: Como Blindar sua Cadeia de Fornecimento | Blog ABREU & BRUM</title>
+    <meta name="description" content="Ataques Ã  cadeia de fornecimento cresceram 40% em 2024. PMEs sÃ£o especialmente vulnerÃ¡veis, pois dependem de fornecedores.">
+    <meta name="keywords" content="supply chain, cadeia de fornecimento, ataques, PMEs, fornecedores, seguranÃ§a, avaliaÃ§Ã£o de riscos">
+    <meta name="author" content="ABREU & BRUM">
     <meta name="robots" content="noindex, follow">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://cybershieldgroup.com.br/blog/supply-chain.html">
+    <meta property="og:url" content="https://abreubrum.com.br/blog/supply-chain.html">
     <meta property="og:title" content="Ataques de Supply Chain: Como Blindar sua Cadeia de Fornecimento">
-    <meta property="og:description" content="Ataques à cadeia de fornecimento cresceram 40% em 2024. PMEs são especialmente vulneráveis, pois dependem de fornecedores.">
-    <meta property="og:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
+    <meta property="og:description" content="Ataques Ã  cadeia de fornecimento cresceram 40% em 2024. PMEs sÃ£o especialmente vulnerÃ¡veis, pois dependem de fornecedores.">
+    <meta property="og:image" content="https://abreubrum.com.br/images/logo-social.svg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://cybershieldgroup.com.br/blog/supply-chain.html">
+    <meta property="twitter:url" content="https://abreubrum.com.br/blog/supply-chain.html">
     <meta property="twitter:title" content="Ataques de Supply Chain: Como Blindar sua Cadeia de Fornecimento">
-    <meta property="twitter:description" content="Ataques à cadeia de fornecimento cresceram 40% em 2024. PMEs são especialmente vulneráveis, pois dependem de fornecedores.">
-    <meta property="twitter:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
+    <meta property="twitter:description" content="Ataques Ã  cadeia de fornecimento cresceram 40% em 2024. PMEs sÃ£o especialmente vulnerÃ¡veis, pois dependem de fornecedores.">
+    <meta property="twitter:image" content="https://abreubrum.com.br/images/logo-social.svg">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.png">
+    <link rel="icon" type="image/svg+xml" href="/images/logo-favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.svg">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://cybershieldgroup.com.br/blog/supply-chain.html">
+    <link rel="canonical" href="https://abreubrum.com.br/blog/supply-chain.html">
     
     <!-- Preconnect para performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,13 +75,13 @@
         <div class="container">
             <div class="logo">
                 <a href="../index.html" style="color: inherit; text-decoration: none;">
-                    <img src="../images/logo-header.png" alt="CyberShield" class="logo-img">
+                    <img src="../images/logo-abreu-brum.svg" alt="ABREU & BRUM" class="logo-img">
                 </a>
             </div>
             <nav class="nav">
                 <a href="../index.html">Home</a>
-                <a href="../index.html#servicos">Serviços</a>
-                <a href="../index.html#sobre">Sobre</a>
+                <a href="../servicos/">ServiÃ§os</a>
+                <a href="../index.html#modelo-comercial">Modelo</a>
                 <a href="../index.html#contato">Contato</a>
                 <a href="index.html">Blog</a>
             </nav>
@@ -101,7 +101,7 @@
                 <div class="post-meta">
                     <span><i class="fas fa-calendar"></i> Janeiro 2024</span>
                     <span><i class="fas fa-clock"></i> 10 min leitura</span>
-                    <span><i class="fas fa-user"></i> CyberShield</span>
+                    <span><i class="fas fa-user"></i> ABREU & BRUM</span>
                 </div>
             </div>
         </div>
@@ -110,45 +110,45 @@
     <!-- Post Content -->
     <section class="container">
         <article class="post-content">
-            <h2>Introdução</h2>
-            <p>Este artigo está sendo desenvolvido com conteúdo especializado sobre ataques de supply chain: como blindar sua cadeia de fornecimento. Em breve, você encontrará informações detalhadas, dicas práticas e soluções acessíveis para PMEs.</p>
+            <h2>IntroduÃ§Ã£o</h2>
+            <p>Este artigo estÃ¡ sendo desenvolvido com conteÃºdo especializado sobre ataques de supply chain: como blindar sua cadeia de fornecimento. Em breve, vocÃª encontrarÃ¡ informaÃ§Ãµes detalhadas, dicas prÃ¡ticas e soluÃ§Ãµes acessÃ­veis para PMEs.</p>
 
             <div class="highlight-box">
-                <strong>📝 Conteúdo em Desenvolvimento:</strong><br>
-                Este artigo está sendo preparado com conteúdo especializado e atualizado. Em breve, você terá acesso a informações completas sobre ataques de supply chain: como blindar sua cadeia de fornecimento.
+                <strong>ðŸ“ ConteÃºdo em Desenvolvimento:</strong><br>
+                Este artigo estÃ¡ sendo preparado com conteÃºdo especializado e atualizado. Em breve, vocÃª terÃ¡ acesso a informaÃ§Ãµes completas sobre ataques de supply chain: como blindar sua cadeia de fornecimento.
             </div>
 
-            <h2>O que você encontrará neste artigo</h2>
+            <h2>O que vocÃª encontrarÃ¡ neste artigo</h2>
             <ul>
-                <li>Definições e conceitos fundamentais</li>
+                <li>DefiniÃ§Ãµes e conceitos fundamentais</li>
                 <li>Impactos para PMEs</li>
-                <li>Estratégias de implementação</li>
-                <li>Custos e benefícios</li>
+                <li>EstratÃ©gias de implementaÃ§Ã£o</li>
+                <li>Custos e benefÃ­cios</li>
                 <li>Ferramentas recomendadas</li>
                 <li>Cases de sucesso</li>
             </ul>
 
             <div class="cta-box">
                 <h3>Quer receber este artigo quando estiver pronto?</h3>
-                <p>Inscreva-se em nossa newsletter para receber notificações sobre novos artigos e dicas exclusivas de cibersegurança.</p>
+                <p>Inscreva-se em nossa newsletter para receber notificaÃ§Ãµes sobre novos artigos e dicas exclusivas de ciberseguranÃ§a.</p>
                 <a href="../index.html#contato" class="btn btn-secondary">
                     <i class="fas fa-envelope"></i>
                     Inscrever-se na Newsletter
                 </a>
             </div>
 
-            <h2>Conteúdo relacionado</h2>
-            <p>Enquanto este artigo está sendo desenvolvido, você pode explorar outros conteúdos relacionados em nosso blog:</p>
+            <h2>ConteÃºdo relacionado</h2>
+            <p>Enquanto este artigo estÃ¡ sendo desenvolvido, vocÃª pode explorar outros conteÃºdos relacionados em nosso blog:</p>
             
             <ul>
-                <li><a href="zero-trust.html">Zero Trust: O Futuro da Segurança para Pequenas Empresas</a></li>
-                <li><a href="pentest-teste-de-invasao-empresas.html">Pentest: por que sua empresa precisa de um teste de invasão</a></li>
+                <li><a href="zero-trust.html">Zero Trust: O Futuro da SeguranÃ§a para Pequenas Empresas</a></li>
+                <li><a href="pentest-teste-de-invasao-empresas.html">Pentest: por que sua empresa precisa de um teste de invasÃ£o</a></li>
                 <li><a href="vulnerabilidades-web-aplicacoes-api.html">Vulnerabilidades web: principais riscos em sites, sistemas e APIs</a></li>
             </ul>
 
             <div class="highlight-box">
-                <strong>Sobre a CyberShield:</strong><br>
-                Especializada em segurança da informação para PMEs, oferecemos soluções acessíveis e personalizadas para proteger sua empresa e seus dados.
+                <strong>Sobre a ABREU & BRUM:</strong><br>
+                Especializada em seguranÃ§a da informaÃ§Ã£o para PMEs, oferecemos soluÃ§Ãµes acessÃ­veis e personalizadas para proteger sua empresa e seus dados.
             </div>
         </article>
     </section>
@@ -159,16 +159,16 @@
             <h3>Artigos Relacionados</h3>
             <div class="related-grid">
                 <div class="related-card">
-                    <h4><a href="zero-trust.html">Zero Trust: O Futuro da Segurança para Pequenas Empresas</a></h4>
-                    <p>Confiança zero ajuda a segmentar acessos e reduzir impacto de comprometimentos em terceiros.</p>
+                    <h4><a href="zero-trust.html">Zero Trust: O Futuro da SeguranÃ§a para Pequenas Empresas</a></h4>
+                    <p>ConfianÃ§a zero ajuda a segmentar acessos e reduzir impacto de comprometimentos em terceiros.</p>
                 </div>
                 <div class="related-card">
-                    <h4><a href="pentest-teste-de-invasao-empresas.html">Pentest: por que sua empresa precisa de um teste de invasão</a></h4>
-                    <p>60% das empresas que sofrem ataques fecham em 6 meses. Descubra como os testes de penetração podem proteger sua PME.</p>
+                    <h4><a href="pentest-teste-de-invasao-empresas.html">Pentest: por que sua empresa precisa de um teste de invasÃ£o</a></h4>
+                    <p>60% das empresas que sofrem ataques fecham em 6 meses. Descubra como os testes de penetraÃ§Ã£o podem proteger sua PME.</p>
                 </div>
                 <div class="related-card">
                     <h4><a href="vulnerabilidades-web-aplicacoes-api.html">Vulnerabilidades web: principais riscos em sites, sistemas e APIs</a></h4>
-                    <p>75% dos ataques começam por vulnerabilidades web. Conheça o Top 10 OWASP e aprenda como proteger suas aplicações.</p>
+                    <p>75% dos ataques comeÃ§am por vulnerabilidades web. ConheÃ§a o Top 10 OWASP e aprenda como proteger suas aplicaÃ§Ãµes.</p>
                 </div>
             </div>
         </div>
@@ -183,37 +183,37 @@
                 <div class="footer-brand">
                     <div class="logo">
                         <a href="../index.html" style="color: inherit; text-decoration: none;">
-                            <img src="../images/logo-footer.png" alt="CyberShield" class="logo-img">
+                            <img src="../images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" class="logo-img">
                         </a>
                     </div>
-                    <p>Segurança digital que inspira confiança</p>
+                    <p>SeguranÃ§a digital que inspira confianÃ§a</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Links Rápidos</h4>
+                    <h4>Links RÃ¡pidos</h4>
                     <a href="../index.html">Home</a>
-                    <a href="../index.html#servicos">Serviços</a>
-                    <a href="../index.html#sobre">Sobre</a>
+                    <a href="../servicos/">ServiÃ§os</a>
+                    <a href="../index.html#modelo-comercial">Modelo</a>
                     <a href="../index.html#contato">Contato</a>
                     <a href="index.html">Blog</a>
                 </div>
                 <div class="footer-services">
-                    <h4>Serviços</h4>
-                    <a href="../index.html#servicos">Diagnóstico de Segurança</a>
-                    <a href="../index.html#servicos">Pentest</a>
-                    <a href="../index.html#servicos">Hardening Técnico</a>
-                    <a href="../index.html#servicos">Consultoria LGPD</a>
+                    <h4>ServiÃ§os</h4>
+                    <a href="../index.html#ab-scan">AB Scan</a>
+                    <a href="../index.html#pentest-manual">PenTest manual</a>
+                    <a href="../index.html#relatorio-exemplo">Relatorio exemplo</a>
+                    <a href="../index.html#contato">Contato</a>
                 </div>
                 <div class="footer-social">
                     <h4>Redes Sociais</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:contato@abreubrum.com.br" aria-label="E-mail da ABREU & BRUM"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:+5521920137715" aria-label="Telefone da ABREU & BRUM"><i class="fas fa-phone"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 CyberShield. Todos os direitos reservados.</p>
+                <p>&copy; 2024 ABREU & BRUM. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -223,3 +223,7 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+
+
+

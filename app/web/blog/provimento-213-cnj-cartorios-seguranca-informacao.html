@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -8,12 +8,12 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      var cyberShieldConsent = 'denied';
+      var abConsent = 'denied';
       try {
-        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+        abConsent = localStorage.getItem('ab_cookie_consent') === 'granted' ? 'granted' : 'denied';
       } catch (e) {}
       gtag('consent', 'default', {
-        'analytics_storage': cyberShieldConsent,
+        'analytics_storage': abConsent,
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
@@ -28,34 +28,34 @@
     <link rel="manifest" href="/manifest.json">
 
     <!-- SEO Meta Tags -->
-    <title>Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais | Blog CyberShield</title>
-    <meta name="description" content="Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.">
-    <meta name="keywords" content="Provimento 213, CNJ, cartórios, serventias extrajudiciais, segurança da informação, LGPD, backup, continuidade de negócios, TIC">
-    <meta name="author" content="CyberShield">
+    <title>Provimento 213 do CNJ: o que muda para cartÃ³rios e serventias extrajudiciais | Blog ABREU & BRUM</title>
+    <meta name="description" content="Entenda o que Ã© o Provimento 213 do CNJ e como ele impacta cartÃ³rios em seguranÃ§a da informaÃ§Ã£o, LGPD, backups, continuidade e gestÃ£o de tecnologia.">
+    <meta name="keywords" content="Provimento 213, CNJ, cartÃ³rios, serventias extrajudiciais, seguranÃ§a da informaÃ§Ã£o, LGPD, backup, continuidade de negÃ³cios, TIC">
+    <meta name="author" content="ABREU & BRUM">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
-    <meta property="og:title" content="Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais">
-    <meta property="og:description" content="Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.">
-    <meta property="og:image" content="https://cybershieldgroup.com.br/images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png">
+    <meta property="og:url" content="https://abreubrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
+    <meta property="og:title" content="Provimento 213 do CNJ: o que muda para cartÃ³rios e serventias extrajudiciais">
+    <meta property="og:description" content="Entenda o que Ã© o Provimento 213 do CNJ e como ele impacta cartÃ³rios em seguranÃ§a da informaÃ§Ã£o, LGPD, backups, continuidade e gestÃ£o de tecnologia.">
+    <meta property="og:image" content="https://abreubrum.com.br/images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
-    <meta property="twitter:title" content="Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais">
-    <meta property="twitter:description" content="Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.">
-    <meta property="twitter:image" content="https://cybershieldgroup.com.br/images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png">
+    <meta property="twitter:url" content="https://abreubrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
+    <meta property="twitter:title" content="Provimento 213 do CNJ: o que muda para cartÃ³rios e serventias extrajudiciais">
+    <meta property="twitter:description" content="Entenda o que Ã© o Provimento 213 do CNJ e como ele impacta cartÃ³rios em seguranÃ§a da informaÃ§Ã£o, LGPD, backups, continuidade e gestÃ£o de tecnologia.">
+    <meta property="twitter:image" content="https://abreubrum.com.br/images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.png">
+    <link rel="icon" type="image/svg+xml" href="/images/logo-favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.svg">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
+    <link rel="canonical" href="https://abreubrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
 
     <script type="application/ld+json">
     {
@@ -63,50 +63,50 @@
       "@graph": [
         {
           "@type": "Article",
-          "@id": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html#article",
-          "headline": "Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais",
-          "description": "Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.",
-          "url": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html",
-          "image": "https://cybershieldgroup.com.br/images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png",
+          "@id": "https://abreubrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html#article",
+          "headline": "Provimento 213 do CNJ: o que muda para cartÃ³rios e serventias extrajudiciais",
+          "description": "Entenda o que Ã© o Provimento 213 do CNJ e como ele impacta cartÃ³rios em seguranÃ§a da informaÃ§Ã£o, LGPD, backups, continuidade e gestÃ£o de tecnologia.",
+          "url": "https://abreubrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html",
+          "image": "https://abreubrum.com.br/images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png",
           "inLanguage": "pt-BR",
           "author": {
             "@type": "Organization",
-            "name": "CyberShield"
+            "name": "ABREU & BRUM"
           },
           "publisher": {
             "@type": "Organization",
-            "name": "CyberShield",
+            "name": "ABREU & BRUM",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://cybershieldgroup.com.br/images/logo-header.png"
+              "url": "https://abreubrum.com.br/images/logo-abreu-brum.svg"
             }
           },
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html"
+            "@id": "https://abreubrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html"
           }
         },
         {
           "@type": "BreadcrumbList",
-          "@id": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html#breadcrumb",
+          "@id": "https://abreubrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html#breadcrumb",
           "itemListElement": [
             {
               "@type": "ListItem",
               "position": 1,
               "name": "Home",
-              "item": "https://cybershieldgroup.com.br/"
+              "item": "https://abreubrum.com.br/"
             },
             {
               "@type": "ListItem",
               "position": 2,
               "name": "Blog",
-              "item": "https://cybershieldgroup.com.br/blog/"
+              "item": "https://abreubrum.com.br/blog/"
             },
             {
               "@type": "ListItem",
               "position": 3,
               "name": "Provimento 213 do CNJ",
-              "item": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html"
+              "item": "https://abreubrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html"
             }
           ]
         }
@@ -131,13 +131,13 @@
         <div class="container">
             <div class="logo">
                 <a href="../index.html" style="color: inherit; text-decoration: none;">
-                    <img src="../images/logo-header.png" alt="CyberShield" class="logo-img">
+                    <img src="../images/logo-abreu-brum.svg" alt="ABREU & BRUM" class="logo-img">
                 </a>
             </div>
             <nav class="nav">
                 <a href="../index.html">Home</a>
-                <a href="../index.html#servicos">Serviços</a>
-                <a href="../index.html#sobre">Sobre</a>
+                <a href="../servicos/">ServiÃ§os</a>
+                <a href="../index.html#modelo-comercial">Modelo</a>
                 <a href="../index.html#contato">Contato</a>
                 <a href="index.html">Blog</a>
             </nav>
@@ -152,117 +152,117 @@
     <section class="post-header">
         <div class="container post-header-inner">
             <a href="index.html" class="post-category">Pentest &amp; Vulnerabilidades</a>
-            <h1>Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais</h1>
-            <p class="post-deck">Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.</p>
+            <h1>Provimento 213 do CNJ: o que muda para cartÃ³rios e serventias extrajudiciais</h1>
+            <p class="post-deck">Entenda o que Ã© o Provimento 213 do CNJ e como ele impacta cartÃ³rios em seguranÃ§a da informaÃ§Ã£o, LGPD, backups, continuidade e gestÃ£o de tecnologia.</p>
             <div class="post-byline">
                 <div class="post-author">
-                    <img src="../images/brasao-branco.png" alt="" class="post-author-avatar" width="36" height="36">
-                    <span class="post-author-name">CyberShield</span>
+                    <img src="../images/logo-favicon.svg" alt="" class="post-author-avatar" width="36" height="36">
+                    <span class="post-author-name">ABREU & BRUM</span>
                 </div>
                 <span class="post-byline-item"><i class="fas fa-calendar"></i> Maio de 2026</span>
                 <span class="post-byline-item"><i class="fas fa-clock"></i> 8 min leitura</span>
             </div>
             <div class="post-share">
                 <span class="post-share-label">Compartilhar</span>
-                <a href="https://wa.me/?text=Provimento%20213%20do%20CNJ%20https%3A%2F%2Fcybershieldgroup.com.br%2Fblog%2Fprovimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcybershieldgroup.com.br%2Fblog%2Fprovimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcybershieldgroup.com.br%2Fblog%2Fprovimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="post-share-link" data-copy-share="https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html" aria-label="Copiar link para compartilhar no Instagram" role="button"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/?text=Provimento%20213%20do%20CNJ%20https%3A%2F%2Fabreubrum.com.br%2Fblog%2Fprovimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fabreubrum.com.br%2Fblog%2Fprovimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fabreubrum.com.br%2Fblog%2Fprovimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://abreubrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" data-copy-share="https://abreubrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html" aria-label="Copiar link para compartilhar no Instagram" role="button"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
         <figure class="post-featured-image">
-            <img src="../images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png" alt="Capa: Provimento 213 do CNJ para cartórios e serventias extrajudiciais" width="872" height="622" fetchpriority="high">
+            <img src="../images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png" alt="Capa: Provimento 213 do CNJ para cartÃ³rios e serventias extrajudiciais" width="872" height="622" fetchpriority="high">
         </figure>
     </section>
 
     <!-- Post Content -->
     <section class="container">
         <article class="post-content">
-            <p>O <strong>Provimento nº 213/2026 do CNJ</strong> trouxe novas exigências de tecnologia, segurança da informação e continuidade para os serviços notariais e de registro no Brasil. A norma substitui o antigo Provimento nº 74/2018 e estabelece padrões mínimos de TIC para garantir segurança, integridade, disponibilidade, autenticidade, rastreabilidade e continuidade das atividades cartorárias.</p>
-            <p>Na prática, o Provimento 213 deixa claro que cartórios não podem mais tratar tecnologia apenas como suporte operacional. Sistemas, bancos de dados, backups, logs, redes, fornecedores e controles de acesso passam a fazer parte direta da conformidade da serventia.</p>
+            <p>O <strong>Provimento nÂº 213/2026 do CNJ</strong> trouxe novas exigÃªncias de tecnologia, seguranÃ§a da informaÃ§Ã£o e continuidade para os serviÃ§os notariais e de registro no Brasil. A norma substitui o antigo Provimento nÂº 74/2018 e estabelece padrÃµes mÃ­nimos de TIC para garantir seguranÃ§a, integridade, disponibilidade, autenticidade, rastreabilidade e continuidade das atividades cartorÃ¡rias.</p>
+            <p>Na prÃ¡tica, o Provimento 213 deixa claro que cartÃ³rios nÃ£o podem mais tratar tecnologia apenas como suporte operacional. Sistemas, bancos de dados, backups, logs, redes, fornecedores e controles de acesso passam a fazer parte direta da conformidade da serventia.</p>
 
-            <h2>O que é o Provimento 213?</h2>
-            <p>O Provimento 213 é uma norma do Conselho Nacional de Justiça voltada aos <strong>cartórios e serventias extrajudiciais</strong>. Seu objetivo é estabelecer requisitos mínimos para o uso seguro da tecnologia da informação nas atividades notariais e registrais.</p>
+            <h2>O que Ã© o Provimento 213?</h2>
+            <p>O Provimento 213 Ã© uma norma do Conselho Nacional de JustiÃ§a voltada aos <strong>cartÃ³rios e serventias extrajudiciais</strong>. Seu objetivo Ã© estabelecer requisitos mÃ­nimos para o uso seguro da tecnologia da informaÃ§Ã£o nas atividades notariais e registrais.</p>
             <p>A norma trata de temas como:</p>
             <ul>
-                <li>segurança da informação;</li>
-                <li>proteção de dados pessoais;</li>
-                <li>continuidade de negócios;</li>
-                <li>recuperação de desastres;</li>
+                <li>seguranÃ§a da informaÃ§Ã£o;</li>
+                <li>proteÃ§Ã£o de dados pessoais;</li>
+                <li>continuidade de negÃ³cios;</li>
+                <li>recuperaÃ§Ã£o de desastres;</li>
                 <li>backups;</li>
                 <li>logs e rastreabilidade;</li>
-                <li>autenticação de usuários;</li>
-                <li>gestão de incidentes;</li>
-                <li>contratação de fornecedores;</li>
-                <li>uso de nuvem e soluções compartilhadas.</li>
+                <li>autenticaÃ§Ã£o de usuÃ¡rios;</li>
+                <li>gestÃ£o de incidentes;</li>
+                <li>contrataÃ§Ã£o de fornecedores;</li>
+                <li>uso de nuvem e soluÃ§Ãµes compartilhadas.</li>
             </ul>
-            <p>O ponto central é simples: o acervo digital do cartório precisa estar protegido, disponível, íntegro e rastreável.</p>
+            <p>O ponto central Ã© simples: o acervo digital do cartÃ³rio precisa estar protegido, disponÃ­vel, Ã­ntegro e rastreÃ¡vel.</p>
 
-            <h2>Por que o Provimento 213 é importante?</h2>
-            <p>Cartórios lidam diariamente com informações sensíveis, documentos, registros públicos, dados pessoais e atos jurídicos de alto impacto. Uma falha de segurança, perda de dados ou indisponibilidade prolongada pode afetar cidadãos, empresas, operações jurídicas e a própria credibilidade da serventia.</p>
-            <p>Por isso, o Provimento 213 exige que as serventias adotem políticas, controles e evidências capazes de demonstrar que a tecnologia utilizada é adequada ao risco da atividade.</p>
-            <p>Não basta dizer que existe backup. É preciso demonstrar que ele é monitorado, testado e capaz de restaurar o acervo.</p>
-            <p>Não basta ter sistema. É preciso garantir controle de acesso, logs, rastreabilidade, segurança, continuidade e conformidade com a LGPD.</p>
+            <h2>Por que o Provimento 213 Ã© importante?</h2>
+            <p>CartÃ³rios lidam diariamente com informaÃ§Ãµes sensÃ­veis, documentos, registros pÃºblicos, dados pessoais e atos jurÃ­dicos de alto impacto. Uma falha de seguranÃ§a, perda de dados ou indisponibilidade prolongada pode afetar cidadÃ£os, empresas, operaÃ§Ãµes jurÃ­dicas e a prÃ³pria credibilidade da serventia.</p>
+            <p>Por isso, o Provimento 213 exige que as serventias adotem polÃ­ticas, controles e evidÃªncias capazes de demonstrar que a tecnologia utilizada Ã© adequada ao risco da atividade.</p>
+            <p>NÃ£o basta dizer que existe backup. Ã‰ preciso demonstrar que ele Ã© monitorado, testado e capaz de restaurar o acervo.</p>
+            <p>NÃ£o basta ter sistema. Ã‰ preciso garantir controle de acesso, logs, rastreabilidade, seguranÃ§a, continuidade e conformidade com a LGPD.</p>
 
-            <h2>O que muda para os cartórios?</h2>
-            <p>O Provimento 213 reforça que cada serventia deve observar requisitos proporcionais à sua classe, considerando porte, capacidade econômica e criticidade. A norma trabalha com implementação progressiva, mas exige organização, documentação e evidências desde o início.</p>
-            <p>Entre os principais pontos de atenção estão:</p>
+            <h2>O que muda para os cartÃ³rios?</h2>
+            <p>O Provimento 213 reforÃ§a que cada serventia deve observar requisitos proporcionais Ã  sua classe, considerando porte, capacidade econÃ´mica e criticidade. A norma trabalha com implementaÃ§Ã£o progressiva, mas exige organizaÃ§Ã£o, documentaÃ§Ã£o e evidÃªncias desde o inÃ­cio.</p>
+            <p>Entre os principais pontos de atenÃ§Ã£o estÃ£o:</p>
 
-            <h3>Política Interna de Segurança da Informação</h3>
-            <p>A serventia deve formalizar diretrizes de segurança, continuidade operacional e preservação de dados.</p>
+            <h3>PolÃ­tica Interna de SeguranÃ§a da InformaÃ§Ã£o</h3>
+            <p>A serventia deve formalizar diretrizes de seguranÃ§a, continuidade operacional e preservaÃ§Ã£o de dados.</p>
 
-            <h3>Plano de Continuidade de Negócios e Recuperação de Desastres</h3>
-            <p>O cartório precisa ter procedimentos para manter ou restaurar as atividades em caso de falha, incidente ou indisponibilidade.</p>
+            <h3>Plano de Continuidade de NegÃ³cios e RecuperaÃ§Ã£o de Desastres</h3>
+            <p>O cartÃ³rio precisa ter procedimentos para manter ou restaurar as atividades em caso de falha, incidente ou indisponibilidade.</p>
 
             <h3>Backups monitorados e testados</h3>
-            <p>As cópias de segurança devem ser automatizadas, monitoradas e submetidas a testes formais de restauração.</p>
+            <p>As cÃ³pias de seguranÃ§a devem ser automatizadas, monitoradas e submetidas a testes formais de restauraÃ§Ã£o.</p>
 
             <h3>Logs e trilhas de auditoria</h3>
-            <p>Os sistemas devem registrar operações relevantes, permitindo identificar usuário, data, hora, ação realizada e resultado obtido.</p>
+            <p>Os sistemas devem registrar operaÃ§Ãµes relevantes, permitindo identificar usuÃ¡rio, data, hora, aÃ§Ã£o realizada e resultado obtido.</p>
 
             <h3>Controle de acesso individualizado</h3>
-            <p>O uso de credenciais genéricas ou compartilhadas deve ser evitado. A norma exige rastreabilidade e responsabilização individual.</p>
+            <p>O uso de credenciais genÃ©ricas ou compartilhadas deve ser evitado. A norma exige rastreabilidade e responsabilizaÃ§Ã£o individual.</p>
 
-            <h3>Criptografia e proteção de dados</h3>
-            <p>Dados pessoais, registros eletrônicos e informações sensíveis devem ser protegidos em trânsito, em repouso e nas rotinas de backup.</p>
+            <h3>Criptografia e proteÃ§Ã£o de dados</h3>
+            <p>Dados pessoais, registros eletrÃ´nicos e informaÃ§Ãµes sensÃ­veis devem ser protegidos em trÃ¢nsito, em repouso e nas rotinas de backup.</p>
 
-            <h3>Gestão de incidentes</h3>
-            <p>A serventia deve ter procedimento documentado para identificar, classificar, conter, corrigir e registrar incidentes de segurança.</p>
+            <h3>GestÃ£o de incidentes</h3>
+            <p>A serventia deve ter procedimento documentado para identificar, classificar, conter, corrigir e registrar incidentes de seguranÃ§a.</p>
 
-            <h3>Gestão de fornecedores</h3>
-            <p>Mesmo quando utiliza sistema contratado, nuvem, SaaS ou solução compartilhada, a responsabilidade pela conformidade permanece com o delegatário, interino ou interventor.</p>
+            <h3>GestÃ£o de fornecedores</h3>
+            <p>Mesmo quando utiliza sistema contratado, nuvem, SaaS ou soluÃ§Ã£o compartilhada, a responsabilidade pela conformidade permanece com o delegatÃ¡rio, interino ou interventor.</p>
 
             <h2>Provimento 213 e LGPD</h2>
-            <p>O Provimento 213 também reforça a relação entre cartórios, tecnologia e proteção de dados pessoais.</p>
-            <p>A serventia precisa adotar medidas técnicas e organizacionais adequadas à proteção de dados, manter registros das operações de tratamento e, quando aplicável, designar encarregado pelo tratamento de dados pessoais.</p>
-            <p>Além disso, incidentes que possam gerar risco ou dano relevante aos titulares devem ser comunicados à ANPD e à Corregedoria competente, conforme a legislação aplicável.</p>
-            <p>Isso significa que adequação ao Provimento 213 e adequação à LGPD não devem ser tratadas como projetos separados. Na prática, segurança da informação, governança de dados e continuidade operacional precisam caminhar juntas.</p>
+            <p>O Provimento 213 tambÃ©m reforÃ§a a relaÃ§Ã£o entre cartÃ³rios, tecnologia e proteÃ§Ã£o de dados pessoais.</p>
+            <p>A serventia precisa adotar medidas tÃ©cnicas e organizacionais adequadas Ã  proteÃ§Ã£o de dados, manter registros das operaÃ§Ãµes de tratamento e, quando aplicÃ¡vel, designar encarregado pelo tratamento de dados pessoais.</p>
+            <p>AlÃ©m disso, incidentes que possam gerar risco ou dano relevante aos titulares devem ser comunicados Ã  ANPD e Ã  Corregedoria competente, conforme a legislaÃ§Ã£o aplicÃ¡vel.</p>
+            <p>Isso significa que adequaÃ§Ã£o ao Provimento 213 e adequaÃ§Ã£o Ã  LGPD nÃ£o devem ser tratadas como projetos separados. Na prÃ¡tica, seguranÃ§a da informaÃ§Ã£o, governanÃ§a de dados e continuidade operacional precisam caminhar juntas.</p>
 
-            <h2>Como começar a adequação ao Provimento 213?</h2>
-            <p>O primeiro passo não é comprar ferramenta. É entender a situação atual da serventia.</p>
-            <p>Uma adequação responsável começa com um diagnóstico técnico e documental, avaliando:</p>
+            <h2>Como comeÃ§ar a adequaÃ§Ã£o ao Provimento 213?</h2>
+            <p>O primeiro passo nÃ£o Ã© comprar ferramenta. Ã‰ entender a situaÃ§Ã£o atual da serventia.</p>
+            <p>Uma adequaÃ§Ã£o responsÃ¡vel comeÃ§a com um diagnÃ³stico tÃ©cnico e documental, avaliando:</p>
             <ul>
-                <li>quais sistemas são utilizados;</li>
-                <li>onde os dados estão armazenados;</li>
-                <li>como os backups são feitos;</li>
-                <li>se existe teste de restauração;</li>
-                <li>quais usuários têm acesso aos sistemas;</li>
-                <li>se há autenticação individual;</li>
+                <li>quais sistemas sÃ£o utilizados;</li>
+                <li>onde os dados estÃ£o armazenados;</li>
+                <li>como os backups sÃ£o feitos;</li>
+                <li>se existe teste de restauraÃ§Ã£o;</li>
+                <li>quais usuÃ¡rios tÃªm acesso aos sistemas;</li>
+                <li>se hÃ¡ autenticaÃ§Ã£o individual;</li>
                 <li>se existem logs suficientes;</li>
                 <li>como fornecedores tratam dados e incidentes;</li>
-                <li>se há política de segurança formalizada;</li>
-                <li>se há plano de continuidade e recuperação.</li>
+                <li>se hÃ¡ polÃ­tica de seguranÃ§a formalizada;</li>
+                <li>se hÃ¡ plano de continuidade e recuperaÃ§Ã£o.</li>
             </ul>
-            <p>Com esse diagnóstico, é possível montar um plano de adequação realista, priorizando riscos críticos e separando ações imediatas, ações estruturais e melhorias de maturidade.</p>
+            <p>Com esse diagnÃ³stico, Ã© possÃ­vel montar um plano de adequaÃ§Ã£o realista, priorizando riscos crÃ­ticos e separando aÃ§Ãµes imediatas, aÃ§Ãµes estruturais e melhorias de maturidade.</p>
 
-            <h2>Conclusão</h2>
-            <p>O <strong>Provimento 213 do CNJ</strong> representa uma mudança importante para cartórios e serventias extrajudiciais. A tecnologia deixa de ser apenas uma ferramenta administrativa e passa a ser parte essencial da segurança jurídica, da continuidade do serviço e da proteção de dados.</p>
-            <p>A adequação não deve ser feita apenas para cumprir tabela. Ela precisa gerar evidência, reduzir risco e proteger o acervo da serventia.</p>
-            <p>A CyberShield apoia cartórios na avaliação técnica, diagnóstico de conformidade, segurança da informação, LGPD, continuidade, gestão de riscos, análise de vulnerabilidades e pentest, ajudando a produzir evidências técnicas alinhadas ao Provimento 213.</p>
+            <h2>ConclusÃ£o</h2>
+            <p>O <strong>Provimento 213 do CNJ</strong> representa uma mudanÃ§a importante para cartÃ³rios e serventias extrajudiciais. A tecnologia deixa de ser apenas uma ferramenta administrativa e passa a ser parte essencial da seguranÃ§a jurÃ­dica, da continuidade do serviÃ§o e da proteÃ§Ã£o de dados.</p>
+            <p>A adequaÃ§Ã£o nÃ£o deve ser feita apenas para cumprir tabela. Ela precisa gerar evidÃªncia, reduzir risco e proteger o acervo da serventia.</p>
+            <p>A ABREU & BRUM apoia cartÃ³rios na avaliaÃ§Ã£o tÃ©cnica, diagnÃ³stico de conformidade, seguranÃ§a da informaÃ§Ã£o, LGPD, continuidade, gestÃ£o de riscos, anÃ¡lise de vulnerabilidades e pentest, ajudando a produzir evidÃªncias tÃ©cnicas alinhadas ao Provimento 213.</p>
 
             <div class="cta-box">
-                <h3>Solicite uma avaliação inicial</h3>
-                <p>Entenda o nível de maturidade da sua serventia diante do Provimento 213 e priorize as próximas ações com base em risco real.</p>
+                <h3>Solicite uma avaliaÃ§Ã£o inicial</h3>
+                <p>Entenda o nÃ­vel de maturidade da sua serventia diante do Provimento 213 e priorize as prÃ³ximas aÃ§Ãµes com base em risco real.</p>
                 <a href="../index.html#contato" class="btn btn-secondary">
                     <i class="fas fa-balance-scale"></i>
                     Falar com especialista
@@ -282,8 +282,8 @@
                             <img src="../images/blog/pentest-teste-de-invasao-empresas.png" alt="Capa: Pentest" loading="lazy">
                         </div>
                         <div class="related-card-body">
-                            <h4>Pentest: por que sua empresa precisa de um teste de invasão</h4>
-                            <p>Veja como pentest ajuda a transformar exigências de segurança em evidência técnica prática.</p>
+                            <h4>Pentest: por que sua empresa precisa de um teste de invasÃ£o</h4>
+                            <p>Veja como pentest ajuda a transformar exigÃªncias de seguranÃ§a em evidÃªncia tÃ©cnica prÃ¡tica.</p>
                         </div>
                     </a>
                 </div>
@@ -294,7 +294,7 @@
                         </div>
                         <div class="related-card-body">
                             <h4>Vulnerabilidades web: principais riscos em sites, sistemas e APIs</h4>
-                            <p>Entenda os riscos técnicos que podem comprometer sistemas expostos e dados sensíveis.</p>
+                            <p>Entenda os riscos tÃ©cnicos que podem comprometer sistemas expostos e dados sensÃ­veis.</p>
                         </div>
                     </a>
                 </div>
@@ -305,7 +305,7 @@
                         </div>
                         <div class="related-card-body">
                             <h4>Ataques de Supply Chain: como proteger sua cadeia de fornecedores</h4>
-                            <p>Entenda como proteger fornecedores, softwares e integrações críticas da sua empresa.</p>
+                            <p>Entenda como proteger fornecedores, softwares e integraÃ§Ãµes crÃ­ticas da sua empresa.</p>
                         </div>
                     </a>
                 </div>
@@ -322,37 +322,37 @@
                 <div class="footer-brand">
                     <div class="logo">
                         <a href="../index.html" style="color: inherit; text-decoration: none;">
-                            <img src="../images/logo-footer.png" alt="CyberShield" class="logo-img">
+                            <img src="../images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" class="logo-img">
                         </a>
                     </div>
-                    <p>Segurança digital que inspira confiança</p>
+                    <p>SeguranÃ§a digital que inspira confianÃ§a</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Links Rápidos</h4>
+                    <h4>Links RÃ¡pidos</h4>
                     <a href="../index.html">Home</a>
-                    <a href="../index.html#servicos">Serviços</a>
-                    <a href="../index.html#sobre">Sobre</a>
+                    <a href="../servicos/">ServiÃ§os</a>
+                    <a href="../index.html#modelo-comercial">Modelo</a>
                     <a href="../index.html#contato">Contato</a>
                     <a href="index.html">Blog</a>
                 </div>
                 <div class="footer-services">
-                    <h4>Serviços</h4>
-                    <a href="../index.html#servicos">Diagnóstico de Segurança</a>
-                    <a href="../index.html#servicos">Pentest</a>
-                    <a href="../index.html#servicos">Hardening Técnico</a>
-                    <a href="../index.html#servicos">Consultoria LGPD</a>
+                    <h4>ServiÃ§os</h4>
+                    <a href="../index.html#ab-scan">AB Scan</a>
+                    <a href="../index.html#pentest-manual">PenTest manual</a>
+                    <a href="../index.html#relatorio-exemplo">Relatorio exemplo</a>
+                    <a href="../index.html#contato">Contato</a>
                 </div>
                 <div class="footer-social">
                     <h4>Redes Sociais</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:contato@abreubrum.com.br" aria-label="E-mail da ABREU & BRUM"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:+5521920137715" aria-label="Telefone da ABREU & BRUM"><i class="fas fa-phone"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 CyberShield. Todos os direitos reservados.</p>
+                <p>&copy; 2026 ABREU & BRUM. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -362,3 +362,7 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+
+
+

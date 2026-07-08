@@ -1,4 +1,4 @@
-// Smooth scrolling para âncoras (exclui links externos como redes sociais)
+﻿// Smooth scrolling para Ã¢ncoras (exclui links externos como redes sociais)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         if (this.hasAttribute('data-copy-share')) {
@@ -6,7 +6,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             return;
         }
         const href = this.getAttribute('href');
-        // Não interceptar: links externos ou placeholders (atualizados depois pelo applyRealSocialLinks)
+        // NÃ£o interceptar: links externos ou placeholders (atualizados depois pelo applyRealSocialLinks)
         if (!href || href === '#' || !href.startsWith('#')) return;
         const target = document.querySelector(href);
         if (target) {
@@ -23,10 +23,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', () => {
     const header = document.querySelector('.header');
     if (window.scrollY > 100) {
-        header.style.background = 'rgba(15, 23, 42, 0.98)';
-        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.2)';
+        header.style.background = 'rgba(255, 255, 255, 0.98)';
+        header.style.boxShadow = '0 10px 30px rgba(1, 34, 77, 0.08)';
     } else {
-        header.style.background = 'rgba(15, 23, 42, 0.95)';
+        header.style.background = 'rgba(255, 255, 255, 0.96)';
         header.style.boxShadow = 'none';
     }
 });
@@ -44,9 +44,9 @@ if (mobileMenu && nav) {
 
 function applyRealSocialLinks() {
     const socialMap = {
-        linkedin: 'https://www.linkedin.com/company/cybershieldgroup/',
-        instagram: 'https://www.instagram.com/cybershieldltda/',
-        facebook: 'https://www.facebook.com/people/Cyber-Shield-Group/61578838183639/'
+        linkedin: 'mailto:contato@abreubrum.com.br',
+        instagram: 'tel:+5521920137715',
+        facebook: '../politica-privacidade.html'
     };
 
     document.querySelectorAll('.social-links a').forEach(link => {
@@ -76,12 +76,17 @@ function applyRealSocialLinks() {
             }
         }
 
-        link.target = '_blank';
-        link.rel = 'noopener';
+        if (link.href.startsWith('mailto:') || link.href.startsWith('tel:')) {
+            link.removeAttribute('target');
+            link.removeAttribute('rel');
+        } else {
+            link.target = '_blank';
+            link.rel = 'noopener';
+        }
     });
 }
 
-// Intersection Observer para animações de entrada
+// Intersection Observer para animaÃ§Ãµes de entrada
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -151,7 +156,7 @@ function initPostShareCopy() {
             const url = link.getAttribute('data-copy-share');
             if (!url) return;
 
-            const title = document.querySelector('.post-header h1')?.textContent?.trim() || 'CyberShield';
+            const title = document.querySelector('.post-header h1')?.textContent?.trim() || 'ABREU & BRUM';
             const defaultLabel = link.getAttribute('aria-label') || 'Compartilhar no Instagram';
 
             if (navigator.share) {
@@ -210,9 +215,9 @@ if (contactForm) {
         // Simular delay de envio
         setTimeout(() => {
             submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado!';
-            submitBtn.style.background = '#10b981';
+            submitBtn.style.background = '#c79933';
             
-            // Reset após 3 segundos
+            // Reset apÃ³s 3 segundos
             setTimeout(() => {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
@@ -239,7 +244,7 @@ if (leadForm) {
         const cargo = this.querySelector('select[name="cargo"]').value;
         
         if (!nome || !email || !empresa || !cargo) {
-            alert('Por favor, preencha todos os campos obrigatórios.');
+            alert('Por favor, preencha todos os campos obrigatÃ³rios.');
             return;
         }
         
@@ -250,15 +255,15 @@ if (leadForm) {
         // Simular download do checklist
         setTimeout(() => {
             submitBtn.innerHTML = '<i class="fas fa-download"></i> Download Iniciado!';
-            submitBtn.style.background = '#10b981';
+            submitBtn.style.background = '#c79933';
             
             // Simular download do arquivo
             const link = document.createElement('a');
-            link.href = '#';
-            link.download = 'checklist-ciberseguranca-cybershield.pdf';
+            link.href = '../assets/checklists/checklist-ciberseguranca.html';
+            link.download = 'checklist-seguranca-web-abscan.html';
             link.click();
             
-            // Reset após 5 segundos
+            // Reset apÃ³s 5 segundos
             setTimeout(() => {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
@@ -272,7 +277,7 @@ if (leadForm) {
     });
 }
 
-// Função para mostrar mensagem de agradecimento
+// FunÃ§Ã£o para mostrar mensagem de agradecimento
 function showThankYouMessage() {
     const message = document.createElement('div');
     message.className = 'thank-you-message';
@@ -280,14 +285,14 @@ function showThankYouMessage() {
         <div class="thank-you-content">
             <i class="fas fa-check-circle"></i>
             <h3>Obrigado!</h3>
-            <p>Seu checklist foi enviado para seu e-mail. Em breve entraremos em contato para uma avaliação personalizada.</p>
+            <p>Seu checklist foi enviado para seu e-mail. Em breve entraremos em contato para uma avaliaÃ§Ã£o personalizada.</p>
             <button onclick="this.parentElement.parentElement.remove()">Fechar</button>
         </div>
     `;
     
     document.body.appendChild(message);
     
-    // Remover automaticamente após 10 segundos
+    // Remover automaticamente apÃ³s 10 segundos
     setTimeout(() => {
         if (message.parentElement) {
             message.remove();
@@ -322,18 +327,18 @@ function animateCounter(element, target, duration = 2000) {
     }, 16);
 }
 
-// Animar contadores quando visíveis
+// Animar contadores quando visÃ­veis
 const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const statNumber = entry.target.querySelector('.stat-number');
             const text = statNumber.textContent;
             
-            if (text === '100%' || text === '0' || text === '24/7' || text === '∞') {
-                // Para valores especiais, apenas adicionar classe de animação
+            if (text === '100%' || text === '0' || text === '24/7' || text === 'âˆž') {
+                // Para valores especiais, apenas adicionar classe de animaÃ§Ã£o
                 statNumber.classList.add('animate-pulse');
             } else {
-                // Para números, animar contador
+                // Para nÃºmeros, animar contador
                 const target = parseInt(text);
                 animateCounter(statNumber, target);
             }
@@ -366,7 +371,7 @@ window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
-// Adicionar CSS para animações
+// Adicionar CSS para animaÃ§Ãµes
 const style = document.createElement('style');
 style.textContent = `
     .animate-in {
@@ -399,12 +404,12 @@ style.textContent = `
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(15, 23, 42, 0.98);
+        background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(10px);
         flex-direction: column;
         padding: 1rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        border-top: 1px solid rgba(30, 41, 59, 0.3);
+        box-shadow: 0 16px 36px rgba(1, 34, 77, 0.12);
+        border-top: 1px solid rgba(1, 34, 77, 0.08);
     }
     
     body.loaded .hero {
@@ -435,7 +440,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (categoria === 'Todos') {
                     card.style.display = '';
                 } else {
-                    // Verifica se alguma tag do card corresponde à categoria
+                    // Verifica se alguma tag do card corresponde Ã  categoria
                     const tags = Array.from(card.querySelectorAll('.blog-tag')).map(t => t.textContent.trim());
                     if (tags.includes(categoria)) {
                         card.style.display = '';
@@ -447,3 +452,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+

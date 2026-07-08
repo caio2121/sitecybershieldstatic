@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <!-- Google tag (gtag.js) -->
@@ -8,12 +8,12 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-      var cyberShieldConsent = 'denied';
+      var abConsent = 'denied';
       try {
-        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
+        abConsent = localStorage.getItem('ab_cookie_consent') === 'granted' ? 'granted' : 'denied';
       } catch (e) {}
       gtag('consent', 'default', {
-        'analytics_storage': cyberShieldConsent,
+        'analytics_storage': abConsent,
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
@@ -26,18 +26,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
-  <title>Checklist CNJ Gamificado | CyberShield</title>
-  <meta name="description" content="Diagnóstico interativo de conformidade para cartórios com base no Provimento CNJ 213/2026 e LGPD.">
+  <title>Checklist CNJ Gamificado | ABREU & BRUM</title>
+  <meta name="description" content="DiagnÃ³stico interativo de conformidade para cartÃ³rios com base no Provimento CNJ 213/2026 e LGPD.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://cybershieldgroup.com.br/assets/checklists/checklist-cnj-interativo.html">
+  <link rel="canonical" href="https://abreubrum.com.br/assets/checklists/checklist-cnj-interativo.html">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://cybershieldgroup.com.br/assets/checklists/checklist-cnj-interativo.html">
-  <meta property="og:title" content="Checklist CNJ Gamificado | CyberShield">
-  <meta property="og:description" content="Diagnóstico interativo de conformidade para cartórios com base no Provimento CNJ 213/2026 e LGPD.">
-  <meta property="og:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
+  <meta property="og:url" content="https://abreubrum.com.br/assets/checklists/checklist-cnj-interativo.html">
+  <meta property="og:title" content="Checklist CNJ Gamificado | ABREU & BRUM">
+  <meta property="og:description" content="DiagnÃ³stico interativo de conformidade para cartÃ³rios com base no Provimento CNJ 213/2026 e LGPD.">
+  <meta property="og:image" content="https://abreubrum.com.br/images/logo-social.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./checklist-cnj-interativo.css">
 </head>
 <body>
@@ -45,10 +45,10 @@
     <div class="container game-hud__container">
       <div class="hud-rank">
         <div class="hud-rank__icon">
-          <img src="../../images/logo-favicon.png" alt="" class="hud-rank__icon-img" aria-hidden="true">
+          <img src="../../images/logo-crest-white.svg" alt="" class="hud-rank__icon-img" aria-hidden="true">
         </div>
         <div class="hud-rank__meta">
-          <p class="hud-label">Nível</p>
+          <p class="hud-label">NÃ­vel</p>
           <p id="hud-rank-title" class="hud-rank__title">Escrevente</p>
         </div>
       </div>
@@ -70,17 +70,17 @@
       <div class="hud-chips">
         <div class="hud-chip hud-chip--ok">
           <span class="hud-chip__label">Controles OK</span>
-          <span class="hud-chip__icon" aria-hidden="true">🛡</span>
+          <span class="hud-chip__icon" aria-hidden="true">ðŸ›¡</span>
           <strong id="hud-sim-chip">0/9</strong>
         </div>
         <div class="hud-chip hud-chip--combo">
           <span class="hud-chip__label">Combo</span>
-          <span class="hud-chip__icon" aria-hidden="true">🔥</span>
+          <span class="hud-chip__icon" aria-hidden="true">ðŸ”¥</span>
           <strong id="hud-streak-chip">0</strong>
         </div>
         <div class="hud-chip hud-chip--achievements">
           <span class="hud-chip__label">Medalhas</span>
-          <span class="hud-chip__icon" aria-hidden="true">🏅</span>
+          <span class="hud-chip__icon" aria-hidden="true">ðŸ…</span>
           <strong id="hud-achievements-chip">0/6</strong>
         </div>
       </div>
@@ -93,27 +93,27 @@
 
     <div class="hero-topbar">
       <div class="container hero-topbar__content">
-        <a href="../../index.html" class="hero-logo-link" aria-label="Voltar para site da CyberShield">
-          <img src="../../images/logo-header.png" alt="CyberShield" class="hero-logo">
+        <a href="../../index.html" class="hero-logo-link" aria-label="Voltar para site da ABREU & BRUM">
+          <img src="../../images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" class="hero-logo">
         </a>
-        <span class="hero-topbar__status">Diagnóstico interativo</span>
+        <span class="hero-topbar__status">DiagnÃ³stico interativo</span>
       </div>
     </div>
 
     <div class="container hero-main">
-      <p class="hero-kicker">Provimento CNJ 213/2026 · LGPD</p>
+      <p class="hero-kicker">Provimento CNJ 213/2026 Â· LGPD</p>
       <h1 class="hero-title">
-        Seu cartório está
-        <span>pronto para a fiscalização?</span>
+        Seu cartÃ³rio estÃ¡
+        <span>pronto para a fiscalizaÃ§Ã£o?</span>
       </h1>
       <p class="hero-subtitle">
-        Responda 9 controles prioritários e veja, em tempo real, o nível de conformidade da serventia.
+        Responda 9 controles prioritÃ¡rios e veja, em tempo real, o nÃ­vel de conformidade da serventia.
       </p>
 
       <div class="hero-actions">
-        <button id="hero-start-btn" class="btn btn-primary" type="button">Iniciar diagnóstico</button>
+        <button id="hero-start-btn" class="btn btn-primary" type="button">Iniciar diagnÃ³stico</button>
         <a
-          href="https://wa.me/5521920137715?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20de%20ciberseguran%C3%A7a%20da%20CyberShield."
+          href="https://wa.me/5521920137715?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20de%20ciberseguran%C3%A7a%20da%20ABREU & BRUM."
           target="_blank"
           rel="noopener noreferrer"
           class="btn btn-outline"
@@ -124,7 +124,7 @@
 
       <div class="hero-stats">
         <div>
-          <span>Capítulos</span>
+          <span>CapÃ­tulos</span>
           <strong>5</strong>
         </div>
         <div>
@@ -132,7 +132,7 @@
           <strong>9</strong>
         </div>
         <div>
-          <span>Relatório em</span>
+          <span>RelatÃ³rio em</span>
           <strong>2 min</strong>
         </div>
       </div>
@@ -143,9 +143,9 @@
     <section id="quiz-area" class="quiz-layout" hidden>
       <div class="quiz-column">
         <div class="quiz-header">
-          <p class="card-kicker" id="greeting-kicker">Olá, titular</p>
-          <h2>9 controles · 5 capítulos</h2>
-          <p>Responda com honestidade para gerar o relatório executivo da serventia.</p>
+          <p class="card-kicker" id="greeting-kicker">OlÃ¡, titular</p>
+          <h2>9 controles Â· 5 capÃ­tulos</h2>
+          <p>Responda com honestidade para gerar o relatÃ³rio executivo da serventia.</p>
           <p id="sync-status" class="sync-status" aria-live="polite"></p>
         </div>
 
@@ -157,7 +157,7 @@
       <aside class="sidebar">
         <section class="sidebar-card">
           <div class="sidebar-card__head">
-            <p class="card-kicker">Status do diagnóstico</p>
+            <p class="card-kicker">Status do diagnÃ³stico</p>
           </div>
           <div id="chapter-rings" class="chapter-rings"></div>
         </section>
@@ -168,10 +168,10 @@
   <footer class="page-footer">
     <div class="container page-footer__content">
       <div class="page-footer__brand">
-        <img src="../../images/logo-header.png" alt="CyberShield">
-        <span>Segurança · Compliance · Performance</span>
+        <img src="../../images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM">
+        <span>SeguranÃ§a Â· Compliance Â· Performance</span>
       </div>
-      <span>Base normativa: Provimento CNJ 213/2026 · Lei 13.709/2018</span>
+      <span>Base normativa: Provimento CNJ 213/2026 Â· Lei 13.709/2018</span>
     </div>
   </footer>
 
@@ -179,10 +179,10 @@
     <div class="lead-gate__overlay" data-close-gate="true"></div>
     <div class="lead-gate__dialog" role="dialog" aria-modal="true" aria-labelledby="lead-gate-title">
       <button class="lead-gate__close" type="button" aria-label="Fechar" data-close-gate="true">x</button>
-      <p class="card-kicker">Acesso ao diagnóstico</p>
-      <h3 id="lead-gate-title">Para quem é este relatório?</h3>
+      <p class="card-kicker">Acesso ao diagnÃ³stico</p>
+      <h3 id="lead-gate-title">Para quem Ã© este relatÃ³rio?</h3>
       <p class="lead-gate__desc">
-        Enviaremos o relatório final ao seu e-mail e um especialista poderá contatar via WhatsApp para orientar os próximos passos.
+        Enviaremos o relatÃ³rio final ao seu e-mail e um especialista poderÃ¡ contatar via WhatsApp para orientar os prÃ³ximos passos.
       </p>
 
       <form id="lead-form" class="lead-form">
@@ -203,15 +203,15 @@
 
         <label class="lead-consent">
           <input type="checkbox" id="lead-consent" required>
-          <span>Autorizo o armazenamento dos meus dados e o contato da CyberShield por e-mail e WhatsApp conforme LGPD.</span>
+          <span>Autorizo o armazenamento dos meus dados e o contato da ABREU & BRUM por e-mail e WhatsApp conforme LGPD.</span>
         </label>
 
         <p id="lead-error" class="lead-error" hidden></p>
 
         <button id="lead-submit-btn" class="btn btn-primary btn-full" type="submit">
-          Liberar diagnóstico
+          Liberar diagnÃ³stico
         </button>
-        <small>Dados protegidos · Conforme LGPD</small>
+        <small>Dados protegidos Â· Conforme LGPD</small>
       </form>
     </div>
   </div>
@@ -229,3 +229,6 @@
   <script src="../../js/analytics.js"></script>
 </body>
 </html>
+
+
+
