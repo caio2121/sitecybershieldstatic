@@ -1,7 +1,7 @@
 ﻿{
   "name": "ABREU & BRUM",
   "short_name": "ABREU & BRUM",
-  "description": "AB Scan: analise autorizada de seguranca web para dominios validados, relatorios profissionais e PenTest manual complementar.",
+  "description": "AB Scan: avaliação de segurança web com relatórios profissionais e PenTest manual complementar.",
   "lang": "pt-BR",
   "start_url": "/",
   "scope": "/",

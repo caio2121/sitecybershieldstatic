@@ -44,7 +44,7 @@ if (mobileMenu && nav) {
 
 function applyRealSocialLinks() {
     const socialMap = {
-        linkedin: 'mailto:contato@abreubrum.com.br',
+        linkedin: 'mailto:contato@abreuebrum.com.br',
         instagram: 'tel:+5521920137715',
         facebook: '../politica-privacidade.html'
     };

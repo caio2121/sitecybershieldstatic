@@ -56,12 +56,12 @@ function initCookieConsent() {
     banner.className = 'cookie-consent';
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-live', 'polite');
-    banner.setAttribute('aria-label', 'Preferencias de cookies');
+    banner.setAttribute('aria-label', 'Preferências de cookies');
     banner.innerHTML = ''
         + '<div class="cookie-consent__text">'
-        + '<strong>Privacidade e metricas</strong>'
-        + '<span>Usamos cookies de analise para entender a navegacao e melhorar o site. Esses cookies serao usados apenas com consentimento.</span>'
-        + '<a class="cookie-consent__link" href="/politica-privacidade.html#cookies">Saiba mais na Politica de Privacidade.</a>'
+        + '<strong>Privacidade e métricas</strong>'
+        + '<span>Usamos cookies de análise para entender a navegação e melhorar o site. Esses cookies serão usados apenas com consentimento.</span>'
+        + '<a class="cookie-consent__link" href="/politica-privacidade.html#cookies">Saiba mais na Política de Privacidade.</a>'
         + '</div>'
         + '<div class="cookie-consent__actions">'
         + '<button type="button" class="btn btn-outline" data-cookie-consent="denied">Recusar</button>'
@@ -157,12 +157,12 @@ var CONTACT_SERVICE_VALUES = ['abscan', 'relatorio', 'pentest', 'fornecedor'];
 
 function getServiceLabel(serviceValue) {
     var serviceMap = {
-        abscan: 'AB Scan',
-        relatorio: 'Relatorio de seguranca web',
-        pentest: 'PenTest manual sob demanda',
-        fornecedor: 'Homologacao de fornecedor ou contrato'
+        abscan: 'Avaliar segurança de um domínio',
+        relatorio: 'Receber relatório de segurança web',
+        pentest: 'Solicitar PenTest manual',
+        fornecedor: 'Responder exigência de cliente, fornecedor ou auditoria'
     };
-    return serviceMap[serviceValue] || serviceValue || 'Nao informado';
+    return serviceMap[serviceValue] || serviceValue || 'Não informado';
 }
 
 function normalizePhoneDigits(phone) {
@@ -190,12 +190,12 @@ function getContactServiceFromUrl() {
 function buildWhatsAppMessage(data) {
     var pentestLines = data.servico === 'pentest' && hasPentestDetails(data)
         ? [
-            'Contexto opcional para PenTest:',
+            'Detalhes opcionais sobre o escopo:',
             data.pentestTipo ? '- Tipo de escopo: ' + data.pentestTipo : '',
-            data.pentestAlvo ? '- Alvo principal: ' + data.pentestAlvo : '',
-            data.pentestDominios ? '- Dominios/subdominios: ' + data.pentestDominios : '',
+            data.pentestAlvo ? '- Aplicação, portal ou API principal: ' + data.pentestAlvo : '',
+            data.pentestDominios ? '- Domínios ou subdomínios: ' + data.pentestDominios : '',
             data.pentestEndpoints ? '- Endpoints de API: ' + data.pentestEndpoints : '',
-            data.pentestDocumentacao ? '- Documentacao tecnica: ' + data.pentestDocumentacao : '',
+            data.pentestDocumentacao ? '- Documentação técnica: ' + data.pentestDocumentacao : '',
             ''
         ].filter(Boolean)
         : [];
@@ -204,14 +204,14 @@ function buildWhatsAppMessage(data) {
         'Novo contato via site ABREU & BRUM',
         '',
         'Nome: ' + data.nome,
-        'E-mail: ' + (data.email || 'Nao informado'),
-        'WhatsApp: ' + (data.whatsapp || 'Nao informado'),
-        'Empresa: ' + (data.empresa || 'Nao informado'),
+        'E-mail: ' + (data.email || 'Não informado'),
+        'WhatsApp: ' + (data.whatsapp || 'Não informado'),
+        'Empresa: ' + (data.empresa || 'Não informado'),
         'Interesse: ' + getServiceLabel(data.servico),
         '',
         pentestLines.join('\n'),
         'Mensagem:',
-        data.mensagem || 'Nao informada'
+        data.mensagem || 'Não informada'
     ].filter(function(line) { return line !== ''; }).join('\n');
 }
 
@@ -278,7 +278,7 @@ function initContactForm() {
         submitBtn.disabled = isLoading;
         if (btnText) btnText.style.display = isLoading ? 'none' : 'inline';
         if (btnLoading) btnLoading.style.display = isLoading ? 'inline' : 'none';
-        submitBtn.setAttribute('aria-label', isLoading ? 'Preparando mensagem, aguarde' : 'Enviar contato');
+        submitBtn.setAttribute('aria-label', isLoading ? 'Preparando mensagem, aguarde' : 'Enviar solicitação');
     }
 
     function clearFormErrors() {
@@ -303,19 +303,19 @@ function initContactForm() {
             return false;
         }
 
-        if (emailTrim && !emailOk) showFieldError('contact-email', 'Digite um e-mail valido');
-        if (whatsappTrim && !whatsappOk) showFieldError('contact-whatsapp', 'WhatsApp deve ter pelo menos 10 digitos');
+        if (emailTrim && !emailOk) showFieldError('contact-email', 'Digite um e-mail válido');
+        if (whatsappTrim && !whatsappOk) showFieldError('contact-whatsapp', 'WhatsApp deve ter pelo menos 10 dígitos');
         return false;
     }
 
     function validateOptionalPentestFields(data) {
         var isValid = true;
         if (data.pentestDominios && (!/^\d+$/.test(data.pentestDominios) || Number(data.pentestDominios) < 1)) {
-            showFieldError('pentest-domains', 'Informe uma quantidade valida');
+            showFieldError('pentest-domains', 'Informe uma quantidade válida');
             isValid = false;
         }
         if (data.pentestEndpoints && (!/^\d+$/.test(data.pentestEndpoints) || Number(data.pentestEndpoints) < 0)) {
-            showFieldError('pentest-endpoints', 'Informe uma quantidade valida');
+            showFieldError('pentest-endpoints', 'Informe uma quantidade válida');
             isValid = false;
         }
         return isValid;
@@ -340,7 +340,7 @@ function initContactForm() {
         if (!validateOptionalPentestFields(data)) isValid = false;
 
         if (!data.privacy) {
-            showFieldError('contact-privacy', 'E necessario aceitar a politica de privacidade');
+            showFieldError('contact-privacy', 'É necessário aceitar a política de privacidade');
             isValid = false;
         }
 
@@ -427,7 +427,7 @@ function initContactForm() {
             window.ABLeadTracking.trackLeadFormSubmit('contactForm', {
                 form_location: 'contact_section',
                 service_value: data.servico,
-                cta_text: 'Enviar contato'
+                cta_text: 'Enviar solicitação'
             });
         }
 

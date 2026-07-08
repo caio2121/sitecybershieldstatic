@@ -161,7 +161,7 @@ blog/
 
 ### **Desenvolvimento**
 - **ResponsÃ¡vel:** ABREU & BRUM
-- **Email:** contato@abreubrum.com.br
+- **Email:** contato@abreuebrum.com.br
 - **WhatsApp:** (11) 99999-9999
 
 ### **ConteÃºdo**

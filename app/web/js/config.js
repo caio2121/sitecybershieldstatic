@@ -3,17 +3,17 @@
         name: 'ABREU & BRUM',
         fullName: 'ABREU & BRUM Cybersecurity, PenTest e Consultoria',
         cnpj: '61.952.290/0001-68',
-        description: 'AB Scan, analise autorizada de seguranca web e PenTest manual complementar.',
-        website: 'https://abreubrum.com.br'
+        description: 'AB Scan: avaliação de segurança web com relatórios profissionais e PenTest manual complementar.',
+        website: 'https://abreuebrum.com.br'
     },
     product: {
         name: 'AB Scan',
-        primaryCta: 'Ver AB Scan'
+        primaryCta: 'Solicitar avaliação'
     },
     contact: {
         email: {
-            primary: 'contato@abreubrum.com.br',
-            privacy: 'privacidade@abreubrum.com.br'
+            primary: 'contato@abreuebrum.com.br',
+            privacy: 'privacidade@abreuebrum.com.br'
         },
         phone: {
             primary: '+5521920137715',
@@ -32,7 +32,7 @@
         facebook: '',
         whatsapp: {
             number: '5521920137715',
-            message: 'Ola! Quero falar sobre AB Scan, relatorio de seguranca web ou PenTest manual.'
+            message: 'Olá! Quero solicitar uma avaliação de segurança web, receber um relatório ou entender o PenTest manual.'
         }
     },
     features: {

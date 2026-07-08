@@ -3,10 +3,10 @@ Allow: /
 Disallow: /*.docx$
 Disallow: /*.md$
 
-Sitemap: https://abreubrum.com.br/sitemap.xml
+Sitemap: https://abreuebrum.com.br/sitemap.xml
 
 # Contexto complementar para mecanismos baseados em IA
-# https://abreubrum.com.br/llms.txt
+# https://abreuebrum.com.br/llms.txt
 
 
 

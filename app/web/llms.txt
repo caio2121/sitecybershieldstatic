@@ -1,53 +1,46 @@
 ﻿# ABREU & BRUM
 
-ABREU & BRUM is a Brazilian cybersecurity, PenTest and consulting company. Its primary product is AB Scan, a B2B web platform for authorized security analysis of validated domains.
+ABREU & BRUM is a Brazilian cybersecurity, PenTest and consulting company. Its primary offering is AB Scan, a B2B solution for authorized security assessment of company domains.
 
-Primary site: https://abreubrum.com.br/
+Primary site: https://abreuebrum.com.br/
 
 ## Main Product
 
-AB Scan helps companies validate domain ownership, run controlled non-destructive automated checks, receive professional executive and technical reports, and decide whether a manual PenTest is necessary.
+AB Scan helps companies understand security risks on authorized domains, receive professional reports with prioritized evidence, and decide clearly when to advance to a manual PenTest.
 
-The product is not an open offensive tool. Domain authorization is mandatory, with DNS TXT validation before scanning. The positioning is commercial, responsible and B2B.
+The product is not an open offensive tool. Domain authorization is mandatory before any assessment. The positioning is commercial, responsible and B2B.
 
-## Commercial Funnel
+## Customer Journey
 
 - Explain AB Scan on the landing page.
-- Use a free initial scan only when the real backend is available.
-- Use the full paid scan as the path to a professional PDF report.
-- Convert the paid scan amount into credit for manual PenTest for 90 days when commercially applicable.
-- Position manual PenTest as a premium secondary service.
+- Offer a free initial assessment to understand exposure.
+- Use the full paid report as the path to a professional PDF.
+- Convert the paid report amount into credit for manual PenTest for 90 days when applicable.
+- Position manual PenTest as the complementary next step when deeper validation is needed.
 
 ## Key Themes
 
-- Authorized web security scan.
-- Domain security analysis.
-- DNS validation for scan.
-- Web security report.
+- Web security assessment for companies.
+- Domain security evaluation.
+- Professional web security report.
 - Vulnerability report with evidence.
-- Risk score and prioritized findings.
+- Risk prioritization and practical recommendations.
 - Public exposure analysis.
 - Supplier approval and contract security evidence.
 - Manual web PenTest as a complementary service.
 
-## Current Site Notes
-
-This repository currently contains a static website under `app/web`. It does not include the scanner backend, checkout, login or paid report generation routes. Public copy should not link to non-existent scanner or checkout pages.
-
 ## Key Pages
 
-- Home: https://abreubrum.com.br/
-- Services: https://abreubrum.com.br/servicos/
-- Contact: https://abreubrum.com.br/#contato
-- Blog: https://abreubrum.com.br/blog/
-- Privacy policy: https://abreubrum.com.br/politica-privacidade.html
+- Home: https://abreuebrum.com.br/
+- Complementary services: https://abreuebrum.com.br/servicos/
+- Contact: https://abreuebrum.com.br/#contato
+- Blog: https://abreuebrum.com.br/blog/
+- Privacy policy: https://abreuebrum.com.br/politica-privacidade.html
 
 ## Contact
 
-- Email: contato@abreubrum.com.br
+- Email: contato@abreuebrum.com.br
 - Phone/WhatsApp: +55 21 92013-7715
 
-Use https://abreubrum.com.br/ as the canonical domain.
-
-
+Use https://abreuebrum.com.br/ as the canonical domain.
 
