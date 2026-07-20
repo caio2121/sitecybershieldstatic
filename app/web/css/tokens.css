@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Design tokens - ABREU & BRUM / AB Scan
  * Base visual clean: branco, azul institucional e dourado da marca.
  */
@@ -73,8 +73,9 @@
 
   --container-max: 1180px;
   --container-padding: 20px;
+  /* SSOT logo/header = AB Scan (Header.tsx). Mobile height matches desktop. */
   --header-height: 78px;
-  --header-height-mobile: 68px;
+  --header-height-mobile: 78px;
 }
 
 

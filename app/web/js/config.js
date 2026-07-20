@@ -8,7 +8,9 @@
     },
     product: {
         name: 'AB Scan',
-        primaryCta: 'Solicitar avaliação'
+        /** Base URL da plataforma AB Scan (self-serve). Em produção, trocar para o host real. */
+        url: 'http://localhost:3000',
+        primaryCta: 'Fazer análise do domínio'
     },
     contact: {
         email: {
@@ -59,6 +61,16 @@ window.ABUtils = {
         var cleanNumber = String(number || '').replace(/\D/g, '');
         var encodedMessage = encodeURIComponent(message || '');
         return 'https://wa.me/' + cleanNumber + (message ? '?text=' + encodedMessage : '');
+    },
+    /** Junta product.url + path (ex.: /scanner). */
+    productUrl: function(path) {
+        var base = String((window.ABConfig && window.ABConfig.product && window.ABConfig.product.url) || '')
+            .replace(/\/$/, '');
+        var p = String(path || '/');
+        if (p.charAt(0) !== '/') {
+            p = '/' + p;
+        }
+        return base + p;
     },
     validateEmail: function(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
@@ -113,6 +125,14 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             link.removeAttribute('href');
             link.hidden = true;
+        }
+    });
+
+    document.querySelectorAll('[data-product-path]').forEach(function(link) {
+        var path = link.getAttribute('data-product-path') || '/';
+        link.href = utils.productUrl(path);
+        if (!link.getAttribute('rel')) {
+            link.setAttribute('rel', 'noopener noreferrer');
         }
     });
 });

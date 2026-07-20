@@ -32,13 +32,13 @@ jobs:
       - name: Ajustar domínio público em SEO
         run: |
           find _site -type f \( -name "*.html" -o -name "*.xml" -o -name "*.txt" \) -print0 \
-            | xargs -0 sed -i 's#https://www\.cybershield\.technsolutions\.com\.br#https://abreuebrum.com.br#g'
+            | xargs -0 sed -i 's#https://www\.abreuebrum\.technsolutions\.com\.br#https://abreuebrum.com.br#g'
           find _site -type f \( -name "*.html" -o -name "*.xml" -o -name "*.txt" \) -print0 \
-            | xargs -0 sed -i 's#https://cybershield\.technsolutions\.com\.br#https://abreuebrum.com.br#g'
+            | xargs -0 sed -i 's#https://abreuebrum\.technsolutions\.com\.br#https://abreuebrum.com.br#g'
           find _site -type f \( -name "*.html" -o -name "*.xml" -o -name "*.txt" \) -print0 \
-            | xargs -0 sed -i 's#https://www\.cybershieldgroup\.com\.br#https://abreuebrum.com.br#g'
+            | xargs -0 sed -i 's#https://www\.abreuebrum\.com\.br#https://abreuebrum.com.br#g'
           find _site -type f \( -name "*.html" -o -name "*.xml" -o -name "*.txt" \) -print0 \
-            | xargs -0 sed -i 's#https://cybershieldgroup\.com\.br#https://abreuebrum.com.br#g'
+            | xargs -0 sed -i 's#https://abreuebrum\.com\.br#https://abreuebrum.com.br#g'
           find _site -type f \( -name "*.html" -o -name "*.xml" -o -name "*.txt" \) -print0 \
             | xargs -0 sed -i 's#https://abreubrum\.com\.br#https://abreuebrum.com.br#g'
           find _site -type f -name "*.docx" -delete

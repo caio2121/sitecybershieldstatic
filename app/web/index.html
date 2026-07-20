@@ -36,13 +36,13 @@
     <meta property="og:url" content="https://abreuebrum.com.br/">
     <meta property="og:title" content="AB Scan | Relatório de segurança web para empresas">
     <meta property="og:description" content="Entenda os riscos do seu domínio, receba um relatório profissional e veja se sua empresa precisa avançar para um PenTest manual.">
-    <meta property="og:image" content="https://abreuebrum.com.br/images/logo-social.svg">
+    <meta property="og:image" content="https://abreuebrum.com.br/images/og-16x9.png">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://abreuebrum.com.br/">
     <meta property="twitter:title" content="AB Scan | ABREU &amp; BRUM">
     <meta property="twitter:description" content="Entenda os riscos do seu domínio, receba um relatório profissional e veja se sua empresa precisa avançar para um PenTest manual.">
-    <meta property="twitter:image" content="https://abreuebrum.com.br/images/logo-social.svg">
+    <meta property="twitter:image" content="https://abreuebrum.com.br/images/og-16x9.png">
 
     <link rel="icon" type="image/svg+xml" href="images/logo-favicon.svg">
     <link rel="apple-touch-icon" href="images/logo-favicon.svg">
@@ -132,7 +132,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="js/config.js"></script>
 </head>
@@ -149,6 +149,7 @@
                 <a href="#relatorio-exemplo">Relatório exemplo</a>
                 <a href="#fluxo">Como funciona</a>
                 <a href="#pentest-manual">PenTest manual</a>
+                <a href="http://localhost:3000/" data-product-path="/">Plataforma</a>
                 <a href="#contato" class="nav-cta">Contato</a>
             </nav>
             <button class="mobile-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
@@ -158,9 +159,9 @@
     </header>
 
     <div class="floating-cta">
-        <a href="#contato" class="btn btn-primary">
+        <a href="http://localhost:3000/scanner" data-product-path="/scanner" class="btn btn-primary">
             <i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i>
-            Solicitar avaliação
+            Abrir AB Scan
         </a>
     </div>
 
@@ -169,7 +170,10 @@
             <div class="container">
                 <div class="hero-content">
                     <p class="hero-eyebrow">Segurança web para empresas que precisam comprovar confiança</p>
-                    <h1 class="hero-title"><span class="brand-product">AB Scan</span>: avalie a segurança do seu domínio e receba um relatório profissional para tomar decisões com confiança.</h1>
+                    <h1 class="hero-title">
+                        <span class="brand-product hero-brand">AB Scan</span>
+                        <span class="hero-lead">Análise de segurança do domínio com relatório profissional.</span>
+                    </h1>
                     <p class="hero-subtitle">O AB Scan ajuda sua empresa a identificar riscos, organizar evidências e responder exigências de segurança sem começar direto por um PenTest completo.</p>
                     <div class="hero-badges" aria-label="Diferenciais principais">
                         <span class="hero-badge"><i class="fas fa-check-circle" aria-hidden="true"></i> Apenas domínios autorizados</span>
@@ -177,11 +181,11 @@
                         <span class="hero-badge"><i class="fas fa-handshake" aria-hidden="true"></i> Valor convertido em crédito para PenTest</span>
                     </div>
                     <div class="hero-buttons">
-                        <a href="#contato" class="btn btn-primary">
-                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                            Solicitar avaliação do domínio
+                        <a href="http://localhost:3000/scanner" data-product-path="/scanner" class="btn btn-primary">
+                            <i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i>
+                            Fazer análise do domínio
                         </a>
-                        <a href="#relatorio-exemplo" class="btn btn-secondary">
+                        <a href="http://localhost:3000/sample-report" data-product-path="/sample-report" class="btn btn-secondary">
                             <i class="fas fa-file-shield" aria-hidden="true"></i>
                             Ver exemplo de relatório
                         </a>
@@ -209,7 +213,7 @@
                 </div>
                 <div class="grid-3">
                     <article class="card">
-                        <div class="card-icon"><i class="fas fa-building-lock" aria-hidden="true"></i></div>
+                        <div class="card-icon"><i class="fas fa-briefcase" aria-hidden="true"></i></div>
                         <h3>Para decisores</h3>
                         <p>Tenha um relatório objetivo para responder exigências de clientes, fornecedores, contratos e homologações.</p>
                     </article>
@@ -286,9 +290,9 @@
                         <h2>Um relatório claro para gestão, equipe técnica e tomada de decisão.</h2>
                         <p>O relatório apresenta riscos priorizados, evidências, impacto e recomendações práticas. A gestão entende a situação e a equipe técnica sabe por onde começar.</p>
                         <div class="cta-row">
-                            <a href="#contato" class="btn btn-primary">
-                                <i class="fas fa-envelope" aria-hidden="true"></i>
-                                Solicitar exemplo de relatório
+                            <a href="http://localhost:3000/sample-report" data-product-path="/sample-report" class="btn btn-primary">
+                                <i class="fas fa-file-shield" aria-hidden="true"></i>
+                                Ver relatório na plataforma
                             </a>
                             <a href="#pentest-manual" class="btn btn-outline">
                                 Entender PenTest manual
@@ -566,6 +570,7 @@
                 <div class="footer-links">
                     <h4>Navegação</h4>
                     <a href="#ab-scan">AB Scan</a>
+                    <a href="http://localhost:3000/" data-product-path="/">Acessar plataforma</a>
                     <a href="#relatorio-exemplo">Relatório exemplo</a>
                     <a href="#fluxo">Como funciona</a>
                     <a href="#contato">Contato</a>
@@ -573,6 +578,7 @@
                 <div class="footer-services">
                     <h4>Soluções</h4>
                     <a href="#ab-scan">AB Scan</a>
+                    <a href="http://localhost:3000/scanner" data-product-path="/scanner">Fazer análise</a>
                     <a href="#pentest-manual">PenTest manual</a>
                     <a href="servicos/">Serviços complementares</a>
                     <a href="blog/">Blog</a>
@@ -581,6 +587,7 @@
                     <h4>Contato</h4>
                     <a href="mailto:contato@abreuebrum.com.br" data-contact="email" data-email-type="primary">contato@abreuebrum.com.br</a>
                     <a href="tel:+5521920137715" data-contact="phone">(21) 92013-7715</a>
+                    <a href="http://localhost:3000/privacy" data-product-path="/privacy">Privacidade (plataforma)</a>
                     <a href="politica-privacidade.html">Política de Privacidade</a>
                 </div>
             </div>

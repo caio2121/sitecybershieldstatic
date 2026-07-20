@@ -81,5 +81,5 @@ config/
 email_proxy/
 scripts/
 compose.yaml
-cybershield.side
+abreuebrum.side
 env.example
