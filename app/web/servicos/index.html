@@ -1,22 +1,24 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K46VQ6H8MS"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      var abConsent = 'denied';
+      var cyberShieldConsent = 'denied';
       try {
-        abConsent = localStorage.getItem('ab_cookie_consent') === 'granted' ? 'granted' : 'denied';
+        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
       } catch (e) {}
       gtag('consent', 'default', {
-        'analytics_storage': abConsent,
+        'analytics_storage': cyberShieldConsent,
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
       });
+
       gtag('config', 'G-K46VQ6H8MS');
       gtag('config', 'AW-18216339237');
     </script>
@@ -24,48 +26,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
-    <title>Serviços complementares | AB Scan e PenTest manual | ABREU &amp; BRUM</title>
-    <meta name="description" content="Serviços da ABREU & BRUM: AB Scan para avaliação de segurança web com relatório profissional e PenTest manual como próximo passo complementar.">
+    <title>Serviços de Cibersegurança | Pentest, LGPD, Hardening e Monitoramento | CyberShield</title>
+    <meta name="description" content="Conheça os serviços da CyberShield: pentest, diagnóstico de segurança, consultoria em cibersegurança, hardening de infraestrutura, desenvolvimento seguro e monitoramento.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://abreuebrum.com.br/servicos/">
+    <link rel="canonical" href="https://cybershieldgroup.com.br/servicos/">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://abreuebrum.com.br/servicos/">
-    <meta property="og:title" content="Serviços complementares | AB Scan e PenTest manual">
-    <meta property="og:description" content="Avaliação de segurança web com relatório profissional e PenTest manual sob demanda quando a empresa precisa de validação mais profunda.">
-    <meta property="og:image" content="https://abreuebrum.com.br/images/og-16x9.png">
-    <link rel="icon" type="image/svg+xml" href="../images/logo-favicon.svg">
+    <meta property="og:url" content="https://cybershieldgroup.com.br/servicos/">
+    <meta property="og:title" content="Serviços de Cibersegurança | CyberShield">
+    <meta property="og:description" content="Pentest, LGPD, hardening, infraestrutura segura, desenvolvimento seguro e monitoramento para empresas no Brasil.">
+    <meta property="og:image" content="https://cybershieldgroup.com.br/images/logo-favicon.png">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="stylesheet" href="../css/tokens.css">
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
           "@type": "CollectionPage",
-          "@id": "https://abreuebrum.com.br/servicos/#page",
-          "name": "Serviços complementares ABREU & BRUM",
-          "url": "https://abreuebrum.com.br/servicos/",
-          "description": "Página de serviços da ABREU & BRUM com AB Scan e PenTest manual como próximo passo complementar.",
+          "@id": "https://cybershieldgroup.com.br/servicos/#page",
+          "name": "Serviços de Cibersegurança CyberShield",
+          "url": "https://cybershieldgroup.com.br/servicos/",
+          "description": "Página de serviços da CyberShield para empresas que precisam de pentest, diagnóstico, consultoria, hardening, desenvolvimento seguro e monitoramento.",
           "inLanguage": "pt-BR",
           "isPartOf": {
-            "@id": "https://abreuebrum.com.br/#website"
+            "@id": "https://cybershieldgroup.com.br/#website"
           }
         },
         {
           "@type": "ItemList",
-          "@id": "https://abreuebrum.com.br/servicos/#services",
-          "name": "Soluções ABREU & BRUM",
+          "@id": "https://cybershieldgroup.com.br/servicos/#services",
+          "name": "Serviços CyberShield",
           "itemListElement": [
             {
               "@type": "ListItem",
               "position": 1,
               "item": {
                 "@type": "Service",
-                "name": "AB Scan",
-                "url": "https://abreuebrum.com.br/#ab-scan",
-                "provider": { "@id": "https://abreuebrum.com.br/#organization" },
+                "name": "Pentest: Teste de Invasão",
+                "url": "https://cybershieldgroup.com.br/servicos/#pentest",
+                "provider": { "@id": "https://cybershieldgroup.com.br/#organization" },
                 "areaServed": "Brasil"
               }
             },
@@ -74,9 +76,42 @@
               "position": 2,
               "item": {
                 "@type": "Service",
-                "name": "PenTest manual sob demanda",
-                "url": "https://abreuebrum.com.br/servicos/#pentest-manual",
-                "provider": { "@id": "https://abreuebrum.com.br/#organization" },
+                "name": "Consultoria em Cibersegurança e LGPD",
+                "url": "https://cybershieldgroup.com.br/servicos/#consultoria",
+                "provider": { "@id": "https://cybershieldgroup.com.br/#organization" },
+                "areaServed": "Brasil"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "Service",
+                "name": "Hardening Técnico de Infraestrutura",
+                "url": "https://cybershieldgroup.com.br/servicos/#hardening",
+                "provider": { "@id": "https://cybershieldgroup.com.br/#organization" },
+                "areaServed": "Brasil"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "item": {
+                "@type": "Service",
+                "name": "Desenvolvimento Seguro",
+                "url": "https://cybershieldgroup.com.br/servicos/#desenvolvimento-seguro",
+                "provider": { "@id": "https://cybershieldgroup.com.br/#organization" },
+                "areaServed": "Brasil"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "item": {
+                "@type": "Service",
+                "name": "Monitoramento e Detecção",
+                "url": "https://cybershieldgroup.com.br/servicos/#monitoramento",
+                "provider": { "@id": "https://cybershieldgroup.com.br/#organization" },
                 "areaServed": "Brasil"
               }
             }
@@ -84,139 +119,180 @@
         },
         {
           "@type": "BreadcrumbList",
-          "@id": "https://abreuebrum.com.br/servicos/#breadcrumb",
+          "@id": "https://cybershieldgroup.com.br/servicos/#breadcrumb",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://abreuebrum.com.br/" },
-            { "@type": "ListItem", "position": 2, "name": "Serviços complementares", "item": "https://abreuebrum.com.br/servicos/" }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cybershieldgroup.com.br/" },
+            { "@type": "ListItem", "position": 2, "name": "Serviços", "item": "https://cybershieldgroup.com.br/servicos/" }
           ]
         }
       ]
     }
     </script>
+    <style>
+        .service-page {
+            background: var(--color-soft);
+            padding: 120px 0 80px;
+        }
+
+        .service-hero {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .service-hero h1 {
+            color: var(--color-ink);
+            font-size: clamp(2.25rem, 6vw, 4rem);
+            line-height: 1.08;
+            margin-bottom: 1rem;
+        }
+
+        .service-hero p {
+            color: var(--color-muted2);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin: 0 auto;
+            max-width: 760px;
+        }
+
+        .service-detail-grid {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .service-detail {
+            display: grid;
+            gap: 1rem;
+            background: #fff;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .service-detail h2 {
+            color: var(--color-ink);
+            font-size: 1.65rem;
+            line-height: 1.2;
+        }
+
+        .service-detail p {
+            color: var(--color-muted2);
+            line-height: 1.7;
+        }
+
+        .service-detail ul {
+            display: grid;
+            gap: 0.65rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .service-detail li {
+            color: var(--color-muted);
+        }
+
+        .service-detail li i {
+            color: var(--color-primary);
+            margin-right: 0.45rem;
+        }
+
+        .service-page__cta {
+            margin-top: 2rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <a href="../index.html" class="logo" aria-label="ABREU & BRUM">
-                <img src="../images/logo-abreu-brum.svg" alt="ABREU & BRUM" class="logo-img">
-            </a>
-            <nav class="nav" aria-label="Navegação principal">
-                <a href="../index.html#ab-scan">AB Scan</a>
-                <a href="../index.html#relatorio-exemplo">Relatório exemplo</a>
-                <a href="../index.html#fluxo">Como funciona</a>
-                <a href="#pentest-manual">PenTest manual</a>
-                <a href="http://localhost:3000/" data-product-path="/">Plataforma</a>
-                <a href="../index.html#contato" class="nav-cta">Contato</a>
+            <div class="logo">
+                <a href="../index.html" style="color: inherit; text-decoration: none;">
+                    <img src="../images/logo-header.png" alt="CyberShield" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="../index.html#home">Home</a>
+                <a href="../index.html#servicos">Serviços</a>
+                <a href="../index.html#sobre">Sobre</a>
+                <a href="../index.html#contato">Contato</a>
+                <a href="../blog/index.html">Blog</a>
             </nav>
-            <button class="mobile-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
-                <i class="fas fa-bars" aria-hidden="true"></i>
-            </button>
         </div>
     </header>
 
     <main id="main-content" class="service-page">
         <div class="container">
             <header class="service-hero">
-                <p class="eyebrow">Serviços complementares</p>
-                <h1><span class="brand-product">AB Scan</span> primeiro. PenTest manual quando o risco pede aprofundamento.</h1>
-                <p>Avaliação de segurança web com relatório profissional e, quando necessário, validação manual sob demanda para empresas que precisam comprovar confiança.</p>
+                <h1>Serviços de Cibersegurança para Empresas</h1>
+                <p>A CyberShield apoia empresas que precisam reduzir riscos reais, proteger dados, fortalecer infraestrutura e responder a exigências de segurança, privacidade e continuidade operacional.</p>
             </header>
 
             <div class="service-detail-grid">
-                <section id="ab-scan-service" class="service-detail card-highlight">
-                    <h2><span class="brand-product">AB Scan</span></h2>
-                    <p>Solução da ABREU &amp; BRUM para empresas que precisam avaliar a segurança de domínios autorizados, gerar evidências profissionais e decidir com clareza o próximo passo.</p>
+                <section id="pentest" class="service-detail">
+                    <h2>Pentest: Teste de Invasão</h2>
+                    <p>Simulação controlada de ataques para identificar vulnerabilidades antes que sejam exploradas. O trabalho combina escopo definido, metodologia técnica e relatório com evidências, severidade e recomendações de correção.</p>
                     <ul>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Confirmação de autorização sobre o domínio antes de qualquer análise.</li>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Primeiro diagnóstico gratuito e relatório completo com evidências priorizadas.</li>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Visão de risco, exposição pública e recomendações práticas para gestão e equipe técnica.</li>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Valor do relatório completo convertido em crédito para PenTest manual por 90 dias.</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Aplicações web, APIs, portais, ambientes expostos e escopos corporativos.</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Referências como OWASP Top 10, MITRE ATT&CK, CVSS e boas práticas de relatório técnico.</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Entrega executiva para decisão e entrega técnica para correção.</li>
                     </ul>
-                    <a href="http://localhost:3000/scanner" data-product-path="/scanner" class="btn btn-primary">Fazer análise do domínio</a>
-                </section>
-
-                <section id="pentest-manual" class="service-detail">
-                    <h2>PenTest manual sob demanda</h2>
-                    <p>Próximo passo para empresas que precisam de validação mais profunda, escopo manual, evidências detalhadas ou resposta a exigência contratual específica.</p>
-                    <ul>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Aplicações web, APIs, portais e escopos combinados com o cliente.</li>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Relatório técnico e resumo executivo para TI, diretoria, jurídico, compliance e comprador.</li>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Complementar ao AB Scan, não substituído por ele.</li>
-                    </ul>
-                    <a href="../index.html?servico=pentest#contato" class="btn btn-primary">Solicitar escopo de PenTest</a>
-                </section>
-
-                <section id="relatorios" class="service-detail">
-                    <h2>Relatórios executivos e técnicos</h2>
-                    <p>Documentação pensada para transformar resultados em evidência compreensível, com limites claros, riscos priorizados e recomendações acionáveis.</p>
-                    <ul>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Impacto, evidência e recomendações organizados para leitura executiva e técnica.</li>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Suporte para homologação de fornecedor, auditoria, contrato e tomada de decisão.</li>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Linguagem responsável, sem promessa de cobertura absoluta.</li>
-                    </ul>
-                    <a href="../index.html#relatorio-exemplo" class="btn btn-outline">Ver exemplo de relatório</a>
+                    <a href="../index.html#contato" class="btn btn-primary">Solicitar escopo de pentest</a>
                 </section>
 
                 <section id="consultoria" class="service-detail">
-                    <h2>Consultoria complementar</h2>
-                    <p>Serviços de apoio para organizar evidências, orientar correções, preparar escopo e apoiar priorização técnica após uma avaliação.</p>
+                    <h2>Consultoria em Cibersegurança e LGPD</h2>
+                    <p>Diagnóstico, priorização e orientação para empresas que precisam amadurecer segurança da informação, governança, privacidade e conformidade sem criar processos pesados.</p>
                     <ul>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Organização de evidências para cliente, fornecedor ou auditoria.</li>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Priorização de correções após avaliação ou PenTest manual.</li>
-                        <li><i class="fas fa-check" aria-hidden="true"></i>Apoio a reteste, comparativo entre avaliações e comunicação executiva.</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Mapeamento de riscos, controles e lacunas de segurança.</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Apoio a políticas, privacidade, LGPD, fornecedores e evidências de conformidade.</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Roadmap de melhorias por prioridade técnica e impacto no negócio.</li>
                     </ul>
-                    <a href="../index.html#contato" class="btn btn-outline">Falar com ABREU &amp; BRUM</a>
+                    <a href="../index.html#contato" class="btn btn-primary">Solicitar diagnóstico</a>
+                </section>
+
+                <section id="hardening" class="service-detail">
+                    <h2>Hardening Técnico de Infraestrutura</h2>
+                    <p>Fortalecimento de servidores, redes, contas, permissões, políticas de acesso e configurações críticas para reduzir superfície de ataque e melhorar a postura de segurança.</p>
+                    <ul>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Revisão de configurações, acessos, exposição pública e controles básicos.</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Apoio a cloud, servidores, endpoints, redes e ambientes internos.</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Plano de correção com ações práticas e rastreáveis.</li>
+                    </ul>
+                    <a href="../index.html#contato" class="btn btn-primary">Solicitar hardening</a>
+                </section>
+
+                <section id="desenvolvimento-seguro" class="service-detail">
+                    <h2>Desenvolvimento Seguro</h2>
+                    <p>Apoio para reduzir falhas em sistemas, sites, APIs e integrações desde o desenvolvimento até a operação, com foco em segurança aplicável ao time técnico.</p>
+                    <ul>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Revisão de riscos em aplicações web e APIs.</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Orientação baseada em OWASP e boas práticas de desenvolvimento seguro.</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Priorização de correções para vulnerabilidades de maior impacto.</li>
+                    </ul>
+                    <a href="../index.html#contato" class="btn btn-primary">Falar sobre aplicação ou API</a>
+                </section>
+
+                <section id="monitoramento" class="service-detail">
+                    <h2>Monitoramento e Detecção</h2>
+                    <p>Orientação para estruturar detecção, registros, alertas e resposta a incidentes, ajudando a empresa a sair de uma postura reativa para uma operação mais observável.</p>
+                    <ul>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Revisão de logs, trilhas de auditoria, alertas e processos de resposta.</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Recomendações para monitoramento contínuo e indicadores de risco.</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i>Apoio a continuidade, backups e evidências operacionais.</li>
+                    </ul>
+                    <a href="../index.html#contato" class="btn btn-primary">Solicitar avaliação</a>
                 </section>
             </div>
 
             <div class="service-page__cta">
-                <a href="http://localhost:3000/scanner" data-product-path="/scanner" class="btn btn-secondary">
-                    <i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i>
-                    Abrir AB Scan
-                </a>
+                <a href="../index.html#contato" class="btn btn-secondary"><i class="fas fa-paper-plane" aria-hidden="true"></i> Fale com um especialista</a>
             </div>
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="../index.html" class="logo" aria-label="ABREU & BRUM">
-                        <img src="../images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" class="logo-img">
-                    </a>
-                    <p>Cybersecurity | PenTest | Consultoria</p>
-                    <p><small>CNPJ: <span data-company="cnpj">61.952.290/0001-68</span></small></p>
-                </div>
-                <div class="footer-links">
-                    <h4>Navegação</h4>
-                    <a href="../index.html#ab-scan">AB Scan</a>
-                    <a href="../index.html#fluxo">Como funciona</a>
-                    <a href="../index.html#contato">Contato</a>
-                </div>
-                <div class="footer-services">
-                    <h4>Soluções</h4>
-                    <a href="#ab-scan-service">AB Scan</a>
-                    <a href="#pentest-manual">PenTest manual</a>
-                    <a href="#relatorios">Relatórios</a>
-                </div>
-                <div class="footer-social">
-                    <h4>Contato</h4>
-                    <a href="mailto:contato@abreuebrum.com.br" data-contact="email" data-email-type="primary">contato@abreuebrum.com.br</a>
-                    <a href="tel:+5521920137715" data-contact="phone">(21) 92013-7715</a>
-                    <a href="../politica-privacidade.html">Política de Privacidade</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 ABREU &amp; BRUM. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../js/config.js"></script>
     <script src="../js/lead-tracking.js"></script>
     <script src="../js/analytics.js"></script>
-    <script src="../js/main.js"></script>
 </body>
 </html>
-

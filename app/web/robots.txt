@@ -1,12 +1,10 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
 Disallow: /*.docx$
 Disallow: /*.md$
 
-Sitemap: https://abreuebrum.com.br/sitemap.xml
+# Sitemap
+Sitemap: https://cybershieldgroup.com.br/sitemap.xml
 
 # Contexto complementar para mecanismos baseados em IA
-# https://abreuebrum.com.br/llms.txt
-
-
-
+# https://cybershieldgroup.com.br/llms.txt

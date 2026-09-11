@@ -4,8 +4,7 @@ Após o deploy do código com `generate_lead`, configure no painel do Google Ana
 
 ## Pré-requisitos
 
-- Domínio de produção: `https://abreuebrum.com.br`
-- Measurement ID de produção: `G-K46VQ6H8MS`
+- Measurement ID de produção (ex.: `G-XXXXXXXXXX`)
 - Eventos chegando em **Admin > DebugView** ou **Relatórios em tempo real**
 
 ## Key Events obrigatórios

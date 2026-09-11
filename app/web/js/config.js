@@ -1,21 +1,25 @@
-﻿window.ABConfig = {
+/**
+ * Configurações centralizadas da CyberShield
+ * Arquivo para gerenciar dados da empresa, contatos e configurações
+ */
+
+window.CyberShieldConfig = {
+    // Informações da empresa
     company: {
-        name: 'ABREU & BRUM',
-        fullName: 'ABREU & BRUM Cybersecurity, PenTest e Consultoria',
+        name: 'CyberShield',
+        fullName: 'CyberShield Consultoria em Segurança Digital',
         cnpj: '61.952.290/0001-68',
-        description: 'AB Scan: avaliação de segurança web com relatórios profissionais e PenTest manual complementar.',
-        website: 'https://abreuebrum.com.br'
+        description: 'Consultoria especializada em infraestrutura, segurança da informação e privacidade',
+        founded: '2024',
+        website: 'https://cybershieldgroup.com.br'
     },
-    product: {
-        name: 'AB Scan',
-        /** Base URL da plataforma AB Scan (self-serve). Em produção, trocar para o host real. */
-        url: 'http://localhost:3000',
-        primaryCta: 'Fazer análise do domínio'
-    },
+
+    // Dados de contato
     contact: {
         email: {
-            primary: 'contato@abreuebrum.com.br',
-            privacy: 'privacidade@abreuebrum.com.br'
+            primary: 'contato@cybershieldgroup.com.br',
+            support: 'suporte@cybershieldgroup.com.br',
+            commercial: 'comercial@cybershieldgroup.com.br'
         },
         phone: {
             primary: '+5521920137715',
@@ -23,118 +27,212 @@
             whatsapp: '5521920137715'
         },
         address: {
-            city: 'Sao Paulo',
+            street: 'Rua Pais Leme, 215, Conjunto 1713',
+            city: 'São Paulo',
             state: 'SP',
+            postalCode: '05424-150',
             country: 'Brasil'
         }
     },
+
+    // Links de redes sociais
     social: {
-        linkedin: '',
-        instagram: '',
-        facebook: '',
+        linkedin: 'https://www.linkedin.com/company/cybershieldgroup/',
+        instagram: 'https://www.instagram.com/cybershieldltda/',
+        facebook: 'https://www.facebook.com/people/Cyber-Shield-Group/61578838183639/',
         whatsapp: {
             number: '5521920137715',
-            message: 'Olá! Quero solicitar uma avaliação de segurança web, receber um relatório ou entender o PenTest manual.'
+            message: 'Olá! Gostaria de saber mais sobre os serviços de cibersegurança da CyberShield.'
         }
     },
+
+    // Métricas da empresa
+    metrics: {
+        uptimePercentage: '99.9%',
+        securityTools: '25+',
+        responseTimeMinutes: '15 min',
+        clientsProtected: '150+',
+        incidentsBlocked: 2500,
+        yearsExperience: 15
+    },
+
+    // Download de materiais (URLs relativas ao site)
+    downloads: {
+        checklistPdf: 'assets/checklists/checklist-ciberseguranca.pdf',
+        checklistPdfFilename: 'Checklist-Ciberseguranca-Empresas-CyberShield.pdf'
+    },
+
+    // Configurações de recursos
     features: {
+        liveChat: true,
+        downloadTracking: true,
+        formValidation: true,
         analytics: true,
         cookieConsent: true,
         formsSubmissionEnabled: true
     },
+
     analytics: {
         measurementId: 'G-K46VQ6H8MS',
         adsConversionId: 'AW-18216339237',
+        // Rótulo de conversão do Google Ads (formato AW-XXXX/LABEL).
+        // Preencher quando a ação de conversão for criada no painel do Ads.
         adsConversionLabel: '',
-        consentStorageKey: 'ab_cookie_consent'
+        consentStorageKey: 'cs_cookie_consent'
     }
 };
 
-window.ABUtils = {
+/**
+ * Utilitários para formatação e links
+ */
+window.CyberShieldUtils = {
+    // Formatar telefone para link tel:
     formatPhoneLink: function(phone) {
-        return 'tel:' + phone;
+        return `tel:${phone}`;
     },
-    formatEmailLink: function(email, subject) {
-        return 'mailto:' + email + (subject ? '?subject=' + encodeURIComponent(subject) : '');
+
+    // Formatar email para link mailto:
+    formatEmailLink: function(email, subject = '') {
+        return `mailto:${email}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;
     },
-    generateWhatsAppLink: function(number, message) {
-        var cleanNumber = String(number || '').replace(/\D/g, '');
-        var encodedMessage = encodeURIComponent(message || '');
-        return 'https://wa.me/' + cleanNumber + (message ? '?text=' + encodedMessage : '');
+
+    // Gerar link do WhatsApp
+    generateWhatsAppLink: function(number, message = '') {
+        const cleanNumber = number.replace(/\D/g, '');
+        const encodedMessage = encodeURIComponent(message);
+        return `https://wa.me/${cleanNumber}${message ? `?text=${encodedMessage}` : ''}`;
     },
-    /** Junta product.url + path (ex.: /scanner). */
-    productUrl: function(path) {
-        var base = String((window.ABConfig && window.ABConfig.product && window.ABConfig.product.url) || '')
-            .replace(/\/$/, '');
-        var p = String(path || '/');
-        if (p.charAt(0) !== '/') {
-            p = '/' + p;
-        }
-        return base + p;
+
+    // Formatar CNPJ
+    formatCNPJ: function(cnpj) {
+        return cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
     },
+
+    // Validar email
     validateEmail: function(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
     },
+
+    // Validar telefone brasileiro
     validatePhone: function(phone) {
-        var cleanPhone = String(phone || '').replace(/\D/g, '');
-        return cleanPhone.length >= 10 && cleanPhone.length <= 13;
+        const cleanPhone = phone.replace(/\D/g, '');
+        return cleanPhone.length >= 10 && cleanPhone.length <= 11;
     }
 };
 
+/**
+ * Aplicar configurações automaticamente quando o DOM carregar
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    var config = window.ABConfig;
-    var utils = window.ABUtils;
+    applyConfig();
+});
 
-    document.querySelectorAll('[data-company="cnpj"]').forEach(function(element) {
-        element.textContent = config.company.cnpj;
-    });
+/**
+ * Função principal para aplicar as configurações na página
+ */
+function applyConfig() {
+    const config = window.CyberShieldConfig;
+    const utils = window.CyberShieldUtils;
 
-    document.querySelectorAll('[data-company="name"]').forEach(function(element) {
-        element.textContent = config.company.name;
-    });
+    // Atualizar dados de contato
+    updateContactInfo(config, utils);
+    
+    // Atualizar métricas
+    updateMetrics(config);
+    
+    // Atualizar links de redes sociais
+    updateSocialLinks(config, utils);
+    
+    // Adicionar informações da empresa
+    updateCompanyInfo(config);
 
-    document.querySelectorAll('[data-contact="email"]').forEach(function(link) {
-        var emailType = link.getAttribute('data-email-type') || 'primary';
-        var email = config.contact.email[emailType] || config.contact.email.primary;
-        link.href = utils.formatEmailLink(email, 'Contato via site ABREU & BRUM');
-        if (!link.textContent.trim() || link.textContent.indexOf('@') !== -1) {
+    console.log('✅ CyberShield Config aplicado com sucesso!');
+}
+
+/**
+ * Atualizar informações de contato
+ */
+function updateContactInfo(config, utils) {
+    // Email links
+    const emailLinks = document.querySelectorAll('[data-contact="email"]');
+    emailLinks.forEach(link => {
+        const emailType = link.getAttribute('data-email-type') || 'primary';
+        const email = config.contact.email[emailType] || config.contact.email.primary;
+        link.href = utils.formatEmailLink(email, 'Contato via Site CyberShield');
+        if (link.textContent.includes('@') || link.textContent === '') {
             link.textContent = email;
         }
     });
 
-    document.querySelectorAll('[data-contact="phone"]').forEach(function(link) {
+    // Phone links
+    const phoneLinks = document.querySelectorAll('[data-contact="phone"]');
+    phoneLinks.forEach(link => {
         link.href = utils.formatPhoneLink(config.contact.phone.primary);
-        if (!link.textContent.trim() || link.textContent.indexOf('(') !== -1) {
+        if (link.textContent.includes('(') || link.textContent === '') {
             link.textContent = config.contact.phone.formatted;
         }
     });
 
-    document.querySelectorAll('[data-contact="whatsapp"]').forEach(function(link) {
-        link.href = utils.generateWhatsAppLink(config.contact.phone.whatsapp, config.social.whatsapp.message);
-        if (!link.textContent.trim() || link.textContent === '#') {
+    // WhatsApp links
+    const whatsappLinks = document.querySelectorAll('[data-contact="whatsapp"]');
+    whatsappLinks.forEach(link => {
+        link.href = utils.generateWhatsAppLink(
+            config.contact.phone.whatsapp, 
+            config.social.whatsapp.message
+        );
+        if (link.textContent === '' || link.textContent === '#') {
             link.textContent = 'WhatsApp Business';
         }
     });
+}
 
-    document.querySelectorAll('[data-social]').forEach(function(link) {
-        var platform = link.getAttribute('data-social');
-        var href = config.social[platform];
-        if (href) {
-            link.href = href;
-            link.hidden = false;
-        } else {
-            link.removeAttribute('href');
-            link.hidden = true;
+/**
+ * Atualizar métricas da empresa
+ */
+function updateMetrics(config) {
+    const metrics = config.metrics;
+    
+    Object.keys(metrics).forEach(metric => {
+        const elements = document.querySelectorAll(`[data-metric="${metric}"]`);
+        elements.forEach(element => {
+            element.textContent = metrics[metric];
+        });
+    });
+}
+
+/**
+ * Atualizar links de redes sociais
+ */
+function updateSocialLinks(config, utils) {
+    const socialLinks = document.querySelectorAll('[data-social]');
+    socialLinks.forEach(link => {
+        const platform = link.getAttribute('data-social');
+        if (config.social[platform]) {
+            link.href = config.social[platform];
         }
     });
+}
 
-    document.querySelectorAll('[data-product-path]').forEach(function(link) {
-        var path = link.getAttribute('data-product-path') || '/';
-        link.href = utils.productUrl(path);
-        if (!link.getAttribute('rel')) {
-            link.setAttribute('rel', 'noopener noreferrer');
-        }
+/**
+ * Atualizar informações da empresa
+ */
+function updateCompanyInfo(config) {
+    // Adicionar CNPJ onde necessário
+    const cnpjElements = document.querySelectorAll('[data-company="cnpj"]');
+    cnpjElements.forEach(element => {
+        element.textContent = config.company.cnpj;
     });
-});
 
+    // Atualizar nome da empresa
+    const nameElements = document.querySelectorAll('[data-company="name"]');
+    nameElements.forEach(element => {
+        element.textContent = config.company.name;
+    });
 
+    // Atualizar nome completo
+    const fullNameElements = document.querySelectorAll('[data-company="fullName"]');
+    fullNameElements.forEach(element => {
+        element.textContent = config.company.fullName;
+    });
+}

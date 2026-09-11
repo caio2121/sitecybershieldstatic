@@ -1,15 +1,13 @@
-# GA4 — Checklist de validação (ABREU & BRUM)
-
-Domínio canônico de produção: `https://abreuebrum.com.br`
+# GA4 — Checklist de validação (CyberShield)
 
 ## No site (pré-deploy / pós-deploy)
 
-- [ ] Site publicado em `https://abreuebrum.com.br` (hostname correto no GA4 Realtime)
 - [ ] `js/lead-tracking.js` carregado antes de `main.js` ou `analytics.js`
 - [ ] `index.html` com `data-site-area="main_site"`
 - [ ] Aceitar cookies no banner → `analytics_storage: granted`
-- [ ] Console sem erros de `gtag` ou `ABLeadTracking`
+- [ ] Console sem erros de `gtag` ou `CyberShieldLeadTracking`
 - [ ] CTA `#contato` dispara apenas `cta_click`, **não** `generate_lead`
+- [ ] `#leadSubmitBtn` dispara `generate_lead` após validação
 - [ ] `#submitBtn` dispara `generate_lead` com `service_name` correto
 - [ ] Clique WhatsApp/e-mail/telefone em `#contato` dispara `generate_lead`
 - [ ] Checklist CNJ: lead gate dispara `generate_lead`
@@ -19,7 +17,6 @@ Domínio canônico de produção: `https://abreuebrum.com.br`
 
 ## No GA4
 
-- [ ] Fluxo de dados Web com URL `https://abreuebrum.com.br`
 - [ ] **DebugView**: `generate_lead` com parâmetros `lead_channel`, `lead_type`
 - [ ] **Realtime**: evento aparece após interação
 - [ ] **Eventos**: `generate_lead` listado como evento recomendado
@@ -29,8 +26,6 @@ Domínio canônico de produção: `https://abreuebrum.com.br`
 ## Eventos offline (Measurement Protocol)
 
 - [ ] `CONFIG.ga4MeasurementId` e `CONFIG.ga4ApiSecret` configurados no Apps Script
-- [ ] `allowedOrigins` no Apps Script inclui `https://abreuebrum.com.br` (ver `checklist-cnj-capture.gs`)
-- [ ] Web App republicado após alterar a whitelist de origem
 - [ ] Aba `commercial_pipeline` criada na planilha
 - [ ] `installCommercialPipelineTrigger()` executado uma vez
 - [ ] Alterar `commercial_status` para `qualificado` → `qualify_lead` na auditoria

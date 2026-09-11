@@ -8,12 +8,12 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      var abConsent = 'denied';
+      var cyberShieldConsent = 'denied';
       try {
-        abConsent = localStorage.getItem('ab_cookie_consent') === 'granted' ? 'granted' : 'denied';
+        cyberShieldConsent = localStorage.getItem('cs_cookie_consent') === 'granted' ? 'granted' : 'denied';
       } catch (e) {}
       gtag('consent', 'default', {
-        'analytics_storage': abConsent,
+        'analytics_storage': cyberShieldConsent,
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
@@ -28,34 +28,34 @@
     <link rel="manifest" href="/manifest.json">
 
     <!-- SEO Meta Tags -->
-    <title>Provimento 213 do CNJ: segurança para cartórios | Blog ABREU & BRUM</title>
-    <meta name="description" content="O que muda para serventias extrajudiciais e como organizar evidências de segurança para correição e auditoria.">
+    <title>Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais | Blog CyberShield</title>
+    <meta name="description" content="Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.">
     <meta name="keywords" content="Provimento 213, CNJ, cartórios, serventias extrajudiciais, segurança da informação, LGPD, backup, continuidade de negócios, TIC">
-    <meta name="author" content="ABREU & BRUM">
+    <meta name="author" content="CyberShield">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://abreuebrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
-    <meta property="og:title" content="Provimento 213 do CNJ: segurança para cartórios">
-    <meta property="og:description" content="O que muda para serventias extrajudiciais e como organizar evidências de segurança para correição e auditoria.">
-    <meta property="og:image" content="https://abreuebrum.com.br/images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png">
+    <meta property="og:url" content="https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
+    <meta property="og:title" content="Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais">
+    <meta property="og:description" content="Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.">
+    <meta property="og:image" content="https://cybershieldgroup.com.br/images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://abreuebrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
-    <meta property="twitter:title" content="Provimento 213 do CNJ: segurança para cartórios">
-    <meta property="twitter:description" content="O que muda para serventias extrajudiciais e como organizar evidências de segurança para correição e auditoria.">
-    <meta property="twitter:image" content="https://abreuebrum.com.br/images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png">
+    <meta property="twitter:url" content="https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
+    <meta property="twitter:title" content="Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais">
+    <meta property="twitter:description" content="Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.">
+    <meta property="twitter:image" content="https://cybershieldgroup.com.br/images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/images/logo-favicon.svg">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.svg">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-favicon.png">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://abreuebrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
+    <link rel="canonical" href="https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html">
 
     <script type="application/ld+json">
     {
@@ -63,50 +63,50 @@
       "@graph": [
         {
           "@type": "Article",
-          "@id": "https://abreuebrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html#article",
+          "@id": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html#article",
           "headline": "Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais",
           "description": "Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.",
-          "url": "https://abreuebrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html",
-          "image": "https://abreuebrum.com.br/images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png",
+          "url": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html",
+          "image": "https://cybershieldgroup.com.br/images/blog/provimento-213-cnj-cartorios-seguranca-informacao.png",
           "inLanguage": "pt-BR",
           "author": {
             "@type": "Organization",
-            "name": "ABREU & BRUM"
+            "name": "CyberShield"
           },
           "publisher": {
             "@type": "Organization",
-            "name": "ABREU & BRUM",
+            "name": "CyberShield",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://abreuebrum.com.br/images/logo-abreu-brum.svg"
+              "url": "https://cybershieldgroup.com.br/images/logo-header.png"
             }
           },
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://abreuebrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html"
+            "@id": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html"
           }
         },
         {
           "@type": "BreadcrumbList",
-          "@id": "https://abreuebrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html#breadcrumb",
+          "@id": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html#breadcrumb",
           "itemListElement": [
             {
               "@type": "ListItem",
               "position": 1,
               "name": "Home",
-              "item": "https://abreuebrum.com.br/"
+              "item": "https://cybershieldgroup.com.br/"
             },
             {
               "@type": "ListItem",
               "position": 2,
               "name": "Blog",
-              "item": "https://abreuebrum.com.br/blog/"
+              "item": "https://cybershieldgroup.com.br/blog/"
             },
             {
               "@type": "ListItem",
               "position": 3,
               "name": "Provimento 213 do CNJ",
-              "item": "https://abreuebrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html"
+              "item": "https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html"
             }
           ]
         }
@@ -126,54 +126,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
-
-<header class="header">
+    <!-- Header -->
+    <header class="header">
         <div class="container">
-            <a href="../index.html" class="logo" aria-label="ABREU & BRUM">
-                <img src="../images/logo-abreu-brum.svg" alt="ABREU & BRUM" class="logo-img">
-            </a>
-            <nav class="nav" aria-label="Navegação principal">
-                <a href="../index.html#ab-scan">AB Scan</a>
-                <a href="../index.html#relatorio-exemplo">Relatório exemplo</a>
-                <a href="../index.html#fluxo">Como funciona</a>
-                <a href="../index.html#pentest-manual">PenTest manual</a>
-                <a href="../index.html#contato" class="nav-cta">Contato</a>
+            <div class="logo">
+                <a href="../index.html" style="color: inherit; text-decoration: none;">
+                    <img src="../images/logo-header.png" alt="CyberShield" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#servicos">Serviços</a>
+                <a href="../index.html#sobre">Sobre</a>
+                <a href="../index.html#contato">Contato</a>
+                <a href="index.html">Blog</a>
             </nav>
-            <button class="mobile-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
-                <i class="fas fa-bars" aria-hidden="true"></i>
-            </button>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
-    <div class="floating-cta">
-        <a href="../index.html#contato" class="btn btn-primary">
-            <i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i>
-            Solicitar avaliação
-        </a>
-    </div>
-
-<main id="main-content">
+    <main id="main-content">
 
     <section class="post-header">
         <div class="container post-header-inner">
-            <a href="index.html" class="post-category">PenTest e vulnerabilidades</a>
+            <a href="index.html" class="post-category">Pentest &amp; Vulnerabilidades</a>
             <h1>Provimento 213 do CNJ: o que muda para cartórios e serventias extrajudiciais</h1>
             <p class="post-deck">Entenda o que é o Provimento 213 do CNJ e como ele impacta cartórios em segurança da informação, LGPD, backups, continuidade e gestão de tecnologia.</p>
             <div class="post-byline">
                 <div class="post-author">
-                    <img src="../images/logo-favicon.svg" alt="" class="post-author-avatar" width="36" height="36">
-                    <span class="post-author-name">ABREU & BRUM</span>
+                    <img src="../images/brasao-branco.png" alt="" class="post-author-avatar" width="36" height="36">
+                    <span class="post-author-name">CyberShield</span>
                 </div>
                 <span class="post-byline-item"><i class="fas fa-calendar"></i> Maio de 2026</span>
                 <span class="post-byline-item"><i class="fas fa-clock"></i> 8 min leitura</span>
             </div>
             <div class="post-share">
                 <span class="post-share-label">Compartilhar</span>
-                <a href="https://wa.me/?text=Provimento%20213%20do%20CNJ%20https%3A%2F%2Fabreuebrum.com.br%2Fblog%2Fprovimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fabreuebrum.com.br%2Fblog%2Fprovimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fabreuebrum.com.br%2Fblog%2Fprovimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://abreuebrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" data-copy-share="https://abreuebrum.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html" aria-label="Copiar link para compartilhar no Instagram" role="button"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/?text=Provimento%20213%20do%20CNJ%20https%3A%2F%2Fcybershieldgroup.com.br%2Fblog%2Fprovimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcybershieldgroup.com.br%2Fblog%2Fprovimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcybershieldgroup.com.br%2Fblog%2Fprovimento-213-cnj-cartorios-seguranca-informacao.html" class="post-share-link" target="_blank" rel="noopener" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="post-share-link" data-copy-share="https://cybershieldgroup.com.br/blog/provimento-213-cnj-cartorios-seguranca-informacao.html" aria-label="Copiar link para compartilhar no Instagram" role="button"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
         <figure class="post-featured-image">
@@ -264,14 +258,14 @@
             <h2>Conclusão</h2>
             <p>O <strong>Provimento 213 do CNJ</strong> representa uma mudança importante para cartórios e serventias extrajudiciais. A tecnologia deixa de ser apenas uma ferramenta administrativa e passa a ser parte essencial da segurança jurídica, da continuidade do serviço e da proteção de dados.</p>
             <p>A adequação não deve ser feita apenas para cumprir tabela. Ela precisa gerar evidência, reduzir risco e proteger o acervo da serventia.</p>
-            <p>A ABREU & BRUM apoia cartórios na avaliação técnica, diagnóstico de conformidade, segurança da informação, LGPD, continuidade, gestão de riscos, análise de vulnerabilidades e pentest, ajudando a produzir evidências técnicas alinhadas ao Provimento 213.</p>
+            <p>A CyberShield apoia cartórios na avaliação técnica, diagnóstico de conformidade, segurança da informação, LGPD, continuidade, gestão de riscos, análise de vulnerabilidades e pentest, ajudando a produzir evidências técnicas alinhadas ao Provimento 213.</p>
 
             <div class="cta-box">
-                <h3>Organize evidências para correição e auditoria</h3>
-                <p>A ABREU & BRUM apoia cartórios na avaliação de segurança web e na preparação de evidências técnicas exigidas pelo Provimento 213.</p>
+                <h3>Solicite uma avaliação inicial</h3>
+                <p>Entenda o nível de maturidade da sua serventia diante do Provimento 213 e priorize as próximas ações com base em risco real.</p>
                 <a href="../index.html#contato" class="btn btn-secondary">
-                    <i class="fas fa-shield-alt"></i>
-                    Solicitar avaliação
+                    <i class="fas fa-balance-scale"></i>
+                    Falar com especialista
                 </a>
             </div>
         </article>
@@ -321,52 +315,50 @@
 
     </main>
 
-            <footer class="footer">
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <a href="../index.html" class="logo" aria-label="ABREU & BRUM">
-                        <img src="../images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" class="logo-img">
-                    </a>
-                    <p>Cybersecurity | PenTest | Consultoria</p>
-                    <p><small>CNPJ: <span data-company="cnpj">61.952.290/0001-68</span></small></p>
-                    <p><small>São Paulo, SP, Brasil</small></p>
+                    <div class="logo">
+                        <a href="../index.html" style="color: inherit; text-decoration: none;">
+                            <img src="../images/logo-footer.png" alt="CyberShield" class="logo-img">
+                        </a>
+                    </div>
+                    <p>Segurança digital que inspira confiança</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Navegação</h4>
-                    <a href="../index.html#ab-scan">AB Scan</a>
-                    <a href="../index.html#relatorio-exemplo">Relatório exemplo</a>
-                    <a href="../index.html#fluxo">Como funciona</a>
-                    <a href="index.html">Blog</a>
+                    <h4>Links Rápidos</h4>
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html#servicos">Serviços</a>
+                    <a href="../index.html#sobre">Sobre</a>
                     <a href="../index.html#contato">Contato</a>
+                    <a href="index.html">Blog</a>
                 </div>
                 <div class="footer-services">
-                    <h4>Soluções</h4>
-                    <a href="../index.html#ab-scan">AB Scan</a>
-                    <a href="../index.html#pentest-manual">PenTest manual</a>
-                    <a href="../servicos/">Serviços complementares</a>
-                    <a href="index.html">Blog</a>
+                    <h4>Serviços</h4>
+                    <a href="../index.html#servicos">Diagnóstico de Segurança</a>
+                    <a href="../index.html#servicos">Pentest</a>
+                    <a href="../index.html#servicos">Hardening Técnico</a>
+                    <a href="../index.html#servicos">Consultoria LGPD</a>
                 </div>
                 <div class="footer-social">
-                    <h4>Contato</h4>
-                    <a href="mailto:contato@abreuebrum.com.br" data-contact="email" data-email-type="primary">contato@abreuebrum.com.br</a>
-                    <a href="tel:+5521920137715" data-contact="phone">(21) 92013-7715</a>
-                    <a href="../politica-privacidade.html">Política de Privacidade</a>
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 ABREU &amp; BRUM. Todos os direitos reservados.</p>
+                <p>&copy; 2026 CyberShield. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <script src="../js/config.js"></script>
     <script src="../js/lead-tracking.js"></script>
     <script src="../js/analytics.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
-
-
-
-
