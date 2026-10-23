@@ -1,7 +1,9 @@
 # Google Ads (AW-18216339237) — Instalação e Conversões
 
-Guia de instalação da tag do Google Ads no site da CyberShield e de configuração
+Guia de instalação da tag do Google Ads no site da ABREU & BRUM e de configuração
 das conversões da campanha de Search.
+
+Domínio canônico de produção: `https://abreuebrum.com.br`
 
 ## GA4 x Google Ads — não são a mesma coisa
 
@@ -73,7 +75,7 @@ conversões específicas, há dois caminhos:
 
 ## Validação
 
-1. Servir o site localmente (`python3 -m http.server` em `app/web/`).
+1. Abrir `https://abreuebrum.com.br/` (ou servir localmente com `python3 -m http.server` em `app/web/`).
 2. Abrir o **Google Tag Assistant** (tagassistant.google.com) e confirmar que
    na mesma página aparecem os dois IDs: `G-K46VQ6H8MS` e `AW-18216339237`,
    carregados por **um único** `gtag.js`.

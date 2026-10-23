@@ -1,5 +1,7 @@
 # Captura de dados do checklist CNJ (GitHub Pages + GAS)
 
+Domínio canônico de produção: `https://abreuebrum.com.br`
+
 ## 1) Preparar Google Sheets
 
 - Crie uma planilha para receber os envios.
@@ -10,6 +12,9 @@
 - Crie um projeto Apps Script.
 - Cole o conteúdo de `ops/checklists/checklist-cnj-capture.gs`.
 - Atualize `CONFIG.spreadsheetId` com o ID da planilha.
+- Confirme `CONFIG.allowedOrigins` com o domínio publicado:
+  - `https://abreuebrum.com.br`
+  - `https://www.abreuebrum.com.br`
 - Faça deploy como **Web App**:
   - Execute as: `Me`
   - Who has access: `Anyone`
@@ -52,8 +57,9 @@ O Apps Script também mantém a aba `commercial_pipeline` e envia eventos via **
 ### Configuração
 
 1. Em `checklist-cnj-capture.gs`, atualize:
-   - `CONFIG.ga4MeasurementId` (ex.: `G-XXXXXXXXXX`)
+   - `CONFIG.ga4MeasurementId` (`G-K46VQ6H8MS`)
    - `CONFIG.ga4ApiSecret` (criado no GA4 > Fluxo de dados Web)
+   - `CONFIG.allowedOrigins` (domínio `https://abreuebrum.com.br`)
 2. Faça novo deploy do Web App.
 3. No editor Apps Script, execute `installCommercialPipelineTrigger()` **uma vez**.
 

@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   "use strict";
 
   var LEAD_STORAGE_KEY = "cs_lead_static_v2";
@@ -19,30 +19,30 @@
   var CHAPTERS = [
     {
       id: "governanca",
-      title: "Governança & Declarações",
-      subtitle: "A espinha dorsal do dossiê",
+      title: "GovernanÃ§a & DeclaraÃ§Ãµes",
+      subtitle: "A espinha dorsal do dossiÃª",
       roman: "I",
       icon: "GV",
       risk: {
-        headline: "Declaração falsa ou omissão grave atinge o titular, não o fornecedor.",
+        headline: "DeclaraÃ§Ã£o falsa ou omissÃ£o grave atinge o titular, nÃ£o o fornecedor.",
         legal:
-          "Art. 17, § 2º e Art. 24 do Provimento CNJ 213/2026: inconsistências e omissões relevantes podem levar a procedimento administrativo disciplinar.",
+          "Art. 17, Â§ 2Âº e Art. 24 do Provimento CNJ 213/2026: inconsistÃªncias e omissÃµes relevantes podem levar a procedimento administrativo disciplinar.",
         consequence:
-          "Sem evidência documental, a serventia fica frágil em inspeção e pode sofrer consequências disciplinares."
+          "Sem evidÃªncia documental, a serventia fica frÃ¡gil em inspeÃ§Ã£o e pode sofrer consequÃªncias disciplinares."
       }
     },
     {
       id: "acesso",
       title: "Acesso ao Sistema",
-      subtitle: "Quem entra, quando entra, com que permissão",
+      subtitle: "Quem entra, quando entra, com que permissÃ£o",
       roman: "II",
       icon: "AC",
       risk: {
-        headline: "Controle de acesso falho vira prova de omissão em correição.",
+        headline: "Controle de acesso falho vira prova de omissÃ£o em correiÃ§Ã£o.",
         legal:
-          "Sem segregação e rastreabilidade de contas, a serventia amplia exposição em incidente e inspeção.",
+          "Sem segregaÃ§Ã£o e rastreabilidade de contas, a serventia amplia exposiÃ§Ã£o em incidente e inspeÃ§Ã£o.",
         consequence:
-          "Credenciais mal geridas aumentam risco de uso indevido e dificultam responsabilização."
+          "Credenciais mal geridas aumentam risco de uso indevido e dificultam responsabilizaÃ§Ã£o."
       }
     },
     {
@@ -52,11 +52,11 @@
       roman: "III",
       icon: "LG",
       risk: {
-        headline: "A ANPD pode aplicar sanções após processo administrativo.",
+        headline: "A ANPD pode aplicar sanÃ§Ãµes apÃ³s processo administrativo.",
         legal:
-          "Art. 52 da LGPD: multas, medidas corretivas e eventual restrição parcial de tratamento.",
+          "Art. 52 da LGPD: multas, medidas corretivas e eventual restriÃ§Ã£o parcial de tratamento.",
         consequence:
-          "Falhas recorrentes em direitos dos titulares e proteção de dados podem gerar sanções relevantes."
+          "Falhas recorrentes em direitos dos titulares e proteÃ§Ã£o de dados podem gerar sanÃ§Ãµes relevantes."
       }
     },
     {
@@ -68,9 +68,9 @@
       risk: {
         headline: "Sem continuidade documentada, o incidente vira improviso.",
         legal:
-          "LGPD art. 42 e responsabilização civil/administrativa: a prova operacional é decisiva para reduzir exposição.",
+          "LGPD art. 42 e responsabilizaÃ§Ã£o civil/administrativa: a prova operacional Ã© decisiva para reduzir exposiÃ§Ã£o.",
         consequence:
-          "Crises sem plano e sem teste de restauração elevam impacto operacional e jurídico."
+          "Crises sem plano e sem teste de restauraÃ§Ã£o elevam impacto operacional e jurÃ­dico."
       }
     },
     {
@@ -80,34 +80,34 @@
       roman: "V",
       icon: "FN",
       risk: {
-        headline: "Terceiro não substitui o titular da delegação.",
+        headline: "Terceiro nÃ£o substitui o titular da delegaÃ§Ã£o.",
         legal:
-          "A responsabilidade de governança e validação permanece da serventia, mesmo com operação terceirizada.",
+          "A responsabilidade de governanÃ§a e validaÃ§Ã£o permanece da serventia, mesmo com operaÃ§Ã£o terceirizada.",
         consequence:
-          "Sem validação interna por escrito, o dossiê perde força e a dependência do fornecedor aumenta."
+          "Sem validaÃ§Ã£o interna por escrito, o dossiÃª perde forÃ§a e a dependÃªncia do fornecedor aumenta."
       }
     }
   ];
 
-  // 9 perguntas ativas, mantendo remoções solicitadas: 03, 05, 06, 09, 12, 13
+  // 9 perguntas ativas, mantendo remoÃ§Ãµes solicitadas: 03, 05, 06, 09, 12, 13
   var QUESTIONS = [
     {
       id: 1,
       displayOrder: 1,
       chapterId: "governanca",
-      text: "Existe política de segurança da informação vigente e a equipe a conhece?"
+      text: "Existe polÃ­tica de seguranÃ§a da informaÃ§Ã£o vigente e a equipe a conhece?"
     },
     {
       id: 2,
       displayOrder: 2,
       chapterId: "governanca",
-      text: "Há inventário de sistemas, fornecedores e dados essenciais do cartório?"
+      text: "HÃ¡ inventÃ¡rio de sistemas, fornecedores e dados essenciais do cartÃ³rio?"
     },
     {
       id: 4,
       displayOrder: 3,
       chapterId: "acesso",
-      text: "Cada pessoa usa usuário próprio (sem senha compartilhada)?"
+      text: "Cada pessoa usa usuÃ¡rio prÃ³prio (sem senha compartilhada)?"
     },
     {
       id: 7,
@@ -119,31 +119,31 @@
       id: 8,
       displayOrder: 5,
       chapterId: "lgpd",
-      text: "Há canal público de fácil acesso e prazo para atender pedidos dos titulares?"
+      text: "HÃ¡ canal pÃºblico de fÃ¡cil acesso e prazo para atender pedidos dos titulares?"
     },
     {
       id: 10,
       displayOrder: 6,
       chapterId: "continuidade",
-      text: "Backup automático com cópia fora do prédio ou do servidor principal?"
+      text: "Backup automÃ¡tico com cÃ³pia fora do prÃ©dio ou do servidor principal?"
     },
     {
       id: 11,
       displayOrder: 7,
       chapterId: "continuidade",
-      text: "Teste de restauração feito e registrado (data, quem executou e resultado)?"
+      text: "Teste de restauraÃ§Ã£o feito e registrado (data, quem executou e resultado)?"
     },
     {
       id: 14,
       displayOrder: 8,
       chapterId: "fornecedores",
-      text: "Contrato prevê segurança, saída dos dados e prazo de entrega se encerrar o serviço?"
+      text: "Contrato prevÃª seguranÃ§a, saÃ­da dos dados e prazo de entrega se encerrar o serviÃ§o?"
     },
     {
       id: 15,
       displayOrder: 9,
       chapterId: "fornecedores",
-      text: "Alguém da serventia valida, por escrito, o que o fornecedor entrega?"
+      text: "AlguÃ©m da serventia valida, por escrito, o que o fornecedor entrega?"
     }
   ];
 
@@ -151,8 +151,8 @@
     { minXp: 0, title: "Escrevente" },
     { minXp: 200, title: "Escrevente Autorizado" },
     { minXp: 450, title: "Oficial Substituto" },
-    { minXp: 700, title: "Tabelião" },
-    { minXp: 900, title: "Guardião do Dossiê" }
+    { minXp: 700, title: "TabeliÃ£o" },
+    { minXp: 900, title: "GuardiÃ£o do DossiÃª" }
   ];
 
   var ACHIEVEMENTS = [
@@ -165,43 +165,43 @@
     {
       id: "combo-3",
       title: "Lacre Perfeito",
-      description: "Três respostas Sim consecutivas.",
+      description: "TrÃªs respostas Sim consecutivas.",
       unlock: function (ctx) { return ctx.streak >= 3; }
     },
     {
       id: "cap-lgpd",
       title: "Defensor dos Dados",
-      description: "Capítulo LGPD completo em Sim.",
+      description: "CapÃ­tulo LGPD completo em Sim.",
       unlock: function (ctx) { return ctx.chapterCompleted.lgpd === true; }
     },
     {
       id: "honestidade",
       title: "Honestidade Cartorial",
-      description: "Registrou pelo menos um Não sei.",
+      description: "Registrou pelo menos um NÃ£o sei.",
       unlock: function (ctx) { return ctx.naoSei > 0; }
     },
     {
       id: "encarar-risco",
       title: "Encarou o Risco",
-      description: "Assumiu pelo menos um Não.",
+      description: "Assumiu pelo menos um NÃ£o.",
       unlock: function (ctx) { return ctx.nao > 0; }
     },
     {
       id: "guardiao",
-      title: "Guardião do Cartório",
+      title: "GuardiÃ£o do CartÃ³rio",
       description: "Conformidade total (9 Sim).",
       unlock: function (ctx) { return ctx.sim === QUESTIONS.length; }
     },
     {
       id: "dossie-completo",
-      title: "Dossiê Completo",
+      title: "DossiÃª Completo",
       description: "Todas as perguntas foram respondidas.",
       unlock: function (ctx) { return (ctx.sim + ctx.nao + ctx.naoSei) === QUESTIONS.length; }
     },
     {
       id: "cap-governanca",
-      title: "Mestre da Governança",
-      description: "Capítulo I concluído com todos os controles em Sim.",
+      title: "Mestre da GovernanÃ§a",
+      description: "CapÃ­tulo I concluÃ­do com todos os controles em Sim.",
       unlock: function (ctx) { return ctx.chapterCompleted.governanca === true; }
     }
   ];
@@ -352,13 +352,13 @@
     };
 
     if (lead.name.length < 2) {
-      return showLeadError("Informe um nome válido.");
+      return showLeadError("Informe um nome vÃ¡lido.");
     }
     if (!/.+@.+\..+/.test(lead.email)) {
-      return showLeadError("Informe um e-mail válido.");
+      return showLeadError("Informe um e-mail vÃ¡lido.");
     }
     if (lead.whatsapp.length < 10) {
-      return showLeadError("Informe um WhatsApp válido.");
+      return showLeadError("Informe um WhatsApp vÃ¡lido.");
     }
     if (!dom.leadConsent.checked) {
       return showLeadError("Confirme o consentimento LGPD para continuar.");
@@ -377,8 +377,8 @@
     unlockQuiz();
     scrollToQuiz();
 
-    if (window.CyberShieldLeadTracking) {
-      window.CyberShieldLeadTracking.trackGenerateLead({
+    if (window.ABLeadTracking) {
+      window.ABLeadTracking.trackGenerateLead({
         lead_channel: "form",
         lead_type: "diagnostic_request",
         service_name: "general",
@@ -400,7 +400,7 @@
     dom.mainContent.classList.remove("is-locked");
     dom.quizArea.hidden = false;
     var firstName = state.lead && state.lead.name ? state.lead.name.split(" ")[0] : "titular";
-    dom.greetingKicker.textContent = "Olá, " + firstName;
+    dom.greetingKicker.textContent = "OlÃ¡, " + firstName;
   }
 
   function getCounts() {
@@ -498,8 +498,8 @@
 
   function answerButtonLabel(answerKey) {
     if (answerKey === "sim") return "<span class=\"answer-btn__icon\">+</span><span>Sim</span>";
-    if (answerKey === "nao") return "<span class=\"answer-btn__icon\">-</span><span>Não</span>";
-    return "<span class=\"answer-btn__icon\">?</span><span>Não sei</span>";
+    if (answerKey === "nao") return "<span class=\"answer-btn__icon\">-</span><span>NÃ£o</span>";
+    return "<span class=\"answer-btn__icon\">?</span><span>NÃ£o sei</span>";
   }
 
   function scorePanelTemplate(answer) {
@@ -510,7 +510,7 @@
         '<span class="score-panel__icon">OK</span>',
         "<div>",
         "<strong>Controle em conformidade.</strong>",
-        "<p>+100 XP · evidência registrada para o dossiê técnico.</p>",
+        "<p>+100 XP Â· evidÃªncia registrada para o dossiÃª tÃ©cnico.</p>",
         "</div>",
         "</div>"
       ].join("");
@@ -520,8 +520,8 @@
         '<div class="score-panel score-panel--warn">',
         '<span class="score-panel__icon">?</span>',
         "<div>",
-        "<strong>Ponto cego em apuração.</strong>",
-        "<p>+20 XP · priorize validação técnica antes da próxima correição.</p>",
+        "<strong>Ponto cego em apuraÃ§Ã£o.</strong>",
+        "<p>+20 XP Â· priorize validaÃ§Ã£o tÃ©cnica antes da prÃ³xima correiÃ§Ã£o.</p>",
         "</div>",
         "</div>"
       ].join("");
@@ -534,7 +534,7 @@
     var chapter = CHAPTERS.find(function (c) { return c.id === question.chapterId; });
     if (!chapter) return "";
     var klass = answer === "nao" ? "feedback feedback--nao" : "feedback feedback--nao-sei";
-    var tone = answer === "nao" ? "Risco jurídico identificado" : "Ponto cego: apurar";
+    var tone = answer === "nao" ? "Risco jurÃ­dico identificado" : "Ponto cego: apurar";
     return [
       '<div class="' + klass + '">',
       '<div class="feedback-head">',
@@ -561,7 +561,7 @@
       '<div class="question-head">',
       '<div class="question-badge">' + String(question.id).padStart(2, "0") + "</div>",
       "<div>",
-      '<p class="question-meta">Cap. ' + chapter.roman + " · " + chapter.title + "</p>",
+      '<p class="question-meta">Cap. ' + chapter.roman + " Â· " + chapter.title + "</p>",
       '<h4 class="question-title">' + question.text + "</h4>",
       "</div>",
       "</div>",
@@ -628,8 +628,8 @@
         '<div class="chapter-row__meta">',
         "<strong>Cap. " + chapter.roman + (allOk ? ' <em>OK</em>' : "") + "</strong>",
         "<span>" + chapter.title + "</span>",
-        "<small>" + sim + "/" + chapterQuestions.length + " conformes · " + answered + "/" + chapterQuestions.length + " respondidas</small>",
-        '<small class="chapter-row__legend-inline">' + nao + " risco · " + naoSei + " apurar · " + pct + "%</small>",
+        "<small>" + sim + "/" + chapterQuestions.length + " conformes Â· " + answered + "/" + chapterQuestions.length + " respondidas</small>",
+        '<small class="chapter-row__legend-inline">' + nao + " risco Â· " + naoSei + " apurar Â· " + pct + "%</small>",
         "</div>",
         "</button>"
       ].join("");
@@ -647,27 +647,27 @@
     if (pct === 100) {
       return {
         title: "Conformidade total",
-        message: "A serventia está apta para fiscalização. Mantenha o ciclo de evidências vivo.",
+        message: "A serventia estÃ¡ apta para fiscalizaÃ§Ã£o. Mantenha o ciclo de evidÃªncias vivo.",
         colorClass: "report-color--ok"
       };
     }
     if (pct >= 80) {
       return {
         title: "Quase blindado",
-        message: "Base sólida. Feche pendências para elevar resiliência jurídica e operacional.",
+        message: "Base sÃ³lida. Feche pendÃªncias para elevar resiliÃªncia jurÃ­dica e operacional.",
         colorClass: "report-color--ok"
       };
     }
     if (pct >= 50) {
       return {
-        title: "Exposição moderada",
-        message: "Há lacunas relevantes. Priorize ações por criticidade antes da próxima correição.",
+        title: "ExposiÃ§Ã£o moderada",
+        message: "HÃ¡ lacunas relevantes. Priorize aÃ§Ãµes por criticidade antes da prÃ³xima correiÃ§Ã£o.",
         colorClass: "report-color--warn"
       };
     }
     return {
-      title: "Exposição crítica",
-      message: "Mais pendências que evidências. Recomenda-se plano imediato com acompanhamento técnico.",
+      title: "ExposiÃ§Ã£o crÃ­tica",
+      message: "Mais pendÃªncias que evidÃªncias. Recomenda-se plano imediato com acompanhamento tÃ©cnico.",
       colorClass: "report-color--danger"
     };
   }
@@ -682,7 +682,7 @@
         '<article class="chapter-breakdown__item ' + okClass + '">',
         "<strong>Cap. " + chapter.roman + "</strong>",
         "<span>" + chapter.title + "</span>",
-        "<small>" + sim + "/" + chapterQuestions.length + " · " + pct + "%</small>",
+        "<small>" + sim + "/" + chapterQuestions.length + " Â· " + pct + "%</small>",
         "</article>"
       ].join("");
     }).join("");
@@ -715,7 +715,7 @@
     var circumference = 2 * Math.PI * 50;
     var dialOffset = circumference * (1 - conformity / 100);
     dom.finalReport.innerHTML = [
-      '<p class="card-kicker">Relatório Executivo</p>',
+      '<p class="card-kicker">RelatÃ³rio Executivo</p>',
       '<h3 class="' + verdict.colorClass + '">' + verdict.title + "</h3>",
       "<p>" + verdict.message + "</p>",
       '<div class="report-top">',
@@ -735,16 +735,16 @@
       '<div class="report-grid">',
       "<article><span>Conformidade</span><strong>" + conformity + "%</strong></article>",
       "<article><span>XP final</span><strong>" + xp + "</strong></article>",
-      "<article><span>Nível</span><strong>" + rank.title + "</strong></article>",
+      "<article><span>NÃ­vel</span><strong>" + rank.title + "</strong></article>",
       "<article><span>Medalhas</span><strong>" + Object.keys(state.unlocked).length + "/" + ACHIEVEMENTS.length + "</strong></article>",
       "</div>",
       '<div class="report-divider"></div>',
-      '<section class="chapter-breakdown"><h4>Status por capítulo</h4><div class="chapter-breakdown__grid">' + renderReportChapterBreakdown() + "</div></section>",
+      '<section class="chapter-breakdown"><h4>Status por capÃ­tulo</h4><div class="chapter-breakdown__grid">' + renderReportChapterBreakdown() + "</div></section>",
       '<div class="report-divider"></div>',
       '<section class="report-achievements"><h4>Medalhas</h4><div class="report-achievements__grid">' + renderReportAchievements() + "</div></section>",
       '<div class="report-actions">',
       '<a class="btn btn-primary" href="https://wa.me/5521920137715?text=Ol%C3%A1!%20Conclu%C3%AD%20o%20checklist%20CNJ%20e%20quero%20apoio%20no%20dossi%C3%AA%20t%C3%A9cnico." target="_blank" rel="noopener noreferrer">Falar com especialista</a>',
-      '<button id="restart-btn" class="btn btn-outline" type="button">Refazer diagnóstico</button>',
+      '<button id="restart-btn" class="btn btn-outline" type="button">Refazer diagnÃ³stico</button>',
       "</div>",
       '<div id="submission-status" class="submission-status" aria-live="polite"></div>'
     ].join("");
@@ -762,7 +762,7 @@
     if (stage === "started") return "lead registrado";
     if (stage === "in_progress") return "progresso salvo";
     if (stage === "completed") return "resultado final salvo";
-    return "sincronização pendente";
+    return "sincronizaÃ§Ã£o pendente";
   }
 
   function renderSyncStatus() {
@@ -772,35 +772,35 @@
     var detailsClass = "submission-status__item submission-status__item--pending";
 
     if (!CHECKLIST_CONFIG.captureEndpoint) {
-      statusMessage = "Captura não configurada no endpoint.";
+      statusMessage = "Captura nÃ£o configurada no endpoint.";
       syncClass += " sync-status--warn";
-      detailsMessage = "Captura não configurada: defina window.CHECKLIST_CONFIG.captureEndpoint.";
+      detailsMessage = "Captura nÃ£o configurada: defina window.CHECKLIST_CONFIG.captureEndpoint.";
       detailsClass = "submission-status__item submission-status__item--warn";
     } else if (state.submission.sending) {
-      statusMessage = "Sincronizando dados do diagnóstico...";
-      detailsMessage = "Enviando atualização para a base segura.";
+      statusMessage = "Sincronizando dados do diagnÃ³stico...";
+      detailsMessage = "Enviando atualizaÃ§Ã£o para a base segura.";
     } else if (state.submission.error) {
-      statusMessage = "Falha de sincronização. Vamos tentar novamente.";
+      statusMessage = "Falha de sincronizaÃ§Ã£o. Vamos tentar novamente.";
       syncClass += " sync-status--error";
       detailsMessage = state.submission.error;
       detailsClass = "submission-status__item submission-status__item--error";
     } else if (state.submission.lastSyncedStatus) {
-      statusMessage = "Sincronização ativa: " + getStageLabel(state.submission.lastSyncedStatus) + ".";
+      statusMessage = "SincronizaÃ§Ã£o ativa: " + getStageLabel(state.submission.lastSyncedStatus) + ".";
       syncClass += " sync-status--ok";
       if (state.submission.lastSyncedStatus === "completed") {
         detailsMessage =
-          "Diagnóstico registrado com sucesso. Um especialista pode entrar em contato com base no seu consentimento.";
+          "DiagnÃ³stico registrado com sucesso. Um especialista pode entrar em contato com base no seu consentimento.";
         detailsClass = "submission-status__item submission-status__item--ok";
       } else if (state.submission.lastSyncedStatus === "in_progress") {
-        detailsMessage = "Progresso salvo. Continue para gerar o relatório final.";
+        detailsMessage = "Progresso salvo. Continue para gerar o relatÃ³rio final.";
         detailsClass = "submission-status__item submission-status__item--ok";
       } else {
-        detailsMessage = "Contato registrado. Agora você pode responder o checklist.";
+        detailsMessage = "Contato registrado. Agora vocÃª pode responder o checklist.";
         detailsClass = "submission-status__item submission-status__item--ok";
       }
     } else {
       statusMessage = "Preencha seu contato para iniciar o registro.";
-      detailsMessage = "Conclua todas as perguntas para registrar o relatório final.";
+      detailsMessage = "Conclua todas as perguntas para registrar o relatÃ³rio final.";
     }
 
     if (dom.syncStatus) {
@@ -895,8 +895,8 @@
         startedAt: startedAt,
         pageUrl: window.location.href,
         userAgent: navigator.userAgent,
-        gaClientId: window.CyberShieldLeadTracking && window.CyberShieldLeadTracking.getGaClientId
-          ? window.CyberShieldLeadTracking.getGaClientId()
+        gaClientId: window.ABLeadTracking && window.ABLeadTracking.getGaClientId
+          ? window.ABLeadTracking.getGaClientId()
           : ""
       }
     };
@@ -950,7 +950,7 @@
         data = {};
       }
       if (!response.ok && data.ok !== true) {
-        throw new Error(data.message || "Falha ao registrar o diagnóstico.");
+        throw new Error(data.message || "Falha ao registrar o diagnÃ³stico.");
       }
 
       state.submission.sending = false;
@@ -964,7 +964,7 @@
       state.submission.sending = false;
       state.submission.syncStatus = "error";
       state.submission.error =
-        "Não foi possível registrar seu diagnóstico agora. Verifique sua conexão e tente novamente.";
+        "NÃ£o foi possÃ­vel registrar seu diagnÃ³stico agora. Verifique sua conexÃ£o e tente novamente.";
       renderSyncStatus();
     }
 
@@ -1027,7 +1027,7 @@
         "faltam " + (nextRank.minXp - xp) + " XP para " + nextRank.title;
     } else {
       document.getElementById("hud-next-rank").textContent =
-        "nível máximo alcançado";
+        "nÃ­vel mÃ¡ximo alcanÃ§ado";
     }
   }
 
@@ -1130,3 +1130,5 @@
 
   document.addEventListener("DOMContentLoaded", init);
 })();
+
+

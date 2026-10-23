@@ -1,5 +1,5 @@
 /**
- * Checklist interativo CNJ/LGPD cartórios — feedback por item (Não / Não sei).
+ * Checklist interativo CNJ/LGPD cartórios, feedback por item (Não / Não sei).
  */
 (function () {
     "use strict";
@@ -26,7 +26,7 @@
             nao_sei: "Confirme com a equipe de TI ou fornecedor se MFA está ativo nos pontos críticos; não saber é aceitar risco cego."
         },
         q6: {
-            nao: "Permissões, contas e senhas não revistas mantêm acesso de quem já saiu ou mudou de função — vetor clássico de incidente e de omissão na governança de identidade (art. 24).",
+            nao: "Permissões, contas e senhas não revistas mantêm acesso de quem já saiu ou mudou de função, vetor clássico de incidente e de omissão na governança de identidade (art. 24).",
             nao_sei: "Se não há rotina de revisão documentada, implemente e registre; ignorar o tema não elimina o dever do titular."
         },
         q7: {
@@ -134,3 +134,5 @@
         updateScorePanel();
     });
 })();
+
+

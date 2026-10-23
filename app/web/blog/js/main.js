@@ -23,10 +23,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', () => {
     const header = document.querySelector('.header');
     if (window.scrollY > 100) {
-        header.style.background = 'rgba(15, 23, 42, 0.98)';
-        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.2)';
+        header.style.background = 'rgba(255, 255, 255, 0.98)';
+        header.style.boxShadow = '0 10px 30px rgba(1, 34, 77, 0.08)';
     } else {
-        header.style.background = 'rgba(15, 23, 42, 0.95)';
+        header.style.background = 'rgba(255, 255, 255, 0.96)';
         header.style.boxShadow = 'none';
     }
 });
@@ -44,9 +44,9 @@ if (mobileMenu && nav) {
 
 function applyRealSocialLinks() {
     const socialMap = {
-        linkedin: 'https://www.linkedin.com/company/cybershieldgroup/',
-        instagram: 'https://www.instagram.com/cybershieldltda/',
-        facebook: 'https://www.facebook.com/people/Cyber-Shield-Group/61578838183639/'
+        linkedin: 'mailto:contato@abreuebrum.com.br',
+        instagram: 'tel:+5521920137715',
+        facebook: '../politica-privacidade.html'
     };
 
     document.querySelectorAll('.social-links a').forEach(link => {
@@ -76,8 +76,13 @@ function applyRealSocialLinks() {
             }
         }
 
-        link.target = '_blank';
-        link.rel = 'noopener';
+        if (link.href.startsWith('mailto:') || link.href.startsWith('tel:')) {
+            link.removeAttribute('target');
+            link.removeAttribute('rel');
+        } else {
+            link.target = '_blank';
+            link.rel = 'noopener';
+        }
     });
 }
 
@@ -151,7 +156,7 @@ function initPostShareCopy() {
             const url = link.getAttribute('data-copy-share');
             if (!url) return;
 
-            const title = document.querySelector('.post-header h1')?.textContent?.trim() || 'CyberShield';
+            const title = document.querySelector('.post-header h1')?.textContent?.trim() || 'ABREU & BRUM';
             const defaultLabel = link.getAttribute('aria-label') || 'Compartilhar no Instagram';
 
             if (navigator.share) {
@@ -210,7 +215,7 @@ if (contactForm) {
         // Simular delay de envio
         setTimeout(() => {
             submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado!';
-            submitBtn.style.background = '#10b981';
+            submitBtn.style.background = '#c79933';
             
             // Reset após 3 segundos
             setTimeout(() => {
@@ -250,12 +255,12 @@ if (leadForm) {
         // Simular download do checklist
         setTimeout(() => {
             submitBtn.innerHTML = '<i class="fas fa-download"></i> Download Iniciado!';
-            submitBtn.style.background = '#10b981';
+            submitBtn.style.background = '#c79933';
             
             // Simular download do arquivo
             const link = document.createElement('a');
-            link.href = '#';
-            link.download = 'checklist-ciberseguranca-cybershield.pdf';
+            link.href = '../assets/checklists/checklist-ciberseguranca.html';
+            link.download = 'checklist-seguranca-web-abscan.html';
             link.click();
             
             // Reset após 5 segundos
@@ -399,12 +404,12 @@ style.textContent = `
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(15, 23, 42, 0.98);
+        background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(10px);
         flex-direction: column;
         padding: 1rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        border-top: 1px solid rgba(30, 41, 59, 0.3);
+        box-shadow: 0 16px 36px rgba(1, 34, 77, 0.12);
+        border-top: 1px solid rgba(1, 34, 77, 0.08);
     }
     
     body.loaded .hero {
@@ -447,3 +452,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+

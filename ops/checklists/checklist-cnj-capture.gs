@@ -10,9 +10,9 @@ var CONFIG = {
   ga4MeasurementId: "G-XXXXXXXXXX",
   ga4ApiSecret: "PUT_YOUR_GA4_API_SECRET_HERE",
   allowedOrigins: [
-    "https://niltondev.github.io",
-    "https://cybershieldgroup.com.br",
-    "https://www.cybershieldgroup.com.br"
+    "https://abreuebrum.com.br",
+    "https://www.abreuebrum.com.br",
+    "https://niltondev.github.io"
   ]
 };
 

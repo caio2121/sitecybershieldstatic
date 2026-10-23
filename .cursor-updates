@@ -76,7 +76,7 @@
 
 - Implementado fluxo de captura imediata com upsert (`started`, `in_progress`, `completed`) no checklist CNJ, com `submission_key` persistido em sessão, status de sincronização na UI e endpoint Apps Script preparado para atualizar a mesma linha sem duplicidade.
 
-- Atualizada a whitelist de origem do Apps Script para o domínio correto `https://cybershieldgroup.com.br` (com e sem `www`).
+- Atualizada a whitelist de origem do Apps Script para `https://abreuebrum.com.br` (com e sem `www`).
 
 - Corrigido o alinhamento do checkbox de consentimento no modal de lead com regras CSS de maior especificidade para manter input e texto na mesma linha em desktop e mobile.
 
