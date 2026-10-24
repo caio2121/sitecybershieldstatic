@@ -1,50 +1,48 @@
 ﻿# ABREU & BRUM
 
-ABREU & BRUM é uma empresa brasileira de segurança ofensiva. Atua com Pentest e avaliações técnicas para empresas, sempre com escopo e autorização definidos.
+ABREU & BRUM é uma marca comercial brasileira de segurança ofensiva. Atua com Pentest, Red Team e Security Review para empresas, sempre com escopo e autorização definidos.
 
-Primary site: https://abreuebrum.com.br/
-
-## Produto principal
-
-O AB Scan ajuda empresas a entender sinais de exposição em domínios autorizados, organizar evidências e decidir quando avançar para um Pentest manual.
-
-O produto não é uma ferramenta ofensiva aberta. A autorização sobre o domínio é obrigatória antes da avaliação. O posicionamento é B2B, responsável e orientado a decisões.
+Primary site: [https://abreuebrum.com.br/](https://abreuebrum.com.br/)
 
 ## Jornada comercial
 
-- Apresentar Pentest e segurança ofensiva como soluções principais.
-- Usar o AB Scan como porta de entrada para uma visão autorizada da exposição web.
+- Apresentar Pentest, Red Team e Security Review como famílias principais.
+- Contextualizar capacidades por compliance, setor e decisão de negócio.
 - Definir escopo, premissas e entregáveis antes da execução.
-- Usar relatório técnico e executivo para priorizar correções.
-- Indicar Pentest manual quando a necessidade exigir validação mais profunda.
+- Usar evidências e recomendações para priorizar correções.
+- Confirmar no contrato a modalidade, a cobertura, o reteste e os entregáveis.
+- O endereço `/ab-scan/` é mantido como página legada para compatibilidade e não é uma oferta prioritária da nova navegação.
 
 ## Temas principais
 
 - Pentest para empresas.
 - Pentest de aplicações e APIs.
-- Avaliação de exposição externa.
-- Evidências para clientes, contratos e homologação de fornecedores.
+- Red Team e simulações adversariais.
+- Security Review de Cloud, identidades, CI/CD, M365 e segmentação.
+- Evidências para clientes, contratos, compliance e homologação de fornecedores.
 - Relatórios técnicos e executivos.
 - Priorização de risco e recomendações práticas.
 - Diferença entre scan, avaliação de vulnerabilidades e Pentest.
 
 ## Key Pages
 
-- Home: https://abreuebrum.com.br/
-- Solutions: https://abreuebrum.com.br/solucoes/
-- Pentest: https://abreuebrum.com.br/pentest/
-- Methodology: https://abreuebrum.com.br/metodologia/
-- AB Scan: https://abreuebrum.com.br/ab-scan/
-- Proposal: https://abreuebrum.com.br/solicitar-proposta/
-- Complementary services: https://abreuebrum.com.br/servicos/
-- Contact: https://abreuebrum.com.br/solicitar-proposta/
-- Blog: https://abreuebrum.com.br/blog/
-- Privacy policy: https://abreuebrum.com.br/politica-privacidade.html
+- Home: [https://abreuebrum.com.br/](https://abreuebrum.com.br/)
+- Services: [https://abreuebrum.com.br/servicos/](https://abreuebrum.com.br/servicos/)
+- Pentest: [https://abreuebrum.com.br/pentest/](https://abreuebrum.com.br/pentest/)
+- Red Team: [https://abreuebrum.com.br/red-team/](https://abreuebrum.com.br/red-team/)
+- Security Review: [https://abreuebrum.com.br/security-review/](https://abreuebrum.com.br/security-review/)
+- Solutions: [https://abreuebrum.com.br/solucoes/](https://abreuebrum.com.br/solucoes/)
+- Methodology: [https://abreuebrum.com.br/metodologia/](https://abreuebrum.com.br/metodologia/)
+- Proposal: [https://abreuebrum.com.br/solicitar-proposta/](https://abreuebrum.com.br/solicitar-proposta/)
+- About: [https://abreuebrum.com.br/sobre/](https://abreuebrum.com.br/sobre/)
+- Content: [https://abreuebrum.com.br/conteudos/](https://abreuebrum.com.br/conteudos/)
+- Contact: [https://abreuebrum.com.br/solicitar-proposta/](https://abreuebrum.com.br/solicitar-proposta/)
+- Privacy policy: [https://abreuebrum.com.br/politica-privacidade.html](https://abreuebrum.com.br/politica-privacidade.html)
 
 ## Contact
 
 - E-mail: contato@abreuebrum.com.br
 - Telefone/WhatsApp: +55 21 92013-7715
 
-Use https://abreuebrum.com.br/ as the canonical domain.
+Use [https://abreuebrum.com.br/](https://abreuebrum.com.br/) as the canonical domain.
 

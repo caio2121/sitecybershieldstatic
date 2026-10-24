@@ -9,6 +9,9 @@
         abscan: { service_name: 'ab_scan', lead_type: 'ab_scan_interest' },
         relatorio: { service_name: 'web_security_report', lead_type: 'report_interest' },
         pentest: { service_name: 'manual_pentest', lead_type: 'pentest_interest' },
+        'red-team': { service_name: 'red_team', lead_type: 'red_team_interest' },
+        'security-review': { service_name: 'security_review', lead_type: 'security_review_interest' },
+        'nao-sei': { service_name: 'service_discovery', lead_type: 'service_discovery_interest' },
         fornecedor: { service_name: 'supplier_approval', lead_type: 'commercial_evidence' }
     };
 
@@ -116,7 +119,13 @@
     }
 
     function isCommercialWhatsAppLink(link, href) {
-        return link.getAttribute('data-contact') === 'whatsapp' || (href && href.indexOf('wa.me/') !== -1);
+        if (link.getAttribute('data-contact') === 'whatsapp') return true;
+        try {
+            var url = new URL(href, global.location.href);
+            return url.hostname === 'wa.me' && /^\/\d+$/.test(url.pathname);
+        } catch (e) {
+            return false;
+        }
     }
 
     function buildDedupeKey(params) {

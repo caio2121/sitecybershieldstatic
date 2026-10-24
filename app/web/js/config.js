@@ -1,9 +1,9 @@
 ﻿window.ABConfig = {
     company: {
         name: 'ABREU & BRUM',
-        fullName: 'ABREU & BRUM — Cybersecurity & Offensive Security',
+        fullName: 'ABREU & BRUM — Offensive Security',
         cnpj: '61.952.290/0001-68',
-        description: 'Segurança ofensiva para empresas: Pentest, avaliações técnicas e evidências para decisões de risco.',
+        description: 'Pentest, Red Team e Security Review para empresas que precisam transformar risco técnico em decisão.',
         website: 'https://abreuebrum.com.br'
     },
     product: {

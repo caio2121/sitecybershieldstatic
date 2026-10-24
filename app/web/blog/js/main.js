@@ -36,8 +36,17 @@ const nav = document.querySelector('.nav');
 
 if (mobileMenu && nav) {
     mobileMenu.addEventListener('click', () => {
-        nav.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
+        const isActive = nav.classList.toggle('active');
+        mobileMenu.classList.toggle('active', isActive);
+        mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    });
+
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            mobileMenu.setAttribute('aria-expanded', 'false');
+        });
     });
 }
 

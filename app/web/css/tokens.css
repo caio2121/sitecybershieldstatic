@@ -1,56 +1,41 @@
-/**
- * Design tokens - ABREU & BRUM
- * Sistema visual B2B: precisão, contraste e confiança sem estética sensacionalista.
- */
-
 @font-face {
   font-family: 'Ethnocentric';
   src: url('../fonts/ethnocentric-regular.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
   font-display: swap;
 }
 
 :root {
   --color-ink: #10243e;
-  --color-muted: #4b6075;
-  --color-muted2: #5f7082;
-  --color-bg: #fbfcfe;
+  --color-muted: #516477;
+  --color-muted-light: #738395;
+  --color-bg: #f7f9fc;
   --color-surface: #ffffff;
-  --color-card: #ffffff;
-  --color-border: #d9e2ec;
-  --color-soft: #f1f5f9;
+  --color-border: #dce4ed;
+  --color-soft: #eef3f8;
   --color-primary: #08294f;
   --color-primary-hover: #041a35;
-  --color-primary-light: rgba(8, 41, 79, 0.08);
-  --color-accent: #7a5410;
-  --color-accent-hover: #5c3e0c;
-  --color-accent-light: rgba(122, 84, 16, 0.13);
+  --color-primary-light: #e7eef7;
+  --color-accent: #d9a63f;
+  --color-accent-hover: #b77c1d;
+  --color-accent-light: #fff4da;
   --color-danger: #b42318;
   --color-success: #157f3b;
-  --color-warning: #b7791f;
   --color-dark-1: #061d39;
   --color-dark-2: #0b315a;
-  --color-dark-3: #1a4774;
+  --color-dark-3: #174b78;
   --color-on-dark: #ffffff;
-  --color-on-dark-muted: #d4deea;
-  --color-on-dark-subtle: #eff4f8;
+  --color-on-dark-muted: #cad8e7;
+  --color-on-dark-subtle: #edf4fb;
 
-  --font-family-brand: 'Ethnocentric', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-brand: 'Ethnocentric', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --text-base-size: 1rem;
   --text-base-line: 1.65;
   --text-sm: 0.875rem;
   --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --heading-1-size: clamp(2.5rem, 6vw, 4.8rem);
-  --heading-1-weight: 760;
-  --heading-2-size: clamp(2rem, 4vw, 3.1rem);
-  --heading-2-weight: 720;
-  --heading-3-size: 1.45rem;
-  --heading-3-weight: 680;
-  --heading-4-size: 1.15rem;
-  --heading-4-weight: 680;
+  --heading-1-size: clamp(2.7rem, 6vw, 5.4rem);
+  --heading-2-size: clamp(2rem, 4vw, 3.25rem);
+  --heading-3-size: 1.35rem;
 
   --space-4: 4px;
   --space-8: 8px;
@@ -64,18 +49,16 @@
   --space-96: 96px;
 
   --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
   --radius-full: 999px;
-  --shadow-card: 0 18px 48px rgba(8, 41, 79, 0.07);
-  --shadow-card-hover: 0 24px 64px rgba(8, 41, 79, 0.13);
-  --shadow-button: 0 14px 28px rgba(8, 41, 79, 0.2);
-
-  --container-max: 1180px;
-  --container-padding: 20px;
-  /* SSOT logo/header = AB Scan (Header.tsx). Mobile height matches desktop. */
-  --header-height: 78px;
-  --header-height-mobile: 78px;
+  --shadow-card: 0 16px 48px rgba(8, 41, 79, 0.08);
+  --shadow-card-hover: 0 22px 60px rgba(8, 41, 79, 0.15);
+  --shadow-button: 0 12px 28px rgba(8, 41, 79, 0.22);
+  --container-max: 1200px;
+  --container-padding: 22px;
+  --header-height: 82px;
+  --header-height-mobile: 72px;
 }
 
 

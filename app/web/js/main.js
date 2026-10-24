@@ -154,16 +154,41 @@ function getCompanyWhatsAppNumber() {
     return String(number).replace(/\D/g, '');
 }
 
-var CONTACT_SERVICE_VALUES = ['abscan', 'relatorio', 'pentest', 'exposicao', 'fornecedor', 'consultoria'];
+function initPrivacyAnchor() {
+    if (!document.body || document.body.getAttribute('data-site-area') !== 'privacy') return;
+    var panels = document.querySelectorAll('.detail-stack .detail-panel');
+    if (panels[2] && !panels[2].id) panels[2].id = 'cookies';
+}
+
+var CONTACT_SERVICE_VALUES = [
+    'abscan', 'pentest', 'red-team', 'security-review', 'nao-sei',
+    'iso-27001', 'pci-dss', 'soc-2', 'tisax', 'ma', 'sharepoint',
+    'saas', 'fintechs', 'ecommerce', 'healthtechs', 'industria',
+    'marketplaces', 'startups', 'agronegocio', 'advocacia'
+];
 
 function getServiceLabel(serviceValue) {
     var serviceMap = {
-        abscan: 'Avaliar segurança de um domínio',
-        relatorio: 'Receber relatório de segurança web',
-        pentest: 'Solicitar PenTest manual',
-        exposicao: 'Avaliar exposição externa',
-        fornecedor: 'Responder exigência de cliente, fornecedor ou auditoria',
-        consultoria: 'Conversar sobre outra necessidade de segurança'
+        abscan: 'AB Scan (produto legado)',
+        pentest: 'Pentest',
+        'red-team': 'Red Team',
+        'security-review': 'Security Review',
+        'nao-sei': 'Ainda não sei qual avaliação',
+        'iso-27001': 'ISO 27001',
+        'pci-dss': 'PCI DSS',
+        'soc-2': 'SOC 2',
+        tisax: 'TISAX',
+        ma: 'M&A / due diligence',
+        sharepoint: 'SharePoint',
+        saas: 'SaaS',
+        fintechs: 'Fintechs e bancos',
+        ecommerce: 'E-commerce e varejo',
+        healthtechs: 'Hospitais e healthtechs',
+        industria: 'Indústria',
+        marketplaces: 'Marketplace',
+        startups: 'Startup',
+        agronegocio: 'Agronegócio',
+        advocacia: 'Escritório jurídico'
     };
     return serviceMap[serviceValue] || serviceValue || 'Não informado';
 }
@@ -203,6 +228,13 @@ function buildWhatsAppMessage(data) {
         ].filter(Boolean)
         : [];
 
+    var contextLines = [
+        data.ambiente ? 'Ambiente/tecnologia: ' + data.ambiente : '',
+        data.prazo ? 'Prazo desejado: ' + data.prazo : '',
+        data.escopo ? 'Escopo aproximado: ' + data.escopo : '',
+        data.compliance ? 'Compliance: ' + data.compliance : ''
+    ].filter(Boolean);
+
     return [
         'Novo contato via site ABREU & BRUM',
         '',
@@ -211,6 +243,8 @@ function buildWhatsAppMessage(data) {
         'WhatsApp: ' + (data.whatsapp || 'Não informado'),
         'Empresa: ' + (data.empresa || 'Não informado'),
         'Interesse: ' + getServiceLabel(data.servico),
+        contextLines.length ? '' : null,
+        contextLines.length ? contextLines.join('\n') : null,
         '',
         pentestLines.join('\n'),
         'Mensagem:',
@@ -220,7 +254,7 @@ function buildWhatsAppMessage(data) {
         'Origem da campanha: ' + Object.keys(getAttributionParams()).map(function(key) {
             return key.replace('utm_', '') + '=' + getAttributionParams()[key];
         }).join(', ')
-    ] : []).filter(function(line) { return line !== ''; }).join('\n');
+        ] : []).filter(function(line) { return line !== '' && line !== null; }).join('\n');
 }
 
 function openWhatsAppWithFormData(data) {
@@ -417,6 +451,10 @@ function initContactForm() {
             whatsapp: String(formData.get('whatsapp') || '').trim(),
             empresa: String(formData.get('empresa') || '').trim(),
             servico: String(formData.get('servico') || '').trim(),
+            ambiente: String(formData.get('ambiente') || '').trim(),
+            prazo: String(formData.get('prazo') || '').trim(),
+            escopo: String(formData.get('escopo') || '').trim(),
+            compliance: String(formData.get('compliance') || '').trim(),
             mensagem: String(formData.get('mensagem') || '').trim(),
             pentestTipo: String(formData.get('pentestTipo') || '').trim(),
             pentestAlvo: String(formData.get('pentestAlvo') || '').trim(),
@@ -470,6 +508,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initCookieConsent();
     initGAEventTracking();
     initMobileMenu();
+    initPrivacyAnchor();
     initContactForm();
     var servicePage = document.body && document.body.getAttribute('data-service-page');
     if (servicePage) trackGAEvent('service_page_view', { service_page: servicePage });
