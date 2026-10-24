@@ -1,9 +1,9 @@
 ﻿window.ABConfig = {
     company: {
         name: 'ABREU & BRUM',
-        fullName: 'ABREU & BRUM Cybersecurity, PenTest e Consultoria',
+        fullName: 'ABREU & BRUM — Cybersecurity & Offensive Security',
         cnpj: '61.952.290/0001-68',
-        description: 'AB Scan: avaliação de segurança web com relatórios profissionais e PenTest manual complementar.',
+        description: 'Segurança ofensiva para empresas: Pentest, avaliações técnicas e evidências para decisões de risco.',
         website: 'https://abreuebrum.com.br'
     },
     product: {
@@ -49,6 +49,55 @@
         consentStorageKey: 'ab_cookie_consent'
     }
 };
+
+(function bootstrapAnalytics() {
+    var analytics = window.ABConfig.analytics || {};
+    var measurementId = analytics.measurementId;
+    if (!measurementId) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function() { window.dataLayer.push(arguments); };
+
+    function hasAnalyticsConsent() {
+        try {
+            return localStorage.getItem(analytics.consentStorageKey || 'ab_cookie_consent') === 'granted';
+        } catch (e) {
+            return false;
+        }
+    }
+
+    window.ABHasAnalyticsConsent = hasAnalyticsConsent;
+
+    var consent = hasAnalyticsConsent() ? 'granted' : 'denied';
+    window.gtag('consent', 'default', {
+        analytics_storage: consent,
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+    });
+
+    var loaded = false;
+    var configured = false;
+    function configureAnalytics() {
+        if (configured || !hasAnalyticsConsent()) return;
+        window.gtag('js', new Date());
+        window.gtag('config', measurementId);
+        if (analytics.adsConversionId) window.gtag('config', analytics.adsConversionId);
+        configured = true;
+    }
+
+    window.ABLoadAnalytics = function() {
+        if (!hasAnalyticsConsent()) return;
+        configureAnalytics();
+        if (loaded) return;
+        loaded = true;
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
+        document.head.appendChild(script);
+    };
+    if (hasAnalyticsConsent()) window.ABLoadAnalytics();
+})();
 
 window.ABUtils = {
     formatPhoneLink: function(phone) {

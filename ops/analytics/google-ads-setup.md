@@ -10,7 +10,7 @@ Domínio canônico de produção: `https://abreuebrum.com.br`
 | Produto | ID | Para que serve |
 |---------|----|----------------|
 | Google Analytics 4 | `G-K46VQ6H8MS` | Mede **todo o tráfego** do site (visitas, origem, localização, comportamento) |
-| Google Ads | `AW-18216339237` | Mede **conversões** das campanhas e habilita remarketing |
+| Google Ads | `AW-18216339237` | Mede **conversões** das campanhas quando configuradas; remarketing não está habilitado nesta release |
 
 As duas tags **convivem** — uma não substitui a outra. O domínio
 `googletagmanager.com` no script é apenas onde o `gtag.js` é hospedado; **não**
@@ -33,21 +33,25 @@ Isso está aplicado no `<head>` de todas as páginas HTML em `app/web/`.
 ## Consentimento (LGPD)
 
 `app/web/js/analytics.js` usa Consent Mode v2. Por padrão tudo fica `denied`.
-Quando o usuário **aceita** os cookies no banner, os sinais
-`analytics_storage`, `ad_storage`, `ad_user_data` e `ad_personalization`
-passam a `granted`, permitindo a medição completa de conversões do Ads.
-Quando recusa, permanecem `denied` (modelagem de conversão do Google atua como fallback).
+Quando o usuário **aceita** os cookies no banner, apenas
+`analytics_storage` passa a `granted`. Os sinais
+`ad_storage`, `ad_user_data` e `ad_personalization` permanecem `denied` nesta
+release; portanto, remarketing e conversões Ads que dependam desses sinais não
+devem ser tratados como habilitados. Quando recusa, todos permanecem `denied`.
 
 ## Medição das conversões (formulário, WhatsApp, blog)
 
 A tag base já habilita remarketing e a conversão de visita. Para contar as
 conversões específicas, há dois caminhos:
 
-### Opção A — Importar o evento do GA4 (recomendada, sem código)
+### Opção A — Importar um evento confirmado do GA4 (recomendada, sem código)
 
 1. Vincular as contas: Google Ads > **Ferramentas > Vínculos de contas > Google Analytics (GA4)**.
 2. Em **Ferramentas > Conversões > Nova ação de conversão > Importar > GA4**,
-   importar o evento `generate_lead` (já disparado por `app/web/js/lead-tracking.js`).
+   importar somente um evento de lead confirmado, como `generate_lead`, após
+   existir backend/CRM ou confirmação operacional. O site estático registra
+   `whatsapp_message_prepared` e `contact_channel_opened`, que não significam
+   envio ou recebimento de lead.
 3. Marcar como conversão primária da campanha de Search.
 
 ### Opção B — Disparo direto via gtag (rótulo de conversão)
@@ -65,9 +69,9 @@ conversões específicas, há dois caminhos:
    }
    ```
 
-3. Pronto: `trackGenerateLead()` em `app/web/js/lead-tracking.js` já dispara
-   automaticamente `gtag('event', 'conversion', { send_to: 'AW-18216339237/AbCdEfGhIjK' })`
-   junto com o `generate_lead`, sem necessidade de mais alterações.
+3. O código só dispara a conversão direta quando o rótulo estiver configurado
+   e a chamada indicar explicitamente um evento elegível (`ads_conversion: true`).
+   Não habilite essa opção para abertura de WhatsApp ou preparo de mensagem.
 
 > Use **uma** das opções para evitar contagem duplicada. A Opção A é a mais
 > simples e centraliza tudo no GA4; a Opção B é útil para conversões em tempo
@@ -81,4 +85,5 @@ conversões específicas, há dois caminhos:
    carregados por **um único** `gtag.js`.
 3. Aceitar os cookies e confirmar no console/Network o disparo de `consent update`
    com `ad_storage: granted`.
-4. Com a Opção B ativa, disparar um lead e verificar o evento `conversion`.
+4. Com a Opção B ativa, use um fluxo de teste que confirme o lead e verifique o
+   evento `conversion`; não use apenas o clique em WhatsApp como prova.

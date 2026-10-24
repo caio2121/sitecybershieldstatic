@@ -1,5 +1,7 @@
 ﻿function trackGAEvent(eventName, params) {
-    if (typeof window.gtag !== 'function') return;
+    if (typeof window.gtag !== 'function'
+        || typeof window.ABHasAnalyticsConsent !== 'function'
+        || !window.ABHasAnalyticsConsent()) return;
     window.gtag('event', eventName, Object.assign({
         site_area: document.body && document.body.getAttribute('data-site-area') || 'main_site'
     }, params || {}));
@@ -22,6 +24,7 @@ function updateAnalyticsConsent(value) {
             ad_personalization: 'denied'
         });
     }
+    if (value === 'granted' && typeof window.ABLoadAnalytics === 'function') window.ABLoadAnalytics();
 }
 
 function readAnalyticsConsent() {
@@ -30,16 +33,6 @@ function readAnalyticsConsent() {
         if (current === 'granted' || current === 'denied') return current;
     } catch (e) {}
     return null;
-}
-
-function injectCookieConsentStyles() {
-    if (document.getElementById('ab-cookie-consent-style')) return;
-    var style = document.createElement('style');
-    style.id = 'ab-cookie-consent-style';
-    style.textContent = ''
-        + '.cookie-consent{position:fixed;right:1.25rem;bottom:5.25rem;z-index:2200;width:min(480px,calc(100vw - 2rem));display:flex;align-items:center;gap:1rem;padding:1rem;color:var(--color-ink,#0b1f3a);background:rgba(255,255,255,.98);border:1px solid rgba(1,34,77,.16);border-radius:8px;box-shadow:0 18px 45px rgba(1,34,77,.18);}'
-        + '.cookie-consent__text{display:grid;gap:.25rem;flex:1;font-size:.9rem;line-height:1.45}.cookie-consent__text span{color:var(--color-muted,#43546a)}.cookie-consent__link{color:var(--color-primary,#01224d);font-weight:700;text-decoration:underline;width:fit-content}.cookie-consent__actions{display:flex;gap:.5rem;flex-shrink:0}.cookie-consent__actions .btn{min-height:40px;padding:.65rem .9rem;font-size:.9rem}@media (max-width:640px){.cookie-consent{left:1rem;right:1rem;bottom:1rem;width:auto;flex-direction:column;align-items:stretch}.cookie-consent__actions{justify-content:stretch}.cookie-consent__actions .btn{flex:1}}';
-    document.head.appendChild(style);
 }
 
 function initCookieConsent() {
@@ -51,9 +44,8 @@ function initCookieConsent() {
         return;
     }
 
-    injectCookieConsentStyles();
     var banner = document.createElement('div');
-    banner.className = 'cookie-consent';
+    banner.className = 'cookie-consent cookie-consent--main';
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-live', 'polite');
     banner.setAttribute('aria-label', 'Preferências de cookies');
@@ -84,6 +76,13 @@ function getSectionContext(element) {
     return section && (section.id || section.className || section.tagName.toLowerCase()) || 'unknown';
 }
 
+function getAttributionParams() {
+    if (window.ABLeadTracking && typeof window.ABLeadTracking.getAttributionParams === 'function') {
+        return window.ABLeadTracking.getAttributionParams();
+    }
+    return {};
+}
+
 function initGAEventTracking() {
     if (window.ABLeadTracking) {
         window.ABLeadTracking.initDelegatedLeadClickTracking();
@@ -104,7 +103,9 @@ function initGAEventTracking() {
         if (link.classList.contains('btn')) {
             trackGAEvent('cta_click', {
                 link_text: text,
-                link_url: isScrollContact ? '#contato' : href,
+                link_url: leadTracking && typeof leadTracking.sanitizeLinkTarget === 'function'
+                    ? leadTracking.sanitizeLinkTarget(href)
+                    : (isScrollContact ? '#contato' : ''),
                 page_section: context
             });
         }
@@ -153,14 +154,16 @@ function getCompanyWhatsAppNumber() {
     return String(number).replace(/\D/g, '');
 }
 
-var CONTACT_SERVICE_VALUES = ['abscan', 'relatorio', 'pentest', 'fornecedor'];
+var CONTACT_SERVICE_VALUES = ['abscan', 'relatorio', 'pentest', 'exposicao', 'fornecedor', 'consultoria'];
 
 function getServiceLabel(serviceValue) {
     var serviceMap = {
         abscan: 'Avaliar segurança de um domínio',
         relatorio: 'Receber relatório de segurança web',
         pentest: 'Solicitar PenTest manual',
-        fornecedor: 'Responder exigência de cliente, fornecedor ou auditoria'
+        exposicao: 'Avaliar exposição externa',
+        fornecedor: 'Responder exigência de cliente, fornecedor ou auditoria',
+        consultoria: 'Conversar sobre outra necessidade de segurança'
     };
     return serviceMap[serviceValue] || serviceValue || 'Não informado';
 }
@@ -212,7 +215,12 @@ function buildWhatsAppMessage(data) {
         pentestLines.join('\n'),
         'Mensagem:',
         data.mensagem || 'Não informada'
-    ].filter(function(line) { return line !== ''; }).join('\n');
+    ].concat(Object.keys(getAttributionParams()).length ? [
+        '',
+        'Origem da campanha: ' + Object.keys(getAttributionParams()).map(function(key) {
+            return key.replace('utm_', '') + '=' + getAttributionParams()[key];
+        }).join(', ')
+    ] : []).filter(function(line) { return line !== ''; }).join('\n');
 }
 
 function openWhatsAppWithFormData(data) {
@@ -232,7 +240,7 @@ function showFieldError(fieldId, message) {
     var helpElement = formGroup.querySelector('.form-help');
     if (helpElement) {
         helpElement.textContent = message;
-        helpElement.style.color = '#b42318';
+        helpElement.classList.add('error-text');
     }
 }
 
@@ -244,7 +252,7 @@ function clearFieldError(fieldId) {
     formGroup.classList.remove('error');
     var helpElement = formGroup.querySelector('.form-help');
     if (helpElement) {
-        helpElement.style.color = '';
+        helpElement.classList.remove('error-text');
     }
 }
 
@@ -264,38 +272,35 @@ function initContactForm() {
     function showMessage(text, type) {
         if (!messageDiv) return;
         messageDiv.textContent = text;
-        messageDiv.className = 'contact-message ' + (type || 'success');
-        messageDiv.style.display = 'block';
+        messageDiv.className = 'contact-message is-visible ' + (type || 'success');
         messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         if (type !== 'error') {
             window.setTimeout(function() {
-                messageDiv.style.display = 'none';
+                messageDiv.classList.remove('is-visible');
             }, 10000);
         }
     }
 
     function setLoading(isLoading) {
         submitBtn.disabled = isLoading;
-        if (btnText) btnText.style.display = isLoading ? 'none' : 'inline';
-        if (btnLoading) btnLoading.style.display = isLoading ? 'inline' : 'none';
-        submitBtn.setAttribute('aria-label', isLoading ? 'Preparando mensagem, aguarde' : 'Enviar solicitação');
+        if (btnText) btnText.classList.toggle('is-hidden', isLoading);
+        if (btnLoading) btnLoading.classList.toggle('is-hidden', !isLoading);
+        submitBtn.setAttribute('aria-label', isLoading ? 'Preparando mensagem, aguarde' : 'Abrir conversa comercial');
     }
 
     function clearFormErrors() {
         contactForm.querySelectorAll('.form-group').forEach(function(group) {
             group.classList.remove('error');
             var helpElement = group.querySelector('.form-help');
-            if (helpElement) helpElement.style.color = '';
+            if (helpElement) helpElement.classList.remove('error-text');
         });
     }
 
     function validateContactFields(email, whatsapp) {
         var emailTrim = String(email || '').trim();
         var whatsappTrim = String(whatsapp || '').trim();
-        var emailOk = emailTrim && hasValidEmail(emailTrim);
-        var whatsappOk = whatsappTrim && hasValidWhatsApp(whatsappTrim);
-
-        if (emailOk || whatsappOk) return true;
+        var emailOk = Boolean(emailTrim && hasValidEmail(emailTrim));
+        var whatsappOk = Boolean(whatsappTrim && hasValidWhatsApp(whatsappTrim));
 
         if (!emailTrim && !whatsappTrim) {
             showFieldError('contact-email', 'Informe e-mail ou WhatsApp para contato');
@@ -305,7 +310,7 @@ function initContactForm() {
 
         if (emailTrim && !emailOk) showFieldError('contact-email', 'Digite um e-mail válido');
         if (whatsappTrim && !whatsappOk) showFieldError('contact-whatsapp', 'WhatsApp deve ter pelo menos 10 dígitos');
-        return false;
+        return (emailOk || whatsappOk) && (!emailTrim || emailOk) && (!whatsappTrim || whatsappOk);
     }
 
     function validateOptionalPentestFields(data) {
@@ -403,7 +408,8 @@ function initContactForm() {
         clearFieldError(field.id);
     }, true);
 
-    submitBtn.addEventListener('click', function() {
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
         var formData = new FormData(contactForm);
         var data = {
             nome: String(formData.get('nome') || '').trim(),
@@ -423,18 +429,31 @@ function initContactForm() {
         if (!validateForm(data)) return;
 
         setLoading(true);
+        var whatsappOpened = openWhatsAppWithFormData(data);
+        if (!whatsappOpened) {
+            trackGAEvent('form_submit_error', { form_id: 'contactForm', error_type: 'popup_blocked' });
+            showMessage('Não foi possível abrir o WhatsApp. Desative o bloqueio de pop-ups ou use os canais de contato ao lado.', 'error');
+            setLoading(false);
+            return;
+        }
         if (window.ABLeadTracking) {
-            window.ABLeadTracking.trackLeadFormSubmit('contactForm', {
+            window.ABLeadTracking.trackLeadFormPrepared('contactForm', {
                 form_location: 'contact_section',
                 service_value: data.servico,
                 cta_text: 'Enviar solicitação'
             });
         }
-
-        openWhatsAppWithFormData(data);
-        showMessage('Abrindo WhatsApp com sua mensagem preenchida. Revise antes de enviar.', 'success');
+        trackGAEvent('form_message_prepared', { form_id: 'contactForm', service: data.servico });
+        trackGAEvent('proposal_message_prepared', { service: data.servico });
+        showMessage('WhatsApp aberto com sua mensagem preenchida. Revise os dados antes de enviar.', 'success');
         setLoading(false);
     });
+
+    if (submitBtn.type !== 'submit') {
+        submitBtn.addEventListener('click', function() {
+            contactForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+        });
+    }
 
     contactForm.addEventListener('keydown', function(event) {
         if (event.key !== 'Enter') return;
@@ -452,6 +471,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initGAEventTracking();
     initMobileMenu();
     initContactForm();
+    var servicePage = document.body && document.body.getAttribute('data-service-page');
+    if (servicePage) trackGAEvent('service_page_view', { service_page: servicePage });
     document.body.classList.add('loaded');
 });
 

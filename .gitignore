@@ -1,2 +1,9 @@
 .cursor/
 input-marketing/
+
+# Credenciais, telemetria e artefatos de execução locais
+**/.env
+.opencode/
+.playwright-mcp/
+__pycache__/
+*.py[cod]

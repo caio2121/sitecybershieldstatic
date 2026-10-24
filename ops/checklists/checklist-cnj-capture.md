@@ -1,88 +1,48 @@
-# Captura de dados do checklist CNJ (GitHub Pages + GAS)
+# Captura CNJ — desativada
 
-Domínio canônico de produção: `https://abreuebrum.com.br`
+## Status atual
 
-## 1) Preparar Google Sheets
+A captura automática do checklist CNJ está **desativada** nesta release.
 
-- Crie uma planilha para receber os envios.
-- Copie o ID da planilha (trecho entre `/d/` e `/edit` na URL).
+Classificação da pendência externa: **EXTERNAL_DEFERRED — Legacy Apps Script Deployment**.
+Investigação futura: tarefa `agent-tasks#1571`.
 
-## 2) Publicar Apps Script como Web App
+- O checklist público funciona localmente no navegador.
+- O frontend não monta payload nem faz `fetch`, XHR ou `sendBeacon` para captura.
+- `ops/checklists/checklist-cnj-capture.gs` responde como desativado e não grava planilhas.
+- Nenhum endpoint público de captura foi configurado no HTML.
+- Não foi possível verificar se versões antigas do Apps Script estão implantadas externamente.
 
-- Crie um projeto Apps Script.
-- Cole o conteúdo de `ops/checklists/checklist-cnj-capture.gs`.
-- Atualize `CONFIG.spreadsheetId` com o ID da planilha.
-- Confirme `CONFIG.allowedOrigins` com o domínio publicado:
-  - `https://abreuebrum.com.br`
-  - `https://www.abreuebrum.com.br`
-- Faça deploy como **Web App**:
-  - Execute as: `Me`
-  - Who has access: `Anyone`
-- Copie a URL final do Web App.
+## Ação operacional obrigatória
 
-## 3) Configurar o endpoint no checklist
+Antes da publicação, a operação deve verificar no Google Apps Script se existe
+algum deployment antigo deste projeto. Se existir, deve suspendê-lo ou removê-lo.
+Esta alteração no repositório não revoga deployments externos já publicados.
 
-No arquivo `app/web/assets/checklists/checklist-cnj-interativo.html`, ajuste:
+Não declarar a captura CNJ como ativa, nem reutilizar o endpoint antigo, até uma
+tarefa independente definir backend autenticado, autorização, retenção, LGPD,
+monitoramento e critérios de aprovação.
 
-```html
-<script>
-  window.CHECKLIST_CONFIG = window.CHECKLIST_CONFIG || {
-    captureEndpoint: "https://script.google.com/macros/s/SEU_DEPLOY_ID/exec",
-    requestTimeoutMs: 12000
-  };
-</script>
-```
+## Futura implementação
 
-## 4) O que é enviado
+Uma tarefa futura deverá definir, antes de qualquer transmissão:
 
-O front envia:
+- backend server-side autenticado e autorizado;
+- autenticação que não dependa de `metadata.pageUrl`, CORS, Origin ou Referer;
+- endpoint e credenciais mantidos fora do frontend;
+- política de retenção e acesso aos dados;
+- confirmação de envio e tratamento de falhas;
+- revisão independente de segurança e privacidade;
+- teste de publicação que rejeite qualquer caminho de captura não aprovado.
 
-- `status`: `started`, `in_progress` ou `completed`
-- `lead`: nome, e-mail, whatsapp, consentimento (`consentGivenAt`)
-- `answers`: respostas por pergunta (`sim`, `nao`, `nao_sei`)
-- `stats`: totais do diagnóstico
-- `xp` e `conformity`
-- `metadata`: timestamp, URL e user-agent
-- `submissionKey`: chave de idempotência por sessão
+O Apps Script existente é apenas referência histórica e permanece desativado.
+Não preencher placeholders de planilha, API Secret, Measurement ID ou endpoint
+nesta release.
 
-## 5) Idempotência e falha de rede
+## Analytics
 
-- O backend faz upsert por `submissionKey` na mesma linha (`started` -> `in_progress` -> `completed`).
-- Se houver falha de rede, o usuário pode clicar em "Tentar envio novamente" no relatório final.
+O site pode registrar eventos de intenção sem dados pessoais após consentimento,
+como `diagnostic_started` e `contact_channel_opened`. Esses eventos não confirmam
+lead, envio de mensagem ou captura do checklist.
 
-## 6) Pipeline comercial e eventos GA4 offline
-
-O Apps Script também mantém a aba `commercial_pipeline` e envia eventos via **Measurement Protocol** quando o status comercial muda.
-
-### Configuração
-
-1. Em `checklist-cnj-capture.gs`, atualize:
-   - `CONFIG.ga4MeasurementId` (`G-K46VQ6H8MS`)
-   - `CONFIG.ga4ApiSecret` (criado no GA4 > Fluxo de dados Web)
-   - `CONFIG.allowedOrigins` (domínio `https://abreuebrum.com.br`)
-2. Faça novo deploy do Web App.
-3. No editor Apps Script, execute `installCommercialPipelineTrigger()` **uma vez**.
-
-### Colunas principais (`commercial_pipeline`)
-
-- `lead_id`, `ga_client_id`, `submission_key`
-- `commercial_status`: `novo`, `em_atendimento`, `qualificado`, `desqualificado`, `ganho`, `perdido`
-- `qualification_type`, `disqualification_reason`, `loss_reason`, `conversion_type`
-- `value`, `currency`
-- `ga4_last_event`, `ga4_event_sent`, `ga4_sent_at`
-
-### Mapeamento status → evento GA4
-
-| commercial_status | Evento |
-|-------------------|--------|
-| `em_atendimento` | `working_lead` |
-| `qualificado` | `qualify_lead` |
-| `desqualificado` | `disqualify_lead` |
-| `ganho` | `close_convert_lead` |
-| `perdido` | `close_unconvert_lead` |
-
-O `generate_lead` continua sendo disparado **apenas no site**; a planilha não reenvia esse evento.
-
-### client_id
-
-O checklist envia `metadata.gaClientId` (cookie `_ga`) no payload. Use esse valor para conciliar eventos offline com a sessão online.
+`generate_lead` e eventos offline dependem de um fluxo futuro que confirme o lead.

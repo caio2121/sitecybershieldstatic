@@ -24,6 +24,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Bloquear captura CNJ não autenticada
+        run: node tests/release/cnj-capture-disabled.mjs
+
       - name: Preparar arquivos estáticos (somente app/web)
         run: |
           mkdir -p _site
@@ -32,17 +35,15 @@ jobs:
       - name: Ajustar domínio público em SEO
         run: |
           find _site -type f \( -name "*.html" -o -name "*.xml" -o -name "*.txt" \) -print0 \
-            | xargs -0 sed -i 's#https://www\.abreuebrum\.technsolutions\.com\.br#https://abreuebrum.com.br#g'
-          find _site -type f \( -name "*.html" -o -name "*.xml" -o -name "*.txt" \) -print0 \
-            | xargs -0 sed -i 's#https://abreuebrum\.technsolutions\.com\.br#https://abreuebrum.com.br#g'
-          find _site -type f \( -name "*.html" -o -name "*.xml" -o -name "*.txt" \) -print0 \
             | xargs -0 sed -i 's#https://www\.abreuebrum\.com\.br#https://abreuebrum.com.br#g'
           find _site -type f \( -name "*.html" -o -name "*.xml" -o -name "*.txt" \) -print0 \
             | xargs -0 sed -i 's#https://abreuebrum\.com\.br#https://abreuebrum.com.br#g'
           find _site -type f \( -name "*.html" -o -name "*.xml" -o -name "*.txt" \) -print0 \
             | xargs -0 sed -i 's#https://abreubrum\.com\.br#https://abreuebrum.com.br#g'
           find _site -type f -name "*.docx" -delete
+          find _site -type f -name "*.pdf" -delete
           find _site -type f -name "*.md" -delete
+          test -z "$(find _site -type f \( -name '*.docx' -o -name '*.pdf' -o -name '*.md' \) -print -quit)"
 
       - name: Garantir domínio customizado
         run: |

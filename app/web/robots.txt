@@ -2,6 +2,7 @@
 Allow: /
 Disallow: /*.docx$
 Disallow: /*.md$
+Disallow: /*.pdf$
 
 Sitemap: https://abreuebrum.com.br/sitemap.xml
 

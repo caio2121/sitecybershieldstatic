@@ -101,7 +101,10 @@
         if (elNs) elNs.textContent = String(c.nao_sei);
         if (elUn) elUn.textContent = String(c.total - c.answered);
         if (elPct) elPct.textContent = String(adherence);
-        if (elBar) elBar.style.width = String(adherence) + "%";
+        if (elBar) {
+            elBar.classList.remove("score-bar-fill--0", "score-bar-fill--25", "score-bar-fill--50", "score-bar-fill--75", "score-bar-fill--100");
+            elBar.classList.add("score-bar-fill--" + Math.min(100, Math.max(0, Math.round(adherence / 25) * 25)));
+        }
     }
 
     function onRadioChange(ev) {

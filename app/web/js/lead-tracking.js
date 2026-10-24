@@ -12,7 +12,7 @@
         fornecedor: { service_name: 'supplier_approval', lead_type: 'commercial_evidence' }
     };
 
-    var PII_PATTERN = /(@|tel:|mailto:|wa\.me\/\d|\d{10,})/i;
+    var PII_PATTERN = /(@|tel:|mailto:|wa\.me\/\d|\+?\d[\d\s().-]{8,}\d)/i;
 
     function getSiteArea() {
         return document.body && document.body.getAttribute('data-site-area') || 'static_site';
@@ -41,6 +41,45 @@
         } catch (e) {
             return window.location.pathname || '';
         }
+    }
+
+    function sanitizeLinkTarget(href) {
+        var value = String(href || '');
+        if (isScrollOnlyContactLink(value)) return '#contato';
+
+        try {
+            var url = new URL(value, global.location.href);
+            if (url.protocol === 'mailto:') return 'mailto:';
+            if (url.protocol === 'tel:') return 'tel:';
+            if (url.hostname === 'wa.me' || /(^|\.)whatsapp\.com$/i.test(url.hostname)) return 'whatsapp';
+            if (url.origin === global.location.origin) return url.origin + url.pathname;
+            return url.origin;
+        } catch (e) {
+            return '';
+        }
+    }
+
+    function getAttributionParams() {
+        var allowed = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+        var params = {};
+        try {
+            var query = new URLSearchParams(window.location.search);
+            allowed.forEach(function (key) {
+                var value = query.get(key);
+                var sanitized = sanitizeAttributionValue(value);
+                if (sanitized) params[key] = sanitized;
+            });
+        } catch (e) {}
+        return params;
+    }
+
+    function sanitizeAttributionValue(value) {
+        var normalized = String(value || '').trim();
+        if (!normalized || normalized.length > 80) return '';
+        if (PII_PATTERN.test(normalized) || /(?:https?:\/\/|mailto:|tel:|wa\.me)/i.test(normalized)) return '';
+        if (/\d{8,}/.test(normalized)) return '';
+        if (!/^[\p{L}\p{N}._~-]+$/u.test(normalized)) return '';
+        return normalized;
     }
 
     function mapServiceToLeadParams(serviceValue) {
@@ -107,7 +146,9 @@
     }
 
     function trackEvent(eventName, params) {
-        if (typeof global.gtag !== 'function') return;
+        if (typeof global.gtag !== 'function'
+            || typeof global.ABHasAnalyticsConsent !== 'function'
+            || !global.ABHasAnalyticsConsent()) return;
         global.gtag('event', eventName, Object.assign({
             site_area: getSiteArea(),
             page_location: sanitizePageLocation(),
@@ -116,7 +157,9 @@
     }
 
     function trackAdsConversion(params) {
-        if (typeof global.gtag !== 'function') return;
+        if (typeof global.gtag !== 'function'
+            || typeof global.ABHasAnalyticsConsent !== 'function'
+            || !global.ABHasAnalyticsConsent()) return;
         var analytics = (global.ABConfig && global.ABConfig.analytics) || {};
         if (!analytics.adsConversionId || !analytics.adsConversionLabel) return;
         global.gtag('event', 'conversion', {
@@ -134,9 +177,12 @@
             lead_channel: extraParams.lead_channel || 'cta',
             lead_type: extraParams.lead_type || 'contact_request',
             service_name: extraParams.service_name || 'general',
+            lead_stage: extraParams.lead_stage || 'intent',
             page_location: sanitizePageLocation(),
             page_title: document.title || ''
         };
+
+        Object.assign(params, getAttributionParams());
 
         if (extraParams.form_id) params.form_id = extraParams.form_id;
         if (extraParams.form_location) params.form_location = extraParams.form_location;
@@ -147,8 +193,8 @@
         if (clientId) params.lead_session_id = clientId;
 
         if (shouldSkipDuplicate(buildDedupeKey(params))) return false;
-        trackEvent(extraParams.event_name || 'contact_submitted', params);
-        trackAdsConversion(params);
+        trackEvent(extraParams.event_name || 'contact_intent', params);
+        if (extraParams.ads_conversion === true) trackAdsConversion(params);
         return true;
     }
 
@@ -162,6 +208,7 @@
 
         if (isCommercialWhatsAppLink(link, href)) {
             return trackGenerateLead({
+                event_name: 'contact_channel_opened',
                 lead_channel: 'whatsapp',
                 lead_type: 'commercial_contact',
                 service_name: 'general',
@@ -172,6 +219,7 @@
 
         if (isCommercialEmailLink(link, href)) {
             return trackGenerateLead({
+                event_name: 'contact_channel_opened',
                 lead_channel: 'email',
                 lead_type: 'commercial_contact',
                 service_name: 'general',
@@ -182,6 +230,7 @@
 
         if (isCommercialPhoneLink(link, href)) {
             return trackGenerateLead({
+                event_name: 'contact_channel_opened',
                 lead_channel: 'phone',
                 lead_type: 'commercial_contact',
                 service_name: 'general',
@@ -193,23 +242,25 @@
         return false;
     }
 
-    function trackLeadFormSubmit(formId, options) {
+    function trackLeadFormPrepared(formId, options) {
         options = options || {};
         suppressCommercialClicks();
         var serviceParams = mapServiceToLeadParams(options.service_value);
-        var eventName = serviceParams.lead_type === 'pentest_interest'
-            ? 'pentest_interest_submitted'
-            : 'contact_submitted';
-
         return trackGenerateLead({
-            event_name: eventName,
+            event_name: 'whatsapp_message_prepared',
             lead_channel: 'form',
             lead_type: options.lead_type || serviceParams.lead_type,
             service_name: options.service_name || serviceParams.service_name,
+            lead_stage: 'message_prepared',
             form_id: formId,
             form_location: options.form_location || 'contact_section',
             cta_text: options.cta_text || 'form_submit'
         });
+    }
+
+    // Compatibilidade para consumidores antigos; o evento agora descreve preparo.
+    function trackLeadFormSubmit(formId, options) {
+        return trackLeadFormPrepared(formId, options);
     }
 
     var delegatedClickBound = false;
@@ -229,10 +280,14 @@
         resolveCtaLocation: resolveCtaLocation,
         isScrollOnlyContactLink: isScrollOnlyContactLink,
         sanitizeCtaText: sanitizeCtaText,
+        sanitizeLinkTarget: sanitizeLinkTarget,
+        sanitizeAttributionValue: sanitizeAttributionValue,
         suppressCommercialClicks: suppressCommercialClicks,
         trackGenerateLead: trackGenerateLead,
         trackCommercialLinkClick: trackCommercialLinkClick,
         trackLeadFormSubmit: trackLeadFormSubmit,
+        trackLeadFormPrepared: trackLeadFormPrepared,
+        getAttributionParams: getAttributionParams,
         initDelegatedLeadClickTracking: initDelegatedLeadClickTracking
     };
 })(window);

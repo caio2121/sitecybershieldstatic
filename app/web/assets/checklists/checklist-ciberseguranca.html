@@ -1,47 +1,28 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K46VQ6H8MS"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-      var abConsent = 'denied';
-      try {
-        abConsent = localStorage.getItem('ab_cookie_consent') === 'granted' ? 'granted' : 'denied';
-      } catch (e) {}
-      gtag('consent', 'default', {
-        'analytics_storage': abConsent,
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied'
-      });
-
-    gtag('config', 'G-K46VQ6H8MS');
-    gtag('config', 'AW-18216339237');
-  </script>
-
-  <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; script-src-attr 'none'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'sha256-18J4N21X8alT5rxXU3zCEFMN5bXuN54P4jC8l/s9ZzQ=' 'sha256-5L5bmxFbt/zNN03sGvJgsjIaazRAGClgiFH4YANSRRg='; style-src-attr 'none'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://pagead2.googlesyndication.com;">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
-  <title>Checklist de CiberseguranÃ§a para Empresas | ABREU & BRUM</title>
-  <meta name="description" content="Checklist gratuito de ciberseguranÃ§a para empresas com itens de LGPD, governanÃ§a, proteÃ§Ã£o de dados, vulnerabilidades e resposta a incidentes.">
+  <title>Checklist de Cibersegurança para Empresas | ABREU & BRUM</title>
+  <meta name="description" content="Checklist gratuito de cibersegurança para empresas com itens de LGPD, governança, proteção de dados, vulnerabilidades e resposta a incidentes.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://abreuebrum.com.br/assets/checklists/checklist-ciberseguranca.html">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://abreuebrum.com.br/assets/checklists/checklist-ciberseguranca.html">
-  <meta property="og:title" content="Checklist de CiberseguranÃ§a para Empresas | ABREU & BRUM">
-  <meta property="og:description" content="Checklist gratuito para avaliar controles de ciberseguranÃ§a, LGPD, vulnerabilidades e resposta a incidentes.">
+  <meta property="og:title" content="Checklist de Cibersegurança para Empresas | ABREU & BRUM">
+  <meta property="og:description" content="Checklist gratuito para avaliar controles de cibersegurança, LGPD, vulnerabilidades e resposta a incidentes.">
   <meta property="og:image" content="https://abreuebrum.com.br/images/og-16x9.png">
 
   <meta name="document-number" content="Checklist CS 001">
   <meta name="document-client" content="Material gratuito">
   <meta name="document-date" content="2026">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" data-deferred-style>
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" media="print" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" data-lazy-style>
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 
   <style>
     @font-face {
@@ -203,9 +184,17 @@
       }
     }
 
+    .accent-text{ color: #d7b663; }
+    .cover-heading{ color: #ffffff; }
+    .cover-list-item{ color: rgba(226,232,240,0.92); }
+    .next-steps{ margin-top: 14px; }
+    .ink-text{ color: var(--ink); }
+
     @page{ size: A4; margin: 0; }
     @media print{ * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
   </style>
+    <script src="../../js/nonblocking-styles.js" defer></script>
+    <link rel="stylesheet" href="../../css/consent.css">
 </head>
 <body>
 <main id="main-content">
@@ -218,7 +207,7 @@
   <section class="page cover">
     <div class="page-header">
       <div class="brand">
-        <img src="../../images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM">
+        <img src="../../images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" width="4294" height="1035">
       </div>
       <div class="doc-meta">
         <div><strong>Material gratuito</strong></div>
@@ -226,33 +215,33 @@
       </div>
     </div>
 
-    <div class="page-title">Checklist de <span style="color:#d7b663;">CiberseguranÃ§a</span> para Empresas</div>
-    <div class="page-subtitle">Use este guia para verificar se sua empresa estÃ¡ protegida contra as principais ameaÃ§as cibernÃ©ticas. Inclui verificaÃ§Ã£o de conformidade LGPD, avaliaÃ§Ã£o de vulnerabilidades crÃ­ticas e base para plano de aÃ§Ã£o.</div>
+    <h1 class="page-title">Checklist de <span class="accent-text">Cibersegurança</span> para Empresas</h1>
+    <div class="page-subtitle">Use este guia para verificar se sua empresa está protegida contra as principais ameaças cibernéticas. Inclui verificação de conformidade LGPD, avaliação de vulnerabilidades críticas e base para plano de ação.</div>
 
     <div class="cover-badges">
-      <span class="badge"><strong>50+</strong> itens de verificaÃ§Ã£o</span>
+      <span class="badge"><strong>50+</strong> itens de verificação</span>
       <span class="badge"><strong>LGPD</strong> Conformidade</span>
-      <span class="badge"><strong>ISO 27001</strong> Boas prÃ¡ticas</span>
+      <span class="badge"><strong>ISO 27001</strong> Boas práticas</span>
       <span class="badge"><strong>Pentest</strong> Vulnerabilidades</span>
     </div>
 
     <div class="cover-pillars">
       <div class="card">
-        <h3 style="color:#ffffff;"><i class="fas fa-shield-alt"></i>O que vocÃª encontra</h3>
+        <h3 class="cover-heading"><i aria-hidden="true" class="fas fa-shield-alt"></i>O que você encontra</h3>
         <ul class="list">
-          <li style="color: rgba(226,232,240,0.92);">30+ itens prÃ¡ticos de verificaÃ§Ã£o de seguranÃ§a
+          <li class="cover-list-item">30+ itens práticos de verificação de segurança
 </li>
-          <li style="color: rgba(226,232,240,0.92);">Checklist de conformidade LGPD</li>
-          <li style="color: rgba(226,232,240,0.92);">AvaliaÃ§Ã£o de vulnerabilidades crÃ­ticas</li>
-          <li style="color: rgba(226,232,240,0.92);">Base para plano de aÃ§Ã£o personalizado</li>
-          <li style="color: rgba(226,232,240,0.92);">ReferÃªncias ISO 27001 e NIST</li>
+          <li class="cover-list-item">Checklist de conformidade LGPD</li>
+          <li class="cover-list-item">Avaliação de vulnerabilidades críticas</li>
+          <li class="cover-list-item">Base para plano de ação personalizado</li>
+          <li class="cover-list-item">Referências ISO 27001 e NIST</li>
         </ul>
       </div>
     </div>
 
     <div class="page-footer">
       <span><strong class="brand-wordmark-text">ABREU & BRUM</strong></span>
-      <span>PÃ¡gina <span class="pageNumber"></span> de <span class="totalPages"></span></span>
+      <span>Página <span class="pageNumber"></span> de <span class="totalPages"></span></span>
       <span><span class="docNo"></span></span>
     </div>
   </section>
@@ -262,7 +251,7 @@
       <div class="brand">
         <picture>
           <source media="print" srcset="../../images/logo-abreu-brum-preta.svg">
-          <img src="../../images/logo-abreu-brum.svg" alt="ABREU & BRUM">
+          <img src="../../images/logo-abreu-brum.svg" alt="ABREU & BRUM" width="4294" height="1035">
         </picture>
       </div>
       <div class="doc-meta">
@@ -270,40 +259,40 @@
       </div>
     </div>
 
-    <div class="page-title">1. GovernanÃ§a e LGPD</div>
-    <div class="page-subtitle">Controles de privacidade e conformidade com a Lei Geral de ProteÃ§Ã£o de Dados.</div>
+    <div class="page-title">1. Governança e LGPD</div>
+    <div class="page-subtitle">Controles de privacidade e conformidade com a Lei Geral de Proteção de Dados.</div>
 
-    <div class="section-title">DocumentaÃ§Ã£o e processos</div>
+    <div class="section-title">Documentação e processos</div>
     <div class="checklist-group">
-      <div class="checklist-item">PolÃ­tica de privacidade publicada e atualizada</div>
+      <div class="checklist-item">Política de privacidade publicada e atualizada</div>
       <div class="checklist-item">Registro de atividades de tratamento de dados pessoais (RATDP)</div>
       <div class="checklist-item">Base legal mapeada para cada finalidade de tratamento</div>
-      <div class="checklist-item">Consentimento obtido quando necessÃ¡rio (ou base legal adequada)</div>
-      <div class="checklist-item">Procedimento de resposta a incidentes de seguranÃ§a documentado</div>
-      <div class="checklist-item">Procedimento de atendimento a titulares (acesso, correÃ§Ã£o, exclusÃ£o)</div>
-      <div class="checklist-item">DPO indicado e contato divulgado (quando obrigatÃ³rio)</div>
-      <div class="checklist-item">Contratos com operadores e suboperadores com clÃ¡usulas LGPD</div>
-      <div class="checklist-item">AvaliaÃ§Ã£o de impacto Ã  proteÃ§Ã£o de dados (RIPD) para tratamentos de alto risco</div>
-      <div class="checklist-item">Treinamento de conscientizaÃ§Ã£o em privacidade para colaboradores</div>
+      <div class="checklist-item">Consentimento obtido quando necessário (ou base legal adequada)</div>
+      <div class="checklist-item">Procedimento de resposta a incidentes de segurança documentado</div>
+      <div class="checklist-item">Procedimento de atendimento a titulares (acesso, correção, exclusão)</div>
+      <div class="checklist-item">DPO indicado e contato divulgado (quando obrigatório)</div>
+      <div class="checklist-item">Contratos com operadores e suboperadores com cláusulas LGPD</div>
+      <div class="checklist-item">Avaliação de impacto à proteção de dados (RIPD) para tratamentos de alto risco</div>
+      <div class="checklist-item">Treinamento de conscientização em privacidade para colaboradores</div>
     </div>
 
-    <div class="section-title">SeguranÃ§a da informaÃ§Ã£o (ISO 27001 / NIST)</div>
+    <div class="section-title">Segurança da informação (ISO 27001 / NIST)</div>
     <div class="checklist-group">
-      <div class="checklist-item">PolÃ­tica de seguranÃ§a da informaÃ§Ã£o definida e comunicada</div>
-      <div class="checklist-item">InventÃ¡rio de ativos de informaÃ§Ã£o</div>
-      <div class="checklist-item">AnÃ¡lise de riscos realizada e documentada</div>
-      <div class="checklist-item">Controles de acesso (IAM) com princÃ­pio do menor privilÃ©gio</div>
-      <div class="checklist-item">PolÃ­tica de senhas forte (comprimento, complexidade, rotaÃ§Ã£o)</div>
-      <div class="checklist-item">AutenticaÃ§Ã£o multifator (MFA) em sistemas crÃ­ticos</div>
-      <div class="checklist-item">Backup regular testado e plano de recuperaÃ§Ã£o documentado</div>
-      <div class="checklist-item">Criptografia de dados em repouso e em trÃ¢nsito</div>
-      <div class="checklist-item">GestÃ£o de patches e atualizaÃ§Ãµes de seguranÃ§a</div>
-      <div class="checklist-item">Monitoramento e logs de seguranÃ§a</div>
+      <div class="checklist-item">Política de segurança da informação definida e comunicada</div>
+      <div class="checklist-item">Inventário de ativos de informação</div>
+      <div class="checklist-item">Análise de riscos realizada e documentada</div>
+      <div class="checklist-item">Controles de acesso (IAM) com princípio do menor privilégio</div>
+      <div class="checklist-item">Política de senhas forte (comprimento, complexidade, rotação)</div>
+      <div class="checklist-item">Autenticação multifator (MFA) em sistemas críticos</div>
+      <div class="checklist-item">Backup regular testado e plano de recuperação documentado</div>
+      <div class="checklist-item">Criptografia de dados em repouso e em trânsito</div>
+      <div class="checklist-item">Gestão de patches e atualizações de segurança</div>
+      <div class="checklist-item">Monitoramento e logs de segurança</div>
     </div>
 
     <div class="page-footer">
       <span><strong class="brand-wordmark-text">ABREU & BRUM</strong></span>
-      <span>PÃ¡gina <span class="pageNumber"></span> de <span class="totalPages"></span></span>
+      <span>Página <span class="pageNumber"></span> de <span class="totalPages"></span></span>
       <span><span class="docNo"></span></span>
     </div>
   </section>
@@ -313,7 +302,7 @@
       <div class="brand">
         <picture>
           <source media="print" srcset="../../images/logo-abreu-brum-preta.svg">
-          <img src="../../images/logo-abreu-brum.svg" alt="ABREU & BRUM">
+          <img src="../../images/logo-abreu-brum.svg" alt="ABREU & BRUM" width="4294" height="1035">
         </picture>
       </div>
       <div class="doc-meta">
@@ -321,67 +310,54 @@
       </div>
     </div>
 
-    <div class="page-title">2. Infraestrutura e aplicaÃ§Ãµes</div>
-    <div class="page-subtitle">ProteÃ§Ã£o de sistemas, redes e aplicaÃ§Ãµes web.</div>
+    <div class="page-title">2. Infraestrutura e aplicações</div>
+    <div class="page-subtitle">Proteção de sistemas, redes e aplicações web.</div>
 
     <div class="section-title">Infraestrutura</div>
     <div class="checklist-group">
       <div class="checklist-item">Firewall configurado e regras revisadas periodicamente</div>
-      <div class="checklist-item">SegmentaÃ§Ã£o de rede (isolamento de Ã¡reas sensÃ­veis)</div>
+      <div class="checklist-item">Segmentação de rede (isolamento de áreas sensíveis)</div>
       <div class="checklist-item">VPN para acesso remoto seguro</div>
-      <div class="checklist-item">ProteÃ§Ã£o antivÃ­rus/EDR em endpoints e servidores</div>
-      <div class="checklist-item">Controle de dispositivos mÃ³veis e BYOD</div>
-      <div class="checklist-item">ProteÃ§Ã£o de e-mail (antispam, antiphishing)</div>
-      <div class="checklist-item">GestÃ£o segura de credenciais e segredos</div>
-      <div class="checklist-item">DesativaÃ§Ã£o imediata de acessos ao desligar colaborador</div>
+      <div class="checklist-item">Proteção antivírus/EDR em endpoints e servidores</div>
+      <div class="checklist-item">Controle de dispositivos móveis e BYOD</div>
+      <div class="checklist-item">Proteção de e-mail (antispam, antiphishing)</div>
+      <div class="checklist-item">Gestão segura de credenciais e segredos</div>
+      <div class="checklist-item">Desativação imediata de acessos ao desligar colaborador</div>
     </div>
 
-    <div class="section-title">AplicaÃ§Ãµes e desenvolvimento</div>
+    <div class="section-title">Aplicações e desenvolvimento</div>
     <div class="checklist-group">
-      <div class="checklist-item">AplicaÃ§Ãµes web com HTTPS obrigatÃ³rio</div>
-      <div class="checklist-item">ValidaÃ§Ã£o de entrada e proteÃ§Ã£o contra injecao (OWASP)</div>
-      <div class="checklist-item">GestÃ£o de dependÃªncias e vulnerabilidades conhecidas (SCA)</div>
-      <div class="checklist-item">Pentest ou avaliaÃ§Ã£o de vulnerabilidades periÃ³dica</div>
-      <div class="checklist-item">Ambientes de desenvolvimento e homologaÃ§Ã£o isolados</div>
-      <div class="checklist-item">Pipeline CI/CD com etapas de seguranÃ§a</div>
+      <div class="checklist-item">Aplicações web com HTTPS obrigatório</div>
+      <div class="checklist-item">Validação de entrada e proteção contra injecao (OWASP)</div>
+      <div class="checklist-item">Gestão de dependências e vulnerabilidades conhecidas (SCA)</div>
+      <div class="checklist-item">Pentest ou avaliação de vulnerabilidades periódica</div>
+      <div class="checklist-item">Ambientes de desenvolvimento e homologação isolados</div>
+      <div class="checklist-item">Pipeline CI/CD com etapas de segurança</div>
     </div>
 
     <div class="section-title">Terceiros e supply chain</div>
     <div class="checklist-group">
-      <div class="checklist-item">AvaliaÃ§Ã£o de seguranÃ§a de fornecedores crÃ­ticos</div>
-      <div class="checklist-item">ClÃ¡usulas de seguranÃ§a em contratos com terceiros</div>
-      <div class="checklist-item">Monitoramento de acesso de prestadores de serviÃ§o</div>
+      <div class="checklist-item">Avaliação de segurança de fornecedores críticos</div>
+      <div class="checklist-item">Cláusulas de segurança em contratos com terceiros</div>
+      <div class="checklist-item">Monitoramento de acesso de prestadores de serviço</div>
     </div>
 
-    <div class="highlight" style="margin-top: 14px;">
-      <strong style="color: var(--ink);">PrÃ³ximos passos:</strong> Marque os itens jÃ¡ implementados e priorize os pendentes por risco. Para diagnÃ³stico personalizado, plano de aÃ§Ã£o ou pentest, entre em contato: contato@abreuebrum.com.br
+    <div class="highlight next-steps">
+      <strong class="ink-text">Próximos passos:</strong> Marque os itens já implementados e priorize os pendentes por risco. Para diagnóstico personalizado, plano de ação ou pentest, entre em contato: contato@abreuebrum.com.br
     </div>
 
     <div class="page-footer">
       <span><strong class="brand-wordmark-text">ABREU & BRUM</strong></span>
-      <span>PÃ¡gina <span class="pageNumber"></span> de <span class="totalPages"></span></span>
+      <span>Página <span class="pageNumber"></span> de <span class="totalPages"></span></span>
       <span><span class="docNo"></span></span>
     </div>
   </section>
 
 </main>
 
-  <script>
-    (function () {
-      const docNo = (document.querySelector('meta[name="document-number"]')?.getAttribute('content') || '').trim();
-      const pages = Array.from(document.querySelectorAll('section.page'));
-      const total = pages.length;
-      pages.forEach((p, idx) => {
-        p.querySelectorAll('.pageNumber').forEach(el => el.textContent = String(idx + 1));
-        p.querySelectorAll('.totalPages').forEach(el => el.textContent = String(total));
-        p.querySelectorAll('.docNo').forEach(el => el.textContent = docNo);
-      });
-    })();
-  </script>
-  <script src="../../js/lead-tracking.js"></script>
-  <script src="../../js/analytics.js"></script>
+  <script src="../../js/checklist-page-numbers.js" defer></script>
+  <script src="../../js/config.js" defer></script>
+  <script src="../../js/lead-tracking.js" defer></script>
+  <script src="../../js/analytics.js" defer></script>
 </body>
 </html>
-
-
-

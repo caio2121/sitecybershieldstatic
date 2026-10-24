@@ -2,47 +2,34 @@
   "use strict";
 
   var LEAD_STORAGE_KEY = "cs_lead_static_v2";
-  var SUBMISSION_KEY_STORAGE_KEY = "cs_checklist_submission_key_v2";
-  var SUBMISSION_STARTED_AT_KEY = "cs_checklist_submission_started_at_v2";
-  var PROGRESS_SYNC_DEBOUNCE_MS = 1200;
-  var CHECKLIST_CONFIG = {
-    captureEndpoint:
-      window.CHECKLIST_CONFIG && typeof window.CHECKLIST_CONFIG.captureEndpoint === "string"
-        ? window.CHECKLIST_CONFIG.captureEndpoint
-        : "",
-    requestTimeoutMs:
-      window.CHECKLIST_CONFIG && Number(window.CHECKLIST_CONFIG.requestTimeoutMs) > 0
-        ? Number(window.CHECKLIST_CONFIG.requestTimeoutMs)
-        : 12000
-  };
 
   var CHAPTERS = [
     {
       id: "governanca",
-      title: "GovernanÃ§a & DeclaraÃ§Ãµes",
-      subtitle: "A espinha dorsal do dossiÃª",
+      title: "Governança & Declarações",
+      subtitle: "A espinha dorsal do dossiê",
       roman: "I",
       icon: "GV",
       risk: {
-        headline: "DeclaraÃ§Ã£o falsa ou omissÃ£o grave atinge o titular, nÃ£o o fornecedor.",
+        headline: "Declaração falsa ou omissão grave atinge o titular, não o fornecedor.",
         legal:
-          "Art. 17, Â§ 2Âº e Art. 24 do Provimento CNJ 213/2026: inconsistÃªncias e omissÃµes relevantes podem levar a procedimento administrativo disciplinar.",
+          "Art. 17, § 2º e Art. 24 do Provimento CNJ 213/2026: inconsistências e omissões relevantes podem levar a procedimento administrativo disciplinar.",
         consequence:
-          "Sem evidÃªncia documental, a serventia fica frÃ¡gil em inspeÃ§Ã£o e pode sofrer consequÃªncias disciplinares."
+          "Sem evidência documental, a serventia fica frágil em inspeção e pode sofrer consequências disciplinares."
       }
     },
     {
       id: "acesso",
       title: "Acesso ao Sistema",
-      subtitle: "Quem entra, quando entra, com que permissÃ£o",
+      subtitle: "Quem entra, quando entra, com que permissão",
       roman: "II",
       icon: "AC",
       risk: {
-        headline: "Controle de acesso falho vira prova de omissÃ£o em correiÃ§Ã£o.",
+        headline: "Controle de acesso falho vira prova de omissão em correição.",
         legal:
-          "Sem segregaÃ§Ã£o e rastreabilidade de contas, a serventia amplia exposiÃ§Ã£o em incidente e inspeÃ§Ã£o.",
+          "Sem segregação e rastreabilidade de contas, a serventia amplia exposição em incidente e inspeção.",
         consequence:
-          "Credenciais mal geridas aumentam risco de uso indevido e dificultam responsabilizaÃ§Ã£o."
+          "Credenciais mal geridas aumentam risco de uso indevido e dificultam responsabilização."
       }
     },
     {
@@ -52,11 +39,11 @@
       roman: "III",
       icon: "LG",
       risk: {
-        headline: "A ANPD pode aplicar sanÃ§Ãµes apÃ³s processo administrativo.",
+        headline: "A ANPD pode aplicar sanções após processo administrativo.",
         legal:
-          "Art. 52 da LGPD: multas, medidas corretivas e eventual restriÃ§Ã£o parcial de tratamento.",
+          "Art. 52 da LGPD: multas, medidas corretivas e eventual restrição parcial de tratamento.",
         consequence:
-          "Falhas recorrentes em direitos dos titulares e proteÃ§Ã£o de dados podem gerar sanÃ§Ãµes relevantes."
+          "Falhas recorrentes em direitos dos titulares e proteção de dados podem gerar sanções relevantes."
       }
     },
     {
@@ -68,9 +55,9 @@
       risk: {
         headline: "Sem continuidade documentada, o incidente vira improviso.",
         legal:
-          "LGPD art. 42 e responsabilizaÃ§Ã£o civil/administrativa: a prova operacional Ã© decisiva para reduzir exposiÃ§Ã£o.",
+          "LGPD art. 42 e responsabilização civil/administrativa: a prova operacional é decisiva para reduzir exposição.",
         consequence:
-          "Crises sem plano e sem teste de restauraÃ§Ã£o elevam impacto operacional e jurÃ­dico."
+          "Crises sem plano e sem teste de restauração elevam impacto operacional e jurídico."
       }
     },
     {
@@ -80,34 +67,34 @@
       roman: "V",
       icon: "FN",
       risk: {
-        headline: "Terceiro nÃ£o substitui o titular da delegaÃ§Ã£o.",
+        headline: "Terceiro não substitui o titular da delegação.",
         legal:
-          "A responsabilidade de governanÃ§a e validaÃ§Ã£o permanece da serventia, mesmo com operaÃ§Ã£o terceirizada.",
+          "A responsabilidade de governança e validação permanece da serventia, mesmo com operação terceirizada.",
         consequence:
-          "Sem validaÃ§Ã£o interna por escrito, o dossiÃª perde forÃ§a e a dependÃªncia do fornecedor aumenta."
+          "Sem validação interna por escrito, o dossiê perde força e a dependência do fornecedor aumenta."
       }
     }
   ];
 
-  // 9 perguntas ativas, mantendo remoÃ§Ãµes solicitadas: 03, 05, 06, 09, 12, 13
+  // 9 perguntas ativas, mantendo remoções solicitadas: 03, 05, 06, 09, 12, 13
   var QUESTIONS = [
     {
       id: 1,
       displayOrder: 1,
       chapterId: "governanca",
-      text: "Existe polÃ­tica de seguranÃ§a da informaÃ§Ã£o vigente e a equipe a conhece?"
+      text: "Existe política de segurança da informação vigente e a equipe a conhece?"
     },
     {
       id: 2,
       displayOrder: 2,
       chapterId: "governanca",
-      text: "HÃ¡ inventÃ¡rio de sistemas, fornecedores e dados essenciais do cartÃ³rio?"
+      text: "Há inventário de sistemas, fornecedores e dados essenciais do cartório?"
     },
     {
       id: 4,
       displayOrder: 3,
       chapterId: "acesso",
-      text: "Cada pessoa usa usuÃ¡rio prÃ³prio (sem senha compartilhada)?"
+      text: "Cada pessoa usa usuário próprio (sem senha compartilhada)?"
     },
     {
       id: 7,
@@ -119,31 +106,31 @@
       id: 8,
       displayOrder: 5,
       chapterId: "lgpd",
-      text: "HÃ¡ canal pÃºblico de fÃ¡cil acesso e prazo para atender pedidos dos titulares?"
+      text: "Há canal público de fácil acesso e prazo para atender pedidos dos titulares?"
     },
     {
       id: 10,
       displayOrder: 6,
       chapterId: "continuidade",
-      text: "Backup automÃ¡tico com cÃ³pia fora do prÃ©dio ou do servidor principal?"
+      text: "Backup automático com cópia fora do prédio ou do servidor principal?"
     },
     {
       id: 11,
       displayOrder: 7,
       chapterId: "continuidade",
-      text: "Teste de restauraÃ§Ã£o feito e registrado (data, quem executou e resultado)?"
+      text: "Teste de restauração feito e registrado (data, quem executou e resultado)?"
     },
     {
       id: 14,
       displayOrder: 8,
       chapterId: "fornecedores",
-      text: "Contrato prevÃª seguranÃ§a, saÃ­da dos dados e prazo de entrega se encerrar o serviÃ§o?"
+      text: "Contrato prevê segurança, saída dos dados e prazo de entrega se encerrar o serviço?"
     },
     {
       id: 15,
       displayOrder: 9,
       chapterId: "fornecedores",
-      text: "AlguÃ©m da serventia valida, por escrito, o que o fornecedor entrega?"
+      text: "Alguém da serventia valida, por escrito, o que o fornecedor entrega?"
     }
   ];
 
@@ -151,8 +138,8 @@
     { minXp: 0, title: "Escrevente" },
     { minXp: 200, title: "Escrevente Autorizado" },
     { minXp: 450, title: "Oficial Substituto" },
-    { minXp: 700, title: "TabeliÃ£o" },
-    { minXp: 900, title: "GuardiÃ£o do DossiÃª" }
+    { minXp: 700, title: "Tabelião" },
+    { minXp: 900, title: "Guardião do Dossiê" }
   ];
 
   var ACHIEVEMENTS = [
@@ -165,43 +152,43 @@
     {
       id: "combo-3",
       title: "Lacre Perfeito",
-      description: "TrÃªs respostas Sim consecutivas.",
+      description: "Três respostas Sim consecutivas.",
       unlock: function (ctx) { return ctx.streak >= 3; }
     },
     {
       id: "cap-lgpd",
       title: "Defensor dos Dados",
-      description: "CapÃ­tulo LGPD completo em Sim.",
+      description: "Capítulo LGPD completo em Sim.",
       unlock: function (ctx) { return ctx.chapterCompleted.lgpd === true; }
     },
     {
       id: "honestidade",
       title: "Honestidade Cartorial",
-      description: "Registrou pelo menos um NÃ£o sei.",
+      description: "Registrou pelo menos um Não sei.",
       unlock: function (ctx) { return ctx.naoSei > 0; }
     },
     {
       id: "encarar-risco",
       title: "Encarou o Risco",
-      description: "Assumiu pelo menos um NÃ£o.",
+      description: "Assumiu pelo menos um Não.",
       unlock: function (ctx) { return ctx.nao > 0; }
     },
     {
       id: "guardiao",
-      title: "GuardiÃ£o do CartÃ³rio",
+      title: "Guardião do Cartório",
       description: "Conformidade total (9 Sim).",
       unlock: function (ctx) { return ctx.sim === QUESTIONS.length; }
     },
     {
       id: "dossie-completo",
-      title: "DossiÃª Completo",
+      title: "Dossiê Completo",
       description: "Todas as perguntas foram respondidas.",
       unlock: function (ctx) { return (ctx.sim + ctx.nao + ctx.naoSei) === QUESTIONS.length; }
     },
     {
       id: "cap-governanca",
-      title: "Mestre da GovernanÃ§a",
-      description: "CapÃ­tulo I concluÃ­do com todos os controles em Sim.",
+      title: "Mestre da Governança",
+      description: "Capítulo I concluído com todos os controles em Sim.",
       unlock: function (ctx) { return ctx.chapterCompleted.governanca === true; }
     }
   ];
@@ -212,14 +199,7 @@
     streak: 0,
     unlocked: {},
     submission: {
-      sending: false,
-      syncStatus: "idle",
-      error: "",
-      key: loadSubmissionKey(),
-      startedAt: loadSubmissionStartedAt(),
-      lastSyncedStatus: "",
-      pendingPayload: null,
-      progressTimer: null
+      syncStatus: "local"
     }
   };
 
@@ -254,54 +234,6 @@
   function saveLead(lead) {
     try {
       sessionStorage.setItem(LEAD_STORAGE_KEY, JSON.stringify(lead));
-    } catch (error) {
-      // sem persistencia se falhar
-    }
-  }
-
-  function loadSubmissionKey() {
-    try {
-      return sessionStorage.getItem(SUBMISSION_KEY_STORAGE_KEY) || "";
-    } catch (error) {
-      return "";
-    }
-  }
-
-  function saveSubmissionKey(key) {
-    try {
-      sessionStorage.setItem(SUBMISSION_KEY_STORAGE_KEY, String(key || ""));
-    } catch (error) {
-      // sem persistencia se falhar
-    }
-  }
-
-  function clearSubmissionKey() {
-    try {
-      sessionStorage.removeItem(SUBMISSION_KEY_STORAGE_KEY);
-    } catch (error) {
-      // sem persistencia se falhar
-    }
-  }
-
-  function loadSubmissionStartedAt() {
-    try {
-      return sessionStorage.getItem(SUBMISSION_STARTED_AT_KEY) || "";
-    } catch (error) {
-      return "";
-    }
-  }
-
-  function saveSubmissionStartedAt(startedAt) {
-    try {
-      sessionStorage.setItem(SUBMISSION_STARTED_AT_KEY, String(startedAt || ""));
-    } catch (error) {
-      // sem persistencia se falhar
-    }
-  }
-
-  function clearSubmissionStartedAt() {
-    try {
-      sessionStorage.removeItem(SUBMISSION_STARTED_AT_KEY);
     } catch (error) {
       // sem persistencia se falhar
     }
@@ -352,24 +284,17 @@
     };
 
     if (lead.name.length < 2) {
-      return showLeadError("Informe um nome vÃ¡lido.");
+      return showLeadError("Informe um nome válido.");
     }
     if (!/.+@.+\..+/.test(lead.email)) {
-      return showLeadError("Informe um e-mail vÃ¡lido.");
+      return showLeadError("Informe um e-mail válido.");
     }
     if (lead.whatsapp.length < 10) {
-      return showLeadError("Informe um WhatsApp vÃ¡lido.");
+      return showLeadError("Informe um WhatsApp válido.");
     }
     if (!dom.leadConsent.checked) {
       return showLeadError("Confirme o consentimento LGPD para continuar.");
     }
-
-    var startedAt = state.submission.startedAt || new Date().toISOString();
-    var submissionKey = state.submission.key || generateSubmissionKey(lead, startedAt);
-    state.submission.startedAt = startedAt;
-    state.submission.key = submissionKey;
-    saveSubmissionStartedAt(startedAt);
-    saveSubmissionKey(submissionKey);
 
     state.lead = lead;
     saveLead(lead);
@@ -379,16 +304,17 @@
 
     if (window.ABLeadTracking) {
       window.ABLeadTracking.trackGenerateLead({
+        event_name: "diagnostic_started",
         lead_channel: "form",
         lead_type: "diagnostic_request",
         service_name: "general",
+        lead_stage: "form_submitted",
         form_id: "lead-form",
         form_location: "cnj_checklist",
         cta_text: "Iniciar checklist CNJ"
       });
     }
 
-    submitChecklistData(buildSubmissionPayload("started"));
   }
 
   function showLeadError(message) {
@@ -400,7 +326,7 @@
     dom.mainContent.classList.remove("is-locked");
     dom.quizArea.hidden = false;
     var firstName = state.lead && state.lead.name ? state.lead.name.split(" ")[0] : "titular";
-    dom.greetingKicker.textContent = "OlÃ¡, " + firstName;
+    dom.greetingKicker.textContent = "Olá, " + firstName;
   }
 
   function getCounts() {
@@ -498,8 +424,8 @@
 
   function answerButtonLabel(answerKey) {
     if (answerKey === "sim") return "<span class=\"answer-btn__icon\">+</span><span>Sim</span>";
-    if (answerKey === "nao") return "<span class=\"answer-btn__icon\">-</span><span>NÃ£o</span>";
-    return "<span class=\"answer-btn__icon\">?</span><span>NÃ£o sei</span>";
+    if (answerKey === "nao") return "<span class=\"answer-btn__icon\">-</span><span>Não</span>";
+    return "<span class=\"answer-btn__icon\">?</span><span>Não sei</span>";
   }
 
   function scorePanelTemplate(answer) {
@@ -510,7 +436,7 @@
         '<span class="score-panel__icon">OK</span>',
         "<div>",
         "<strong>Controle em conformidade.</strong>",
-        "<p>+100 XP Â· evidÃªncia registrada para o dossiÃª tÃ©cnico.</p>",
+        "<p>+100 XP · evidência registrada para o dossiê técnico.</p>",
         "</div>",
         "</div>"
       ].join("");
@@ -520,8 +446,8 @@
         '<div class="score-panel score-panel--warn">',
         '<span class="score-panel__icon">?</span>',
         "<div>",
-        "<strong>Ponto cego em apuraÃ§Ã£o.</strong>",
-        "<p>+20 XP Â· priorize validaÃ§Ã£o tÃ©cnica antes da prÃ³xima correiÃ§Ã£o.</p>",
+        "<strong>Ponto cego em apuração.</strong>",
+        "<p>+20 XP · priorize validação técnica antes da próxima correição.</p>",
         "</div>",
         "</div>"
       ].join("");
@@ -534,7 +460,7 @@
     var chapter = CHAPTERS.find(function (c) { return c.id === question.chapterId; });
     if (!chapter) return "";
     var klass = answer === "nao" ? "feedback feedback--nao" : "feedback feedback--nao-sei";
-    var tone = answer === "nao" ? "Risco jurÃ­dico identificado" : "Ponto cego: apurar";
+    var tone = answer === "nao" ? "Risco jurídico identificado" : "Ponto cego: apurar";
     return [
       '<div class="' + klass + '">',
       '<div class="feedback-head">',
@@ -561,7 +487,7 @@
       '<div class="question-head">',
       '<div class="question-badge">' + String(question.id).padStart(2, "0") + "</div>",
       "<div>",
-      '<p class="question-meta">Cap. ' + chapter.roman + " Â· " + chapter.title + "</p>",
+      '<p class="question-meta">Cap. ' + chapter.roman + " · " + chapter.title + "</p>",
       '<h4 class="question-title">' + question.text + "</h4>",
       "</div>",
       "</div>",
@@ -620,16 +546,16 @@
         '<div class="chapter-row__ring">',
         '<svg viewBox="0 0 40 40" aria-hidden="true">',
         '<circle cx="20" cy="20" r="16" class="ring-base"></circle>',
-        '<circle cx="20" cy="20" r="16" class="ring-answered" style="stroke-dasharray:' + circumference + ";stroke-dashoffset:" + answeredOffset + ';"></circle>',
-        '<circle cx="20" cy="20" r="16" class="ring-sim" style="stroke-dasharray:' + circumference + ";stroke-dashoffset:" + simOffset + ';"></circle>',
+        '<circle cx="20" cy="20" r="16" class="ring-answered" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + answeredOffset + '"></circle>',
+        '<circle cx="20" cy="20" r="16" class="ring-sim" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + simOffset + '"></circle>',
         "</svg>",
         '<span class="chapter-row__icon">' + chapter.icon + "</span>",
         "</div>",
         '<div class="chapter-row__meta">',
         "<strong>Cap. " + chapter.roman + (allOk ? ' <em>OK</em>' : "") + "</strong>",
         "<span>" + chapter.title + "</span>",
-        "<small>" + sim + "/" + chapterQuestions.length + " conformes Â· " + answered + "/" + chapterQuestions.length + " respondidas</small>",
-        '<small class="chapter-row__legend-inline">' + nao + " risco Â· " + naoSei + " apurar Â· " + pct + "%</small>",
+        "<small>" + sim + "/" + chapterQuestions.length + " conformes · " + answered + "/" + chapterQuestions.length + " respondidas</small>",
+        '<small class="chapter-row__legend-inline">' + nao + " risco · " + naoSei + " apurar · " + pct + "%</small>",
         "</div>",
         "</button>"
       ].join("");
@@ -647,27 +573,27 @@
     if (pct === 100) {
       return {
         title: "Conformidade total",
-        message: "A serventia estÃ¡ apta para fiscalizaÃ§Ã£o. Mantenha o ciclo de evidÃªncias vivo.",
+        message: "A serventia está apta para fiscalização. Mantenha o ciclo de evidências vivo.",
         colorClass: "report-color--ok"
       };
     }
     if (pct >= 80) {
       return {
         title: "Quase blindado",
-        message: "Base sÃ³lida. Feche pendÃªncias para elevar resiliÃªncia jurÃ­dica e operacional.",
+        message: "Base sólida. Feche pendências para elevar resiliência jurídica e operacional.",
         colorClass: "report-color--ok"
       };
     }
     if (pct >= 50) {
       return {
-        title: "ExposiÃ§Ã£o moderada",
-        message: "HÃ¡ lacunas relevantes. Priorize aÃ§Ãµes por criticidade antes da prÃ³xima correiÃ§Ã£o.",
+        title: "Exposição moderada",
+        message: "Há lacunas relevantes. Priorize ações por criticidade antes da próxima correição.",
         colorClass: "report-color--warn"
       };
     }
     return {
-      title: "ExposiÃ§Ã£o crÃ­tica",
-      message: "Mais pendÃªncias que evidÃªncias. Recomenda-se plano imediato com acompanhamento tÃ©cnico.",
+      title: "Exposição crítica",
+      message: "Mais pendências que evidências. Recomenda-se plano imediato com acompanhamento técnico.",
       colorClass: "report-color--danger"
     };
   }
@@ -682,7 +608,7 @@
         '<article class="chapter-breakdown__item ' + okClass + '">',
         "<strong>Cap. " + chapter.roman + "</strong>",
         "<span>" + chapter.title + "</span>",
-        "<small>" + sim + "/" + chapterQuestions.length + " Â· " + pct + "%</small>",
+        "<small>" + sim + "/" + chapterQuestions.length + " · " + pct + "%</small>",
         "</article>"
       ].join("");
     }).join("");
@@ -715,14 +641,14 @@
     var circumference = 2 * Math.PI * 50;
     var dialOffset = circumference * (1 - conformity / 100);
     dom.finalReport.innerHTML = [
-      '<p class="card-kicker">RelatÃ³rio Executivo</p>',
+      '<p class="card-kicker">Relatório Executivo</p>',
       '<h3 class="' + verdict.colorClass + '">' + verdict.title + "</h3>",
       "<p>" + verdict.message + "</p>",
       '<div class="report-top">',
       '<div class="report-top__dial">',
       '<svg viewBox="0 0 140 140" aria-hidden="true">',
       '<circle cx="70" cy="70" r="50" class="report-dial__base"></circle>',
-      '<circle cx="70" cy="70" r="50" class="report-dial__value ' + verdict.colorClass + '" style="stroke-dasharray:' + circumference + ";stroke-dashoffset:" + dialOffset + ';"></circle>',
+      '<circle cx="70" cy="70" r="50" class="report-dial__value ' + verdict.colorClass + '" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + dialOffset + '"></circle>',
       "</svg>",
       '<div class="report-dial__text"><span>Conformidade</span><strong>' + conformity + "%</strong></div>",
       "</div>",
@@ -735,16 +661,16 @@
       '<div class="report-grid">',
       "<article><span>Conformidade</span><strong>" + conformity + "%</strong></article>",
       "<article><span>XP final</span><strong>" + xp + "</strong></article>",
-      "<article><span>NÃ­vel</span><strong>" + rank.title + "</strong></article>",
+      "<article><span>Nível</span><strong>" + rank.title + "</strong></article>",
       "<article><span>Medalhas</span><strong>" + Object.keys(state.unlocked).length + "/" + ACHIEVEMENTS.length + "</strong></article>",
       "</div>",
       '<div class="report-divider"></div>',
-      '<section class="chapter-breakdown"><h4>Status por capÃ­tulo</h4><div class="chapter-breakdown__grid">' + renderReportChapterBreakdown() + "</div></section>",
+      '<section class="chapter-breakdown"><h4>Status por capítulo</h4><div class="chapter-breakdown__grid">' + renderReportChapterBreakdown() + "</div></section>",
       '<div class="report-divider"></div>',
       '<section class="report-achievements"><h4>Medalhas</h4><div class="report-achievements__grid">' + renderReportAchievements() + "</div></section>",
       '<div class="report-actions">',
       '<a class="btn btn-primary" href="https://wa.me/5521920137715?text=Ol%C3%A1!%20Conclu%C3%AD%20o%20checklist%20CNJ%20e%20quero%20apoio%20no%20dossi%C3%AA%20t%C3%A9cnico." target="_blank" rel="noopener noreferrer">Falar com especialista</a>',
-      '<button id="restart-btn" class="btn btn-outline" type="button">Refazer diagnÃ³stico</button>',
+      '<button id="restart-btn" class="btn btn-outline" type="button">Refazer diagnóstico</button>',
       "</div>",
       '<div id="submission-status" class="submission-status" aria-live="polite"></div>'
     ].join("");
@@ -755,53 +681,14 @@
     }
 
     renderSyncStatus();
-    maybeSubmitCompletedQuiz(stats, xp, conformity);
-  }
-
-  function getStageLabel(stage) {
-    if (stage === "started") return "lead registrado";
-    if (stage === "in_progress") return "progresso salvo";
-    if (stage === "completed") return "resultado final salvo";
-    return "sincronizaÃ§Ã£o pendente";
   }
 
   function renderSyncStatus() {
-    var statusMessage = "";
-    var syncClass = "sync-status";
-    var detailsMessage = "";
-    var detailsClass = "submission-status__item submission-status__item--pending";
-
-    if (!CHECKLIST_CONFIG.captureEndpoint) {
-      statusMessage = "Captura nÃ£o configurada no endpoint.";
-      syncClass += " sync-status--warn";
-      detailsMessage = "Captura nÃ£o configurada: defina window.CHECKLIST_CONFIG.captureEndpoint.";
-      detailsClass = "submission-status__item submission-status__item--warn";
-    } else if (state.submission.sending) {
-      statusMessage = "Sincronizando dados do diagnÃ³stico...";
-      detailsMessage = "Enviando atualizaÃ§Ã£o para a base segura.";
-    } else if (state.submission.error) {
-      statusMessage = "Falha de sincronizaÃ§Ã£o. Vamos tentar novamente.";
-      syncClass += " sync-status--error";
-      detailsMessage = state.submission.error;
-      detailsClass = "submission-status__item submission-status__item--error";
-    } else if (state.submission.lastSyncedStatus) {
-      statusMessage = "SincronizaÃ§Ã£o ativa: " + getStageLabel(state.submission.lastSyncedStatus) + ".";
-      syncClass += " sync-status--ok";
-      if (state.submission.lastSyncedStatus === "completed") {
-        detailsMessage =
-          "DiagnÃ³stico registrado com sucesso. Um especialista pode entrar em contato com base no seu consentimento.";
-        detailsClass = "submission-status__item submission-status__item--ok";
-      } else if (state.submission.lastSyncedStatus === "in_progress") {
-        detailsMessage = "Progresso salvo. Continue para gerar o relatÃ³rio final.";
-        detailsClass = "submission-status__item submission-status__item--ok";
-      } else {
-        detailsMessage = "Contato registrado. Agora vocÃª pode responder o checklist.";
-        detailsClass = "submission-status__item submission-status__item--ok";
-      }
-    } else {
-      statusMessage = "Preencha seu contato para iniciar o registro.";
-      detailsMessage = "Conclua todas as perguntas para registrar o relatÃ³rio final.";
-    }
+    var statusMessage = "Diagnóstico local; nenhuma captura externa ativa.";
+    var syncClass = "sync-status sync-status--warn";
+    var detailsMessage =
+      "As respostas permanecem no navegador nesta sessão. A captura externa está desativada até existir backend autenticado.";
+    var detailsClass = "submission-status__item submission-status__item--warn";
 
     if (dom.syncStatus) {
       dom.syncStatus.className = syncClass;
@@ -811,212 +698,20 @@
     var detailsEl = document.getElementById("submission-status");
     if (!detailsEl) return;
 
-    if (state.submission.error) {
-      detailsEl.innerHTML =
-        '<p class="' + detailsClass + '">' +
-        detailsMessage +
-        '</p><button id="retry-submit-btn" type="button" class="btn btn-outline submission-status__retry">Tentar envio novamente</button>';
-      var retryBtn = document.getElementById("retry-submit-btn");
-      if (retryBtn) retryBtn.addEventListener("click", retrySubmissionFromCurrentState);
-      return;
-    }
-
     detailsEl.innerHTML = '<p class="' + detailsClass + '">' + detailsMessage + "</p>";
-  }
-
-  function normalizeAnswerMap() {
-    return QUESTIONS.reduce(function (acc, question) {
-      acc[String(question.id)] = state.answers[question.id] || null;
-      return acc;
-    }, {});
-  }
-
-  function simpleHash(input) {
-    var hash = 0;
-    var str = String(input || "");
-    for (var i = 0; i < str.length; i++) {
-      hash = (hash << 5) - hash + str.charCodeAt(i);
-      hash |= 0;
-    }
-    return "k" + Math.abs(hash);
-  }
-
-  function generateSubmissionKey(lead, startedAt) {
-    var emailPart = String(lead.email || "lead")
-      .replace(/[^a-z0-9]/gi, "")
-      .toLowerCase()
-      .slice(0, 8) || "lead";
-    var tsPart = Date.now().toString(36);
-    var randomPart = Math.random().toString(36).slice(2, 10);
-    return "sk_" + emailPart + "_" + tsPart + "_" + randomPart;
-  }
-
-  function buildSubmissionPayload(stage) {
-    if (!state.lead) return null;
-    var stats = getCounts();
-    var xp = computeXp();
-    var conformity = stats.answered ? Math.round((stats.sim / QUESTIONS.length) * 100) : 0;
-    var normalizedStage = stage || "started";
-    var startedAt = state.submission.startedAt || new Date().toISOString();
-    if (!state.submission.startedAt) {
-      state.submission.startedAt = startedAt;
-      saveSubmissionStartedAt(startedAt);
-    }
-
-    var submissionKey = state.submission.key;
-    if (!submissionKey || String(submissionKey).length < 10) {
-      submissionKey = generateSubmissionKey(state.lead, startedAt);
-      state.submission.key = submissionKey;
-      saveSubmissionKey(submissionKey);
-    }
-
-    var answers = normalizeAnswerMap();
-
-    return {
-      submissionKey: submissionKey,
-      status: normalizedStage,
-      lead: {
-        name: state.lead.name,
-        email: state.lead.email,
-        whatsapp: state.lead.whatsapp,
-        consentGivenAt: state.lead.consentGivenAt || new Date().toISOString()
-      },
-      answers: normalizedStage === "started" ? {} : answers,
-      stats: {
-        sim: stats.sim,
-        nao: stats.nao,
-        naoSei: stats.naoSei,
-        answered: stats.answered
-      },
-      xp: xp,
-      conformity: conformity,
-      metadata: {
-        timestamp: new Date().toISOString(),
-        startedAt: startedAt,
-        pageUrl: window.location.href,
-        userAgent: navigator.userAgent,
-        gaClientId: window.ABLeadTracking && window.ABLeadTracking.getGaClientId
-          ? window.ABLeadTracking.getGaClientId()
-          : ""
-      }
-    };
-  }
-
-  async function postWithTimeout(url, payload) {
-    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
-    var timeoutId = null;
-    if (controller) {
-      timeoutId = setTimeout(function () {
-        controller.abort();
-      }, CHECKLIST_CONFIG.requestTimeoutMs);
-    }
-
-    try {
-      return await fetch(url, {
-        method: "POST",
-        headers: {
-          // text/plain evita preflight CORS em Web App do Apps Script
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload),
-        signal: controller ? controller.signal : undefined
-      });
-    } finally {
-      if (timeoutId) clearTimeout(timeoutId);
-    }
-  }
-
-  async function submitChecklistData(payload) {
-    if (!payload || !CHECKLIST_CONFIG.captureEndpoint) return;
-    if (state.submission.sending) {
-      state.submission.pendingPayload = payload;
-      return;
-    }
-    if (state.submission.lastSyncedStatus === "completed" && payload.status === "completed") {
-      return;
-    }
-
-    state.submission.sending = true;
-    state.submission.syncStatus = "syncing";
-    state.submission.error = "";
-    renderSyncStatus();
-
-    try {
-      var response = await postWithTimeout(CHECKLIST_CONFIG.captureEndpoint, payload);
-      var data = {};
-      try {
-        data = await response.json();
-      } catch (error) {
-        data = {};
-      }
-      if (!response.ok && data.ok !== true) {
-        throw new Error(data.message || "Falha ao registrar o diagnÃ³stico.");
-      }
-
-      state.submission.sending = false;
-      state.submission.syncStatus = "synced";
-      state.submission.error = "";
-      state.submission.key = payload.submissionKey;
-      state.submission.lastSyncedStatus = payload.status || state.submission.lastSyncedStatus;
-      saveSubmissionKey(payload.submissionKey);
-      renderSyncStatus();
-    } catch (error) {
-      state.submission.sending = false;
-      state.submission.syncStatus = "error";
-      state.submission.error =
-        "NÃ£o foi possÃ­vel registrar seu diagnÃ³stico agora. Verifique sua conexÃ£o e tente novamente.";
-      renderSyncStatus();
-    }
-
-    if (state.submission.pendingPayload) {
-      var queuedPayload = state.submission.pendingPayload;
-      state.submission.pendingPayload = null;
-      if (
-        queuedPayload.status !== state.submission.lastSyncedStatus ||
-        queuedPayload.status === "in_progress"
-      ) {
-        submitChecklistData(queuedPayload);
-      }
-    }
-  }
-
-  function maybeSubmitCompletedQuiz(stats, xp, conformity) {
-    if (stats.answered !== QUESTIONS.length) return;
-    var payload = buildSubmissionPayload("completed");
-    if (!payload) return;
-    submitChecklistData(payload);
-  }
-
-  function retrySubmissionFromCurrentState() {
-    var stats = getCounts();
-    var stage = "started";
-    if (stats.answered === QUESTIONS.length) stage = "completed";
-    else if (stats.answered > 0) stage = "in_progress";
-    var payload = buildSubmissionPayload(stage);
-    if (!payload) return;
-    submitChecklistData(payload);
-  }
-
-  function queueProgressSync() {
-    if (!state.lead) return;
-    var stats = getCounts();
-    if (stats.answered === 0 || stats.answered === QUESTIONS.length) return;
-    clearTimeout(state.submission.progressTimer);
-    state.submission.progressTimer = setTimeout(function () {
-      submitChecklistData(buildSubmissionPayload("in_progress"));
-    }, PROGRESS_SYNC_DEBOUNCE_MS);
   }
 
   function updateHud(stats, xp) {
     var maxXp = QUESTIONS.length * 100;
     var rank = getRank(xp);
     var nextRank = getNextRank(xp);
-    var progressPct = Math.min(100, Math.round((xp / maxXp) * 100));
 
     document.getElementById("hud-rank-title").textContent = rank.title;
     document.getElementById("hud-xp-current").textContent = String(xp);
     document.getElementById("hud-xp-max").textContent = String(maxXp);
-    document.getElementById("hud-xp-progress").style.width = progressPct + "%";
+    var progressBar = document.getElementById("hud-xp-progress");
+    progressBar.max = maxXp;
+    progressBar.value = xp;
     document.getElementById("hud-sim-chip").textContent = stats.sim + "/" + QUESTIONS.length;
     document.getElementById("hud-streak-chip").textContent = String(state.streak);
     document.getElementById("hud-achievements-chip").textContent =
@@ -1027,7 +722,7 @@
         "faltam " + (nextRank.minXp - xp) + " XP para " + nextRank.title;
     } else {
       document.getElementById("hud-next-rank").textContent =
-        "nÃ­vel mÃ¡ximo alcanÃ§ado";
+        "nível máximo alcançado";
     }
   }
 
@@ -1053,7 +748,6 @@
       state.streak = 0;
     }
     refreshUi();
-    queueProgressSync();
   }
 
   function handleQuestionsClick(event) {
@@ -1083,16 +777,7 @@
     state.answers = {};
     state.streak = 0;
     state.unlocked = {};
-    clearTimeout(state.submission.progressTimer);
-    state.submission.sending = false;
-    state.submission.syncStatus = "idle";
-    state.submission.error = "";
-    state.submission.key = "";
-    state.submission.startedAt = "";
-    state.submission.lastSyncedStatus = "";
-    state.submission.pendingPayload = null;
-    clearSubmissionKey();
-    clearSubmissionStartedAt();
+    state.submission.syncStatus = "local";
     refreshUi();
     scrollToQuiz();
   }
@@ -1118,17 +803,8 @@
   function init() {
     wireEvents();
     refreshUi();
-    if (state.lead) {
-      unlockQuiz();
-      if (state.submission.key) {
-        state.submission.lastSyncedStatus = "started";
-      } else {
-        submitChecklistData(buildSubmissionPayload("started"));
-      }
-    }
+    if (state.lead) unlockQuiz();
   }
 
   document.addEventListener("DOMContentLoaded", init);
 })();
-
-

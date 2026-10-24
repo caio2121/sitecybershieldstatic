@@ -1,47 +1,27 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K46VQ6H8MS"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      var abConsent = 'denied';
-      try {
-        abConsent = localStorage.getItem('ab_cookie_consent') === 'granted' ? 'granted' : 'denied';
-      } catch (e) {}
-      gtag('consent', 'default', {
-        'analytics_storage': abConsent,
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied'
-      });
-
-      gtag('config', 'G-K46VQ6H8MS');
-      gtag('config', 'AW-18216339237');
-    </script>
-
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; script-src-attr 'none'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'sha256-18J4N21X8alT5rxXU3zCEFMN5bXuN54P4jC8l/s9ZzQ=' 'sha256-5L5bmxFbt/zNN03sGvJgsjIaazRAGClgiFH4YANSRRg='; style-src-attr 'none'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://pagead2.googlesyndication.com;">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
 
-    <title>AB Scan | Relatório de segurança web para empresas | ABREU &amp; BRUM</title>
-    <meta name="description" content="Receba uma avaliação de segurança web com evidências claras, riscos priorizados e relatório profissional para contratos, fornecedores, auditorias e decisões técnicas.">
-    <meta name="keywords" content="avaliação de segurança web, relatório de segurança para empresas, AB Scan, evidências de segurança, homologação de fornecedor, pentest web, segurança de domínio">
+    <title>Pentest e segurança ofensiva para empresas | ABREU &amp; BRUM</title>
+    <meta name="description" content="Pentest, avaliações de segurança e evidências técnicas para empresas que precisam reduzir riscos em aplicações, APIs, infraestrutura e fornecedores.">
+    <meta name="keywords" content="pentest para empresas, segurança ofensiva, pentest web, pentest API, avaliação de segurança, AB Scan, segurança de fornecedores">
     <meta name="author" content="ABREU &amp; BRUM">
     <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://abreuebrum.com.br/">
-    <meta property="og:title" content="AB Scan | Relatório de segurança web para empresas">
-    <meta property="og:description" content="Entenda os riscos do seu domínio, receba um relatório profissional e veja se sua empresa precisa avançar para um PenTest manual.">
+    <meta property="og:title" content="Pentest e segurança ofensiva para empresas | ABREU &amp; BRUM">
+    <meta property="og:description" content="Avaliações técnicas, evidências documentadas e recomendações práticas para apoiar decisões de segurança.">
     <meta property="og:image" content="https://abreuebrum.com.br/images/og-16x9.png">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://abreuebrum.com.br/">
-    <meta property="twitter:title" content="AB Scan | ABREU &amp; BRUM">
-    <meta property="twitter:description" content="Entenda os riscos do seu domínio, receba um relatório profissional e veja se sua empresa precisa avançar para um PenTest manual.">
+    <meta property="twitter:title" content="Pentest e segurança ofensiva para empresas | ABREU &amp; BRUM">
+    <meta property="twitter:description" content="Avaliações técnicas, evidências documentadas e recomendações práticas para apoiar decisões de segurança.">
     <meta property="twitter:image" content="https://abreuebrum.com.br/images/og-16x9.png">
 
     <link rel="icon" type="image/svg+xml" href="images/logo-favicon.svg">
@@ -59,7 +39,7 @@
           "legalName": "ABREU & BRUM",
           "url": "https://abreuebrum.com.br/",
           "logo": "https://abreuebrum.com.br/images/logo-abreu-brum.svg",
-          "description": "Empresa brasileira de cybersecurity, PenTest e consultoria. Ajuda empresas a entender riscos de segurança em domínios autorizados e gerar evidências profissionais.",
+          "description": "Empresa brasileira de segurança ofensiva, Pentest e avaliações técnicas para apoiar decisões empresariais de risco.",
           "email": "contato@abreuebrum.com.br",
           "telephone": "+5521920137715",
           "address": {
@@ -70,12 +50,20 @@
           }
         },
         {
+          "@type": "WebSite",
+          "@id": "https://abreuebrum.com.br/#website",
+          "name": "ABREU & BRUM",
+          "url": "https://abreuebrum.com.br/",
+          "inLanguage": "pt-BR",
+          "publisher": { "@id": "https://abreuebrum.com.br/#organization" }
+        },
+        {
           "@type": "SoftwareApplication",
           "@id": "https://abreuebrum.com.br/#ab-scan",
           "name": "AB Scan",
           "applicationCategory": "BusinessApplication",
           "operatingSystem": "Web",
-          "description": "Solução B2B para avaliar a segurança de domínios autorizados, gerar relatórios profissionais e decidir quando avançar para PenTest manual.",
+            "description": "Solução B2B para avaliar a exposição de domínios autorizados, gerar evidências e decidir quando avançar para PenTest manual.",
           "publisher": {
             "@id": "https://abreuebrum.com.br/#organization"
           },
@@ -132,9 +120,13 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="js/config.js"></script>
+    <link rel="stylesheet" media="print" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" data-lazy-style>
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" data-deferred-style>
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+    <script src="js/config.js" defer></script>
+    <script src="js/nonblocking-styles.js" defer></script>
+    <link rel="stylesheet" href="css/consent.css">
 </head>
 <body data-site-area="main_site">
     <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
@@ -142,15 +134,15 @@
     <header class="header">
         <div class="container">
             <a href="index.html" class="logo" aria-label="ABREU & BRUM">
-                <img src="images/logo-abreu-brum.svg" alt="ABREU & BRUM" class="logo-img">
+                <img src="images/logo-abreu-brum.svg" alt="ABREU & BRUM" class="logo-img" width="4294" height="1035">
             </a>
             <nav class="nav" aria-label="Navegação principal">
-                <a href="#ab-scan">AB Scan</a>
-                <a href="#relatorio-exemplo">Relatório exemplo</a>
-                <a href="#fluxo">Como funciona</a>
-                <a href="#pentest-manual">PenTest manual</a>
-                <a href="#contato" data-product-path="/">Plataforma</a>
-                <a href="#contato" class="nav-cta">Contato</a>
+                <a href="solucoes/">Soluções</a>
+                <a href="pentest/">Pentest</a>
+                <a href="metodologia/">Metodologia</a>
+                <a href="ab-scan/">AB Scan</a>
+                <a href="blog/">Conteúdos</a>
+                <a href="solicitar-proposta/" class="nav-cta">Solicitar proposta</a>
             </nav>
             <button class="mobile-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
                 <i class="fas fa-bars" aria-hidden="true"></i>
@@ -159,9 +151,8 @@
     </header>
 
     <div class="floating-cta">
-        <a href="#contato" data-product-path="/scanner" class="btn btn-primary">
-            <i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i>
-            Abrir AB Scan
+        <a href="solicitar-proposta/" class="btn btn-primary">
+            Solicitar proposta
         </a>
     </div>
 
@@ -169,38 +160,86 @@
         <section id="home" class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <p class="hero-eyebrow">Segurança web para empresas que precisam comprovar confiança</p>
+                    <p class="hero-eyebrow">ABREU &amp; BRUM — Cybersecurity &amp; Offensive Security</p>
                     <h1 class="hero-title">
-                        <span class="brand-product hero-brand">AB Scan</span>
-                        <span class="hero-lead">Análise de segurança do domínio com relatório profissional.</span>
+                        <span class="hero-brand">Segurança ofensiva para empresas que não podem descobrir vulnerabilidades tarde demais.</span>
                     </h1>
-                    <p class="hero-subtitle">O AB Scan ajuda sua empresa a identificar riscos, organizar evidências e responder exigências de segurança sem começar direto por um PenTest completo.</p>
+                    <p class="hero-subtitle">Identifique falhas exploráveis em aplicações, APIs, redes e ambientes corporativos. Receba evidências documentadas e recomendações práticas para reduzir riscos e apoiar decisões técnicas.</p>
                     <div class="hero-badges" aria-label="Diferenciais principais">
-                        <span class="hero-badge"><i class="fas fa-check-circle" aria-hidden="true"></i> Apenas domínios autorizados</span>
-                        <span class="hero-badge"><i class="fas fa-file-lines" aria-hidden="true"></i> Relatório para gestão e equipe técnica</span>
-                        <span class="hero-badge"><i class="fas fa-handshake" aria-hidden="true"></i> Valor convertido em crédito para PenTest</span>
+                        <span class="hero-badge">Escopo definido com clareza</span>
+                        <span class="hero-badge">Evidências para gestão e técnica</span>
+                        <span class="hero-badge">Atuação somente autorizada</span>
                     </div>
                     <div class="hero-buttons">
-                        <a href="#contato" data-product-path="/scanner" class="btn btn-primary">
-                            <i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i>
-                            Fazer análise do domínio
+                        <a href="solicitar-proposta/" class="btn btn-primary">
+                            Solicitar proposta de Pentest
                         </a>
-                        <a href="#contato" data-product-path="/sample-report" class="btn btn-secondary">
-                            <i class="fas fa-file-shield" aria-hidden="true"></i>
-                            Ver exemplo de relatório
+                        <a href="solucoes/" class="btn btn-secondary">
+                            Conhecer soluções
                         </a>
                     </div>
                 </div>
                 <aside class="hero-panel" aria-label="Resumo do AB Scan">
-                    <img src="images/logo-abreu-brum.svg" alt="ABREU & BRUM">
-                    <h2><span class="brand-product">AB Scan</span></h2>
-                    <p>Uma avaliação segura para empresas que precisam entender riscos reais no próprio domínio, com autorização e evidências documentadas.</p>
+                    <img src="images/logo-abreu-brum.svg" alt="ABREU & BRUM" width="4294" height="1035">
+                    <h2>Risco traduzido em decisão.</h2>
+                    <p>Da definição do escopo ao relatório: uma jornada objetiva para entender o que pode ser explorado, o impacto e quais ações merecem prioridade.</p>
                     <ul class="clean-list">
-                        <li><i class="fas fa-lock" aria-hidden="true"></i><span>A análise só acontece em domínios autorizados.</span></li>
-                        <li><i class="fas fa-shield-halved" aria-hidden="true"></i><span>O processo usa limites de segurança para evitar testes agressivos.</span></li>
-                        <li><i class="fas fa-chart-line" aria-hidden="true"></i><span>Os riscos são organizados por impacto, evidência e prioridade de correção.</span></li>
+                        <li><i class="fas fa-lock" aria-hidden="true"></i><span>Escopo, autorização e regras de teste alinhados antes da execução.</span></li>
+                        <li><i class="fas fa-file-lines" aria-hidden="true"></i><span>Relatório executivo e técnico com evidências reproduzíveis.</span></li>
+                        <li><i class="fas fa-arrow-trend-down" aria-hidden="true"></i><span>Recomendações priorizadas para reduzir exposição.</span></li>
                     </ul>
                 </aside>
+            </div>
+        </section>
+
+        <section id="solucoes-prioritarias" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Soluções para o ciclo de risco</p>
+                    <h2>Escolha a avaliação conforme a decisão que sua empresa precisa tomar.</h2>
+                    <p>O escopo é definido com base no ambiente, no objetivo do projeto e nas autorizações disponíveis. A proposta indica claramente cobertura, premissas e entregáveis.</p>
+                </div>
+                <div class="services-grid">
+                    <article class="service-card featured">
+                        <div class="card-icon" aria-hidden="true">01</div>
+                        <h3>Pentest de aplicações e APIs</h3>
+                        <p>Validação manual de controles, fluxos, autenticação, autorização e regras de negócio em aplicações autorizadas.</p>
+                        <a href="pentest/">Conhecer o escopo de Pentest <span aria-hidden="true">→</span></a>
+                    </article>
+                    <article class="service-card">
+                        <div class="card-icon" aria-hidden="true">02</div>
+                        <h3>Avaliação de exposição externa</h3>
+                        <p>Leitura orientada a risco da exposição pública para priorizar o que merece investigação técnica ou correção.</p>
+                        <a href="solucoes/">Ver soluções de exposição <span aria-hidden="true">→</span></a>
+                    </article>
+                    <article class="service-card">
+                        <div class="card-icon" aria-hidden="true">03</div>
+                        <h3>Evidências para clientes e auditorias</h3>
+                        <p>Relatórios e recomendações que ajudam equipes técnicas, compras, compliance e fornecedores a trabalhar com a mesma visão.</p>
+                        <a href="metodologia/">Entender entregáveis <span aria-hidden="true">→</span></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-soft">
+            <div class="container">
+                <div class="grid-2">
+                    <div>
+                        <p class="eyebrow">Por que contratar uma avaliação</p>
+                        <h2>O objetivo não é acumular alertas. É reduzir incerteza.</h2>
+                    </div>
+                    <div class="proof-grid">
+                        <article class="proof-card">
+                            <h3>Para segurança e tecnologia</h3>
+                            <p>Priorize correções com evidência, impacto e contexto técnico — sem transformar o relatório em uma lista genérica.</p>
+                        </article>
+                        <article class="proof-card">
+                            <h3>Para negócios e compras</h3>
+                            <p>Responda exigências de clientes, contratos e homologações com limites e cobertura explicitamente descritos.</p>
+                        </article>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -208,8 +247,8 @@
             <div class="container">
                 <div class="section-header center">
                     <p class="eyebrow">Para empresas que precisam comprovar segurança</p>
-                    <h2><span class="brand-product">AB Scan</span>: do diagnóstico inicial ao relatório profissional, sua empresa entende o que precisa corrigir.</h2>
-                    <p>Quando um cliente, fornecedor ou auditoria pede evidências de segurança, o AB Scan ajuda sua empresa a sair da dúvida e chegar a um relatório claro, com riscos priorizados e próximos passos.</p>
+                    <h2><span class="brand-product">AB Scan</span>: uma porta de entrada segura para entender exposição web.</h2>
+                    <p>Quando sua empresa precisa de uma visão inicial sobre um domínio autorizado, o AB Scan organiza sinais de exposição e indica quando uma avaliação manual mais profunda é o caminho adequado.</p>
                 </div>
                 <div class="grid-3">
                     <article class="card">
@@ -454,7 +493,7 @@
                     </div>
 
                     <div class="contact-form">
-                        <div id="contact-message" class="contact-message" style="display: none;" role="alert" aria-live="polite"></div>
+                        <div id="contact-message" class="contact-message is-hidden" role="alert" aria-live="polite"></div>
                         <form id="contactForm" method="post" autocomplete="on" novalidate>
                             <fieldset>
                                 <legend class="eyebrow">Formulário</legend>
@@ -468,12 +507,12 @@
                                     <div class="form-group">
                                         <label for="contact-email" class="form-label">E-mail</label>
                                         <input id="contact-email" name="email" type="email" autocomplete="email" aria-describedby="email-help">
-                                        <div id="email-help" class="form-help">Opcional se informar WhatsApp</div>
+                                        <div id="email-help" class="form-help">Informe e-mail ou WhatsApp; se preencher um canal, use um valor válido.</div>
                                     </div>
                                     <div class="form-group">
                                         <label for="contact-whatsapp" class="form-label">WhatsApp</label>
                                         <input id="contact-whatsapp" name="whatsapp" type="tel" autocomplete="tel" aria-describedby="whatsapp-help">
-                                        <div id="whatsapp-help" class="form-help">Opcional se informar e-mail</div>
+                                        <div id="whatsapp-help" class="form-help">Informe e-mail ou WhatsApp; se preencher um canal, use um valor válido.</div>
                                     </div>
                                 </div>
 
@@ -489,8 +528,10 @@
                                         <option value="" disabled selected>Selecione o que você precisa</option>
                                         <option value="abscan">Avaliar segurança de um domínio</option>
                                         <option value="relatorio">Receber relatório de segurança web</option>
-                                        <option value="pentest">Solicitar PenTest manual</option>
+                        <option value="pentest">Solicitar PenTest manual</option>
+                                        <option value="exposicao">Avaliar exposição externa</option>
                                         <option value="fornecedor">Responder exigência de cliente, fornecedor ou auditoria</option>
+                                        <option value="consultoria">Conversar sobre outra necessidade de segurança</option>
                                     </select>
                                     <div id="service-help" class="form-help">Não envie senhas, tokens ou dados sensíveis pelo formulário.</div>
                                 </div>
@@ -498,7 +539,7 @@
                                 <div id="pentest-questionnaire" hidden aria-live="polite">
                                     <details>
                                         <summary>Detalhes opcionais sobre o escopo</summary>
-                                        <div class="grid-2" style="margin-top: 1rem;">
+                                        <div class="grid-2 form-questionnaire-grid">
                                             <div class="form-group">
                                                 <label for="pentest-type">Tipo de escopo</label>
                                                 <select id="pentest-type" name="pentestTipo">
@@ -534,7 +575,7 @@
                                 </div>
 
                                 <div class="form-group form-checkbox">
-                                    <label class="checkbox-label">
+                                    <label class="checkbox-label" for="contact-privacy">
                                         <input id="contact-privacy" name="privacy" type="checkbox" required aria-describedby="privacy-help">
                                         <span>Li e aceito a <a href="politica-privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
                                     </label>
@@ -542,11 +583,11 @@
                                 </div>
 
                                 <div class="form-actions">
-                                    <button type="button" class="btn btn-primary" id="submitBtn" aria-describedby="submit-help">
-                                        <span id="btnText"><i class="fas fa-paper-plane" aria-hidden="true"></i> Enviar solicitação</span>
-                                        <span id="btnLoading" style="display: none;"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Enviando...</span>
+                                    <button type="submit" class="btn btn-primary" id="submitBtn" aria-describedby="submit-help">
+                                        <span id="btnText"><i class="fas fa-paper-plane" aria-hidden="true"></i> Abrir conversa comercial</span>
+                                        <span id="btnLoading" class="is-hidden"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Preparando...</span>
                                     </button>
-                                    <div id="submit-help" class="form-help">Você poderá revisar a mensagem antes de enviar pelo WhatsApp.</div>
+                                    <div id="submit-help" class="form-help">A mensagem será preparada no WhatsApp para sua revisão antes do envio.</div>
                                 </div>
                             </fieldset>
                         </form>
@@ -561,33 +602,33 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <a href="index.html" class="logo" aria-label="ABREU & BRUM">
-                        <img src="images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" class="logo-img">
+                        <img src="images/logo-abreu-brum-branca.svg" alt="ABREU & BRUM" class="logo-img" width="4294" height="1035">
                     </a>
-                    <p>Cybersecurity | PenTest | Consultoria</p>
+                    <p>Cybersecurity | Offensive Security | Pentest</p>
                     <p><small>CNPJ: <span data-company="cnpj">61.952.290/0001-68</span></small></p>
                     <p><small>São Paulo, SP, Brasil</small></p>
                 </div>
                 <div class="footer-links">
-                    <h4>Navegação</h4>
-                    <a href="#ab-scan">AB Scan</a>
-                    <a href="#contato" data-product-path="/">Acessar plataforma</a>
-                    <a href="#relatorio-exemplo">Relatório exemplo</a>
-                    <a href="#fluxo">Como funciona</a>
-                    <a href="#contato">Contato</a>
+                    <h2>Navegação</h2>
+                    <a href="solucoes/">Soluções</a>
+                    <a href="pentest/">Pentest</a>
+                    <a href="metodologia/">Metodologia</a>
+                    <a href="ab-scan/">AB Scan</a>
+                    <a href="solicitar-proposta/">Solicitar proposta</a>
                 </div>
                 <div class="footer-services">
-                    <h4>Soluções</h4>
-                    <a href="#ab-scan">AB Scan</a>
-                    <a href="#contato" data-product-path="/scanner">Fazer análise</a>
-                    <a href="#pentest-manual">PenTest manual</a>
+                    <h2>Soluções</h2>
+                    <a href="pentest/">Pentest para empresas</a>
+                    <a href="solucoes/">Avaliação de exposição</a>
+                    <a href="ab-scan/">AB Scan</a>
                     <a href="servicos/">Serviços complementares</a>
                     <a href="blog/">Blog</a>
                 </div>
                 <div class="footer-social">
-                    <h4>Contato</h4>
+                    <h2>Contato</h2>
                     <a href="mailto:contato@abreuebrum.com.br" data-contact="email" data-email-type="primary">contato@abreuebrum.com.br</a>
                     <a href="tel:+5521920137715" data-contact="phone">(21) 92013-7715</a>
-                    <a href="#contato" data-product-path="/privacy">Privacidade (plataforma)</a>
+                    <a href="politica-privacidade.html">Privacidade</a>
                     <a href="politica-privacidade.html">Política de Privacidade</a>
                 </div>
             </div>
@@ -597,10 +638,8 @@
         </div>
     </footer>
 
-    <script src="js/lead-tracking.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/lead-tracking.js" defer></script>
+    <script src="js/main.js" defer></script>
 </body>
 </html>
-
-
 

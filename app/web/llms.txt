@@ -1,46 +1,50 @@
 ﻿# ABREU & BRUM
 
-ABREU & BRUM is a Brazilian cybersecurity, PenTest and consulting company. Its primary offering is AB Scan, a B2B solution for authorized security assessment of company domains.
+ABREU & BRUM é uma empresa brasileira de segurança ofensiva. Atua com Pentest e avaliações técnicas para empresas, sempre com escopo e autorização definidos.
 
 Primary site: https://abreuebrum.com.br/
 
-## Main Product
+## Produto principal
 
-AB Scan helps companies understand security risks on authorized domains, receive professional reports with prioritized evidence, and decide clearly when to advance to a manual PenTest.
+O AB Scan ajuda empresas a entender sinais de exposição em domínios autorizados, organizar evidências e decidir quando avançar para um Pentest manual.
 
-The product is not an open offensive tool. Domain authorization is mandatory before any assessment. The positioning is commercial, responsible and B2B.
+O produto não é uma ferramenta ofensiva aberta. A autorização sobre o domínio é obrigatória antes da avaliação. O posicionamento é B2B, responsável e orientado a decisões.
 
-## Customer Journey
+## Jornada comercial
 
-- Explain AB Scan on the landing page.
-- Offer a free initial assessment to understand exposure.
-- Use the full paid report as the path to a professional PDF.
-- Convert the paid report amount into credit for manual PenTest for 90 days when applicable.
-- Position manual PenTest as the complementary next step when deeper validation is needed.
+- Apresentar Pentest e segurança ofensiva como soluções principais.
+- Usar o AB Scan como porta de entrada para uma visão autorizada da exposição web.
+- Definir escopo, premissas e entregáveis antes da execução.
+- Usar relatório técnico e executivo para priorizar correções.
+- Indicar Pentest manual quando a necessidade exigir validação mais profunda.
 
-## Key Themes
+## Temas principais
 
-- Web security assessment for companies.
-- Domain security evaluation.
-- Professional web security report.
-- Vulnerability report with evidence.
-- Risk prioritization and practical recommendations.
-- Public exposure analysis.
-- Supplier approval and contract security evidence.
-- Manual web PenTest as a complementary service.
+- Pentest para empresas.
+- Pentest de aplicações e APIs.
+- Avaliação de exposição externa.
+- Evidências para clientes, contratos e homologação de fornecedores.
+- Relatórios técnicos e executivos.
+- Priorização de risco e recomendações práticas.
+- Diferença entre scan, avaliação de vulnerabilidades e Pentest.
 
 ## Key Pages
 
 - Home: https://abreuebrum.com.br/
+- Solutions: https://abreuebrum.com.br/solucoes/
+- Pentest: https://abreuebrum.com.br/pentest/
+- Methodology: https://abreuebrum.com.br/metodologia/
+- AB Scan: https://abreuebrum.com.br/ab-scan/
+- Proposal: https://abreuebrum.com.br/solicitar-proposta/
 - Complementary services: https://abreuebrum.com.br/servicos/
-- Contact: https://abreuebrum.com.br/#contato
+- Contact: https://abreuebrum.com.br/solicitar-proposta/
 - Blog: https://abreuebrum.com.br/blog/
 - Privacy policy: https://abreuebrum.com.br/politica-privacidade.html
 
 ## Contact
 
-- Email: contato@abreuebrum.com.br
-- Phone/WhatsApp: +55 21 92013-7715
+- E-mail: contato@abreuebrum.com.br
+- Telefone/WhatsApp: +55 21 92013-7715
 
 Use https://abreuebrum.com.br/ as the canonical domain.
 

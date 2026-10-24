@@ -1,6 +1,6 @@
 # GA4 — Configuração de Key Events (Conversões)
 
-Após o deploy do código com `generate_lead`, configure no painel do Google Analytics 4.
+Após existir um fluxo autorizado que confirme o lead, configure os eventos de negócio no painel do Google Analytics 4. Abrir WhatsApp ou preparar uma mensagem não confirma envio.
 
 ## Pré-requisitos
 
@@ -14,7 +14,7 @@ No GA4: **Admin > Exibição de dados > Eventos > Criar evento** (se necessário
 
 | Evento | Marcar como Key Event | Observação |
 |--------|----------------------|------------|
-| `generate_lead` | **Sim** | Conversão primária online |
+| `generate_lead` | **Sim, somente após confirmação** | Não é emitido pelo formulário estático; exige backend/CRM ou confirmação operacional |
 | `qualify_lead` | **Sim** | Enviado via Measurement Protocol (planilha/CRM) |
 | `close_convert_lead` | **Sim** | Enviado via Measurement Protocol |
 
@@ -28,14 +28,13 @@ No GA4: **Admin > Exibição de dados > Eventos > Criar evento** (se necessário
 
 - `disqualify_lead`
 - `close_unconvert_lead`
-- `cta_click`, `form_start`, `service_interest`
+- `whatsapp_message_prepared`, `contact_channel_opened`, `cta_click`, `form_start`, `service_interest`
 
-## API Secret para Measurement Protocol (eventos offline)
+## API Secret para Measurement Protocol (eventos offline) — futuro
 
-1. GA4 **Admin > Coleta e modificação de dados > Fluxo de dados**
-2. Selecione o fluxo Web
-3. **Measurement Protocol API secrets** > Criar
-4. Copie o secret para `CONFIG.ga4ApiSecret` em `ops/checklists/checklist-cnj-capture.gs`
+Não executar nesta release: a captura CNJ e os eventos offline do Apps Script
+estão desativados. Não criar nem copiar API Secret, nem republicar o endpoint,
+até existir backend autenticado e revisão independente aprovada.
 
 ## Parâmetros customizados (opcional, fase 2)
 
