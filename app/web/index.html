@@ -3,98 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; script-src-attr 'none'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; style-src-attr 'none'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://pagead2.googlesyndication.com;">
-  <title>Pentest, Red Team e Security Review | ABREU &amp; BRUM</title>
-  <meta name="description" content="Segurança ofensiva para empresas: Pentest, Red Team e Security Review com escopo claro, evidências técnicas e recomendações acionáveis.">
-  <meta name="robots" content="index, follow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self'; style-src-attr 'none'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://pagead2.googlesyndication.com;">
+  <title>Segurança ofensiva para empresas | ABREU &amp; BRUM</title>
+  <meta name="description" content="Pentest, Red Team e Security Review para empresas que precisam transformar risco técnico em decisão segura.">
   <link rel="canonical" href="https://abreuebrum.com.br/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://abreuebrum.com.br/">
-  <meta property="og:title" content="Pentest, Red Team e Security Review | ABREU &amp; BRUM">
-  <meta property="og:description" content="Descubra vulnerabilidades antes que elas se tornem incidentes. Avaliações ofensivas para aplicações, infraestrutura, nuvem e operações empresariais.">
+  <meta property="og:title" content="Segurança ofensiva para empresas | ABREU &amp; BRUM">
+  <meta property="og:description" content="Avaliações ofensivas para aplicações, APIs, infraestrutura, identidades e ambientes críticos.">
   <meta property="og:image" content="https://abreuebrum.com.br/images/og-16x9.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="images/logo-favicon.svg">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/premium.css">
   <link rel="stylesheet" href="css/consent.css">
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@graph":[
-      {"@type":"Organization","@id":"https://abreuebrum.com.br/#organization","name":"ABREU & BRUM","url":"https://abreuebrum.com.br/","logo":"https://abreuebrum.com.br/images/logo-abreu-brum.svg","email":"contato@abreuebrum.com.br","telephone":"+5521920137715","areaServed":"BR"},
-      {"@type":"WebSite","@id":"https://abreuebrum.com.br/#website","name":"ABREU & BRUM","url":"https://abreuebrum.com.br/","inLanguage":"pt-BR","publisher":{"@id":"https://abreuebrum.com.br/#organization"}},
-      {"@type":"ItemList","@id":"https://abreuebrum.com.br/#familias","name":"Famílias de segurança ofensiva","itemListElement":[
-        {"@type":"ListItem","position":1,"name":"Pentest","url":"https://abreuebrum.com.br/pentest/"},
-        {"@type":"ListItem","position":2,"name":"Red Team","url":"https://abreuebrum.com.br/red-team/"},
-        {"@type":"ListItem","position":3,"name":"Security Review","url":"https://abreuebrum.com.br/security-review/"}
-      ]},
-      {"@type":"FAQPage","mainEntity":[
-        {"@type":"Question","name":"Qual a diferença entre Pentest, Red Team e Security Review?","acceptedAnswer":{"@type":"Answer","text":"Pentest demonstra a exploração controlada de falhas em um escopo definido. Red Team simula objetivos adversariais mais amplos e avalia prevenção, detecção e resposta. Security Review analisa postura, arquitetura, configurações e controles."}},
-        {"@type":"Question","name":"O que a empresa recebe ao final?","acceptedAnswer":{"@type":"Answer","text":"O projeto é definido por escopo. Em geral, a entrega pode incluir relatório técnico, resumo executivo, evidências, priorização, recomendações e validação posterior quando prevista na proposta."}},
-        {"@type":"Question","name":"A avaliação garante certificação ou segurança total?","acceptedAnswer":{"@type":"Answer","text":"Não. Uma avaliação é uma fotografia técnica dentro do escopo contratado. Ela apoia decisões e auditorias, mas não substitui governança, correção contínua ou certificação."}}
-      ]}
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"ABREU & BRUM","url":"https://abreuebrum.com.br/","inLanguage":"pt-BR","description":"Pentest, Red Team e Security Review para empresas."}</script>
 </head>
-<body data-site-area="home">
+<body class="premium-site" data-site-area="home">
   <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
   <header class="header">
     <div class="container">
       <a href="./" class="logo" aria-label="ABREU &amp; BRUM"><img src="images/logo-abreu-brum.svg" alt="ABREU &amp; BRUM" class="logo-img" width="4294" height="1035"></a>
       <nav class="nav" aria-label="Navegação principal">
-        <a href="servicos/">Serviços</a><a href="solucoes/">Soluções</a><a href="metodologia/">Metodologia</a><a href="conteudos/">Conteúdos</a><a href="sobre/">Sobre</a><a href="solicitar-proposta/" class="nav-cta">Solicitar proposta</a>
+        <a href="servicos/">Serviços</a><a href="solucoes/">Contextos</a><a href="metodologia/">Método</a><a href="sobre/">Sobre</a><a href="solicitar-proposta/" class="nav-cta">Solicitar avaliação</a>
       </nav>
       <button class="mobile-menu" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
     </div>
   </header>
 
   <main id="main-content">
-    <section class="hero">
-      <div class="container">
-        <div>
-          <p class="eyebrow">ABREU &amp; BRUM · OFFENSIVE SECURITY</p>
-          <h1>Encontre o que um atacante encontraria <em>antes dele.</em></h1>
-          <p>Avaliações ofensivas para empresas que precisam transformar vulnerabilidades em decisões: Pentest, Red Team e Security Review com escopo, evidências e próximos passos claros.</p>
-          <div class="hero-actions"><a href="solicitar-proposta/" class="btn btn-secondary">Solicitar proposta</a><a href="servicos/" class="btn btn-outline">Explorar serviços</a></div>
-          <div class="hero-note"><span>Atuação autorizada</span><span>Relatórios para gestão e técnica</span><span>Copy sem promessas de cobertura total</span></div>
+    <section class="p-hero">
+      <div class="p-wrap p-hero-grid">
+        <div class="p-hero-copy">
+          <p class="p-eyebrow">ABREU &amp; BRUM / OFFENSIVE SECURITY</p>
+          <h1 class="p-title p-display">Segurança ofensiva para decisões que <em>não podem esperar.</em></h1>
+          <p class="p-lede">Identifique vulnerabilidades exploráveis em aplicações, APIs, infraestrutura e ambientes críticos. Receba evidências que ajudam sua empresa a decidir o que corrigir, validar ou priorizar.</p>
+          <div class="p-actions"><a href="solicitar-proposta/?servico=pentest" class="p-button">Solicitar avaliação <span aria-hidden="true">↗</span></a><a href="servicos/" class="p-button p-button--ghost">Conhecer capacidades</a></div>
+          <div class="p-hero-note"><span>Escopo autorizado</span><span>Relatório executivo e técnico</span><span>Próximos passos claros</span></div>
         </div>
-        <aside class="hero-card" aria-label="Como a Abreu &amp; Brum trabalha">
-          <span class="mini-label">Risco real. Decisão clara.</span>
-          <h2>Uma avaliação útil começa antes do teste.</h2>
-          <p>O projeto parte do objetivo empresarial, registra limites e termina com evidências que ajudam a priorizar correções.</p>
-          <ul class="signal-list"><li><b>01</b><span>Objetivo, ativos e autorização definidos.</span></li><li><b>02</b><span>Exploração controlada e documentação reproduzível.</span></li><li><b>03</b><span>Recomendações ligadas ao impacto e ao contexto.</span></li></ul>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section section-tight" aria-label="Famílias de serviços">
-      <div class="container"><div class="section-kicker"><span class="tag">Segurança ofensiva</span><span class="tag tag--gold">B2B</span></div>
-        <div class="family-grid">
-          <article class="family-card"><span class="number">01</span><h3>Pentest</h3><p>Teste de intrusão em aplicações, APIs, mobile, infraestrutura, IA, desktop e código-fonte para demonstrar exploração e impacto.</p><a class="text-link" href="pentest/">Conhecer Pentest</a></article>
-          <article class="family-card"><span class="number">02</span><h3>Red Team</h3><p>Exercícios adversariais, engenharia social, Purple Team e cenários Assumed Breach para validar detecção e resposta.</p><a class="text-link" href="red-team/">Conhecer Red Team</a></article>
-          <article class="family-card"><span class="number">03</span><h3>Security Review</h3><p>Revisões de nuvem, identidade, CI/CD, Microsoft 365, segmentação, superfície de ataque e gestão de vulnerabilidades.</p><a class="text-link" href="security-review/">Conhecer Security Review</a></article>
+        <div class="p-console" aria-label="Representação do fluxo de uma avaliação">
+          <div class="p-console-head"><span class="p-mono">Engagement / readout</span><span class="p-console-status">Processo definido</span></div>
+          <h2 class="p-display">Risco técnico convertido em decisão.</h2>
+          <ul class="p-console-lines">
+            <li><b>01</b><span>Objetivo e autorização</span><span>ALIGNED</span></li>
+            <li><b>02</b><span>Superfície e hipóteses</span><span>MAPPED</span></li>
+            <li><b>03</b><span>Execução controlada</span><span>TESTED</span></li>
+            <li><b>04</b><span>Evidência e impacto</span><span>READABLE</span></li>
+            <li><b>05</b><span>Prioridade de correção</span><span>DECIDABLE</span></li>
+          </ul>
+          <p class="p-console-foot">Representação editorial do processo. O escopo final é confirmado em proposta.</p>
         </div>
       </div>
     </section>
 
-    <section class="section section-soft"><div class="container"><div class="section-header"><p class="eyebrow">Para quem compra</p><h2>Da exigência de um cliente ao risco que a diretoria precisa enxergar.</h2><p>Organizamos o serviço conforme a decisão: lançar, contratar, corrigir, auditar, integrar ou responder a um incidente.</p></div><div class="proof-grid"><article class="proof-card"><strong>01</strong><h3>Produto e engenharia</h3><p>Valide aplicações, APIs e pipelines antes que uma falha chegue à produção.</p></article><article class="proof-card"><strong>02</strong><h3>Segurança e infraestrutura</h3><p>Entenda caminhos de ataque em redes, identidades, nuvem e endpoints.</p></article><article class="proof-card"><strong>03</strong><h3>Risco e compliance</h3><p>Estruture evidências para contratos, auditorias, M&amp;A e requisitos setoriais.</p></article><article class="proof-card"><strong>04</strong><h3>Negócio e compras</h3><p>Receba um escopo comparável, com premissas, limites e entregáveis explícitos.</p></article></div></div></section>
+    <section class="p-section--paper">
+      <div class="p-wrap"><div class="p-proof-strip">
+        <div class="p-proof-item"><strong>Escopo defendível</strong><p>O projeto começa com objetivo, ativos, limites, janela e regras de engajamento.</p></div>
+        <div class="p-proof-item"><strong>Evidência utilizável</strong><p>Achados conectam caminho de ataque, impacto, contexto e recomendação.</p></div>
+        <div class="p-proof-item"><strong>Próximo passo claro</strong><p>Executivos, tecnologia e operação recebem informação para agir.</p></div>
+      </div></div>
+    </section>
 
-    <section class="section"><div class="container"><div class="split"><div><p class="eyebrow">O que diferencia as avaliações</p><h2>Não é um PDF. É uma base para decidir.</h2><p>O valor de um teste está na conexão entre a evidência técnica e a ação que ela orienta. A profundidade acompanha o ambiente, o risco e a autorização.</p><div class="cta-row cta-row--top"><a href="metodologia/" class="btn btn-primary">Ver metodologia</a></div></div><div><ul class="check-list"><li>Escopo e regras de engajamento alinhados antes da execução.</li><li>Achados descritos com evidência, impacto e recomendação.</li><li>Leitura executiva e técnica para públicos diferentes.</li><li>Reteste e acompanhamento somente quando previstos na proposta.</li><li>Referências técnicas aplicadas ao contexto, sem prometer certificação automática.</li></ul></div></div></div></section>
+    <section class="p-section">
+      <div class="p-wrap">
+        <div class="p-heading"><div><p class="p-eyebrow">Três práticas / uma decisão</p><h2 class="p-display">Escolha a pergunta antes de escolher o teste.</h2></div><p>O serviço certo depende do risco que sua empresa precisa entender agora: uma falha explorável, uma campanha adversarial ou uma postura que precisa ser revisada.</p></div>
+        <div class="p-practice-stack">
+          <a class="p-practice" href="pentest/"><span class="p-practice-number p-mono">01</span><div><h3 class="p-display">Pentest</h3><p>Valide caminhos de exploração em aplicações, APIs, mobile, infraestrutura e ambientes específicos.</p></div><span class="p-practice-meta">Evidência<br>Exploração<br>Remediação</span><span class="p-practice-arrow" aria-hidden="true">↗</span></a>
+          <a class="p-practice p-practice--red" href="red-team/"><span class="p-practice-number p-mono">02</span><div><h3 class="p-display">Red Team</h3><p>Teste objetivos adversariais, prevenção, detecção e resposta em uma campanha autorizada.</p></div><span class="p-practice-meta">Objetivo<br>Campanha<br>Resposta</span><span class="p-practice-arrow" aria-hidden="true">↗</span></a>
+          <a class="p-practice p-practice--blue" href="security-review/"><span class="p-practice-number p-mono">03</span><div><h3 class="p-display">Security Review</h3><p>Enxergue postura, identidade, nuvem, pipelines, Microsoft 365, segmentação e exposição.</p></div><span class="p-practice-meta">Postura<br>Controles<br>Prioridade</span><span class="p-practice-arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
 
-    <section class="section section-dark"><div class="container"><div class="section-header"><p class="eyebrow">Um processo legível</p><h2>Do objetivo ao plano de correção.</h2><p>O roteiro muda conforme a família, mas a governança permanece: autorização, escopo, execução controlada e comunicação responsável.</p></div><div class="process-grid"><article class="process-step"><span>01</span><h3>Objetivo</h3><p>Qual decisão motivou a avaliação?</p></article><article class="process-step"><span>02</span><h3>Escopo</h3><p>Quais ativos, perfis e limites?</p></article><article class="process-step"><span>03</span><h3>Reconhecimento</h3><p>O que está exposto e como funciona?</p></article><article class="process-step"><span>04</span><h3>Validação</h3><p>O risco é explorável neste contexto?</p></article><article class="process-step"><span>05</span><h3>Evidências</h3><p>Como reproduzir e priorizar o achado?</p></article><article class="process-step"><span>06</span><h3>Próximo passo</h3><p>O que corrigir e como validar?</p></article></div></div></section>
+    <section class="p-section p-section--ink">
+      <div class="p-wrap"><div class="p-heading"><div><p class="p-eyebrow">Uma experiência para quem compra segurança</p><h2 class="p-display">Profundidade para a tecnologia. Clareza para a decisão.</h2></div><p>O mesmo projeto precisa ser compreendido por quem opera o ambiente, quem responde pelo risco e quem precisa aprovar o investimento.</p></div>
+        <div class="p-matrix"><div class="p-matrix-item"><strong>Antes do teste</strong><span>Objetivo, contexto, ativos, premissas e autorização documentados.</span></div><div class="p-matrix-item"><strong>Durante</strong><span>Execução controlada, comunicação responsável e limites respeitados.</span></div><div class="p-matrix-item"><strong>Depois</strong><span>Achados com evidência, impacto e recomendações acionáveis.</span></div><div class="p-matrix-item"><strong>Na correção</strong><span>Reteste e acompanhamento somente quando previstos na proposta.</span></div></div>
+      </div>
+    </section>
 
-    <section class="section"><div class="container"><div class="section-header"><p class="eyebrow">Entregas</p><h2>Informação para cada parte interessada.</h2><p>O formato final depende da modalidade e da proposta. A comunicação não esconde limitações nem transforma uma avaliação em garantia.</p></div><div class="deliverables"><article class="deliverable"><h3>Resumo executivo</h3><p>Risco, impacto e prioridades para gestão.</p></article><article class="deliverable"><h3>Relatório técnico</h3><p>Escopo, evidências e recomendações acionáveis.</p></article><article class="deliverable"><h3>Comunicação de achados</h3><p>Alinhamento durante o projeto conforme o contrato.</p></article><article class="deliverable"><h3>Reteste</h3><p>Validação posterior quando contratado e aplicável.</p></article></div></div></section>
+    <section class="p-section p-section--paper">
+      <div class="p-wrap p-evidence"><div class="p-evidence-intro"><p class="p-eyebrow">Evidence studio</p><h2 class="p-display">Um relatório precisa ajudar alguém a decidir.</h2><p>Esta prévia é demonstrativa. A entrega real depende da modalidade, do escopo contratado e das evidências observadas.</p><a href="metodologia/" class="p-button p-button--ghost">Ver como trabalhamos</a></div><article class="p-report"><div class="p-report-header"><span class="p-report-code">FINDING / AUTH-07</span><span class="p-report-severity">Alta prioridade</span></div><h3 class="p-display">Acesso não autorizado entre perfis de negócio</h3><p>Uma identidade com permissão limitada consegue alcançar uma função de outro contexto quando uma sequência específica de requisições é combinada. A demonstração deve ser reproduzível dentro dos limites autorizados.</p><div class="p-report-grid"><div><strong>Caminho</strong><span>Requisição → controle → dado</span></div><div><strong>Impacto</strong><span>Escopo de acesso ampliado</span></div><div><strong>Ação</strong><span>Corrigir e validar novamente</span></div></div></article></div>
+    </section>
 
-    <section class="section section-soft"><div class="container"><div class="section-header center"><p class="eyebrow">Soluções por contexto</p><h2>Uma mesma capacidade pode resolver problemas diferentes.</h2><p>Explore as páginas orientadas a compliance e os setores que mais precisam traduzir segurança em contratação.</p></div><div class="audience-grid"><span class="audience-pill">ISO 27001</span><span class="audience-pill">PCI DSS</span><span class="audience-pill">SOC 2</span><span class="audience-pill">TISAX</span><span class="audience-pill">M&amp;A</span><span class="audience-pill">SaaS</span><span class="audience-pill">Fintechs</span><span class="audience-pill">E-commerce</span><span class="audience-pill">Healthtechs</span><span class="audience-pill">Indústrias</span></div><div class="cta-row cta-row--center"><a href="solucoes/" class="btn btn-outline">Ver todas as soluções</a></div></div></section>
+    <section class="p-section">
+      <div class="p-wrap p-split"><div><p class="p-eyebrow">Como começamos</p><h2 class="p-display">A proposta nasce da pergunta certa.</h2><p>Conte o que mudou, o que precisa ser validado e quem precisa confiar no resultado. A conversa comercial organiza o próximo passo sem pedir dados sensíveis.</p><div class="p-actions"><a href="solicitar-proposta/" class="p-button p-button--dark">Falar sobre o escopo <span aria-hidden="true">↗</span></a></div></div><ol class="p-list"><li><span class="p-list-index p-mono">01</span><div><strong>Contexto</strong><span>Lançamento, homologação, auditoria, aquisição, incidente ou correção.</span></div></li><li><span class="p-list-index p-mono">02</span><div><strong>Ambiente</strong><span>Aplicações, APIs, identidades, nuvem, rede, pipelines e usuários envolvidos.</span></div></li><li><span class="p-list-index p-mono">03</span><div><strong>Evidência</strong><span>Relatório técnico, leitura executiva, priorização ou validação de correção.</span></div></li><li><span class="p-list-index p-mono">04</span><div><strong>Proposta</strong><span>Modalidade, cobertura, premissas, entregáveis e condições confirmados por escrito.</span></div></li></ol></div>
+    </section>
 
-    <section class="section"><div class="container"><div class="section-header center"><p class="eyebrow">Perguntas frequentes</p><h2>Escolha a profundidade certa.</h2></div><div class="faq-list"><details><summary>Qual a diferença entre Pentest, Red Team e Security Review?</summary><p>Pentest demonstra a exploração controlada de falhas em um escopo. Red Team simula objetivos adversariais mais amplos e observa prevenção, detecção e resposta. Security Review analisa postura, arquitetura, configurações e controles.</p></details><details><summary>O que devo informar para receber uma proposta?</summary><p>O objetivo do projeto, ambiente, ativos aproximados, prazo, necessidade de compliance e tipo de evidência desejada já ajudam a estruturar o próximo passo. Não envie senhas, tokens ou dados sensíveis.</p></details><details><summary>A avaliação garante certificação ou segurança total?</summary><p>Não. Uma avaliação representa o que foi observado dentro do escopo contratado. Ela apoia decisões e auditorias, mas não substitui governança, correção contínua ou uma certificação.</p></details></div></div></section>
+    <section class="p-section p-section--paper"><div class="p-wrap"><div class="p-heading"><div><p class="p-eyebrow">Perguntas que compradores fazem</p><h2 class="p-display">Sem transformar segurança em promessa vazia.</h2></div><p>A avaliação é uma fotografia responsável do escopo observado. A decisão melhora quando limites e próximos passos também são claros.</p></div><div class="p-faq"><details><summary>Qual a diferença entre um scan e um Pentest?</summary><p>Um scan automatiza sinais conhecidos. Um Pentest investiga hipóteses, combina contextos e valida caminhos de exploração dentro de um escopo autorizado. As duas práticas podem se complementar, mas não respondem à mesma pergunta.</p></details><details><summary>O Red Team substitui um Pentest?</summary><p>Não necessariamente. Red Team parte de um objetivo adversarial e observa prevenção, detecção e resposta; Pentest aprofunda uma superfície ou tecnologia. A escolha depende da decisão que motivou o projeto.</p></details><details><summary>Vocês entregam certificação?</summary><p>Uma avaliação técnica pode apoiar auditorias, contratos e homologações. Ela não equivale automaticamente a uma certificação nem representa garantia de segurança total.</p></details></div></div></section>
 
-    <section class="final-cta"><div class="container"><div><h2>Qual risco sua empresa precisa entender agora?</h2><p>Conte o contexto. A proposta deve começar pelo objetivo, não por uma lista genérica de ferramentas.</p></div><a href="solicitar-proposta/" class="btn btn-secondary">Falar com especialista</a></div></section>
+    <section class="p-cta"><div class="p-wrap"><div><p class="p-eyebrow">Próximo passo</p><h2 class="p-display">Qual risco sua empresa precisa entender agora?</h2><p>Descreva o contexto. A proposta deve começar pelo objetivo, não por uma lista genérica de ferramentas.</p></div><a href="solicitar-proposta/" class="p-button">Solicitar avaliação <span aria-hidden="true">↗</span></a></div></section>
   </main>
 
-  <footer class="footer"><div class="container"><div class="footer-content"><div class="footer-brand"><a href="./" class="logo" aria-label="ABREU &amp; BRUM"><img src="images/logo-abreu-brum-branca.svg" alt="ABREU &amp; BRUM" class="logo-img" width="4294" height="1035"></a><p>Cybersecurity · Offensive Security · Pentest</p><p>São Paulo, SP · Brasil</p></div><div><h2>Navegação</h2><a href="servicos/">Serviços</a><a href="solucoes/">Soluções</a><a href="metodologia/">Metodologia</a><a href="sobre/">Sobre</a></div><div><h2>Famílias</h2><a href="pentest/">Pentest</a><a href="red-team/">Red Team</a><a href="security-review/">Security Review</a><a href="conteudos/">Conteúdos</a></div><div><h2>Contato</h2><a href="solicitar-proposta/">Solicitar proposta</a><a href="mailto:contato@abreuebrum.com.br" data-contact="email">contato@abreuebrum.com.br</a><a href="https://wa.me/5521920137715" data-contact="whatsapp">WhatsApp Business</a><a href="politica-privacidade.html">Privacidade</a></div></div><div class="footer-bottom"><p>© 2026 ABREU &amp; BRUM. Todos os direitos reservados.</p><p>Escopo autorizado. Comunicação responsável.</p></div></div></footer>
+  <footer class="p-footer"><div class="p-wrap"><div class="p-footer-brand"><a href="./" class="logo" aria-label="ABREU &amp; BRUM"><img src="images/logo-abreu-brum-branca.svg" alt="ABREU &amp; BRUM" class="logo-img" width="4294" height="1035"></a><p>Pentest · Red Team · Security Review<br>Escopo autorizado. Comunicação responsável.</p></div><div><h2>Práticas</h2><a href="pentest/">Pentest</a><a href="red-team/">Red Team</a><a href="security-review/">Security Review</a></div><div><h2>Explorar</h2><a href="metodologia/">Método</a><a href="solucoes/">Contextos</a><a href="conteudos/">Conteúdos</a></div><div><h2>Contato</h2><a href="solicitar-proposta/">Solicitar avaliação</a><a href="mailto:contato@abreuebrum.com.br" data-contact="email">contato@abreuebrum.com.br</a><a href="politica-privacidade.html">Privacidade</a></div><div class="p-footer-bottom"><p>© 2026 ABREU &amp; BRUM. Todos os direitos reservados.</p><p>Marca comercial brasileira de segurança ofensiva.</p></div></div></footer>
   <script src="js/config.js" defer></script><script src="js/lead-tracking.js" defer></script><script src="js/main.js" defer></script>
 </body>
 </html>
