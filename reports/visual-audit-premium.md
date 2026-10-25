@@ -62,6 +62,14 @@ JSONs brutos: `reports/lighthouse/`.
 - Consentimento: banner inicial, recusa persistente e aceite persistente — PASS.
 - Formulário: validação, aceite de privacidade e preparação de WhatsApp sem envio automático — PASS.
 
+### Validação complementar — Pentest API
+
+- Rota: `/pentest/api/` servida localmente em `127.0.0.1:8790`.
+- Resoluções: 1920×1080, 1440×900, 768×1024, 390×844 e 360×800.
+- Overflow horizontal: 0 ocorrências nas cinco resoluções.
+- H1, 21 links internos e carregamento da rota: PASS.
+- Console do navegador: 0 erros.
+
 ## Revisão independente
 
 **Round 1:** `PASS_WITH_OBSERVATIONS` — sem blockers ou achados high.
