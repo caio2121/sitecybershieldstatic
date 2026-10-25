@@ -62,6 +62,28 @@ JSONs brutos: `reports/lighthouse/`.
 - Consentimento: banner inicial, recusa persistente e aceite persistente — PASS.
 - Formulário: validação, aceite de privacidade e preparação de WhatsApp sem envio automático — PASS.
 
+## Revisão independente
+
+**Round 1:** `PASS_WITH_OBSERVATIONS` — sem blockers ou achados high.
+
+Observações residuais:
+
+- rotas filhas de Pentest, Red Team e Security Review não herdam todas as texturas/accentos definidos para as páginas de família;
+- o blog legado ainda referencia `--font-family-brand`, token removido do novo sistema;
+- códigos e nota do bloco de credibilidade têm contraste abaixo do ideal em Lighthouse;
+- screenshots e JSONs de Lighthouse permanecem artefatos locais de homologação, fora do conjunto publicável.
+
+Esses itens não impedem a avaliação visual da branch, mas devem ser tratados antes de uma publicação final se a aprovação humana exigir consistência total também no blog e nas rotas filhas.
+
+## Pendências para publicação
+
+- aprovação visual e comercial do proprietário;
+- decisão sobre quais credenciais individuais possuem vínculo, evidência documental e autorização de uso;
+- eventual correção das observações da revisão independente;
+- smoke test externo após eventual deploy — não executado nesta missão.
+
+**Merge e deploy:** não executados.
+
 ## Artefatos
 
 - Antes: `reports/visual-audit/before/<pagina>-<largura>x<altura>.png`.
