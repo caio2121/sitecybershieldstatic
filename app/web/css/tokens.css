@@ -3,6 +3,69 @@
   src: url('../fonts/ethnocentric-regular.otf') format('opentype');
   font-display: swap;
 }
+@font-face {
+  font-family: 'Manrope';
+  src: url('../fonts/manrope-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('../fonts/manrope-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('../fonts/manrope-800.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/inter-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/inter-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/inter-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/inter-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('../fonts/ibm-plex-mono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('../fonts/ibm-plex-mono-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --color-ink: #10243e;
@@ -27,15 +90,17 @@
   --color-on-dark-muted: #cad8e7;
   --color-on-dark-subtle: #edf4fb;
 
-  --font-family-brand: 'Ethnocentric', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-logo: 'Ethnocentric', 'Inter', sans-serif;
+  --font-family-display: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
   --text-base-size: 1rem;
   --text-base-line: 1.65;
   --text-sm: 0.875rem;
   --text-lg: 1.125rem;
-  --heading-1-size: clamp(2.7rem, 6vw, 5.4rem);
-  --heading-2-size: clamp(2rem, 4vw, 3.25rem);
-  --heading-3-size: 1.35rem;
+  --heading-1-size: clamp(2.8rem, 5.7vw, 5.8rem);
+  --heading-2-size: clamp(2rem, 3.6vw, 3.6rem);
+  --heading-3-size: 1.3rem;
 
   --space-4: 4px;
   --space-8: 8px;
