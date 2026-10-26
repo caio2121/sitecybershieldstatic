@@ -370,12 +370,14 @@
 .p-inline-link:hover { color: var(--p-blue); }
 .p-inline-link span { margin-left: 8px; color: var(--p-family-accent); font-size: 1.1rem; }
 .p-section--evidence { background: var(--p-ink); }
-.p-delivery-rail { display: grid; grid-template-columns: repeat(5,1fr); gap: 1px; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.15); }
-.p-delivery-step { min-height: 185px; padding: 23px 18px; background: rgba(255,255,255,.04); }
+.p-delivery-rail { position: relative; display: grid; grid-template-columns: repeat(5,1fr); gap: 0; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.15); }
+.p-delivery-rail::before { content: ''; position: absolute; z-index: 0; top: 45px; right: calc(20% - 41px); left: 41px; height: 1px; background: rgba(240,201,110,.62); }
+.p-delivery-step { position: relative; z-index: 1; min-height: 0; padding: 22px 18px 25px; background: rgba(255,255,255,.04); border-right: 1px solid rgba(255,255,255,.12); }
+.p-delivery-step:last-child { border-right: 0; }
 .p-delivery-step:nth-child(odd) { background: rgba(255,255,255,.08); }
-.p-delivery-step span { color: #f0c96e; font-family: var(--font-family-mono); font-size: .7rem; }
-.p-delivery-step strong { display: block; margin-top: 35px; color: var(--p-white); font-size: 1.05rem; }
-.p-delivery-step p { margin-top: 7px; color: #b6c6d0; font-size: .82rem; line-height: 1.45; }
+.p-delivery-step span { display: grid; width: 46px; height: 46px; place-items: center; color: #f0c96e; background: var(--p-blue); border: 1px solid rgba(240,201,110,.8); border-radius: 50%; font-family: var(--font-family-mono); font-size: clamp(1.35rem, 2vw, 1.75rem); font-weight: 700; line-height: 1; }
+.p-delivery-step strong { display: block; margin-top: 17px; color: var(--p-white); font-size: 1.05rem; line-height: 1.1; }
+.p-delivery-step p { margin-top: 8px; color: #b6c6d0; font-size: .82rem; line-height: 1.45; }
 .p-output-stack { display: grid; gap: 0; border-top: 1px solid var(--p-line); }
 .p-output-stack article { display: grid; grid-template-columns: 120px 1fr; gap: 4px 22px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--p-line); }
 .p-output-stack strong { font-size: 1.1rem; }
@@ -556,7 +558,15 @@
 
 @media (max-width: 980px) {
   .p-family-grid, .p-principle-grid { grid-template-columns: repeat(2,1fr); }
-  .p-delivery-rail, .p-operating-path { grid-template-columns: repeat(3,1fr); }
+  .p-delivery-rail { grid-template-columns: 1fr; }
+  .p-operating-path { grid-template-columns: repeat(3,1fr); }
+  .p-delivery-rail::before { top: 39px; right: auto; bottom: 50px; left: 37px; width: 1px; height: auto; }
+  .p-delivery-step { display: grid; grid-template-columns: 38px minmax(0,1fr); column-gap: 14px; padding: 19px 18px 21px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .p-delivery-step:last-child { border-bottom: 0; }
+  .p-delivery-step span { width: 38px; height: 38px; font-size: 1.15rem; }
+  .p-delivery-step span { grid-row: 1 / span 2; }
+  .p-delivery-step strong { margin-top: 2px; }
+  .p-delivery-step p { margin-top: 7px; }
   .p-trigger-grid { grid-template-columns: repeat(2,1fr); }
   .p-service-atlas { grid-template-columns: repeat(3,1fr); }
   .p-service-atlas--four { grid-template-columns: repeat(2,1fr); }
@@ -582,7 +592,9 @@
   .p-signal-list a { grid-template-columns: 100px 1fr 18px; gap: 8px 12px; }
   .p-family-grid, .p-principle-grid, .p-audience-grid, .p-red-modalities { grid-template-columns: 1fr; }
   .p-family-panel { min-height: 0; }
-  .p-delivery-rail, .p-operating-path, .p-service-atlas, .p-service-atlas--four, .p-pentest-layers, .p-pentest-sequence, .p-review-layers, .p-campaign-board, .p-review-atlas { grid-template-columns: 1fr 1fr; }
+  .p-delivery-rail { grid-template-columns: 1fr; }
+  .p-operating-path, .p-service-atlas, .p-service-atlas--four, .p-pentest-layers, .p-pentest-sequence, .p-review-layers, .p-campaign-board, .p-review-atlas { grid-template-columns: 1fr 1fr; }
+  .p-delivery-rail::before { bottom: 87px; }
   .p-output-stack article { grid-template-columns: 1fr; gap: 5px; }
   .p-output-stack p { grid-column: auto; }
   .p-catalog-nav { grid-template-columns: 1fr; }
