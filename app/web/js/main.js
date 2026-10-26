@@ -148,6 +148,41 @@ function initMobileMenu() {
     });
 }
 
+function normalizePrimaryNavigation() {
+    var nav = document.querySelector('.nav');
+    if (!nav) return;
+
+    var logo = document.querySelector('.logo');
+    var homeUrl = logo
+        ? new URL(logo.getAttribute('href') || './', document.baseURI)
+        : new URL('./', document.baseURI);
+    var siteArea = document.body && document.body.getAttribute('data-site-area') || '';
+    var serviceAreas = [
+        'services', 'pentest', 'pentest-api', 'pentest-web', 'pentest-network',
+        'red-team', 'red-team-exercise', 'security-review',
+        'security-review-cloud', 'security-review-active-directory'
+    ];
+    var items = [
+        { label: 'Serviços', path: 'servicos/', current: serviceAreas.indexOf(siteArea) !== -1 },
+        { label: 'Contextos', path: 'solucoes/', current: siteArea === 'solutions' },
+        { label: 'AB Scan', path: 'ab-scan/', className: 'nav-product', current: siteArea === 'ab-scan' },
+        { label: 'Método', path: 'metodologia/', current: siteArea === 'methodology' },
+        { label: 'Conteúdos', path: 'conteudos/', current: siteArea === 'content' || siteArea === 'blog' },
+        { label: 'Sobre', path: 'sobre/', current: siteArea === 'about' },
+        { label: 'Solicitar avaliação', path: 'solicitar-proposta/', className: 'nav-cta', current: siteArea === 'proposal' }
+    ];
+
+    nav.replaceChildren();
+    items.forEach(function(item) {
+        var link = document.createElement('a');
+        link.href = new URL(item.path, homeUrl).href;
+        link.textContent = item.label;
+        if (item.className) link.className = item.className;
+        if (item.current) link.setAttribute('aria-current', 'page');
+        nav.appendChild(link);
+    });
+}
+
 function getCompanyWhatsAppNumber() {
     var config = window.ABConfig || {};
     var number = config.contact && config.contact.phone && (config.contact.phone.whatsapp || config.contact.phone.primary) || '5521920137715';
@@ -516,6 +551,7 @@ function initContactForm() {
 document.addEventListener('DOMContentLoaded', function() {
     initCookieConsent();
     initGAEventTracking();
+    normalizePrimaryNavigation();
     initMobileMenu();
     initPrivacyAnchor();
     normalizeProductLabel();

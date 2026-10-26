@@ -30,7 +30,43 @@ window.addEventListener('scroll', () => {
     }
 });
 
+function normalizePrimaryNavigation() {
+    const nav = document.querySelector('.nav');
+    if (!nav) return;
+
+    const logo = document.querySelector('.logo');
+    const homeUrl = logo
+        ? new URL(logo.getAttribute('href') || './', document.baseURI)
+        : new URL('./', document.baseURI);
+    const siteArea = document.body?.getAttribute('data-site-area') || '';
+    const serviceAreas = [
+        'services', 'pentest', 'pentest-api', 'pentest-web', 'pentest-network',
+        'red-team', 'red-team-exercise', 'security-review',
+        'security-review-cloud', 'security-review-active-directory'
+    ];
+    const items = [
+        { label: 'Serviços', path: 'servicos/', current: serviceAreas.includes(siteArea) },
+        { label: 'Contextos', path: 'solucoes/', current: siteArea === 'solutions' },
+        { label: 'AB Scan', path: 'ab-scan/', className: 'nav-product', current: siteArea === 'ab-scan' },
+        { label: 'Método', path: 'metodologia/', current: siteArea === 'methodology' },
+        { label: 'Conteúdos', path: 'conteudos/', current: siteArea === 'content' || siteArea === 'blog' },
+        { label: 'Sobre', path: 'sobre/', current: siteArea === 'about' },
+        { label: 'Solicitar avaliação', path: 'solicitar-proposta/', className: 'nav-cta', current: siteArea === 'proposal' }
+    ];
+
+    nav.replaceChildren();
+    items.forEach(item => {
+        const link = document.createElement('a');
+        link.href = new URL(item.path, homeUrl).href;
+        link.textContent = item.label;
+        if (item.className) link.className = item.className;
+        if (item.current) link.setAttribute('aria-current', 'page');
+        nav.appendChild(link);
+    });
+}
+
 // Mobile menu toggle
+normalizePrimaryNavigation();
 const mobileMenu = document.querySelector('.mobile-menu');
 const nav = document.querySelector('.nav');
 
