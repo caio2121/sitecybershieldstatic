@@ -205,6 +205,11 @@ function normalizeProductLabel() {
     if (option) option.textContent = 'AB Scan (produto complementar)';
 }
 
+function normalizePublicFormCopy() {
+    var whatsappHelp = document.getElementById('whatsapp-help');
+    if (whatsappHelp) whatsappHelp.textContent = 'Não compartilharemos o número com ferramentas de medição.';
+}
+
 var CONTACT_SERVICE_VALUES = [
     'abscan', 'pentest', 'red-team', 'security-review', 'nao-sei',
     'iso-27001', 'pci-dss', 'soc-2', 'tisax', 'ma', 'sharepoint',
@@ -555,7 +560,7 @@ function initContactForm() {
         }
         trackGAEvent('form_message_prepared', { form_id: 'contactForm', service: data.servico });
         trackGAEvent('proposal_message_prepared', { service: data.servico });
-        showMessage('WhatsApp aberto com sua mensagem preenchida. Revise os dados antes de enviar.', 'success');
+        showMessage('WhatsApp aberto com a mensagem preparada. Revise os dados e toque em enviar para concluir o contato.', 'success');
         setLoading(false);
     });
 
@@ -583,6 +588,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
     initPrivacyAnchor();
     normalizeProductLabel();
+    normalizePublicFormCopy();
     initContactForm();
     var servicePage = document.body && document.body.getAttribute('data-service-page');
     if (servicePage) trackGAEvent('service_page_view', { service_page: servicePage });

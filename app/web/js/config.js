@@ -34,7 +34,7 @@
         facebook: '',
         whatsapp: {
             number: '5521920137715',
-            message: 'Olá! Quero solicitar uma avaliação de segurança web, receber um relatório ou entender o PenTest manual.'
+            message: 'Olá! Quero conversar sobre uma avaliação de segurança, receber um relatório ou entender qual serviço atende ao meu ambiente.'
         }
     },
     features: {
