@@ -164,9 +164,9 @@ function normalizePrimaryNavigation() {
     ];
     var items = [
         { label: 'Serviços', path: 'servicos/', current: serviceAreas.indexOf(siteArea) !== -1 },
-        { label: 'Contextos', path: 'solucoes/', current: siteArea === 'solutions' },
+        { label: 'Soluções', path: 'solucoes/', current: siteArea === 'solutions' },
         { label: 'AB Scan', path: 'ab-scan/', className: 'nav-product', current: siteArea === 'ab-scan' },
-        { label: 'Método', path: 'metodologia/', current: siteArea === 'methodology' },
+        { label: 'Como trabalhamos', path: 'metodologia/', current: siteArea === 'methodology' },
         { label: 'Conteúdos', path: 'conteudos/', current: siteArea === 'content' || siteArea === 'blog' },
         { label: 'Sobre', path: 'sobre/', current: siteArea === 'about' },
         { label: 'Solicitar avaliação', path: 'solicitar-proposta/', className: 'nav-cta', current: siteArea === 'proposal' }
