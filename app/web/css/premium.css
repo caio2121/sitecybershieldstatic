@@ -280,7 +280,7 @@
 
 @media (max-width: 700px) {
   .premium-site { padding-top: 0; }
-  .premium-site .header { position: sticky; }
+  .premium-site .header { position: sticky; min-height: 68px; }
   .premium-site .header .container { min-height: 68px; }
   .premium-site .logo-img { height: 32px; }
   .premium-site .nav { top: 100%; background: var(--p-paper); }
