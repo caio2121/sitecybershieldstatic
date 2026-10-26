@@ -160,6 +160,15 @@ function initPrivacyAnchor() {
     if (panels[2] && !panels[2].id) panels[2].id = 'cookies';
 }
 
+function normalizeProductLabel() {
+    var serviceField = document.getElementById('contact-service');
+    if (!serviceField) return;
+    var group = serviceField.querySelector('optgroup[label="Produto legado"]');
+    var option = serviceField.querySelector('option[value="abscan"]');
+    if (group) group.label = 'Produto complementar';
+    if (option) option.textContent = 'AB Scan (produto complementar)';
+}
+
 var CONTACT_SERVICE_VALUES = [
     'abscan', 'pentest', 'red-team', 'security-review', 'nao-sei',
     'iso-27001', 'pci-dss', 'soc-2', 'tisax', 'ma', 'sharepoint',
@@ -169,7 +178,7 @@ var CONTACT_SERVICE_VALUES = [
 
 function getServiceLabel(serviceValue) {
     var serviceMap = {
-        abscan: 'AB Scan (produto legado)',
+         abscan: 'AB Scan (produto complementar)',
         pentest: 'Pentest',
         'red-team': 'Red Team',
         'security-review': 'Security Review',
@@ -509,6 +518,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initGAEventTracking();
     initMobileMenu();
     initPrivacyAnchor();
+    normalizeProductLabel();
     initContactForm();
     var servicePage = document.body && document.body.getAttribute('data-service-page');
     if (servicePage) trackGAEvent('service_page_view', { service_page: servicePage });

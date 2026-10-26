@@ -36,7 +36,7 @@ Preservar a marca do logotipo, substituir o display por Manrope, reservar IBM Pl
 
 O antes mostra uma identidade forte, porém repetitiva: a fonte do logotipo ocupava quase toda a hierarquia e as famílias compartilhavam o mesmo ritmo visual. O depois mantém navy, dourado e a marca original, mas devolve contraste editorial ao texto, cria uma seção de especialização técnica e usa texturas distintas para ataque, campanha e postura. Em mobile, os títulos permanecem legíveis sem overflow e os CTAs continuam visíveis após a primeira dobra.
 
-### Lighthouse local
+### Lighthouse local — baseline anterior
 
 Runner Lighthouse 13.5.0, servidor local, sem consentimento de analytics:
 
@@ -49,7 +49,7 @@ Runner Lighthouse 13.5.0, servidor local, sem consentimento de analytics:
 | Security Review | 93 | 96 | 100 | 100 |
 | Solicitar proposta | 98 | 96 | 100 | 100 |
 
-JSONs brutos: `reports/lighthouse/`.
+JSONs brutos baseline: `reports/lighthouse/`. A revalidação pós-patch está resumida em `reports/lighthouse/post-patch-local-20261025.md`.
 
 ## Verificações técnicas executadas
 
@@ -70,18 +70,26 @@ JSONs brutos: `reports/lighthouse/`.
 - H1, 21 links internos e carregamento da rota: PASS.
 - Console do navegador: 0 erros.
 
+### Revalidação pós-correção — ambiente local
+
+- Playwright: 20 combinações entre Home, Pentest API, Security Review e Serviços nas cinco resoluções; HTTP 200, overflow 0 e console sem erros.
+- Lighthouse 13.5.0: Home, Pentest API e Security Review com acessibilidade 100, SEO 100 e Best Practices 100 em desktop e mobile; performance desktop 100 e mobile 90/93/94. Evidência: `reports/lighthouse/post-patch-local-20261025.md`.
+- `color-contrast`: PASS na Home e no Security Review em desktop e mobile.
+- Proposta mantém acessibilidade 96 por contraste legado no formulário; não alterado por restrição de escopo.
+
 ## Revisão independente
 
-**Round 1:** `PASS_WITH_OBSERVATIONS` — sem blockers ou achados high.
+**Implementação inicial:** `PASS_WITH_OBSERVATIONS` — sem blockers ou achados high.
+**Correção desta rodada:** `FAIL` no Round 1 por inconsistência entre o baseline Lighthouse versionado e a evidência pós-patch; corrigido com artefato resumido versionado.
 
-Observações residuais:
+Estado após correções posteriores:
 
-- rotas filhas de Pentest, Red Team e Security Review não herdam todas as texturas/accentos definidos para as páginas de família;
-- o blog legado ainda referencia `--font-family-brand`, token removido do novo sistema;
-- códigos e nota do bloco de credibilidade têm contraste abaixo do ideal em Lighthouse;
+- rotas filhas de Pentest, Red Team e Security Review passaram a herdar a família por prefixo de `data-site-area`;
+- o blog legado continua fora da camada premium, mas não referencia mais `--font-family-brand`;
+- contraste dos códigos e da nota de credibilidade foi corrigido na camada premium;
 - screenshots e JSONs de Lighthouse permanecem artefatos locais de homologação, fora do conjunto publicável.
 
-Esses itens não impedem a avaliação visual da branch, mas devem ser tratados antes de uma publicação final se a aprovação humana exigir consistência total também no blog e nas rotas filhas.
+O contraste residual do formulário de proposta pertence à camada legada e não foi alterado para preservar o formulário/WhatsApp; requer decisão própria.
 
 ## Pendências para publicação
 

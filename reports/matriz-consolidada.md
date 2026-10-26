@@ -17,13 +17,15 @@
 
 ## Alterações delimitadas
 
-- `app/web/css/premium.css`: herança visual por prefixo e contraste dos códigos.
+- `app/web/css/premium.css`: herança visual por prefixo e contraste dos códigos, notas e eyebrows em blocos premium escuros.
 - `app/web/blog/css/style.css`: token tipográfico aprovado.
 - `app/web/red-team/index.html`: modalidades sem rota própria apontam para solicitação de escopo.
+- `app/web/security-review/index.html`: card combinado de Entra ID/M365/Pipeline aponta para solicitação de escopo, sem âncora imprecisa.
+- `app/web/servicos/index.html`: card Mobile preserva a âncora `#mobile`.
 - `app/web/pentest/api/index.html`: nova rota filha premium.
 
 ## Fora de escopo e riscos residuais
 
-- Âncoras antigas no catálogo geral, card combinado de Entra ID/M365/Pipeline e páginas utilitárias legadas permanecem para tarefa editorial própria.
+- Âncoras antigas no catálogo geral e páginas utilitárias legadas permanecem para tarefa editorial própria.
 - Headers HTTP externos e acessibilidade do modal CNJ exigem validação fora do servidor local.
 - Merge, push, deploy e smoke test externo não foram executados.

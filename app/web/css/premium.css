@@ -607,3 +607,33 @@
   .p-campaign-track { grid-template-columns: 1fr; gap: 5px; }
   .p-campaign-track i { width: 1px; height: 10px; margin-left: 5px; }
 }
+
+/* AB Scan: produto próprio complementar, sem confundir leitura inicial com avaliação especializada. */
+.premium-site .nav .nav-product { color: var(--p-ink); font-weight: 800; }
+.premium-site .nav .nav-product:hover,
+.premium-site .nav .nav-product:focus-visible { color: var(--p-blue); }
+.p-page-hero--scan::before { background: radial-gradient(circle at 84% 20%, rgba(57,119,154,.34), transparent 30%), linear-gradient(115deg, transparent 0 58%, rgba(255,255,255,.05) 58.1% 58.35%, transparent 58.45% 100%); }
+.p-scan-board { max-width: 380px; padding: 27px; color: var(--p-white); border: 1px solid rgba(255,255,255,.22); border-right: 4px solid var(--p-gold); background: rgba(255,255,255,.06); }
+.p-scan-board > span { display: block; margin-bottom: 24px; color: #f0c96e; }
+.p-scan-board-row { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 16px 0; border-top: 1px solid rgba(255,255,255,.14); }
+.p-scan-board-row b { color: #f0c96e; font-family: var(--font-family-mono); font-size: .68rem; }
+.p-scan-board-row strong { color: var(--p-white); font-size: .92rem; }
+.p-scan-board-row small { grid-column: 2; color: #c7d4de; font-size: .78rem; }
+.p-scan-limits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--p-line); border: 1px solid var(--p-line); }
+.p-scan-limits article { min-height: 180px; padding: 24px; background: var(--p-white); }
+.p-scan-limits article:nth-child(2) { background: #f7f0e1; }
+.p-scan-limits article:nth-child(3) { background: #e8f1f3; }
+.p-scan-limits span { color: var(--p-blue); font-family: var(--font-family-mono); font-size: .68rem; }
+.p-scan-limits strong { display: block; margin: 25px 0 8px; font-size: 1.05rem; }
+.p-scan-limits p { color: var(--p-muted); font-size: .84rem; }
+.p-scan-path { display: grid; gap: 0; border-top: 1px solid rgba(255,255,255,.18); }
+.p-scan-path article { display: grid; grid-template-columns: 48px 1fr; gap: 6px 18px; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+.p-scan-path span { color: #8bd0dc; font-family: var(--font-family-mono); font-size: .68rem; }
+.p-scan-path strong { color: var(--p-white); font-size: 1.05rem; }
+.p-scan-path p { grid-column: 2; color: #c7d4de; font-size: .86rem; }
+
+@media (max-width: 700px) {
+  .p-scan-limits { grid-template-columns: 1fr; }
+  .p-scan-limits article { min-height: 0; }
+  .p-scan-path article { grid-template-columns: 40px 1fr; }
+}

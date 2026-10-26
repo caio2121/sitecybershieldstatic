@@ -32,14 +32,14 @@
 - As famílias são distinguíveis: exploração/evidência no Pentest, campanha/detecção no Red Team, postura/relações no Security Review.
 - A composição mobile mantém hierarquia, CTA e legibilidade sem overflow.
 
-### Resíduos observados
+### Resíduos observados e estado pós-correção
 
-1. Rotas filhas usam `data-site-area` com sufixos (`pentest-web`, `red-team-exercise`, `security-review-cloud`), mas as regras de família eram exatas. Isso reduz a herança de acento/textura nessas rotas.
-2. O blog legado não participa integralmente da camada premium e referencia token tipográfico removido.
+1. Rotas filhas usam `data-site-area` com sufixos (`pentest-web`, `red-team-exercise`, `security-review-cloud`); a herança de acento/textura foi corrigida por seletores de prefixo em `premium.css`.
+2. O blog legado não participa integralmente da camada premium, mas o título agora usa o token display existente; a referência a `--font-family-brand` foi removida.
 3. A proposta e páginas utilitárias seguem o sistema base. Não foram redesenhadas nesta rodada por não haver decisão consolidada para uma migração completa dessas superfícies.
 
-## Prioridade para implementação
+## Prioridade para implementação — estado atual
 
-1. Corrigir herança das famílias por prefixo em `app/web/css/premium.css`.
-2. Fazer o título do blog consumir o token display existente.
-3. Manter a migração visual de utilitários como tarefa separada, sem alterar o fluxo WhatsApp ou inventar endpoint.
+1. Herança das famílias por prefixo em `app/web/css/premium.css`: concluída.
+2. Título do blog consumindo o token display existente: concluído.
+3. Migração visual de utilitários permanece como tarefa separada, sem alterar o fluxo WhatsApp ou inventar endpoint.

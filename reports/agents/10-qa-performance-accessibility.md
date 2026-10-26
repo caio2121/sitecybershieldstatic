@@ -1,6 +1,6 @@
 # Agente 10 — QA, performance e acessibilidade
 
-**Status:** baseline concluída; revalidação após patch pendente
+**Status:** baseline e revalidação pós-patch concluídas localmente; smoke público depende da publicação
 
 ## Baseline disponível
 
@@ -29,3 +29,9 @@ Segundo `reports/visual-audit-premium.md` e os JSONs em `reports/lighthouse/`:
 - validação local de fontes, tokens e seletores.
 - Playwright novamente nas cinco resoluções.
 - Lighthouse local já existente deve permanecer sem regressão conhecida; smoke externo não será executado sem deploy.
+
+## Revalidação pós-patch
+
+- Playwright local: 20 combinações, HTTP 200, overflow 0 e console sem erros.
+- Lighthouse local: Home, Pentest API e Security Review com acessibilidade, Best Practices e SEO 100 em desktop/mobile; contraste premium aprovado. Evidência: `reports/lighthouse/post-patch-local-20261025.md`.
+- Proposta permanece com acessibilidade 96 por contraste legado do formulário, fora do escopo autorizado.
