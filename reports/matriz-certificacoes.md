@@ -1,30 +1,30 @@
 # Matriz de certificações e comprovações
 
-**Status do artefato:** controle interno de publicação — 25/10/2026  
+**Status do artefato:** controle interno de publicação — 26/10/2026  
 **Referência pública consultada:** catálogo público da estrutura técnica indicado pelo proprietário. A URL e a identidade do fornecedor não são reproduzidas neste repositório para preservar a confidencialidade white label.
 
 ## Regra de publicação
 
-Nenhuma certificação abaixo é apresentada como certificação corporativa da ABREU & BRUM. O catálogo público consultado lista as siglas, mas não fornece neste contexto certificado nominal, titular, vínculo contratual ou autorização de uso comercial. Portanto, todas permanecem **pendentes** e não aparecem como selo, número ou claim no site.
+A autorização explícita do proprietário para uso comercial e publicação das 16 siglas abaixo foi recebida em 26/10/2026. A autorização não transforma uma credencial individual em certificação corporativa da ABREU & BRUM e não substitui a comprovação nominal de titularidade, emissor, validade ou vínculo profissional. Enquanto essas evidências não forem anexadas, as siglas podem ser apresentadas apenas como credenciais autorizadas, sem selo, número, titular ou claim corporativo.
 
 | Sigla | Nome / emissor a confirmar | Especialidade e relevância | Evidência disponível | Titular e vínculo | Uso comercial | Situação |
 |---|---|---|---|---|---|---|
-| OSCP | OffSec Certified Professional — OffSec | Pentest prático e exploração controlada | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Não autorizado | Pendente |
-| OSWE | OffSec Web Expert — OffSec | Segurança de aplicações web | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Não autorizado | Pendente |
-| OSEP | OffSec Experienced Penetration Tester — OffSec | Pentest avançado e evasão em escopo autorizado | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Não autorizado | Pendente |
-| OSCE | OffSec Certified Expert — OffSec (denominação a confirmar) | Exploração avançada e engenharia reversa | Sigla listada publicamente; programa/titular a confirmar | Não identificado | Não autorizado | Pendente |
-| GPEN | GIAC Penetration Tester — GIAC | Metodologia e execução de testes de intrusão | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Não autorizado | Pendente |
-| CEH | Certified Ethical Hacker — EC-Council | Fundamentos e práticas de hacking ético | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Não autorizado | Pendente |
-| PNPT | Practical Network Penetration Tester — TCM Security | Pentest de rede com relatório e apresentação | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Não autorizado | Pendente |
-| CRTP | Certified Red Team Professional — Altered Security (a confirmar) | Active Directory e operações de Red Team | Sigla listada publicamente; emissor/titular a confirmar | Não identificado | Não autorizado | Pendente |
-| CRTA | Certified Red Team Analyst — emissor a confirmar | Análise e operações adversariais | Sigla listada publicamente; emissor/titular a confirmar | Não identificado | Não autorizado | Pendente |
-| eWPTX | Web application Penetration Tester eXtreme — INE/eLearnSecurity | Pentest web avançado | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Não autorizado | Pendente |
-| PenTest+ | CompTIA PenTest+ — CompTIA | Planejamento, escopo e execução de pentest | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Não autorizado | Pendente |
-| CPENT | Certified Penetration Testing Professional — EC-Council | Pentest avançado e simulação de ataques | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Não autorizado | Pendente |
-| eMAPT | Mobile Application Penetration Tester — INE/eLearnSecurity | Segurança de aplicações mobile | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Não autorizado | Pendente |
-| LPT Master | Licensed Penetration Tester Master — EC-Council | Pentest profissional avançado | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Não autorizado | Pendente |
-| DCPT | Denominação e emissor a confirmar | Pentest e segurança ofensiva | Sigla listada publicamente; expansão/titular não recebidos | Não identificado | Não autorizado | Pendente |
-| ADPENX | Denominação e emissor a confirmar | Active Directory e exploração de identidade | Sigla listada publicamente; expansão/titular não recebidos | Não identificado | Não autorizado | Pendente |
+| OSCP | OffSec Certified Professional — OffSec | Pentest prático e exploração controlada | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| OSWE | OffSec Web Expert — OffSec | Segurança de aplicações web | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| OSEP | OffSec Experienced Penetration Tester — OffSec | Pentest avançado e evasão em escopo autorizado | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| OSCE | OffSec Certified Expert — OffSec (denominação a confirmar) | Exploração avançada e engenharia reversa | Sigla listada publicamente; programa/titular a confirmar | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| GPEN | GIAC Penetration Tester — GIAC | Metodologia e execução de testes de intrusão | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| CEH | Certified Ethical Hacker — EC-Council | Fundamentos e práticas de hacking ético | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| PNPT | Practical Network Penetration Tester — TCM Security | Pentest de rede com relatório e apresentação | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| CRTP | Certified Red Team Professional — Altered Security (a confirmar) | Active Directory e operações de Red Team | Sigla listada publicamente; emissor/titular a confirmar | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| CRTA | Certified Red Team Analyst — emissor a confirmar | Análise e operações adversariais | Sigla listada publicamente; emissor/titular a confirmar | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| eWPTX | Web application Penetration Tester eXtreme — INE/eLearnSecurity | Pentest web avançado | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| PenTest+ | CompTIA PenTest+ — CompTIA | Planejamento, escopo e execução de pentest | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| CPENT | Certified Penetration Testing Professional — EC-Council | Pentest avançado e simulação de ataques | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| eMAPT | Mobile Application Penetration Tester — INE/eLearnSecurity | Segurança de aplicações mobile | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| LPT Master | Licensed Penetration Tester Master — EC-Council | Pentest profissional avançado | Sigla listada publicamente; certificado nominal não recebido | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| DCPT | Denominação e emissor a confirmar | Pentest e segurança ofensiva | Sigla listada publicamente; expansão/titular não recebidos | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
+| ADPENX | Denominação e emissor a confirmar | Active Directory e exploração de identidade | Sigla listada publicamente; expansão/titular não recebidos | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
 
 ## Próxima evidência necessária
 

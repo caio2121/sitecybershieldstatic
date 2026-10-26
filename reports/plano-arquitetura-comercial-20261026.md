@@ -8,7 +8,7 @@
 
 - O HTML público consultado corresponde ao artefato local do commit `840c94f`, após normalização de BOM e finais de linha.
 - A Home pública contém 16 siglas de certificações.
-- `reports/matriz-certificacoes.md` registra essas credenciais como pendentes, sem certificado nominal, vínculo ou autorização comercial.
+- `reports/matriz-certificacoes.md` registra autorização explícita do proprietário para publicação das siglas; certificado nominal, titularidade, validade e vínculo profissional continuam sem comprovação anexada.
 - A Home pública não apresenta AB Scan como linha de produto destacada.
 - A navegação varia entre rotas: Home e páginas premium usam `Contextos`, `Método` e `Solicitar avaliação`; páginas utilitárias usam `Soluções`, `Metodologia`, `Conteúdos` e `Solicitar proposta`.
 - O formulário e a jornada WhatsApp permanecem fora deste plano. Não serão redesenhados nem terão texto ou instrumentação alterados nesta etapa.
@@ -119,7 +119,7 @@ Escopo · Execução · Evidência · Próximo passo
 
 - Remover rótulos de implementação, como `Engagement / readout`, `ALIGNED`, `MAPPED`, `TESTED`, `READABLE` e `DECIDABLE`.
 - Trocar frases sobre a construção do site por verbos comerciais: testar, simular, revisar, priorizar, corrigir e contratar.
-- Não apresentar as 16 siglas como certificações corporativas enquanto a matriz de evidências estiver pendente.
+- Apresentar as 16 siglas somente como credenciais autorizadas; não convertê-las em certificações corporativas nem acrescentar titular, selo, número ou validade sem evidência nominal.
 - Usar a seção de autoridade para explicar superfícies, método e entregáveis verificáveis; credenciais nominais só entram após autorização documentada.
 
 ## 5. Protótipo do AB Scan
@@ -216,7 +216,7 @@ Manter navy, dourado e a tipografia já aprovada. Evitar neon, excesso de cards,
 Antes de implementar:
 
 - decidir o status comercial e a cobertura real do AB Scan;
-- resolver a contradição das 16 certificações: anexar evidência/autorização ou remover as siglas da comunicação pública;
+- registrar a autorização já recebida para as 16 siglas e, antes de expandir o claim, anexar evidência nominal de titularidade, emissor, validade e vínculo;
 - confirmar a navegação única para todas as rotas;
 - preservar `servico=` e demais parâmetros dos CTAs existentes;
 - não alterar formulário, WhatsApp, consentimento, privacidade, CSP, analytics ou guard CNJ;
