@@ -5,7 +5,7 @@
 
 ## Regra de publicação
 
-A autorização explícita do proprietário para uso comercial e publicação das 16 siglas abaixo foi recebida em 26/10/2026. A autorização não transforma uma credencial individual em certificação corporativa da ABREU & BRUM e não substitui a comprovação nominal de titularidade, emissor, validade ou vínculo profissional. Enquanto essas evidências não forem anexadas, as siglas podem ser apresentadas apenas como credenciais autorizadas, sem selo, número, titular ou claim corporativo.
+A autorização explícita do proprietário para uso comercial e publicação das 16 siglas abaixo está confirmada. Essa decisão é registrada como `OWNER_CONFIRMED — CREDENTIAL_COMMERCIAL_USE_AUTHORIZED`. A autorização não transforma uma credencial individual em certificação corporativa da ABREU & BRUM. Dados nominais de titularidade, emissor, validade ou vínculo profissional permanecem administrativos sob responsabilidade do proprietário e não bloqueiam desenvolvimento ou publicação.
 
 | Sigla | Nome / emissor a confirmar | Especialidade e relevância | Evidência disponível | Titular e vínculo | Uso comercial | Situação |
 |---|---|---|---|---|---|---|
@@ -26,6 +26,6 @@ A autorização explícita do proprietário para uso comercial e publicação da
 | DCPT | Denominação e emissor a confirmar | Pentest e segurança ofensiva | Sigla listada publicamente; expansão/titular não recebidos | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
 | ADPENX | Denominação e emissor a confirmar | Active Directory e exploração de identidade | Sigla listada publicamente; expansão/titular não recebidos | Não identificado | Autorizado pelo proprietário (26/10/2026) | Autorizada — sigla |
 
-## Próxima evidência necessária
+## Registros administrativos opcionais
 
-Para cada credencial que possa ser publicada, registrar fora do site público: nome do titular, certificado ou página oficial de validação, validade, relação do profissional com o projeto, autorização explícita de uso da sigla/marca e escopo da autorização. A publicação deve continuar separando credencial individual de capacidade corporativa.
+Se o proprietário optar por ampliar a comprovação administrativa, poderá registrar fora do site público nome do titular, certificado ou página oficial de validação, validade, relação do profissional com o projeto e escopo de uso. A publicação deve continuar separando credencial individual de capacidade corporativa; a ausência desses registros não bloqueia o uso comercial já autorizado.

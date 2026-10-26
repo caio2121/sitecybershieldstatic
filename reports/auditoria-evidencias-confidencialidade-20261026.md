@@ -24,28 +24,28 @@
 
 ## 2. Certificações
 
-As 16 siglas permanecem divulgadas somente como qualificações profissionais autorizadas, sem titular, número, validade, selo ou certificação corporativa.
+As 16 siglas permanecem divulgadas como qualificações profissionais autorizadas, sem atribuição à pessoa jurídica como certificação corporativa. Por decisão posterior do proprietário, a autorização comercial está confirmada; a ausência de dados individuais no repositório é administrativa e não bloqueante.
 
 | Sigla | Titularidade | Validade | Autorização de divulgação | Estado |
 |---|---|---|---|---|
-| OSCP | Não comprovada | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| OSWE | Não comprovada | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| OSEP | Não comprovada | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| OSCE | Não comprovada; denominação/emissor a confirmar | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| GPEN | Não comprovada | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| CEH | Não comprovada | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| PNPT | Não comprovada | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| CRTP | Não comprovada; emissor a confirmar | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| CRTA | Não comprovada; emissor a confirmar | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| eWPTX | Não comprovada | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| PenTest+ | Não comprovada | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| CPENT | Não comprovada | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| eMAPT | Não comprovada | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| LPT Master | Não comprovada | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| DCPT | Não comprovada; denominação/emissor a confirmar | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
-| ADPENX | Não comprovada; denominação/emissor a confirmar | Não comprovada | Declarada pelo proprietário; documento não anexado | Pendente |
+| OSCP | Não registrada no repositório | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| OSWE | Não registrada no repositório | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| OSEP | Não registrada no repositório | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| OSCE | Denominação/emissor não registrados | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| GPEN | Não registrada no repositório | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| CEH | Não registrada no repositório | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| PNPT | Não registrada no repositório | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| CRTP | Emissor não registrado | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| CRTA | Emissor não registrado | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| eWPTX | Não registrada no repositório | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| PenTest+ | Não registrada no repositório | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| CPENT | Não registrada no repositório | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| eMAPT | Não registrada no repositório | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| LPT Master | Não registrada no repositório | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| DCPT | Denominação/emissor não registrados | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
+| ADPENX | Denominação/emissor não registrados | Não registrada no repositório | Confirmada pelo proprietário | Autorizada — administrativo não bloqueante |
 
-**Evidência-base:** `reports/matriz-certificacoes.md`, linhas 8–31. A autorização registrada é uma declaração de uso comercial, não prova nominal de titularidade, validade ou vínculo profissional.
+**Evidência-base:** decisão direta do proprietário, registrada como `OWNER_CONFIRMED — CREDENTIAL_COMMERCIAL_USE_AUTHORIZED`. A confirmação autoriza o uso comercial; não atribui credenciais individuais à pessoa jurídica nem cria certificação corporativa.
 
 ## 3. Carta de atestado
 
@@ -58,6 +58,6 @@ Não foi localizado contrato, proposta, modelo aprovado ou evidência operaciona
 - Adicionado bloqueio no `.gitignore` para recortes locais `reports/portfolio-source-excerpt-*.md`.
 - Nenhum JavaScript, CSS visual, rota, preço, pagamento, API, Analytics, CSP, consentimento, AB Scan ou guard CNJ foi alterado.
 
-## 5. Pendências para comprovação
+## 5. Registros opcionais e pendência contratual separada
 
-Para cada sigla, anexar em área privada: titular, certificado ou verificador oficial, validade, vínculo profissional, autorização de uso da sigla/marca e escopo. Para a carta de atestado, anexar cláusula contratual ou modelo autorizado antes de voltar a mencioná-la publicamente.
+Registros individuais podem ser anexados em área privada se o proprietário decidir mantê-los, mas não são pré-condição para desenvolvimento ou publicação. Para a carta de atestado, continua necessária confirmação contratual ou modelo autorizado antes de voltar a mencioná-la publicamente.
