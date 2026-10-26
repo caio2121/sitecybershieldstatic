@@ -11,7 +11,7 @@ Primary site: [https://abreuebrum.com.br/](https://abreuebrum.com.br/)
 - Definir escopo, premissas e entregáveis antes da execução.
 - Usar evidências e recomendações para priorizar correções.
 - Confirmar no contrato a modalidade, a cobertura, o reteste e os entregáveis.
-- O endereço `/ab-scan/` é mantido como página legada para compatibilidade e não é uma oferta prioritária da nova navegação.
+- O AB Scan é um produto próprio complementar para uma primeira leitura autorizada de exposição web. Ele não substitui automaticamente Pentest, Red Team ou Security Review; quando a decisão exigir validação manual ou outra superfície, a contratação deve seguir para o serviço especializado adequado.
 
 ## Temas principais
 
@@ -28,6 +28,7 @@ Primary site: [https://abreuebrum.com.br/](https://abreuebrum.com.br/)
 
 - Home: [https://abreuebrum.com.br/](https://abreuebrum.com.br/)
 - Services: [https://abreuebrum.com.br/servicos/](https://abreuebrum.com.br/servicos/)
+- AB Scan: [https://abreuebrum.com.br/ab-scan/](https://abreuebrum.com.br/ab-scan/)
 - Pentest: [https://abreuebrum.com.br/pentest/](https://abreuebrum.com.br/pentest/)
 - Red Team: [https://abreuebrum.com.br/red-team/](https://abreuebrum.com.br/red-team/)
 - Security Review: [https://abreuebrum.com.br/security-review/](https://abreuebrum.com.br/security-review/)
