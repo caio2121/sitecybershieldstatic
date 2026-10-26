@@ -730,7 +730,7 @@
 
 /* Editorial rows replace a grid of equal cards as the main commercial gesture. */
 .p-practice-stack { gap: 0; border-top: 1px solid var(--p-line); }
-.p-practice { grid-template-columns: 92px minmax(0, 1fr) minmax(210px, .55fr) 30px; min-height: 148px; padding: 26px 0; color: var(--p-ink); background: transparent; border-bottom: 1px solid var(--p-line); border-radius: 0; }
+.p-practice { grid-template-columns: 92px minmax(0, 1fr) minmax(210px, .55fr) 30px; min-height: 148px; padding: 26px 20px; color: var(--p-ink); background: transparent; border-bottom: 1px solid var(--p-line); border-radius: 0; }
 .p-practice::before { width: 3px; }
 .p-practice::after { content: ''; position: absolute; inset: 0; background: var(--p-paper); opacity: 0; transition: opacity .2s ease; }
 .p-practice:hover { color: var(--p-ink); box-shadow: none; transform: none; }
@@ -831,7 +831,7 @@
   .p-surface-core strong { font-size: .94rem; }
   .p-surface-node { min-width: 86px; padding: 10px 11px; }
   .p-surface-node span { font-size: .69rem; }
-  .p-practice { grid-template-columns: 42px minmax(0, 1fr) 22px; min-height: 138px; padding: 22px 0; }
+  .p-practice { grid-template-columns: 42px minmax(0, 1fr) 22px; min-height: 138px; padding: 22px 14px; }
   .p-practice-meta { grid-column: 2 / 3; }
   .p-service-atlas, .p-service-atlas--four { grid-template-columns: 1fr; }
   .p-credential-card { min-height: 0; }
