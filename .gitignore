@@ -7,3 +7,6 @@ input-marketing/
 .playwright-mcp/
 __pycache__/
 *.py[cod]
+
+# Recortes internos de fonte white-label nunca devem entrar no repositório
+reports/portfolio-source-excerpt-*.md

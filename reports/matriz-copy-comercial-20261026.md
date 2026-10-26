@@ -45,7 +45,7 @@ As amostras nas páginas de Pentest, Red Team e Security Review continuam explic
 - severidade/prioridade contextual;
 - evidência ou sinal observado;
 - recomendação, ação ou melhoria;
-- apresentação, acompanhamento, reteste e carta de atestado somente quando aplicáveis à modalidade e à proposta.
+- apresentação, acompanhamento e reteste somente quando aplicáveis à modalidade e à proposta. Carta de atestado permanece pendente de confirmação contratual e não é apresentada como entregável público.
 
 Não foram adicionados clientes, vulnerabilidades reais, resultados, métricas, preços, histórico, nomes de titulares ou certificações corporativas.
 
