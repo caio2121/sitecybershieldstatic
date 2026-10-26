@@ -75,6 +75,7 @@ if (mobileMenu && nav) {
         const isActive = nav.classList.toggle('active');
         mobileMenu.classList.toggle('active', isActive);
         mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+        mobileMenu.setAttribute('aria-label', isActive ? 'Fechar menu' : 'Abrir menu');
     });
 
     nav.querySelectorAll('a').forEach(link => {
@@ -82,6 +83,7 @@ if (mobileMenu && nav) {
             nav.classList.remove('active');
             mobileMenu.classList.remove('active');
             mobileMenu.setAttribute('aria-expanded', 'false');
+            mobileMenu.setAttribute('aria-label', 'Abrir menu');
         });
     });
 }

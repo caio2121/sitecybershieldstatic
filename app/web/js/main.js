@@ -145,6 +145,7 @@ function initMobileMenu() {
         var isActive = nav.classList.toggle('active');
         mobileMenu.classList.toggle('active', isActive);
         mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+        mobileMenu.setAttribute('aria-label', isActive ? 'Fechar menu' : 'Abrir menu');
     });
 }
 
@@ -211,6 +212,8 @@ var CONTACT_SERVICE_VALUES = [
     'marketplaces', 'startups', 'agronegocio', 'advocacia'
 ];
 
+var CONTACT_MODALITY_VALUES = ['api', 'web', 'externo', 'interno'];
+
 function getServiceLabel(serviceValue) {
     var serviceMap = {
          abscan: 'AB Scan (produto complementar)',
@@ -259,6 +262,22 @@ function getContactServiceFromUrl() {
     return CONTACT_SERVICE_VALUES.indexOf(servico) !== -1 ? servico : null;
 }
 
+function getContactModalityFromUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var modalidade = params.get('modalidade');
+    return CONTACT_MODALITY_VALUES.indexOf(modalidade) !== -1 ? modalidade : null;
+}
+
+function getModalityLabel(modalityValue) {
+    var modalityMap = {
+        api: 'API',
+        web: 'Web',
+        externo: 'Externo',
+        interno: 'Interno'
+    };
+    return modalityMap[modalityValue] || modalityValue || 'Não informado';
+}
+
 function buildWhatsAppMessage(data) {
     var pentestLines = data.servico === 'pentest' && hasPentestDetails(data)
         ? [
@@ -279,6 +298,11 @@ function buildWhatsAppMessage(data) {
         data.compliance ? 'Compliance: ' + data.compliance : ''
     ].filter(Boolean);
 
+    var serviceLines = [
+        'Interesse: ' + getServiceLabel(data.servico),
+        data.modalidade ? 'Modalidade: ' + getModalityLabel(data.modalidade) : ''
+    ].filter(Boolean);
+
     return [
         'Novo contato via site ABREU & BRUM',
         '',
@@ -286,7 +310,7 @@ function buildWhatsAppMessage(data) {
         'E-mail: ' + (data.email || 'Não informado'),
         'WhatsApp: ' + (data.whatsapp || 'Não informado'),
         'Empresa: ' + (data.empresa || 'Não informado'),
-        'Interesse: ' + getServiceLabel(data.servico),
+        serviceLines.join('\n'),
         contextLines.length ? '' : null,
         contextLines.length ? contextLines.join('\n') : null,
         '',
@@ -459,14 +483,17 @@ function initContactForm() {
     function initContactFormFromQuery() {
         if (!serviceField) return;
         var servico = getContactServiceFromUrl();
-        if (!servico) return;
-        serviceField.value = servico;
-        togglePentestQuestionnaire();
-        trackGAEvent('service_interest', {
-            service_value: servico,
-            service_label: getServiceLabel(servico),
-            source: 'url_prefill'
-        });
+        var modalidade = getContactModalityFromUrl();
+        if (servico) {
+            serviceField.value = servico;
+            togglePentestQuestionnaire();
+            trackGAEvent('service_interest', {
+                service_value: servico,
+                service_label: getServiceLabel(servico),
+                source: 'url_prefill'
+            });
+        }
+        if (modalidade) contactForm.dataset.modalidade = modalidade;
     }
 
     if (messageTextarea) {
@@ -500,6 +527,7 @@ function initContactForm() {
             escopo: String(formData.get('escopo') || '').trim(),
             compliance: String(formData.get('compliance') || '').trim(),
             mensagem: String(formData.get('mensagem') || '').trim(),
+            modalidade: contactForm.dataset.modalidade || '',
             pentestTipo: String(formData.get('pentestTipo') || '').trim(),
             pentestAlvo: String(formData.get('pentestAlvo') || '').trim(),
             pentestDominios: String(formData.get('pentestDominios') || '').trim(),
