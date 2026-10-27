@@ -121,6 +121,8 @@ button, input, select, textarea { font: inherit; }
 .page-hero { padding: clamp(54px, 8vw, 90px) 0 52px; background: linear-gradient(180deg, #fff, var(--color-bg)); }
 .page-hero .container { max-width: 900px; }
 .page-hero p { max-width: 760px; color: var(--color-muted); font-size: 1.1rem; }
+.proposal-page .page-hero h1, .proposal-page .contact-card h2 { font-family: var(--font-family-display); font-weight: 800; }
+.proposal-page .btn { border-radius: 5px; }
 .breadcrumbs { display: flex; flex-wrap: wrap; gap: .55rem; margin-bottom: 28px; color: var(--color-muted-light); font-size: .82rem; }
 .breadcrumbs a { color: var(--color-primary); font-weight: 750; text-decoration: none; }
 .service-page section + section { margin-top: 62px; }
