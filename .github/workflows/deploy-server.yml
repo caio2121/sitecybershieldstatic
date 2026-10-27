@@ -23,7 +23,7 @@ jobs:
         run: |
           test -f app/web/index.html
           test -f app/web/404.html
-          node tests/release/cnj-capture-disabled.mjs
+          docker run --rm -v "$GITHUB_WORKSPACE:/workspace:ro" -w /workspace node:22-alpine node tests/release/cnj-capture-disabled.mjs
 
       - name: Validar Compose
         run: docker compose -f docker-compose.yml config --quiet
