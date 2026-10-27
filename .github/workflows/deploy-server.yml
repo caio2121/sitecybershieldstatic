@@ -1,0 +1,37 @@
+name: Deploy site estático no ctb1ts
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sitecybershieldstatic-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validar arquivos publicados
+        run: |
+          test -f app/web/index.html
+          test -f app/web/404.html
+          node tests/release/cnj-capture-disabled.mjs
+
+      - name: Validar Compose
+        run: docker compose -f docker-compose.yml config --quiet
+
+      - name: Construir e iniciar site
+        run: docker compose -f docker-compose.yml up -d --build
+
+      - name: Smoke test do container
+        run: |
+          docker compose -f docker-compose.yml ps
+          docker compose -f docker-compose.yml exec -T sitecybershieldstatic wget -q --spider http://127.0.0.1/

@@ -1,0 +1,18 @@
+services:
+  sitecybershieldstatic:
+    build:
+      context: .
+    image: sitecybershieldstatic:latest
+    restart: unless-stopped
+    expose:
+      - "80"
+    environment:
+      VIRTUAL_HOST: abreuebrum.com.br
+      VIRTUAL_PORT: "80"
+      LETSENCRYPT_HOST: abreuebrum.com.br
+    networks:
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external: true

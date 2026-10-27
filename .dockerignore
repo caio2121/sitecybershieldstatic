@@ -1,0 +1,9 @@
+.git
+.github
+ops
+reports
+screenshots
+tests
+*.md
+*.py
+*.zip
