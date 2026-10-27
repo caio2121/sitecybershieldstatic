@@ -8,9 +8,8 @@
     },
     product: {
         name: 'AB Scan',
-        /** Host da plataforma ainda não publicado; CTAs temporariamente levam ao contato. */
-        url: '#contato',
-        primaryCta: 'Fazer análise do domínio'
+        url: 'https://scan.abreuebrum.com.br',
+        primaryCta: 'Iniciar análise gratuita'
     },
     contact: {
         email: {

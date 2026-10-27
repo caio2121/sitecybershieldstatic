@@ -218,6 +218,9 @@ var CONTACT_SERVICE_VALUES = [
 ];
 
 var CONTACT_MODALITY_VALUES = ['api', 'web', 'externo', 'interno'];
+var CONTACT_ORIGIN_VALUES = ['abscan', 'site'];
+var CONTACT_CATEGORY_VALUES = ['web', 'api', 'externo', 'interno', 'cloud', 'mobile'];
+var CONTACT_TYPE_VALUES = ['avaliacao-especializada', 'relatorio', 'descoberta'];
 
 function getServiceLabel(serviceValue) {
     var serviceMap = {
@@ -273,6 +276,24 @@ function getContactModalityFromUrl() {
     return CONTACT_MODALITY_VALUES.indexOf(modalidade) !== -1 ? modalidade : null;
 }
 
+function getAllowedContactContextFromUrl(name, allowedValues) {
+    var params = new URLSearchParams(window.location.search);
+    var value = params.get(name);
+    return allowedValues.indexOf(value) !== -1 ? value : null;
+}
+
+function getContactOriginFromUrl() {
+    return getAllowedContactContextFromUrl('origem', CONTACT_ORIGIN_VALUES);
+}
+
+function getContactCategoryFromUrl() {
+    return getAllowedContactContextFromUrl('categoria', CONTACT_CATEGORY_VALUES);
+}
+
+function getContactTypeFromUrl() {
+    return getAllowedContactContextFromUrl('tipo', CONTACT_TYPE_VALUES);
+}
+
 function getModalityLabel(modalityValue) {
     var modalityMap = {
         api: 'API',
@@ -281,6 +302,31 @@ function getModalityLabel(modalityValue) {
         interno: 'Interno'
     };
     return modalityMap[modalityValue] || modalityValue || 'Não informado';
+}
+
+function getContactOriginLabel(originValue) {
+    return originValue === 'abscan' ? 'AB Scan' : 'Site institucional';
+}
+
+function getContactCategoryLabel(categoryValue) {
+    var categoryMap = {
+        web: 'Web',
+        api: 'API',
+        externo: 'Infraestrutura externa',
+        interno: 'Infraestrutura interna',
+        cloud: 'Cloud',
+        mobile: 'Mobile'
+    };
+    return categoryMap[categoryValue] || categoryValue || 'Não informado';
+}
+
+function getContactTypeLabel(typeValue) {
+    var typeMap = {
+        'avaliacao-especializada': 'Avaliação especializada',
+        relatorio: 'Relatório',
+        descoberta: 'Descoberta de serviço'
+    };
+    return typeMap[typeValue] || typeValue || 'Não informado';
 }
 
 function buildWhatsAppMessage(data) {
@@ -297,6 +343,9 @@ function buildWhatsAppMessage(data) {
         : [];
 
     var contextLines = [
+        data.origem ? 'Origem da solicitação: ' + getContactOriginLabel(data.origem) : '',
+        data.categoria ? 'Categoria: ' + getContactCategoryLabel(data.categoria) : '',
+        data.tipo ? 'Tipo de interesse: ' + getContactTypeLabel(data.tipo) : '',
         data.ambiente ? 'Ambiente/tecnologia: ' + data.ambiente : '',
         data.prazo ? 'Prazo desejado: ' + data.prazo : '',
         data.escopo ? 'Escopo aproximado: ' + data.escopo : '',
@@ -489,6 +538,9 @@ function initContactForm() {
         if (!serviceField) return;
         var servico = getContactServiceFromUrl();
         var modalidade = getContactModalityFromUrl();
+        var origem = getContactOriginFromUrl();
+        var categoria = getContactCategoryFromUrl();
+        var tipo = getContactTypeFromUrl();
         if (servico) {
             serviceField.value = servico;
             togglePentestQuestionnaire();
@@ -499,6 +551,9 @@ function initContactForm() {
             });
         }
         if (modalidade) contactForm.dataset.modalidade = modalidade;
+        if (origem) contactForm.dataset.origem = origem;
+        if (categoria) contactForm.dataset.categoria = categoria;
+        if (tipo) contactForm.dataset.tipo = tipo;
     }
 
     if (messageTextarea) {
@@ -533,6 +588,9 @@ function initContactForm() {
             compliance: String(formData.get('compliance') || '').trim(),
             mensagem: String(formData.get('mensagem') || '').trim(),
             modalidade: contactForm.dataset.modalidade || '',
+            origem: contactForm.dataset.origem || '',
+            categoria: contactForm.dataset.categoria || '',
+            tipo: contactForm.dataset.tipo || '',
             pentestTipo: String(formData.get('pentestTipo') || '').trim(),
             pentestAlvo: String(formData.get('pentestAlvo') || '').trim(),
             pentestDominios: String(formData.get('pentestDominios') || '').trim(),
