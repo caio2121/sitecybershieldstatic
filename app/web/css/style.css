@@ -232,6 +232,15 @@ input::placeholder, textarea::placeholder { color: #8a9aaa; }
   .footer-brand { grid-column: 1 / -1; }
   .footer-bottom { display: block; }
   .footer-bottom p + p { margin-top: 8px; }
+  .proposal-page .section-tight { padding: 40px 0; }
+  .proposal-page .contact-layout { gap: 28px; }
+  .proposal-page .contact-form { padding: 18px 16px; }
+  .proposal-page .contact-form legend { margin-bottom: 16px; }
+  .proposal-page .form-group { gap: 5px; margin-bottom: 12px; }
+  .proposal-page input, .proposal-page select, .proposal-page textarea { padding: .7rem .8rem; }
+  .proposal-page textarea { min-height: 120px; }
+  .proposal-page .checkbox-row { margin: 4px 0 16px; }
+  .proposal-page #submitBtn { width: 100%; }
   .form-grid { grid-template-columns: 1fr; gap: 0; }
   .form-group.full { grid-column: auto; }
 }
