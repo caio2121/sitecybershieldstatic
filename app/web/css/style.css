@@ -239,6 +239,7 @@ input::placeholder, textarea::placeholder { color: #8a9aaa; }
   .process-grid, .deliverables, .audience-grid, .footer-content { grid-template-columns: 1fr; }
   .hero-actions, .cta-row { align-items: stretch; flex-direction: column; }
   .hero-actions .btn, .cta-row .btn { width: 100%; }
+  .hero h1 { font-size: clamp(2.25rem, 11vw, 3.5rem); }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
